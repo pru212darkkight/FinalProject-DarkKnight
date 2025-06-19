@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fire_Warrior_Portrait_0: 1264877717251755983
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
