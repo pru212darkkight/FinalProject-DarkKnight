@@ -14,6 +14,7 @@ public class PlayerController1 : MonoBehaviour
     public InputAction spell2Action;  // New spell 2 input
     public InputAction defendAction;  // New defend input
     public InputAction dashAction;  // New dash input
+    public InputAction spell3Action;  // New spell 3 input
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -51,6 +52,7 @@ public class PlayerController1 : MonoBehaviour
     private readonly int IsAttack3Hash = Animator.StringToHash("IsAttack3");
     private readonly int IsSpell1Hash = Animator.StringToHash("IsSpell1");
     private readonly int IsSpell2Hash = Animator.StringToHash("IsSpell2");
+    private readonly int IsSpell3Hash = Animator.StringToHash("IsSpell3");
     private readonly int IsDefendingHash = Animator.StringToHash("IsDefend");
     private readonly int IsDashingHash = Animator.StringToHash("IsDash");
     private readonly int JumpHash = Animator.StringToHash("Jump");
@@ -59,6 +61,7 @@ public class PlayerController1 : MonoBehaviour
     private readonly int Attack3Hash = Animator.StringToHash("Attack3");
     private readonly int Spell1Hash = Animator.StringToHash("Spell1");
     private readonly int Spell2Hash = Animator.StringToHash("Spell2");
+    private readonly int Spell3Hash = Animator.StringToHash("Spell3");
     private readonly int DefendHash = Animator.StringToHash("Defend");
     private readonly int DashHash = Animator.StringToHash("Dash");
     private readonly int LandedHash = Animator.StringToHash("Landed");
@@ -119,6 +122,15 @@ public class PlayerController1 : MonoBehaviour
     public float minManaForSpell2 = 40f;  // Minimum mana needed for spell 2
     public GameObject fireSpellPrefab;     // Prefab cho chưởng lửa
     public Transform spellSpawnPoint;      // Điểm sinh ra chưởng lửa
+    // Spell 3 (Transform) settings
+    public float spell3ManaCost = 50f;    // Mana cost for spell 3
+    public float minManaForSpell3 = 50f;  // Minimum mana needed for spell 3
+    public float spell3Cooldown = 10f;    // Cooldown for spell 3
+    public float spell3Duration = 5f;     // Duration of transformation
+    private float lastSpell3Time = -10f;  // Initialize to negative value so spell can be used immediately
+    private bool isSpell3;
+    private float spell3TimeLeft = 0;
+    private Sprite originalSprite;
 
     [Header("hurt Effect Settings")]
     public float hurtStunDuration = 0.5f;
@@ -139,8 +151,6 @@ public class PlayerController1 : MonoBehaviour
     private float lastAttack3Time;
     private bool isSpell1;
     private bool isSpell2;
-    private float lastSpell1Time;
-    private float lastSpell2Time;
     private bool isDefending;
     private float lastDefendTime;
     private bool isDashing;
@@ -151,6 +161,8 @@ public class PlayerController1 : MonoBehaviour
     private bool ishurt = false;
     private float hurtStunTimeLeft = 0f;
     private Color originalColor;
+    private float lastSpell1Time;
+    private float lastSpell2Time;
 
     private void OnEnable()
     {
@@ -163,6 +175,7 @@ public class PlayerController1 : MonoBehaviour
         spell2Action.Enable();    // Enable spell 2 input
         defendAction.Enable();    // Enable defend input
         dashAction.Enable();    // Enable dash input
+        spell3Action.Enable();    // Enable spell 3 input
         jumpAction.performed += OnJump;
         attackAction.performed += OnAttack;
         attack2Action.performed += OnAttack2;
@@ -172,6 +185,7 @@ public class PlayerController1 : MonoBehaviour
         defendAction.started += OnDefendStart;    // Changed from performed to started
         defendAction.canceled += OnDefendEnd;       // Add defend end handler
         dashAction.performed += OnDash;    // Add dash handler
+        spell3Action.performed += OnSpell3;    // Add spell 3 handler
     }
 
     private void OnDisable()
@@ -185,6 +199,7 @@ public class PlayerController1 : MonoBehaviour
         spell2Action.Disable();    // Disable spell 2 input
         defendAction.Disable();    // Disable defend input
         dashAction.Disable();    // Disable dash input
+        spell3Action.Disable();    // Disable spell 3 input
         jumpAction.performed -= OnJump;
         attackAction.performed -= OnAttack;
         attack2Action.performed -= OnAttack2;
@@ -194,6 +209,7 @@ public class PlayerController1 : MonoBehaviour
         defendAction.started -= OnDefendStart;    // Changed from performed to started
         defendAction.canceled -= OnDefendEnd;       // Remove defend end handler
         dashAction.performed -= OnDash;    // Remove dash handler
+        spell3Action.performed -= OnSpell3;    // Remove spell 3 handler
     }
 
     void Start()
@@ -233,6 +249,7 @@ public class PlayerController1 : MonoBehaviour
         animator.SetBool(IsAttack3Hash, isAttacking3);
         animator.SetBool(IsSpell1Hash, isSpell1);
         animator.SetBool(IsSpell2Hash, isSpell2);
+        animator.SetBool(IsSpell3Hash, isSpell3);
         animator.SetBool(IsDashingHash, isDashing);    // Set dash animation parameter
         if (isDefending)
         {
@@ -296,6 +313,17 @@ public class PlayerController1 : MonoBehaviour
             if (dashTimeLeft <= 0)
             {
                 EndDash();
+            }
+        }
+
+        // Handle spell 3 (transform) duration
+        if (isSpell3)
+        {
+            spell3TimeLeft -= Time.deltaTime;
+            Debug.Log(spell3TimeLeft);
+            if (spell3TimeLeft <= 0  && !isAttacking && !isAttacking2 && !isAttacking3 && !isSpell1 && !isSpell2)
+            {
+                EndSpell3();
             }
         }
     }
@@ -743,5 +771,48 @@ public class PlayerController1 : MonoBehaviour
             staminaBar.fillAmount = stamina / maxStamina;
         if (manaBar != null)
             manaBar.fillAmount = mana / maxMana;
+    }
+
+    private void OnSpell3(InputAction.CallbackContext context)
+    {
+        if (context.performed && !context.canceled)
+        {
+            if (Time.time >= lastSpell3Time + spell3Cooldown &&
+                !isAttacking && !isAttacking2 && !isAttacking3 &&
+                !isSpell1 && !isSpell2 && 
+                mana >= minManaForSpell3)
+            {
+                // Trigger animation trước
+                animator.SetTrigger(Spell3Hash);
+                isSpell3 = true;
+                
+                // Set cooldown sau khi spell đã được kích hoạt
+                lastSpell3Time = Time.time;
+                
+                // Tiêu thụ mana và cập nhật thời gian sử dụng mana
+                mana -= spell3ManaCost;
+                lastManaUseTime = Time.time;
+                
+                // Set thời gian biến hình
+                spell3TimeLeft = spell3Duration;
+                
+                // Tăng chỉ số khi biến hình
+                strength *= 2f;
+                speed *= 1.5f;
+                
+                Debug.Log("Spell 3 (Transform) started");
+                UpdateUI();
+            }
+        }
+    }
+
+    private void EndSpell3()
+    {
+        
+        isSpell3 = false;
+        // Trả lại chỉ số gốc
+        strength /= 2f;
+        speed /= 1.5f;
+        Debug.Log("Spell 3 (Transform) ended");
     }
 }
