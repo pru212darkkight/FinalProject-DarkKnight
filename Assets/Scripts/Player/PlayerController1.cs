@@ -321,7 +321,7 @@ public class PlayerController1 : MonoBehaviour
         {
             spell3TimeLeft -= Time.deltaTime;
             Debug.Log(spell3TimeLeft);
-            if (spell3TimeLeft <= 0  && !isAttacking && !isAttacking2 && !isAttacking3 && !isSpell1 && !isSpell2)
+            if (spell3TimeLeft <= 0 && !isAttacking && !isAttacking2 && !isAttacking3 && !isSpell1 && !isSpell2)
             {
                 EndSpell3();
             }
@@ -379,8 +379,8 @@ public class PlayerController1 : MonoBehaviour
         // Only trigger on button press, not hold
         if (context.performed && !context.canceled)
         {
-            if (Time.time >= lastAttackTime + attackCooldown && 
-                !isAttacking && !isAttacking2 && !isAttacking3 && 
+            if (Time.time >= lastAttackTime + attackCooldown &&
+                !isAttacking && !isAttacking2 && !isAttacking3 &&
                 !isSpell1 && !isSpell2)
             {
                 isAttacking = true;
@@ -420,8 +420,8 @@ public class PlayerController1 : MonoBehaviour
         // Only trigger on button press, not hold
         if (context.performed && !context.canceled)
         {
-            if (Time.time >= lastAttack2Time + attack2Cooldown && 
-                !isAttacking && !isAttacking2 && !isAttacking3 && 
+            if (Time.time >= lastAttack2Time + attack2Cooldown &&
+                !isAttacking && !isAttacking2 && !isAttacking3 &&
                 !isSpell1 && !isSpell2)
             {
                 isAttacking2 = true;
@@ -461,8 +461,8 @@ public class PlayerController1 : MonoBehaviour
         // Only trigger on button press, not hold
         if (context.performed && !context.canceled)
         {
-            if (Time.time >= lastAttack3Time + attack3Cooldown && 
-                !isAttacking && !isAttacking2 && !isAttacking3 && 
+            if (Time.time >= lastAttack3Time + attack3Cooldown &&
+                !isAttacking && !isAttacking2 && !isAttacking3 &&
                 !isSpell1 && !isSpell2)
             {
                 isAttacking3 = true;
@@ -502,8 +502,8 @@ public class PlayerController1 : MonoBehaviour
         // Only trigger on button press, not hold
         if (context.performed && !context.canceled)
         {
-            if (Time.time >= lastSpell1Time + spell1Cooldown && 
-                !isAttacking && !isAttacking2 && !isAttacking3 && 
+            if (Time.time >= lastSpell1Time + spell1Cooldown &&
+                !isAttacking && !isAttacking2 && !isAttacking3 &&
                 !isSpell1 && !isSpell2 &&
                 mana >= minManaForSpell1)  // Check if we have enough mana
             {
@@ -537,7 +537,7 @@ public class PlayerController1 : MonoBehaviour
             // Xác định hướng bắn dựa trên hướng nhân vật
             Vector2 direction = new Vector2(transform.localScale.x > 0 ? 1 : -1, 0);
             Debug.Log($"Fire spell direction: {direction}");
-            
+
             // Tạo cầu lửa và khởi tạo ngay lập tức
             GameObject fireSpell = Instantiate(fireSpellPrefab, spellSpawnPoint.position, Quaternion.identity);
             FireSpellEffect fireEffect = fireSpell.GetComponent<FireSpellEffect>();
@@ -569,8 +569,8 @@ public class PlayerController1 : MonoBehaviour
         // Only trigger on button press, not hold
         if (context.performed && !context.canceled)
         {
-            if (isGrounded && Time.time >= lastSpell2Time + spell2Cooldown && 
-                !isAttacking && !isAttacking2 && !isAttacking3 && 
+            if (isGrounded && Time.time >= lastSpell2Time + spell2Cooldown &&
+                !isAttacking && !isAttacking2 && !isAttacking3 &&
                 !isSpell1 && !isSpell2 &&
                 mana >= minManaForSpell2)  // Check if we have enough mana
             {
@@ -633,10 +633,10 @@ public class PlayerController1 : MonoBehaviour
 
     private void OnDash(InputAction.CallbackContext context)
     {
-        if (Time.time >= lastDashTime + dashCooldown && 
-            stamina >= minStaminaToDash && 
-            !isDashing && !isDefending && 
-            !isAttacking && !isAttacking2 && !isAttacking3 && 
+        if (Time.time >= lastDashTime + dashCooldown &&
+            stamina >= minStaminaToDash &&
+            !isDashing && !isDefending &&
+            !isAttacking && !isAttacking2 && !isAttacking3 &&
             !isSpell1 && !isSpell2)
         {
             // Determine dash direction based on input, but only horizontal
@@ -678,10 +678,10 @@ public class PlayerController1 : MonoBehaviour
             // Attack ranges
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-            
+
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(attackPoint.position, attack2Range);
-            
+
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(attackPoint.position, attack3Range);
 
@@ -779,27 +779,27 @@ public class PlayerController1 : MonoBehaviour
         {
             if (Time.time >= lastSpell3Time + spell3Cooldown &&
                 !isAttacking && !isAttacking2 && !isAttacking3 &&
-                !isSpell1 && !isSpell2 && 
+                !isSpell1 && !isSpell2 &&
                 mana >= minManaForSpell3)
             {
                 // Trigger animation trước
                 animator.SetTrigger(Spell3Hash);
                 isSpell3 = true;
-                
+
                 // Set cooldown sau khi spell đã được kích hoạt
                 lastSpell3Time = Time.time;
-                
+
                 // Tiêu thụ mana và cập nhật thời gian sử dụng mana
                 mana -= spell3ManaCost;
                 lastManaUseTime = Time.time;
-                
+
                 // Set thời gian biến hình
                 spell3TimeLeft = spell3Duration;
-                
+
                 // Tăng chỉ số khi biến hình
                 strength *= 2f;
                 speed *= 1.5f;
-                
+
                 Debug.Log("Spell 3 (Transform) started");
                 UpdateUI();
             }
@@ -808,7 +808,7 @@ public class PlayerController1 : MonoBehaviour
 
     private void EndSpell3()
     {
-        
+
         isSpell3 = false;
         // Trả lại chỉ số gốc
         strength /= 2f;
