@@ -726,7 +726,7 @@ public class PlayerController1 : MonoBehaviour
         }
     }
 
-    private void ApplyhurtEffects()
+    public void ApplyhurtEffects()
     {
         // Trigger hurt animation
         animator.SetTrigger(HurtHash);
