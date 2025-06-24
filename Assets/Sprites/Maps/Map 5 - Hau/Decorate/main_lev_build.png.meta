@@ -4708,11 +4708,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 159
-        y: 175
-        width: 34
-        height: 130
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 176
+        width: 32
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.62}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4817,12 +4817,12 @@ TextureImporter:
       name: main_lev_build_185
       rect:
         serializedVersion: 2
-        x: 511
-        y: 175
-        width: 34
-        height: 130
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 512
+        y: 176
+        width: 32
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.62}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5037,10 +5037,10 @@ TextureImporter:
       name: main_lev_build_195
       rect:
         serializedVersion: 2
-        x: 207
-        y: 175
-        width: 178
-        height: 34
+        x: 208
+        y: 176
+        width: 160
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5059,10 +5059,10 @@ TextureImporter:
       name: main_lev_build_196
       rect:
         serializedVersion: 2
-        x: 415
-        y: 175
-        width: 34
-        height: 34
+        x: 416
+        y: 176
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5215,8 +5215,8 @@ TextureImporter:
         serializedVersion: 2
         x: 239
         y: 127
-        width: 226
-        height: 34
+        width: 224
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
