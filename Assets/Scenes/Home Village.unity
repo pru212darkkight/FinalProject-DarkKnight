@@ -4078,8 +4078,8 @@ Transform:
   m_GameObject: {fileID: 1094637623}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -399.7, y: 240.6, z: 214}
-  m_LocalScale: {x: 32.39532, y: 31.27824, z: 42.8}
+  m_LocalPosition: {x: -399.3, y: 240.6, z: 214.00003}
+  m_LocalScale: {x: 32.39532, y: 31.278242, z: 42.800007}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1617685804}
@@ -6412,8 +6412,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 432, y: -258}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 433, y: -258.5}
+  m_SizeDelta: {x: 102, y: 101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1637650059
 GameObject:
@@ -9353,6 +9353,23 @@ MonoBehaviour:
       m_Action: Dash
       m_Flags: 0
     m_Flags: 0
+  spell3Action:
+    m_Name: Spell 3
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4d45643d-7b3f-414f-9835-ff91c3256ac3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 6f4e4e68-d1a1-41b7-8b1f-b271defa6c21
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Spell 3
+      m_Flags: 0
+    m_Flags: 0
   moveSpeed: 5
   jumpForce: 8
   groundCheck: {fileID: 1039707027090188083}
@@ -9408,6 +9425,10 @@ MonoBehaviour:
   minManaForSpell2: 40
   fireSpellPrefab: {fileID: 7837533325708847716, guid: 7e90538c1491ce64fb2da76c45fb210b, type: 3}
   spellSpawnPoint: {fileID: 486185333}
+  spell3ManaCost: 50
+  minManaForSpell3: 50
+  spell3Cooldown: 5
+  spell3Duration: 10
   hurtStunDuration: 0.2
   hurtKnockbackForce: 10
   hurtFlashColor: {r: 1, g: 0, b: 0, a: 1}
