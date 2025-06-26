@@ -1629,11 +1629,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 200
-        y: 224
+        y: 222
         width: 32
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
