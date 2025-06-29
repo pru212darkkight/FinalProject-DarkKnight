@@ -214,6 +214,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  spell3Action:
+    m_Name: Spell 3
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 17363308-6507-442f-b459-d18a18118eda
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   moveSpeed: 5
   jumpForce: 8
   groundCheck: {fileID: 0}
@@ -246,15 +255,16 @@ MonoBehaviour:
   armor: 5
   magicResist: 5
   healthRecoveryRate: 2
-  staminaToHealthRatio: 0.5
-  minStaminaForRecovery: 20
+  healthRegenDelay: 5
+  staminaRegenRate: 5
+  staminaRegenDelay: 0.5
   manaRegenRate: 5
   manaRegenDelay: 0.5
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
   manaBar: {fileID: 0}
-  staminaRegenRate: 5
-  staminaRegenDelay: 0.5
+  staminaToHealthRatio: 0.5
+  minStaminaForRecovery: 20
   defendStaminaCost: 10
   minStaminaToDefend: 20
   dashForce: 20
@@ -268,6 +278,15 @@ MonoBehaviour:
   minManaForSpell2: 40
   fireSpellPrefab: {fileID: 0}
   spellSpawnPoint: {fileID: 0}
+  spell3ManaCost: 50
+  minManaForSpell3: 50
+  spell3Cooldown: 10
+  spell3Duration: 5
+  hurtStunDuration: 0.5
+  hurtKnockbackForce: 5
+  hurtFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  hurtFlashDuration: 0.1
+  hurtFlashCount: 3
 --- !u!50 &8076200860070947583
 Rigidbody2D:
   serializedVersion: 5
