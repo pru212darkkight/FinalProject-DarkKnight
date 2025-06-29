@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: c2d321386e269d74ea53ff180fd671b6
+guid: 3b416895aba611e4bb635fba2bec4376
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7377295934022830490
-    second: Background_1_0
+      213: -4178046375966092550
+    second: 4_0
+  - first:
+      213: 8982099749623107299
+    second: 4_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,43 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_1_0
+      name: 4_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 768
-        height: 351
+        width: 763
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 666b2a14f649e9990800000000000000
-      internalID: -7377295934022830490
+      spriteID: af2de6115f89406c0800000000000000
+      internalID: -4178046375966092550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_1
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 0
+        width: 916
+        height: 536
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ee09611224d6ac70800000000000000
+      internalID: 8982099749623107299
       vertices: []
       indices: 
       edges: []
@@ -160,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Background_1_0: -7377295934022830490
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

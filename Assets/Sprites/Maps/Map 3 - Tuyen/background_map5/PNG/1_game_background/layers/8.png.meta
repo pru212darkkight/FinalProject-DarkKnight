@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: c2d321386e269d74ea53ff180fd671b6
+guid: c8e6b06cf5cccbe45a58a5d26a6dfa2b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7377295934022830490
-    second: Background_1_0
+      213: 8288426215254106694
+    second: 8_0
+  - first:
+      213: -2681809406195053031
+    second: 8_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +43,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -96,43 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_1_0
+      name: 8_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1161
         y: 0
-        width: 768
-        height: 351
+        width: 226
+        height: 227
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 666b2a14f649e9990800000000000000
-      internalID: -7377295934022830490
+      spriteID: 642a1439ab7660370800000000000000
+      internalID: 8288426215254106694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 8_1
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 0
+        width: 149
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91e417ccd8c48cad0800000000000000
+      internalID: -2681809406195053031
       vertices: []
       indices: 
       edges: []
@@ -161,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Background_1_0: -7377295934022830490
+      8_0: 8288426215254106694
+      8_1: -2681809406195053031
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
