@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float attackRange = 1.5f;
     public float attackCooldown = 1f;
     public float detectionRange = 5f;
+    public float minFlipDistance = 0.5f; // Khoảng cách tối thiểu để quay đầu
 
     [Header("Defense Stats")]
     public float armor = 5f;          // Giáp
@@ -70,23 +71,25 @@ public class Enemy : MonoBehaviour
         }
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        Debug.Log($"Distance to player: {distanceToPlayer}, Detection Range: {detectionRange}");
 
         // Nếu player trong tầm phát hiện
         if (distanceToPlayer <= detectionRange)
         {
             // Xác định hướng di chuyển
             float direction = player.position.x > transform.position.x ? 1 : -1;
-            Debug.Log($"Direction to player: {direction}");
 
-            // Lật sprite nếu cần
-            if (direction > 0 && !isFacingRight)
+            // Lật sprite nếu cần - chỉ khi khoảng cách X đủ lớn
+            float xDistance = Mathf.Abs(player.position.x - transform.position.x);
+            if (xDistance > minFlipDistance)
             {
-                Flip();
-            }
-            else if (direction < 0 && isFacingRight)
-            {
-                Flip();
+                if (direction > 0 && !isFacingRight)
+                {
+                    Flip();
+                }
+                else if (direction < 0 && isFacingRight)
+                {
+                    Flip();
+                }
             }
 
             // Nếu trong tầm tấn công
@@ -110,7 +113,6 @@ public class Enemy : MonoBehaviour
                 // Di chuyển về phía player
                 Vector2 newVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
                 rb.linearVelocity = newVelocity;
-                Debug.Log($"Moving with velocity: {newVelocity}");
 
                 if (animator != null)
                 {
