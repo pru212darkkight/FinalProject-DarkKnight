@@ -97,7 +97,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -111,7 +111,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -173,103 +173,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_0
-      rect:
-        serializedVersion: 2
-        x: 441
-        y: 325
-        width: 29
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 01d643e572589c740800000000000000
-      internalID: 5172812051142438160
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_1
-      rect:
-        serializedVersion: 2
-        x: 445
-        y: 302
-        width: 22
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f08b70b0f0028ae10800000000000000
-      internalID: 2209050866206881807
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_2
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 245
-        width: 38
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ef21789f7f8bb330800000000000000
-      internalID: 3727730894760390628
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_3
-      rect:
-        serializedVersion: 2
-        x: 517
-        y: 111
-        width: 202
-        height: 214
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 790c5dbefc1a05f30800000000000000
-      internalID: 4562324336913268887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Emad (@emad_jigoku) on X-Photoroom_4
       rect:
         serializedVersion: 2
-        x: 24
-        y: 111
-        width: 185
-        height: 208
+        x: 22
+        y: 9
+        width: 188
+        height: 311
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -286,12 +198,12 @@ TextureImporter:
       name: Emad (@emad_jigoku) on X-Photoroom_5
       rect:
         serializedVersion: 2
-        x: 247
-        y: 111
-        width: 77
-        height: 189
+        x: 210
+        y: 9
+        width: 140
+        height: 294
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -305,257 +217,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_6
-      rect:
-        serializedVersion: 2
-        x: 441
-        y: 296
-        width: 29
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c6a738c5e79f14d50800000000000000
-      internalID: 6719926440126806636
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_7
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 25
-        width: 99
-        height: 87
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98a3b0dc4028ec620800000000000000
-      internalID: 2796315375775201929
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_8
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 25
-        width: 99
-        height: 87
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: db2d58bbb5214c740800000000000000
-      internalID: 5171278457325605565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_9
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 38
-        width: 99
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ebe271167ad4c5480800000000000000
-      internalID: -8909160581561897282
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_10
-      rect:
-        serializedVersion: 2
-        x: 393
-        y: 112
-        width: 81
-        height: 159
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eac6141bc680ce5f0800000000000000
-      internalID: -726196176990147410
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_11
-      rect:
-        serializedVersion: 2
-        x: 537
-        y: 38
-        width: 99
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d5d633c616fdb6b90800000000000000
-      internalID: -7247453565802549923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_12
-      rect:
-        serializedVersion: 2
-        x: 571
-        y: 111
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a365f2f5041b93310800000000000000
-      internalID: 1385333250426099258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_13
-      rect:
-        serializedVersion: 2
-        x: 578
-        y: 111
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3a00823404e4173d0800000000000000
-      internalID: -3210699021426884445
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_14
-      rect:
-        serializedVersion: 2
-        x: 587
-        y: 111
-        width: 36
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d0c1cd6ec5a6cb060800000000000000
-      internalID: 6970563270505405453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_15
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 9
-        width: 139
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b83b18053f175140800000000000000
-      internalID: 4708266248068872371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_16
-      rect:
-        serializedVersion: 2
-        x: 211
-        y: 9
-        width: 139
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8455e0a6e3cf72560800000000000000
-      internalID: 7289071866919933256
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Emad (@emad_jigoku) on X-Photoroom_17
       rect:
         serializedVersion: 2
         x: 365
         y: 9
         width: 137
-        height: 17
+        height: 351
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -569,37 +239,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_18
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 25
-        width: 99
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 37bc05cde45592a50800000000000000
-      internalID: 6496817734650743667
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Emad (@emad_jigoku) on X-Photoroom_19
       rect:
         serializedVersion: 2
         x: 517
         y: 9
-        width: 138
-        height: 17
+        width: 204
+        height: 318
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -612,33 +260,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Emad (@emad_jigoku) on X-Photoroom_20
-      rect:
-        serializedVersion: 2
-        x: 537
-        y: 25
-        width: 99
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b14543fef02cb1d30800000000000000
-      internalID: 4403326434378273819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0932b2fc7d8498e4791fde54504a2c4b
     internalID: 0
     vertices: []
     indices: 

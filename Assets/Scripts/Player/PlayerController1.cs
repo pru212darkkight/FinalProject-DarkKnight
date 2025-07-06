@@ -41,6 +41,7 @@ public class PlayerController1 : MonoBehaviour
     public float spell1Range = 5f;       // Range for spell 1
     public float spell2Range = 8f;       // Range for spell 2
     public LayerMask enemyLayer;
+    public float attackTimeout = 1f;      // Timeout để tự động reset attack state
 
     [Header("Animation Settings")]
     private readonly int SpeedHash = Animator.StringToHash("Speed");
@@ -139,6 +140,15 @@ public class PlayerController1 : MonoBehaviour
     public float hurtFlashDuration = 0.1f;
     public int hurtFlashCount = 3;
 
+    [Header("Death & Respawn Settings")]
+    public float respawnDelay = 2f;           // Thời gian chờ trước khi respawn
+    public Vector3 respawnPosition;           // Vị trí respawn
+    public bool useCheckpoint = true;         // Có sử dụng checkpoint không
+    public float deathAnimationDuration = 1f; // Thời gian animation chết
+    public GameObject gameOverUI;             // UI hiển thị khi game over
+    public AudioClip deathSound;              // Âm thanh khi chết
+    public AudioClip respawnSound;            // Âm thanh khi respawn
+
     private Vector2 moveInput;
     private bool isJumping;
     private bool isGrounded;
@@ -163,6 +173,10 @@ public class PlayerController1 : MonoBehaviour
     private Color originalColor;
     private float lastSpell1Time;
     private float lastSpell2Time;
+    private bool isDead = false;
+    private bool isRespawning = false;
+    private Vector3 lastCheckpoint;
+    private AudioSource audioSource;
 
     private void OnEnable()
     {
@@ -217,10 +231,19 @@ public class PlayerController1 : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         stamina = maxStamina;
         mana = maxMana;
         originalColor = spriteRenderer.color;
+
+        // Set initial respawn position
+        if (respawnPosition == Vector3.zero)
+        {
+            respawnPosition = transform.position;
+        }
+        lastCheckpoint = respawnPosition;
+
         UpdateUI();
     }
 
@@ -326,6 +349,23 @@ public class PlayerController1 : MonoBehaviour
                 EndSpell3();
             }
         }
+
+        // Auto-reset attack states if they get stuck
+        if (isAttacking && Time.time > lastAttackTime + attackTimeout)
+        {
+            Debug.LogWarning("Attack 1 state stuck, auto-resetting");
+            OnAttackEnd();
+        }
+        if (isAttacking2 && Time.time > lastAttack2Time + attackTimeout)
+        {
+            Debug.LogWarning("Attack 2 state stuck, auto-resetting");
+            OnAttack2End();
+        }
+        if (isAttacking3 && Time.time > lastAttack3Time + attackTimeout)
+        {
+            Debug.LogWarning("Attack 3 state stuck, auto-resetting");
+            OnAttack3End();
+        }
     }
 
     private void FixedUpdate()
@@ -403,6 +443,13 @@ public class PlayerController1 : MonoBehaviour
                         Debug.Log($"hurt enemy with Attack 1: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, false); // false for physical damage
                     }
+                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    if (enemyHealth != null)
+                    {
+                        float damage = strength; // Basic attack damage
+                        Debug.Log($"hurt enemy with Attack 1: {enemy.name} for {damage} damage");
+                        enemyHealth.TakeDamage(damage, false); // false for physical damage
+                    }
                 }
             }
         }
@@ -444,6 +491,13 @@ public class PlayerController1 : MonoBehaviour
                         Debug.Log($"hurt enemy with Attack 2: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, false); // false for physical damage
                     }
+                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    if (enemyHealth != null)
+                    {
+                        float damage = strength * 1.5f; // Attack 2 deals 1.5x damage
+                        Debug.Log($"hurt enemy with Attack 2: {enemy.name} for {damage} damage");
+                        enemyHealth.TakeDamage(damage, false); // false for physical damage
+                    }
                 }
             }
         }
@@ -484,6 +538,13 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength * 3f; // Attack 3 deals 3x damage
                         Debug.Log($"hurt enemy with Attack 3: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, false); // false for physical damage
+                    }
+                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    if (enemyHealth != null)
+                    {
+                        float damage = strength * 3f; // Attack 3 deals 3x damage
+                        Debug.Log($"hurt enemy with Attack 3: {enemy.name} for {damage} damage");
+                        enemyHealth.TakeDamage(damage, false); // false for physical damage
                     }
                 }
             }
@@ -595,6 +656,13 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength * 4f;  // Spell 2 does the most damage
                         Debug.Log($"hurt enemy with Spell 2: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, true); // true for magic damage
+                    }
+                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    if (enemyHealth != null)
+                    {
+                        float damage = strength * 4f;  // Spell 2 does the most damage
+                        Debug.Log($"hurt enemy with Spell 2: {enemy.name} for {damage} damage");
+                        enemyHealth.TakeDamage(damage, true); // false for physical damage
                     }
                 }
 
@@ -728,6 +796,30 @@ public class PlayerController1 : MonoBehaviour
 
     public void ApplyhurtEffects()
     {
+        // Reset attack states when hurt to prevent stuck states
+        if (isAttacking)
+        {
+            OnAttackEnd();
+        }
+        if (isAttacking2)
+        {
+            OnAttack2End();
+        }
+        if (isAttacking3)
+        {
+            OnAttack3End();
+        }
+
+        // Reset spell states when hurt (except spell3)
+        if (isSpell1)
+        {
+            OnSpell1End();
+        }
+        if (isSpell2)
+        {
+            OnSpell2End();
+        }
+
         // Trigger hurt animation
         animator.SetTrigger(HurtHash);
         animator.SetBool(IsHurtHash, true);
@@ -735,32 +827,227 @@ public class PlayerController1 : MonoBehaviour
         // Apply hurt stun (shorter duration)
         ishurt = true;
         hurtStunTimeLeft = hurtStunDuration * 0.3f; // Reduce stun duration to 30%
-
-        // Apply knockback (reduced force)
-        Vector2 knockbackDirection = new Vector2(-transform.localScale.x, 0.5f).normalized;
-        rb.linearVelocity = Vector2.zero; // Reset velocity
-        rb.AddForce(knockbackDirection * (hurtKnockbackForce * 0.5f), ForceMode2D.Impulse); // Reduce knockback force to 50%
-
-        // Start hurt flash effect
-        StartCoroutine(hurtFlashEffect());
-    }
-
-    private System.Collections.IEnumerator hurtFlashEffect()
-    {
-        for (int i = 0; i < hurtFlashCount; i++)
-        {
-            spriteRenderer.color = hurtFlashColor;
-            yield return new WaitForSeconds(hurtFlashDuration);
-            spriteRenderer.color = originalColor;
-            yield return new WaitForSeconds(hurtFlashDuration);
-        }
     }
 
     private void Die()
     {
-        // Handle player death
+        if (isDead) return; // Prevent multiple death calls
+
+        isDead = true;
         Debug.Log("Player died!");
-        // Add death animation, game over logic, etc.
+
+        // Disable all input and movement
+        DisablePlayerInput();
+
+        // Stop all ongoing actions
+        StopAllCoroutines();
+        ResetAllStates();
+
+        // Play death sound
+        // if (audioSource != null && deathSound != null)
+        // {
+        //     audioSource.PlayOneShot(deathSound);
+        // }
+
+        // Trigger death animation
+        animator.SetTrigger("Die");
+        animator.SetBool("IsDead", true);
+
+        // Disable collider to prevent further interactions
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        if (playerCollider != null)
+        {
+            playerCollider.enabled = false;
+        }
+
+        // Stop movement
+        rb.linearVelocity = Vector2.zero;
+        rb.isKinematic = true;
+
+        // Start death sequence
+        StartCoroutine(DeathSequence());
+    }
+
+    private void DisablePlayerInput()
+    {
+        // Disable all input actions
+        moveAction.Disable();
+        jumpAction.Disable();
+        attackAction.Disable();
+        attack2Action.Disable();
+        attack3Action.Disable();
+        spell1Action.Disable();
+        spell2Action.Disable();
+        defendAction.Disable();
+        dashAction.Disable();
+        spell3Action.Disable();
+    }
+
+    private void EnablePlayerInput()
+    {
+        // Re-enable all input actions
+        moveAction.Enable();
+        jumpAction.Enable();
+        attackAction.Enable();
+        attack2Action.Enable();
+        attack3Action.Enable();
+        spell1Action.Enable();
+        spell2Action.Enable();
+        defendAction.Enable();
+        dashAction.Enable();
+        spell3Action.Enable();
+    }
+
+    private void ResetAllStates()
+    {
+        // Reset all combat states
+        isAttacking = false;
+        isAttacking2 = false;
+        isAttacking3 = false;
+        isSpell1 = false;
+        isSpell2 = false;
+        isDefending = false;
+        isDashing = false;
+        isSpell3 = false;
+        ishurt = false;
+        isJumping = false;
+
+        // Reset animator states
+        animator.SetBool(IsAttack1Hash, false);
+        animator.SetBool(IsAttack2Hash, false);
+        animator.SetBool(IsAttack3Hash, false);
+        animator.SetBool(IsSpell1Hash, false);
+        animator.SetBool(IsSpell2Hash, false);
+        animator.SetBool(IsSpell3Hash, false);
+        animator.SetBool(IsDefendingHash, false);
+        animator.SetBool(IsDashingHash, false);
+        animator.SetBool(IsHurtHash, false);
+    }
+
+    private System.Collections.IEnumerator DeathSequence()
+    {
+        // Wait for death animation
+        yield return new WaitForSeconds(deathAnimationDuration);
+
+        // Check if player has lives or should respawn
+        if (ShouldRespawn())
+        {
+            // Start respawn process
+            StartCoroutine(RespawnPlayer());
+        }
+        else
+        {
+            // Game over
+            // GameOver();
+        }
+    }
+
+    private bool ShouldRespawn()
+    {
+        // Không respawn tự động - chỉ game over
+        return false;
+    }
+
+    private System.Collections.IEnumerator RespawnPlayer()
+    {
+        isRespawning = true;
+
+        // Wait before respawn
+        yield return new WaitForSeconds(respawnDelay);
+
+        // Respawn player
+        RespawnPlayerAtCheckpoint();
+
+        // Play respawn sound
+        if (audioSource != null && respawnSound != null)
+        {
+            audioSource.PlayOneShot(respawnSound);
+        }
+
+        // Reset death state
+        isDead = false;
+        isRespawning = false;
+
+        // Re-enable player functionality
+        EnablePlayerInput();
+        ResetAllStates();
+
+        // Re-enable collider
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        if (playerCollider != null)
+        {
+            playerCollider.enabled = true;
+        }
+
+        // Re-enable physics
+        rb.isKinematic = false;
+
+        // Reset animator
+        animator.SetBool("IsDead", false);
+
+        Debug.Log("Player respawned!");
+    }
+
+    private void RespawnPlayerAtCheckpoint()
+    {
+        // Determine respawn position
+        Vector3 respawnPos = useCheckpoint ? lastCheckpoint : respawnPosition;
+
+        // Move player to respawn position
+        transform.position = respawnPos;
+
+        // Reset health and stats
+        currentHealth = maxHealth;
+        stamina = maxStamina;
+        mana = maxMana;
+
+        // Reset spell3 transformation if active
+        if (isSpell3)
+        {
+            EndSpell3();
+        }
+
+        // Update UI
+        UpdateUI();
+
+        // Reset sprite color
+        spriteRenderer.color = originalColor;
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("Game Over!");
+
+        // // Show game over UI
+        // if (gameOverUI != null)
+        // {
+        //     gameOverUI.SetActive(true);
+        // }
+
+        // You can add more game over logic here:
+        // - Save game state
+        // - Show restart/quit options
+        // - Play game over music
+        // - etc.
+    }
+
+    // Public method to set checkpoint
+    public void SetCheckpoint(Vector3 checkpointPosition)
+    {
+        if (useCheckpoint)
+        {
+            lastCheckpoint = checkpointPosition;
+            Debug.Log($"Checkpoint set at: {checkpointPosition}");
+        }
+    }
+
+    // Public method to force respawn (useful for debugging or special events)
+    public void ForceRespawn()
+    {
+        if (isDead && !isRespawning)
+        {
+            StartCoroutine(RespawnPlayer());
+        }
     }
 
     private void UpdateUI()
@@ -808,7 +1095,6 @@ public class PlayerController1 : MonoBehaviour
 
     private void EndSpell3()
     {
-
         isSpell3 = false;
         // Trả lại chỉ số gốc
         strength /= 2f;
