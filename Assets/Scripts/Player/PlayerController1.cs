@@ -320,7 +320,6 @@ public class PlayerController1 : MonoBehaviour
         if (isSpell3)
         {
             spell3TimeLeft -= Time.deltaTime;
-            Debug.Log(spell3TimeLeft);
             if (spell3TimeLeft <= 0 && !isAttacking && !isAttacking2 && !isAttacking3 && !isSpell1 && !isSpell2)
             {
                 EndSpell3();
@@ -403,6 +402,13 @@ public class PlayerController1 : MonoBehaviour
                         Debug.Log($"hurt enemy with Attack 1: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, false); // false for physical damage
                     }
+                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    if (enemyComponent != null)
+                    {
+                        float damage = strength; // Basic attack damage
+                        Debug.Log($"hurt enemy with Attack 1: {enemy.name} for {damage} damage");
+                        enemyHealth.TakeDamage(damage, false);
+                    }
                 }
             }
         }
@@ -444,6 +450,12 @@ public class PlayerController1 : MonoBehaviour
                         Debug.Log($"hurt enemy with Attack 2: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, false); // false for physical damage
                     }
+                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    if (enemyHealth != null)
+                    {
+                        float damage = strength * 1.5f; ;
+                        enemyHealth.TakeDamage(damage, false);
+                    }
                 }
             }
         }
@@ -484,6 +496,13 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength * 3f; // Attack 3 deals 3x damage
                         Debug.Log($"hurt enemy with Attack 3: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, false); // false for physical damage
+                    }
+                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    if (enemyHealth != null)
+                    {
+                        float damage = strength * 3f;
+                        Debug.Log($"hurt enemy with Attack 3: {enemy.name} for {damage} damage");
+                        enemyHealth.TakeDamage(damage, false);
                     }
                 }
             }
@@ -595,6 +614,13 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength * 4f;  // Spell 2 does the most damage
                         Debug.Log($"hurt enemy with Spell 2: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, true); // true for magic damage
+                    }
+                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    if (enemyHealth != null)
+                    {
+                        float damage = strength * 4f;
+                        Debug.Log($"hurt enemy with Spell 2: {enemy.name} for {damage} damage");
+                        enemyHealth.TakeDamage(damage, true);
                     }
                 }
 
