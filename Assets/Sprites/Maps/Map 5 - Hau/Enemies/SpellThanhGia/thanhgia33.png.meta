@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: 776b66194e8ea1644ad23e7c1af0f61d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1174082606119069047
+    second: thanhgia33_0
+  - first:
+      213: 5229724365006715868
+    second: thanhgia33_1
+  - first:
+      213: 1134152427796811868
+    second: thanhgia33_2
+  - first:
+      213: 769950687981807225
+    second: thanhgia33_3
+  - first:
+      213: -3469904015601940626
+    second: thanhgia33_4
+  - first:
+      213: -101523111244032801
+    second: thanhgia33_5
+  - first:
+      213: 8036142415254050339
+    second: thanhgia33_6
+  - first:
+      213: 5780265608784818650
+    second: thanhgia33_7
+  - first:
+      213: -7181140060883033019
+    second: thanhgia33_8
+  - first:
+      213: 2201226396244684464
+    second: thanhgia33_9
+  - first:
+      213: -5981852502767469978
+    second: thanhgia33_10
+  - first:
+      213: -8271320443441206919
+    second: thanhgia33_11
+  - first:
+      213: -1161641003302950357
+    second: thanhgia33_12
+  - first:
+      213: -3070189545690357741
+    second: thanhgia33_13
+  - first:
+      213: -8364752690879248873
+    second: thanhgia33_14
+  - first:
+      213: -9140273347656449492
+    second: thanhgia33_15
+  - first:
+      213: 8992903625075044341
+    second: thanhgia33_16
+  - first:
+      213: -4171054068588529545
+    second: thanhgia33_17
+  - first:
+      213: -3829914548794664991
+    second: thanhgia33_18
+  - first:
+      213: -1746481187042535318
+    second: thanhgia33_19
+  - first:
+      213: -4628521634681439445
+    second: thanhgia33_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: thanhgia33_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 201
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98ade4d1712d4bfe0800000000000000
+      internalID: -1174082606119069047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 191
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdb3e690a96b39840800000000000000
+      internalID: 5229724365006715868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_2
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 181
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c50d9f3cf915dbf00800000000000000
+      internalID: 1134152427796811868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_3
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 167
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97629b3421a6faa00800000000000000
+      internalID: 769950687981807225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_4
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 153
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e674851aeac68dfc0800000000000000
+      internalID: -3469904015601940626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_5
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 141
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd49ec9a441579ef0800000000000000
+      internalID: -101523111244032801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_6
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 96
+        width: 27
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 326daa903fc168f60800000000000000
+      internalID: 8036142415254050339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_7
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 130
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad1b60f22f0a73050800000000000000
+      internalID: 5780265608784818650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_8
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 116
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5446db47927775c90800000000000000
+      internalID: -7181140060883033019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_9
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 79
+        width: 25
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bea06aaeb35c8e10800000000000000
+      internalID: 2201226396244684464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_10
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 79
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66a73c987d03cfca0800000000000000
+      internalID: -5981852502767469978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_11
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 106
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 979a24941ed563d80800000000000000
+      internalID: -8271320443441206919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_12
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 96
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a699189a501efe0800000000000000
+      internalID: -1161641003302950357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_13
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 85
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3102200ffde7465d0800000000000000
+      internalID: -3070189545690357741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 40
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 716462afebd6aeb80800000000000000
+      internalID: -8364752690879248873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_15
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 77
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2287fa41d9372180800000000000000
+      internalID: -9140273347656449492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_16
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 70
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ffabe753363dcc70800000000000000
+      internalID: 8992903625075044341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_17
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 40
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77835de7c607d16c0800000000000000
+      internalID: -4171054068588529545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_18
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 63
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e75ef6720969dac0800000000000000
+      internalID: -3829914548794664991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_19
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 10
+        width: 27
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a685d671d9043c7e0800000000000000
+      internalID: -1746481187042535318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thanhgia33_20
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 10
+        width: 26
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2b3a91a81034cfb0800000000000000
+      internalID: -4628521634681439445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      thanhgia33_0: -1174082606119069047
+      thanhgia33_1: 5229724365006715868
+      thanhgia33_10: -5981852502767469978
+      thanhgia33_11: -8271320443441206919
+      thanhgia33_12: -1161641003302950357
+      thanhgia33_13: -3070189545690357741
+      thanhgia33_14: -8364752690879248873
+      thanhgia33_15: -9140273347656449492
+      thanhgia33_16: 8992903625075044341
+      thanhgia33_17: -4171054068588529545
+      thanhgia33_18: -3829914548794664991
+      thanhgia33_19: -1746481187042535318
+      thanhgia33_2: 1134152427796811868
+      thanhgia33_20: -4628521634681439445
+      thanhgia33_3: 769950687981807225
+      thanhgia33_4: -3469904015601940626
+      thanhgia33_5: -101523111244032801
+      thanhgia33_6: 8036142415254050339
+      thanhgia33_7: 5780265608784818650
+      thanhgia33_8: -7181140060883033019
+      thanhgia33_9: 2201226396244684464
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
