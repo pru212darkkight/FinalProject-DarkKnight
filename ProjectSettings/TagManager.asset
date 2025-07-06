@@ -8,6 +8,8 @@ TagManager:
   - Ladder
   - TrapXoay
   - Ground
+  - Boss
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -15,12 +17,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Boss
   - Step
   - Player
   - Enemy
   - Ground
-  - 
+  - Projectile
   - 
   - 
   - 
@@ -53,6 +55,9 @@ TagManager:
     locked: 0
   - name: Decor
     uniqueID: 1687349639
+    locked: 0
+  - name: Enemy
+    uniqueID: 2052495021
     locked: 0
   m_RenderingLayers:
   - Default
