@@ -1,25 +1,28 @@
 fileFormatVersion: 2
-guid: d16410c4b0f763143a0acad55562ca2e
+guid: 52ba4b4586c40e04caa9f0acdae9c9cc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6991849013916550155
-    second: Death_0
+      213: -8975167132481720811
+    second: Magic trap - Level 2 - Transition_0
   - first:
-      213: -276728812324164698
-    second: Death_1
+      213: -6024697225640337006
+    second: Magic trap - Level 2 - Transition_1
   - first:
-      213: 3156895337291164288
-    second: Death_2
+      213: -3716345356763093559
+    second: Magic trap - Level 2 - Transition_2
   - first:
-      213: 1400002288684528572
-    second: Death_3
+      213: 8950667868089999321
+    second: Magic trap - Level 2 - Transition_3
   - first:
-      213: -1891625820773287384
-    second: Death_4
+      213: -7947406999100999669
+    second: Magic trap - Level 2 - Transition_4
   - first:
-      213: -5789737788129074030
-    second: Death_5
+      213: -5402593471100811724
+    second: Magic trap - Level 2 - Transition_5
+  - first:
+      213: 7301280801243879492
+    second: Magic trap - Level 2 - Transition_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,19 +115,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -141,13 +131,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Death_0
+      name: Magic trap - Level 2 - Transition_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 52
-        width: 38
-        height: 48
+        x: 610
+        y: 0
+        width: 11
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b0449ad32a9080160800000000000000
-      internalID: 6991849013916550155
+      spriteID: 51e6aa4ab0dc17380800000000000000
+      internalID: -8975167132481720811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_1
+      name: Magic trap - Level 2 - Transition_1
       rect:
         serializedVersion: 2
-        x: 201
-        y: 89
-        width: 9
-        height: 10
+        x: 706
+        y: 0
+        width: 19
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ab6d428c9cd82cf0800000000000000
-      internalID: -276728812324164698
+      spriteID: 2912d622bc9f36ca0800000000000000
+      internalID: -6024697225640337006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_2
+      name: Magic trap - Level 2 - Transition_2
       rect:
         serializedVersion: 2
-        x: 204
-        y: 49
-        width: 46
-        height: 58
+        x: 802
+        y: 0
+        width: 30
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +190,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 08aa354559b8fcb20800000000000000
-      internalID: 3156895337291164288
+      spriteID: 9c5a67b8693ec6cc0800000000000000
+      internalID: -3716345356763093559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_3
+      name: Magic trap - Level 2 - Transition_3
       rect:
         serializedVersion: 2
-        x: 351
-        y: 48
-        width: 53
-        height: 54
+        x: 898
+        y: 0
+        width: 30
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,20 +212,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb376cdf9aecd6310800000000000000
-      internalID: 1400002288684528572
+      spriteID: 9dfd10cd009273c70800000000000000
+      internalID: 8950667868089999321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_4
+      name: Magic trap - Level 2 - Transition_4
       rect:
         serializedVersion: 2
-        x: 508
-        y: 47
-        width: 46
-        height: 27
+        x: 994
+        y: 0
+        width: 30
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82af9d896589fb5e0800000000000000
-      internalID: -1891625820773287384
+      spriteID: b08b125017325b190800000000000000
+      internalID: -7947406999100999669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_5
+      name: Magic trap - Level 2 - Transition_5
       rect:
         serializedVersion: 2
-        x: 656
-        y: 47
-        width: 49
-        height: 29
+        x: 1090
+        y: 0
+        width: 30
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,8 +256,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29429e33828b6afa0800000000000000
-      internalID: -5789737788129074030
+      spriteID: 4360139bcd12605b0800000000000000
+      internalID: -5402593471100811724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Magic trap - Level 2 - Transition_6
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 0
+        width: 605
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4485583743c535560800000000000000
+      internalID: 7301280801243879492
       vertices: []
       indices: 
       edges: []
@@ -285,13 +297,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Death_0: 6991849013916550155
-      Death_1: -276728812324164698
-      Death_2: 3156895337291164288
-      Death_3: 1400002288684528572
-      Death_4: -1891625820773287384
-      Death_5: -5789737788129074030
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
