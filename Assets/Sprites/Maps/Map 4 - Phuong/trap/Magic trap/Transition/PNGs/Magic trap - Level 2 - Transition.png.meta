@@ -297,7 +297,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Magic trap - Level 2 - Transition_0: -8975167132481720811
+      Magic trap - Level 2 - Transition_1: -6024697225640337006
+      Magic trap - Level 2 - Transition_2: -3716345356763093559
+      Magic trap - Level 2 - Transition_3: 8950667868089999321
+      Magic trap - Level 2 - Transition_4: -7947406999100999669
+      Magic trap - Level 2 - Transition_5: -5402593471100811724
+      Magic trap - Level 2 - Transition_6: 7301280801243879492
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
