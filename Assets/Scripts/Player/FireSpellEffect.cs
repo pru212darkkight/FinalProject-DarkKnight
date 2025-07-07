@@ -72,6 +72,14 @@ public class FireSpellEffect : MonoBehaviour
                 enemy.TakeDamage(damage, true); // true để đánh dấu là sát thương phép thuật
             }
 
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                float damage = baseStrength * damageMultiplier;
+                Debug.Log($"Dealing {damage} damage to enemy");
+                enemyHealth.TakeDamage(damage, false); // false for physical damage
+            }
+
             // TODO: Thêm animation nổ ở đây nếu có
             Destroy(gameObject); // Hủy sau khi nổ
         }

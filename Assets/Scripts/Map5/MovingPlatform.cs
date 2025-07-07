@@ -32,7 +32,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.SetParent(transform);
+            collision.transform.SetParent(transform,true);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)

@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Ladder
+  - TrapXoay
+  - Ground
+  - Boss
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -12,12 +17,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Boss
   - Step
   - Player
   - Enemy
   - Ground
-  - 
+  - Projectile
   - 
   - 
   - 
@@ -42,14 +47,25 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 3806927859
+  - name: background
+    uniqueID: 3348784315
+    locked: 0
+  - name: decorback
+    uniqueID: 2042787411
     locked: 0
   - name: Ground
     uniqueID: 3222543289
     locked: 0
+  - name: Player
+    uniqueID: 3806927859
+    locked: 0
   - name: Decor
     uniqueID: 1687349639
+    locked: 0
+  - name: Enemy
+
+    uniqueID: 2052495021
+
     locked: 0
   m_RenderingLayers:
   - Default
