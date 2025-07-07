@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public float detectRangeY = 2f; // Chiều dọc vùng phát hiện
 
     public float moveSpeed = 2.5f;
+    public float attackRange = 1.5f;
     public float healthRegenRate = 5f;
     public float attackCooldown = 1f;
     private float lastAttackTime;
@@ -62,7 +63,7 @@ public class EnemyController : MonoBehaviour
             isReturning = false; // Nếu thấy player thì không quay về gốc nữa
             LookAtTarget(player.position.x);
 
-            if (distToPlayer <= enemyWeapon.attackRange)
+            if (distToPlayer <= attackRange)
             {
                 rb.linearVelocity = Vector2.zero;
                 animator.SetBool("isRunning", false);
@@ -140,11 +141,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // Vẽ vùng canh gác (detect range) để nhìn rõ trên scene
     void OnDrawGizmosSelected()
     {
+        // Vùng phát hiện
         Gizmos.color = Color.yellow;
-
         Gizmos.DrawWireCube(transform.position, new Vector3(detectRangeX * 2, detectRangeY * 2, 0.1f));
+
+        // Vùng attackRange - tức là enemy sẽ dừng lại chuẩn bị ra đòn khi tới đây
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
 }

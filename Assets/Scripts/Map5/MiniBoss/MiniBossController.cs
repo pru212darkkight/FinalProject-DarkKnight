@@ -14,7 +14,7 @@ public class MiniBossController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private EnemyHealth enemyHealth;
-    private MiniBossAttack miniBossAttack;
+    public MiniBossAttack miniBossAttack;
 
     // Thêm trạng thái Hurt
     private enum State { Idle, MovingToPlayer, Attacking, Hurt, Returning }
@@ -196,5 +196,10 @@ public class MiniBossController : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position, new Vector3(detectRangeX * 2, detectRangeY * 2, 0.1f));
+
+        // Vẽ thêm vùng attack range
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
 }
