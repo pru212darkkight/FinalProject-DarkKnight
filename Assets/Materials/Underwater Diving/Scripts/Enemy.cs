@@ -53,10 +53,12 @@ public class EnemyWater : MonoBehaviour {
 	}
 
 	void turnAround(){
-		if (transform.localScale.x == 1) {
-			transform.localScale = new Vector3 (-1f, 1f, 1f);
+		// Giữ nguyên scale hiện tại, chỉ đổi hướng
+		Vector3 currentScale = transform.localScale;
+		if (currentScale.x > 0) {
+			transform.localScale = new Vector3(-Mathf.Abs(currentScale.x), currentScale.y, currentScale.z);
 		} else {
-			transform.localScale = new Vector3 (1f,1f,1f);
+			transform.localScale = new Vector3(Mathf.Abs(currentScale.x), currentScale.y, currentScale.z);
 		}
 	}
 }
