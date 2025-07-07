@@ -7,7 +7,7 @@ public class SimpleParallax : MonoBehaviour
 
     [Header("Parallax Settings")]
     [Range(0f, 1f)]
-    public float parallaxSpeed = 0.5f;
+    public float parallaxSpeed = 0.2f;
 
     [Header("Debug")]
     public bool enableDebug = true;
