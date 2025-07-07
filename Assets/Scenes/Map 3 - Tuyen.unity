@@ -5719,6 +5719,75 @@ Transform:
   - {fileID: 7423025}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &466235943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466235945}
+  - component: {fileID: 466235944}
+  m_Layer: 0
+  m_Name: UnderwaterEnemySetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &466235944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466235943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4f4f9c03cf39a4f975606b3a59706b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishBigSettings:
+    enemyName: FishBig
+    maxHealth: 4
+    healthBarOffset: {x: 0, y: 1.2, z: 0}
+    healthBarColor: {r: 1, g: 0, b: 0, a: 1}
+    deathEffect: {fileID: 0}
+  fishMidSettings:
+    enemyName: FishMid
+    maxHealth: 3
+    healthBarOffset: {x: 0, y: 1, z: 0}
+    healthBarColor: {r: 1, g: 0, b: 0, a: 1}
+    deathEffect: {fileID: 0}
+  fishDartSettings:
+    enemyName: FishDart
+    maxHealth: 2
+    healthBarOffset: {x: 0, y: 0.8, z: 0}
+    healthBarColor: {r: 1, g: 0, b: 0, a: 1}
+    deathEffect: {fileID: 0}
+  mineHealth: 2
+  mineExplosionDamage: 5
+  mineExplosionRadius: 2
+  mineHealthBarOffset: {x: 0, y: 1, z: 0}
+  mineHealthBarColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  setupOnStart: 1
+  debugMode: 1
+--- !u!4 &466235945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466235943}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.73454, y: -2.63714, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507686402
 GameObject:
   m_ObjectHideFlags: 0
@@ -6728,6 +6797,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8415594189239132604, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1690882661}
+    - targetCorrespondingSourceObject: {fileID: 8415594189239132604, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1690882673}
   m_SourcePrefab: {fileID: 100100000, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
 --- !u!1 &822314972
 GameObject:
@@ -8546,6 +8618,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2332100755582909787, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
   m_PrefabInstance: {fileID: 818203957}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1690882673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690882660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79b2c1fec86f714ab96903a1dd25dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1.5
+  attackCooldown: 0.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  attackOffset: {x: 0.8, y: 0}
+  attackEffect: {fileID: 0}
+  effectDuration: 0.2
 --- !u!1001 &1697049371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9131,3 +9223,4 @@ SceneRoots:
   - {fileID: 1251059342}
   - {fileID: 427818642}
   - {fileID: 606917119}
+  - {fileID: 466235945}
