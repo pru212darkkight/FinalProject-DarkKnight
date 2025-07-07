@@ -150,6 +150,9 @@ public class PlayerController1 : MonoBehaviour
     public AudioClip respawnSound;            // Âm thanh khi respawn
 
     private Vector2 moveInput;
+
+    // Public property để các script khác có thể access moveInput
+    public Vector2 MoveInput => moveInput;
     private bool isJumping;
     private bool isGrounded;
     private bool wasGroundedLastFrame;
