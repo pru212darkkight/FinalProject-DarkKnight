@@ -7,8 +7,11 @@ public class EnemyController : MonoBehaviour
     public EnemyWeapon enemyWeapon;  // Kéo reference EnemyWeapon
 
     [Header("Guard/Patrol")]
-    public float detectRange = 5f;    // Vùng canh gác
+    public float detectRangeX = 5f; // Chiều ngang vùng phát hiện
+    public float detectRangeY = 2f; // Chiều dọc vùng phát hiện
+
     public float moveSpeed = 2.5f;
+    public float attackRange = 1.5f;
     public float healthRegenRate = 5f;
     public float attackCooldown = 1f;
     private float lastAttackTime;
@@ -19,8 +22,8 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private EnemyHealth enemyHealth;
 
-    private bool isPlayerDetected = false;
     private bool isReturning = false;
+    private bool previousPlayerDetected = false; // Thêm biến này ở đầu class
 
     private void Awake()
     {
@@ -30,34 +33,37 @@ public class EnemyController : MonoBehaviour
         startPoint = transform.position;
     }
 
+
+
     void Update()
     {
         if (enemyHealth != null && enemyHealth.isDead)
         {
             rb.linearVelocity = Vector2.zero;
-            animator.SetBool("isRunning", false); // Đảm bảo không set lại các state khác
+            animator.SetBool("isRunning", false);
             return;
         }
-        float playerDist = Vector2.Distance(player.position, startPoint);
+
         float distToPlayer = Vector2.Distance(player.position, transform.position);
 
-        if (playerDist <= detectRange)
-        {
-            isPlayerDetected = true;
-            isReturning = false;
-        }
-        else if (isPlayerDetected)
-        {
-            isPlayerDetected = false;
-            isReturning = true;
-        }
+        Vector3 center = transform.position;
+        bool isPlayerDetectedNow =
+            Mathf.Abs(player.position.x - center.x) <= detectRangeX &&
+            Mathf.Abs(player.position.y - center.y) <= detectRangeY;
 
-        // Đuổi/tấn công player
-        if (isPlayerDetected)
+        // Phát hiện khi player vừa rời khỏi vùng phát hiện
+        if (!isPlayerDetectedNow && previousPlayerDetected)
         {
+            isReturning = true; // Bắt đầu quay về gốc
+        }
+        previousPlayerDetected = isPlayerDetectedNow;
+
+        if (isPlayerDetectedNow)
+        {
+            isReturning = false; // Nếu thấy player thì không quay về gốc nữa
             LookAtTarget(player.position.x);
 
-            if (distToPlayer <= enemyWeapon.attackRange)
+            if (distToPlayer <= attackRange)
             {
                 rb.linearVelocity = Vector2.zero;
                 animator.SetBool("isRunning", false);
@@ -75,7 +81,7 @@ public class EnemyController : MonoBehaviour
                 animator.SetBool("isRunning", true);
             }
         }
-        // Quay về chỗ cũ, hồi máu
+        // Quay về chỗ cũ khi player đã ra khỏi vùng phát hiện
         else if (isReturning)
         {
             float distToStart = Vector2.Distance(transform.position, startPoint);
@@ -91,10 +97,15 @@ public class EnemyController : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
                 animator.SetBool("isRunning", false);
                 isReturning = false;
+
+                // Flip về trái khi đã về gốc
+                Vector3 scale = transform.localScale;
+                scale.x = -Mathf.Abs(scale.x);
+                transform.localScale = scale;
             }
 
-            // Hồi máu dần
-            if (!isPlayerDetected && distToStart <= 0.15f && enemyHealth.currentHealth < enemyHealth.maxHealth)
+            // Hồi máu dần khi đã về gốc mà chưa đủ máu
+            if (distToStart <= 0.15f && enemyHealth.currentHealth < enemyHealth.maxHealth)
             {
                 enemyHealth.currentHealth += healthRegenRate * Time.deltaTime;
                 enemyHealth.currentHealth = Mathf.Min(enemyHealth.currentHealth, enemyHealth.maxHealth);
@@ -113,6 +124,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+
     void LookAtTarget(float targetX)
     {
         if (targetX > transform.position.x && transform.localScale.x < 0)
@@ -129,10 +141,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // Vẽ vùng canh gác (detect range) để nhìn rõ trên scene
     void OnDrawGizmosSelected()
     {
+        // Vùng phát hiện
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectRange);
+        Gizmos.DrawWireCube(transform.position, new Vector3(detectRangeX * 2, detectRangeY * 2, 0.1f));
+
+        // Vùng attackRange - tức là enemy sẽ dừng lại chuẩn bị ra đòn khi tới đây
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
 }
