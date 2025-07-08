@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
@@ -6,40 +6,45 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Transform pointB;
     [SerializeField] private float speed = 2f;
     private Vector3 target;
-    private Transform player;
+
+    [Header("Can be locked from outside")]
+    public bool lockByScript = false;
+
     void Start()
     {
         target = pointA.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position,target,speed*Time.deltaTime);
-        if(Vector3.Distance(transform.position,target)<0.1f)
+        if (lockByScript) return; // Bị khoá thì không chạy
+
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, target) < 0.1f)
         {
-            if(target == pointA.position)
-            {
-                target = pointB.position;
-            }
-            else 
-            {
-                target = pointA.position;
-            } 
-        }    
+            target = (target == pointA.position) ? pointB.position : pointA.position;
+        }
     }
+
+    public void LockPlatform()
+    {
+        lockByScript = true;
+    }
+    public void UnlockPlatform()
+    {
+        lockByScript = false;
+        target = pointB.position;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.transform.SetParent(transform,true);
-        }
+            collision.transform.SetParent(transform, true);
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
             collision.transform.SetParent(null);
-        }
-    }    
+    }
 }
