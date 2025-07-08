@@ -15,6 +15,7 @@ public class PlayerController1 : MonoBehaviour
     public InputAction defendAction;  // New defend input
     public InputAction dashAction;  // New dash input
     public InputAction spell3Action;  // New spell 3 input
+    public InputAction interactAction; // Interact (mở rương)
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -181,6 +182,13 @@ public class PlayerController1 : MonoBehaviour
     private Vector3 lastCheckpoint;
     private AudioSource audioSource;
 
+    ///trung doc 
+
+    private float defaultSpeed;
+    private bool isPoisoned = false;
+
+    public Inventory inventory; // Gán qua Inspector hoặc tìm bằng code
+
     private void OnEnable()
     {
         moveAction.Enable();
@@ -193,6 +201,7 @@ public class PlayerController1 : MonoBehaviour
         defendAction.Enable();    // Enable defend input
         dashAction.Enable();    // Enable dash input
         spell3Action.Enable();    // Enable spell 3 input
+        interactAction.Enable();    // Enable interact input
         jumpAction.performed += OnJump;
         attackAction.performed += OnAttack;
         attack2Action.performed += OnAttack2;
@@ -217,6 +226,7 @@ public class PlayerController1 : MonoBehaviour
         defendAction.Disable();    // Disable defend input
         dashAction.Disable();    // Disable dash input
         spell3Action.Disable();    // Disable spell 3 input
+        interactAction.Disable();    // Disable interact input
         jumpAction.performed -= OnJump;
         attackAction.performed -= OnAttack;
         attack2Action.performed -= OnAttack2;
@@ -240,6 +250,8 @@ public class PlayerController1 : MonoBehaviour
         mana = maxMana;
         originalColor = spriteRenderer.color;
 
+        defaultSpeed = moveSpeed; // Lưu tốc độ gốc
+
         // Set initial respawn position
         if (respawnPosition == Vector3.zero)
         {
@@ -248,6 +260,7 @@ public class PlayerController1 : MonoBehaviour
         lastCheckpoint = respawnPosition;
 
         UpdateUI();
+        ApplyEquipmentStats(true); // Hồi đầy máu/mana/stamina khi vào scene mới
     }
 
     void Update()
@@ -791,11 +804,61 @@ public class PlayerController1 : MonoBehaviour
         // Apply hurt effects
         ApplyhurtEffects();
 
+
         if (currentHealth <= 0)
         {
             Die();
         }
     }
+    ///Hieu ung trung doc
+    private IEnumerator PoisonEffect()
+    {
+        isPoisoned = true;
+
+        // Làm chậm 50% và đổi màu
+        moveSpeed *= 0.5f;
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.purple;
+
+        yield return new WaitForSeconds(2f); // thời gian bị độc
+
+        // Khôi phục trạng thái
+        moveSpeed = defaultSpeed;
+        if (spriteRenderer != null)
+            spriteRenderer.color = originalColor;
+
+        isPoisoned = false;
+    }
+
+    private Coroutine poisonCoroutine;
+
+    public void ApplyPoisonEffect(float duration, float slowFactor, Color effectColor)
+    {
+        // Nếu đang có hiệu ứng cũ thì huỷ và chạy lại
+        if (poisonCoroutine != null)
+            StopCoroutine(poisonCoroutine);
+
+        poisonCoroutine = StartCoroutine(PoisonRoutine(duration, slowFactor, effectColor));
+    }
+
+    private IEnumerator PoisonRoutine(float duration, float slowFactor, Color effectColor)
+    {
+        float originalSpeed = moveSpeed;
+        moveSpeed *= slowFactor;
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = effectColor;
+
+        yield return new WaitForSeconds(duration);
+
+        moveSpeed = originalSpeed;
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = originalColor;
+
+        poisonCoroutine = null;
+    }
+
 
     public void ApplyhurtEffects()
     {
@@ -831,6 +894,8 @@ public class PlayerController1 : MonoBehaviour
         ishurt = true;
         hurtStunTimeLeft = hurtStunDuration * 0.3f; // Reduce stun duration to 30%
     }
+
+
 
     private void Die()
     {
@@ -898,7 +963,7 @@ public class PlayerController1 : MonoBehaviour
         spell2Action.Enable();
         defendAction.Enable();
         dashAction.Enable();
-        spell3Action.Enable();
+        spell3Action.Disable();
     }
 
     private void ResetAllStates()
@@ -1103,5 +1168,58 @@ public class PlayerController1 : MonoBehaviour
         strength /= 2f;
         speed /= 1.5f;
         Debug.Log("Spell 3 (Transform) ended");
+    }
+
+    public void ApplyEquipmentStats(bool resetVitals = false)
+    {
+        ResetBaseStats();
+        if (inventory != null)
+        {
+            foreach (var item in inventory.equippedItems)
+            {
+                maxHealth   += item.healthBonus;
+                stamina     += item.staminaBonus;
+                maxStamina  += item.staminaBonus; // hoặc item.maxStaminaBonus nếu có
+                maxMana     += item.manaBonus;    // hoặc item.maxManaBonus nếu có
+                strength    += item.strengthBonus;
+                moveSpeed       += item.speedBonus;
+                armor       += item.armorBonus;
+                magicResist += item.magicResistBonus;
+                healthRecoveryRate += item.healthRegenBonus;
+                staminaRegenRate += item.staminaRegenBonus;
+                manaRegenRate += item.manaRegenBonus;
+                jumpForce += item.jumpBonus;
+            }
+            Debug.Log("Chỉ số đã được cập nhật!");
+        }
+        if (resetVitals)
+        {
+            currentHealth = maxHealth;
+            mana = maxMana;
+            stamina = maxStamina;
+        }
+        else
+        {
+            currentHealth = Mathf.Min(currentHealth, maxHealth);
+            mana = Mathf.Min(mana, maxMana);
+            stamina = Mathf.Min(stamina, maxStamina);
+        }
+    }
+
+    // Thêm hàm này để reset chỉ số gốc trước khi cộng thêm từ trang bị
+    public void ResetBaseStats()
+    {
+        // Gán lại các chỉ số về giá trị gốc (có thể cần lưu các giá trị gốc này ở biến riêng nếu chỉ số có thể thay đổi trong runtime)
+        maxHealth = 100f;
+        maxStamina = 100f;
+        maxMana = 100f;
+        strength = 10f;
+        moveSpeed = 5f;
+        armor = 5f;
+        magicResist = 5f;
+        healthRecoveryRate = 2f;
+        staminaRegenRate = 10f;
+        manaRegenRate = 5f;
+        jumpForce = 5f;
     }
 }
