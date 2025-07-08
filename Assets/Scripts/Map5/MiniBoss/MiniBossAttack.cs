@@ -7,10 +7,13 @@ public class MiniBossAttack : MonoBehaviour
 
     public float attack1Damage = 20f;
     public float attack2Damage = 35f;
-    public float attackRange = 1.5f;
     public LayerMask playerLayer;
 
-    private bool isCombo = false; // Đánh dấu có đang combo không
+    // Vùng đánh dạng Box phía trước
+    public Vector2 attackBoxSize = new Vector2(1.5f, 1.2f); // chỉnh theo ý bạn
+    public Vector2 attackBoxOffset = new Vector2(1f, 0f);
+
+    private bool isCombo = false;
 
     void Awake()
     {
@@ -18,51 +21,52 @@ public class MiniBossAttack : MonoBehaviour
         controller = GetComponent<MiniBossController>();
     }
 
-    // Gọi khi boss tiến tới đủ gần player
     public void RandomAttack()
     {
-        int rand = Random.Range(0, 3); // 0, 1, 2
+        int rand = Random.Range(0, 3);
         if (rand == 0)
         {
             isCombo = false;
-            animator.SetBool("IsCombo", false);  // Đánh thường
+            animator.SetBool("IsCombo", false);
             animator.SetTrigger("Attack1");
         }
         else if (rand == 1)
         {
             isCombo = false;
-            animator.SetBool("IsCombo", false);  // Đánh thường
+            animator.SetBool("IsCombo", false);
             animator.SetTrigger("Attack2");
         }
         else
         {
             isCombo = true;
-            animator.SetBool("IsCombo", true);   // Bật combo
+            animator.SetBool("IsCombo", true);
             animator.SetTrigger("Attack1");
         }
     }
 
-
-    // Gọi ở cuối animation Attack1, chỉ khi là combo thì chuyển tiếp Attack2
     public void OnAttack1End()
     {
         if (!isCombo)
-        {
-            controller.EndAttack(); // Chỉ khi không combo thì về idle ngay
-        }
+            controller.EndAttack();
     }
 
-    // Gọi ở cuối animation Attack2
     public void OnAttack2End()
     {
-        animator.SetBool("IsCombo", false); // Tắt combo về mặc định để lần sau dùng tiếp
+        animator.SetBool("IsCombo", false);
         controller.EndAttack();
     }
 
-    // Gọi ở frame thích hợp để gây damage
+    // --- GÂY DAMAGE (tốt nhất là gọi từ Animation Event)
     public void DealAttack1Damage()
     {
-        Collider2D player = Physics2D.OverlapCircle(transform.position, attackRange, playerLayer);
+        Vector2 offset = attackBoxOffset;
+        if (transform.localScale.x < 0)
+            offset.x = -Mathf.Abs(offset.x);
+        else
+            offset.x = Mathf.Abs(offset.x);
+        Vector2 center = (Vector2)transform.position + offset;
+
+        Collider2D player = Physics2D.OverlapBox(center, attackBoxSize, 0, playerLayer);
         if (player != null)
         {
             PlayerController1 pc = player.GetComponent<PlayerController1>();
@@ -73,7 +77,14 @@ public class MiniBossAttack : MonoBehaviour
 
     public void DealAttack2Damage()
     {
-        Collider2D player = Physics2D.OverlapCircle(transform.position, attackRange, playerLayer);
+        Vector2 offset = attackBoxOffset;
+        if (transform.localScale.x < 0)
+            offset.x = -Mathf.Abs(offset.x);
+        else
+            offset.x = Mathf.Abs(offset.x);
+        Vector2 center = (Vector2)transform.position + offset;
+
+        Collider2D player = Physics2D.OverlapBox(center, attackBoxSize, 0, playerLayer);
         if (player != null)
         {
             PlayerController1 pc = player.GetComponent<PlayerController1>();
@@ -82,9 +93,16 @@ public class MiniBossAttack : MonoBehaviour
         }
     }
 
+    // Vẽ vùng attack trong Editor (luôn thấy vùng gây damage đúng hướng)
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Vector2 offset = attackBoxOffset;
+        if (transform.localScale.x < 0)
+            offset.x = -Mathf.Abs(offset.x);
+        else
+            offset.x = Mathf.Abs(offset.x);
+        Vector2 center = (Vector2)transform.position + offset;
+        Gizmos.DrawWireCube(center, attackBoxSize);
     }
 }

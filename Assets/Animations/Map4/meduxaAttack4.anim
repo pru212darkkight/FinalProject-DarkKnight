@@ -22,23 +22,25 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -8910899737472627771, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
-    - time: 0.11666667
+    - time: 0.15
       value: {fileID: -5464336490339650859, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
-    - time: 0.16666667
+    - time: 0.2
       value: {fileID: -1132038362817505424, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
-    - time: 0.3
+    - time: 0.38333333
       value: {fileID: -6574224857763752514, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
-    - time: 0.36666667
-      value: {fileID: -6827800710642968084, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
     - time: 0.46666667
+      value: {fileID: -6827800710642968084, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
+    - time: 0.5833333
       value: {fileID: 5388459929022106953, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
-    - time: 0.53333336
-      value: {fileID: -241614906349035404, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
     - time: 0.6666667
+      value: {fileID: -241614906349035404, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
+    - time: 0.8
       value: {fileID: -7294828852963927212, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
-    - time: 0.71666664
+    - time: 0.96666664
       value: {fileID: -6599260265685524675, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
-    - time: 0.8333333
+    - time: 1.1833333
+      value: {fileID: -6599260265685524675, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
+    - time: 1.4
       value: {fileID: -3510743571422996371, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
     attribute: m_Sprite
     path: 
@@ -71,18 +73,19 @@ AnimationClip:
     - {fileID: -241614906349035404, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
     - {fileID: -7294828852963927212, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
     - {fileID: -6599260265685524675, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
+    - {fileID: -6599260265685524675, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
     - {fileID: -3510743571422996371, guid: bac9e425caa1c654fbe0b09507ca6904, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.84999996
+    m_StopTime: 1.4166666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -96,4 +99,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.6666667
+    functionName: BreathPoison
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
