@@ -1,49 +1,27 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class NPCInteraction : MonoBehaviour
+public class NPCDialogue : MonoBehaviour
 {
-    public string[] dialogueLines;
-    public GameObject dialogueUI;
-    public GameObject shopUI;
-    public Text dialogueText;
-
+    public string[] dialogueLines; // Các câu thoại
     private int currentLine = 0;
-    private bool playerInRange = false;
-    private bool isTalking = false;
-    private bool isShopOpen = false;
 
-    void Update()
+    public GameObject dialogueUI; // UI panel chứa thoại
+    public Text dialogueText;     // Text hiển thị nội dung
+
+    public void StartDialogue()
     {
-        if (!playerInRange) return;
-
-        if (Input.GetKeyDown(KeyCode.E) && !isTalking)
-        {
-            StartDialogue();
-        }
-
-        else if (Input.GetKeyDown(KeyCode.F) && !isShopOpen)
-        {
-            OpenShop();
-        }
-
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            CloseAll();
-        }
-
-        else if (isTalking && Input.GetKeyDown(KeyCode.Space))
-        {
-            ShowNextLine();
-        }
-    }
-
-    void StartDialogue()
-    {
-        isTalking = true;
         currentLine = 0;
         dialogueUI.SetActive(true);
         ShowNextLine();
+    }
+
+    void Update()
+    {
+        if (dialogueUI.activeSelf && Input.GetKeyDown(KeyCode.Space))
+        {
+            ShowNextLine();
+        }
     }
 
     void ShowNextLine()
@@ -56,38 +34,6 @@ public class NPCInteraction : MonoBehaviour
         else
         {
             dialogueUI.SetActive(false);
-            isTalking = false;
-        }
-    }
-
-    void OpenShop()
-    {
-        shopUI.SetActive(true);
-        isShopOpen = true;
-    }
-
-    void CloseAll()
-    {
-        dialogueUI.SetActive(false);
-        shopUI.SetActive(false);
-        isTalking = false;
-        isShopOpen = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-            CloseAll();
         }
     }
 }
