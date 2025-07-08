@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee2dd78d29e57b40afd370e1ab1109a, type: 3}
+  m_Name: helmet 4
+  m_EditorClassIdentifier: 
+  itemId: helmet 4
+  itemName: Forest Helm
+  icon: {fileID: 6677027654029203124, guid: 985bf7808ba7fe84bb25ea6a9306e594, type: 3}
+  itemType: 0
+  healthBonus: 0
+  staminaBonus: 0
+  manaBonus: 0
+  strengthBonus: 0
+  speedBonus: 0
+  armorBonus: 0
+  magicResistBonus: 0
