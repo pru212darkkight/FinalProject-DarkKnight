@@ -8,7 +8,6 @@ public class PlatformToggleMover : MonoBehaviour
 
     private bool movingToB = false;
     private bool isMoving = false;
-    private Transform playerOnPlatform = null;
 
     void Update()
     {

@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private MiniBossController miniBossController;
+    private FinalBossController finalBossController;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         miniBossController = GetComponent<MiniBossController>();
+        finalBossController = GetComponent<FinalBossController>();
 
     }
 
@@ -40,6 +42,10 @@ public class EnemyHealth : MonoBehaviour
         if (miniBossController != null)
         {
             miniBossController.OnTakeDamage();
+        }
+        if (finalBossController != null)
+        {
+            finalBossController.OnTakeDamage(finalDamage);
         }
 
         if (currentHealth <= 0)
