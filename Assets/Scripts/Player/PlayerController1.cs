@@ -798,10 +798,6 @@ public class PlayerController1 : MonoBehaviour
         // Apply hurt effects
         ApplyhurtEffects();
 
-        if (isMagicDamage && !isPoisoned)
-        {
-            StartCoroutine(PoisonEffect());
-        }
 
         if (currentHealth <= 0)
         {
@@ -828,9 +824,15 @@ public class PlayerController1 : MonoBehaviour
         isPoisoned = false;
     }
 
+    private Coroutine poisonCoroutine;
+
     public void ApplyPoisonEffect(float duration, float slowFactor, Color effectColor)
     {
-        StartCoroutine(PoisonRoutine(duration, slowFactor, effectColor));
+        // Nếu đang có hiệu ứng cũ thì huỷ và chạy lại
+        if (poisonCoroutine != null)
+            StopCoroutine(poisonCoroutine);
+
+        poisonCoroutine = StartCoroutine(PoisonRoutine(duration, slowFactor, effectColor));
     }
 
     private IEnumerator PoisonRoutine(float duration, float slowFactor, Color effectColor)
@@ -847,6 +849,8 @@ public class PlayerController1 : MonoBehaviour
 
         if (spriteRenderer != null)
             spriteRenderer.color = originalColor;
+
+        poisonCoroutine = null;
     }
 
 
