@@ -1218,7 +1218,7 @@ public class PlayerController1 : MonoBehaviour
         armor = 5f;
         magicResist = 5f;
         healthRecoveryRate = 2f;
-        staminaRegenRate = 1f;
+        staminaRegenRate = 10f;
         manaRegenRate = 5f;
         jumpForce = 5f;
     }
