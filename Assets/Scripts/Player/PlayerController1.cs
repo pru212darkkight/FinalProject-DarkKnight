@@ -15,6 +15,7 @@ public class PlayerController1 : MonoBehaviour
     public InputAction defendAction;  // New defend input
     public InputAction dashAction;  // New dash input
     public InputAction spell3Action;  // New spell 3 input
+    public InputAction interactAction; // Interact (mở rương)
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -198,6 +199,7 @@ public class PlayerController1 : MonoBehaviour
         defendAction.Enable();    // Enable defend input
         dashAction.Enable();    // Enable dash input
         spell3Action.Enable();    // Enable spell 3 input
+        interactAction.Enable();    // Enable interact input
         jumpAction.performed += OnJump;
         attackAction.performed += OnAttack;
         attack2Action.performed += OnAttack2;
@@ -222,6 +224,7 @@ public class PlayerController1 : MonoBehaviour
         defendAction.Disable();    // Disable defend input
         dashAction.Disable();    // Disable dash input
         spell3Action.Disable();    // Disable spell 3 input
+        interactAction.Disable();    // Disable interact input
         jumpAction.performed -= OnJump;
         attackAction.performed -= OnAttack;
         attack2Action.performed -= OnAttack2;
