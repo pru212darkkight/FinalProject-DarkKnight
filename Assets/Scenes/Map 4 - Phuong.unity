@@ -7553,6 +7553,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 601946467}
+  - {fileID: 1441921312}
   m_Father: {fileID: 1205344359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &685320720
@@ -7572,6 +7573,7 @@ MonoBehaviour:
   armor: 5
   magicResist: 5
   isDead: 0
+  movingPlatform: {fileID: 0}
 --- !u!50 &685320723
 Rigidbody2D:
   serializedVersion: 5
@@ -7678,8 +7680,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1160970401}
   spikePrefab: {fileID: 7546520309333225561, guid: 992cedf095ffdc74599642d299177c15, type: 3}
+  minionPrefab: {fileID: 0}
+  poisonPrefab: {fileID: 664763904755594396, guid: c314ae113dac0e34e8d51d5e9f787d55, type: 3}
+  poisonSpawnPoint: {fileID: 1441921312}
   castRange: 5
-  cooldown: 3
+  cooldown: 4
+  summonRadius: 2
+  minionCount: 3
+  poisonRadius: 4
+  poisonDamage: 10
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -17270,6 +17279,37 @@ RectTransform:
   m_AnchoredPosition: {x: -741.51, y: 484.13}
   m_SizeDelta: {x: 436.73, y: 111.86}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1441921311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1441921312}
+  m_Layer: 9
+  m_Name: PosToxic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1441921312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441921311}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.2, y: -0.98, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 685320719}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1453129825
 GameObject:
   m_ObjectHideFlags: 0

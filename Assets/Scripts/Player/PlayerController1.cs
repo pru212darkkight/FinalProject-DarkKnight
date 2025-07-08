@@ -181,6 +181,11 @@ public class PlayerController1 : MonoBehaviour
     private Vector3 lastCheckpoint;
     private AudioSource audioSource;
 
+    ///trung doc 
+
+    private float defaultSpeed;
+    private bool isPoisoned = false;
+
     private void OnEnable()
     {
         moveAction.Enable();
@@ -239,6 +244,8 @@ public class PlayerController1 : MonoBehaviour
         stamina = maxStamina;
         mana = maxMana;
         originalColor = spriteRenderer.color;
+
+        defaultSpeed = moveSpeed; // Lưu tốc độ gốc
 
         // Set initial respawn position
         if (respawnPosition == Vector3.zero)
@@ -791,11 +798,57 @@ public class PlayerController1 : MonoBehaviour
         // Apply hurt effects
         ApplyhurtEffects();
 
+        if (isMagicDamage && !isPoisoned)
+        {
+            StartCoroutine(PoisonEffect());
+        }
+
         if (currentHealth <= 0)
         {
             Die();
         }
     }
+    ///Hieu ung trung doc
+    private IEnumerator PoisonEffect()
+    {
+        isPoisoned = true;
+
+        // Làm chậm 50% và đổi màu
+        moveSpeed *= 0.5f;
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.purple;
+
+        yield return new WaitForSeconds(2f); // thời gian bị độc
+
+        // Khôi phục trạng thái
+        moveSpeed = defaultSpeed;
+        if (spriteRenderer != null)
+            spriteRenderer.color = originalColor;
+
+        isPoisoned = false;
+    }
+
+    public void ApplyPoisonEffect(float duration, float slowFactor, Color effectColor)
+    {
+        StartCoroutine(PoisonRoutine(duration, slowFactor, effectColor));
+    }
+
+    private IEnumerator PoisonRoutine(float duration, float slowFactor, Color effectColor)
+    {
+        float originalSpeed = moveSpeed;
+        moveSpeed *= slowFactor;
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = effectColor;
+
+        yield return new WaitForSeconds(duration);
+
+        moveSpeed = originalSpeed;
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = originalColor;
+    }
+
 
     public void ApplyhurtEffects()
     {
@@ -831,6 +884,8 @@ public class PlayerController1 : MonoBehaviour
         ishurt = true;
         hurtStunTimeLeft = hurtStunDuration * 0.3f; // Reduce stun duration to 30%
     }
+
+
 
     private void Die()
     {
