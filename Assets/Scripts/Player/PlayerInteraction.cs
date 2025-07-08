@@ -1,26 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public GameObject interactionUI; // UI hiện chữ "Nhấn E để nói chuyện"
-    private bool isNearNPC = false;
-    private NPCDialogue currentNPC;
-
-    void Update()
-    {
-        if (isNearNPC && Input.GetKeyDown(KeyCode.E))
-        {
-            currentNPC.StartDialogue();
-        }
-    }
+    private NPCInteraction currentNPC;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("NPC"))
         {
-            isNearNPC = true;
-            currentNPC = other.GetComponent<NPCDialogue>();
-            interactionUI.SetActive(true);
+            currentNPC = other.GetComponent<NPCInteraction>();
+            if (currentNPC != null)
+            {
+                currentNPC.ShowInteractionHint();
+            }
         }
     }
 
@@ -28,9 +21,24 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (other.CompareTag("NPC"))
         {
-            isNearNPC = false;
-            currentNPC = null;
-            interactionUI.SetActive(false);
+            if (currentNPC != null)
+            {
+                currentNPC.CloseAll(); // Tắt shop + interaction UI
+                currentNPC = null;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (currentNPC != null && Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            currentNPC.OpenShop();
+        }
+
+        if (currentNPC != null && Keyboard.current.xKey.wasPressedThisFrame)
+        {
+            currentNPC.CloseAll();
         }
     }
 }
