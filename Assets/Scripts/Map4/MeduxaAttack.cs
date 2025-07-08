@@ -98,34 +98,31 @@ public class MeduxaAttack : MonoBehaviour
     {
         if (poisonSpawnPoint == null) return;
 
-        // Tìm các Collider trong vùng ảnh hưởng
+        // Tìm các đối tượng trong vùng ảnh hưởng độc
         Collider2D[] hits = Physics2D.OverlapCircleAll(poisonSpawnPoint.position, poisonRadius);
 
         foreach (Collider2D hit in hits)
         {
             if (hit.CompareTag("Player"))
             {
-                // Gây sát thương cho Player (dùng PlayerController1)
                 PlayerController1 player = hit.GetComponent<PlayerController1>();
                 if (player != null)
                 {
+                    // Gây damage và hiệu ứng chậm/màu độc
                     player.TakeDamage(poisonDamage, true);
-                    Debug.Log("Player trúng độc!");
+                    player.ApplyPoisonEffect(2f, 0.5f, Color.green);  // 2 giây, 50% slow, đổi màu
+                    Debug.Log("☠️ Player trúng độc từ chiêu!");
                 }
             }
         }
 
-        // Tạo hiệu ứng đám mây độc nếu có prefab
+        // Spawn hiệu ứng visual mây độc (nếu có)
         if (poisonPrefab != null)
         {
-            // Lấy hướng xoay của enemy
             float directionX = transform.localScale.x;
-
-            // Nếu prefab cần quay theo hướng, chỉnh scale X
             Vector3 spawnScale = poisonPrefab.transform.localScale;
             spawnScale.x = Mathf.Abs(spawnScale.x) * Mathf.Sign(directionX);
 
-            // Tạo poison
             GameObject poison = Instantiate(poisonPrefab, poisonSpawnPoint.position, Quaternion.identity);
             poison.transform.localScale = spawnScale;
 

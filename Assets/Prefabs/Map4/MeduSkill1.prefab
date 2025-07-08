@@ -126,6 +126,7 @@ MonoBehaviour:
   trapObjects: []
   damageAmount: 10
   isMagicDamage: 0
+  delayBeforeDamage: 0.5
 --- !u!1 &625244659167000768
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +253,7 @@ MonoBehaviour:
   trapObjects: []
   damageAmount: 10
   isMagicDamage: 0
+  delayBeforeDamage: 0.5
 --- !u!1 &1215667732702928346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,8 +1018,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapObjects: []
-  damageAmount: 5
+  damageAmount: 10
   isMagicDamage: 1
+  delayBeforeDamage: 0.5
 --- !u!1 &7661763436047584645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1147,7 @@ MonoBehaviour:
   trapObjects: []
   damageAmount: 10
   isMagicDamage: 0
+  delayBeforeDamage: 0.5
 --- !u!1 &8563652794711246997
 GameObject:
   m_ObjectHideFlags: 0
