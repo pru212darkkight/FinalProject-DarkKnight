@@ -4,26 +4,27 @@ public class EnemyController : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
-    public EnemyWeapon enemyWeapon;  // Kéo reference EnemyWeapon
+    public EnemyWeapon enemyWeapon;
 
     [Header("Guard/Patrol")]
-    public float detectRangeX = 5f; // Chiều ngang vùng phát hiện
-    public float detectRangeY = 2f; // Chiều dọc vùng phát hiện
-
+    public float detectRangeX = 5f;
+    public float detectRangeY = 2f;
     public float moveSpeed = 2.5f;
     public float attackRange = 1.5f;
     public float healthRegenRate = 5f;
     public float attackCooldown = 1f;
-    private float lastAttackTime;
 
-    [HideInInspector]
-    public Vector3 startPoint;
+    [Header("AI Options")]
+    public bool returnToOrigin = true; // Bật/tắt về gốc khi mất dấu player
+
+    private float lastAttackTime;
+    [HideInInspector] public Vector3 startPoint;
     private Rigidbody2D rb;
     private Animator animator;
     private EnemyHealth enemyHealth;
 
     private bool isReturning = false;
-    private bool previousPlayerDetected = false; // Thêm biến này ở đầu class
+    private bool previousPlayerDetected = false;
 
     private void Awake()
     {
@@ -32,8 +33,6 @@ public class EnemyController : MonoBehaviour
         enemyHealth = GetComponent<EnemyHealth>();
         startPoint = transform.position;
     }
-
-
 
     void Update()
     {
@@ -54,13 +53,13 @@ public class EnemyController : MonoBehaviour
         // Phát hiện khi player vừa rời khỏi vùng phát hiện
         if (!isPlayerDetectedNow && previousPlayerDetected)
         {
-            isReturning = true; // Bắt đầu quay về gốc
+            isReturning = true;
         }
         previousPlayerDetected = isPlayerDetectedNow;
 
         if (isPlayerDetectedNow)
         {
-            isReturning = false; // Nếu thấy player thì không quay về gốc nữa
+            isReturning = false;
             LookAtTarget(player.position.x);
 
             if (distToPlayer <= attackRange)
@@ -81,8 +80,8 @@ public class EnemyController : MonoBehaviour
                 animator.SetBool("isRunning", true);
             }
         }
-        // Quay về chỗ cũ khi player đã ra khỏi vùng phát hiện
-        else if (isReturning)
+        // Chỉ về gốc nếu bật option returnToOrigin
+        else if (isReturning && returnToOrigin)
         {
             float distToStart = Vector2.Distance(transform.position, startPoint);
             if (distToStart > 0.1f)
@@ -97,13 +96,11 @@ public class EnemyController : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
                 animator.SetBool("isRunning", false);
                 isReturning = false;
-
                 // Flip về trái khi đã về gốc
                 Vector3 scale = transform.localScale;
                 scale.x = -Mathf.Abs(scale.x);
                 transform.localScale = scale;
             }
-
             // Hồi máu dần khi đã về gốc mà chưa đủ máu
             if (distToStart <= 0.15f && enemyHealth.currentHealth < enemyHealth.maxHealth)
             {
@@ -111,11 +108,10 @@ public class EnemyController : MonoBehaviour
                 enemyHealth.currentHealth = Mathf.Min(enemyHealth.currentHealth, enemyHealth.maxHealth);
             }
         }
-        else
+        else // Đứng yên tại chỗ (nếu không về gốc)
         {
             rb.linearVelocity = Vector2.zero;
             animator.SetBool("isRunning", false);
-            // Hồi máu khi đã ở chỗ gốc
             if (enemyHealth.currentHealth < enemyHealth.maxHealth)
             {
                 enemyHealth.currentHealth += healthRegenRate * Time.deltaTime;
@@ -123,7 +119,6 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-
 
     void LookAtTarget(float targetX)
     {
@@ -143,13 +138,9 @@ public class EnemyController : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Vùng phát hiện
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position, new Vector3(detectRangeX * 2, detectRangeY * 2, 0.1f));
-
-        // Vùng attackRange - tức là enemy sẽ dừng lại chuẩn bị ra đòn khi tới đây
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
 }

@@ -6,12 +6,15 @@ public class AutoGate : MonoBehaviour
     public GameObject[] guardEnemies;
     public Collider2D blockCollider;
 
+    [SerializeField] private bool onlyCloseOnce = false; // <--- THÊM BIẾN NÀY ĐỂ CHỌN KIỂU CỔNG
+    private bool permanentlyClosed = false;
+
     private int playerCount = 0;
     private bool doorOpened = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !permanentlyClosed)
         {
             playerCount++;
         }
@@ -19,7 +22,7 @@ public class AutoGate : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !permanentlyClosed)
         {
             playerCount--;
             if (playerCount <= 0)
@@ -32,6 +35,10 @@ public class AutoGate : MonoBehaviour
                     if (blockCollider != null)
                         blockCollider.enabled = true;
                     doorOpened = false;
+
+                    // Nếu là cổng đóng 1 lần, đóng xong sẽ khóa luôn!
+                    if (onlyCloseOnce)
+                        permanentlyClosed = true;
                 }
             }
         }
@@ -39,17 +46,22 @@ public class AutoGate : MonoBehaviour
 
     private void Update()
     {
+        // Nếu là cổng khóa vĩnh viễn thì không mở nữa
+        if (permanentlyClosed)
+        {
+            if (blockCollider != null) blockCollider.enabled = true;
+            return;
+        }
+
         // Khi enemy chết hết, DÙ CÓ PLAYER TRONG TRIGGER HAY KHÔNG, luôn mở cửa, tắt collider
         if (AllEnemiesDead())
         {
-            // Nếu có player trong trigger và cửa chưa mở thì mở cửa
             if (playerCount > 0 && !doorOpened)
             {
                 doorAnimator.ResetTrigger("CloseTrigger");
                 doorAnimator.SetTrigger("OpenTrigger");
                 doorOpened = true;
             }
-            // Dù có player hay không, collider luôn phải tắt khi đủ điều kiện
             if (blockCollider != null && blockCollider.enabled)
             {
                 blockCollider.enabled = false;

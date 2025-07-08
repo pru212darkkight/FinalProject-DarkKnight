@@ -31,7 +31,7 @@ public class ToxicZone : MonoBehaviour
         if (playerInside && player != null)
         {
             timer += Time.deltaTime;
-            if (timer >= 1f) // Gây sát thương mỗi 1 giây
+            if (timer >= 0.5f) // Gây sát thương mỗi 0.5 giây
             {
                 player.TakeDamage(damagePerSecond, true); // true = magic damage
                 timer = 0f;
