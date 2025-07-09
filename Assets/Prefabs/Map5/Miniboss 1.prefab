@@ -514,4 +514,8 @@ MonoBehaviour:
   armor: 10
   magicResist: 10
   isDead: 0
+  canResurrect: 0
+  hasResurrected: 0
+  resurrectHealth: 50
+  isInvulnerable: 0
   movingPlatform: {fileID: 0}

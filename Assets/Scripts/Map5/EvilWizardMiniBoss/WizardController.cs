@@ -163,19 +163,26 @@ public class WizardController : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Vùng xanh: summon zone
-        Gizmos.color = Color.green;
-        Vector2 summonZoneCenter = (Vector2)transform.position + summonZoneOffset;
-        Gizmos.DrawWireCube(summonZoneCenter, summonZoneSize);
+        if (Camera.main == null) return;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        if (screenPos.z > 0 &&
+            screenPos.x >= 0 && screenPos.x <= Screen.width &&
+            screenPos.y >= 0 && screenPos.y <= Screen.height)
+        {
+            // Vùng xanh: summon zone
+            Gizmos.color = Color.green;
+            Vector2 summonZoneCenter = (Vector2)transform.position + summonZoneOffset;
+            Gizmos.DrawWireCube(summonZoneCenter, summonZoneSize);
 
-        // Vùng đỏ: aoe zone
-        Gizmos.color = Color.red;
-        float facing = Application.isPlaying ? Mathf.Sign(transform.localScale.x) : 1f;
-        Vector2 aoeZoneCenter = (Vector2)transform.position + new Vector2(aoeZoneOffset.x * facing, aoeZoneOffset.y);
-        Gizmos.DrawWireCube(aoeZoneCenter, aoeZoneSize);
+            // Vùng đỏ: aoe zone
+            Gizmos.color = Color.red;
+            float facing = Application.isPlaying ? Mathf.Sign(transform.localScale.x) : 1f;
+            Vector2 aoeZoneCenter = (Vector2)transform.position + new Vector2(aoeZoneOffset.x * facing, aoeZoneOffset.y);
+            Gizmos.DrawWireCube(aoeZoneCenter, aoeZoneSize);
 
-        // Vùng detect
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, new Vector3(detectRangeX * 2, detectRangeY * 2, 0.1f));
+            // Vùng detect
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(transform.position, new Vector3(detectRangeX * 2, detectRangeY * 2, 0.1f));
+        }
     }
 }

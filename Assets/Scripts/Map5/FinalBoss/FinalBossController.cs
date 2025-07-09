@@ -115,8 +115,15 @@ public class FinalBossController : MonoBehaviour
     // Vẽ vùng attack range box trên scene
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
-        Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
-        Gizmos.DrawWireCube(attackCenter, attackRangeBoxSize);
+        if (Camera.main == null) return;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        if (screenPos.z > 0 &&
+            screenPos.x >= 0 && screenPos.x <= Screen.width &&
+            screenPos.y >= 0 && screenPos.y <= Screen.height)
+        {
+            Gizmos.color = Color.blue;
+            Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
+            Gizmos.DrawWireCube(attackCenter, attackRangeBoxSize);
+        }
     }
 }
