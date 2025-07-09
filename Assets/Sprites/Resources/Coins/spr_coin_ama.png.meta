@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_coin_ama_0: -3453464007156309444
+      spr_coin_ama_1: -2495138555343139884
+      spr_coin_ama_2: -5339539681200883088
+      spr_coin_ama_3: -6019872775452219312
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
