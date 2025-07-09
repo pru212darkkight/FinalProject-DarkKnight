@@ -1,19 +1,12 @@
 fileFormatVersion: 2
-guid: ce0b979f6e7e063428cea2d133bcd5f1
+guid: 8e53f19778e81a94084a0c9f7296cb7f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3636765450789175911
-    second: spr_coin_gri_0
-  - first:
-      213: -7287818360224525318
-    second: spr_coin_gri_1
-  - first:
-      213: -6942878118906197093
-    second: spr_coin_gri_2
-  - first:
-      213: -4875957336769796633
-    second: spr_coin_gri_3
+      213: -7447812025956620219
+    second: Possible option for the cave wall background (could be used as an alternate
+      background to just a flat cave wall)_  I like that you can see the outside
+      world in this one, even if the colour palette isn't quite as br_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,13 +115,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_coin_gri_0
+      name: Possible option for the cave wall background (could be used as an alternate
+        background to just a flat cave wall)_  I like that you can see the outside
+        world in this one, even if the colour palette isn't quite as br_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 12
-        height: 16
+        width: 620
+        height: 310
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,74 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 762c3b9b8e2687230800000000000000
-      internalID: 3636765450789175911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_coin_gri_1
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 0
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af35f3b50d77cda90800000000000000
-      internalID: -7287818360224525318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_coin_gri_2
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 0
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b9b83c3c221f5af90800000000000000
-      internalID: -6942878118906197093
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_coin_gri_3
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 0
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e560e9d2ae155cb0800000000000000
-      internalID: -4875957336769796633
+      spriteID: 54829fe2c6e04a890800000000000000
+      internalID: -7447812025956620219
       vertices: []
       indices: 
       edges: []
@@ -223,10 +152,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      spr_coin_gri_0: 3636765450789175911
-      spr_coin_gri_1: -7287818360224525318
-      spr_coin_gri_2: -6942878118906197093
-      spr_coin_gri_3: -4875957336769796633
+      Possible option for the cave wall background (could be used as an alternate background to just a flat cave wall)_  I like that you can see the outside world in this one, even if the colour palette isn't quite as br_0: -7447812025956620219
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
