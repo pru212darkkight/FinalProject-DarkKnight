@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - Boss
   - EnemyProjectile
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -63,9 +64,10 @@ TagManager:
     uniqueID: 1687349639
     locked: 0
   - name: Enemy
-
-    uniqueID: 2052495021
-
+    uniqueID: 1
+    locked: 0
+  - name: 
+    uniqueID: 1
     locked: 0
   m_RenderingLayers:
   - Default

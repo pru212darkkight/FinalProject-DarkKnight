@@ -23,6 +23,7 @@ public class DemonBatController : MonoBehaviour
     private enum State { Patrol, Attack, Return }
     private State currentState = State.Patrol;
     private float patrolY; // Độ cao Y cố định để bay
+    private bool reachedPoint = false; // Để tránh đảo target liên tục khi vừa tới điểm
 
     void Awake()
     {
@@ -60,7 +61,7 @@ public class DemonBatController : MonoBehaviour
             case State.Return:
                 // Bay về điểm gần nhất, giữ nguyên Y (patrolY)
                 Vector2 returnTarget = new Vector2(ClosestPatrolPoint().position.x, patrolY);
-                if (Vector2.Distance(transform.position, returnTarget) > 0.1f)
+                if (Vector2.Distance(transform.position, returnTarget) > 0.15f)
                 {
                     MoveToTarget(returnTarget);
                     animator.SetBool("IsRunning", true);
@@ -68,10 +69,11 @@ public class DemonBatController : MonoBehaviour
                 }
                 else
                 {
+                    // Khi về gần đúng điểm tuần tra sẽ chọn điểm tiếp theo
                     currentTarget = (ClosestPatrolPoint() == pointA) ? pointB : pointA;
                     currentState = State.Patrol;
                 }
-                HealthRegen(); 
+                HealthRegen();
                 break;
         }
     }
@@ -82,10 +84,19 @@ public class DemonBatController : MonoBehaviour
         Vector2 patrolTarget = new Vector2(currentTarget.position.x, patrolY);
         MoveToTarget(patrolTarget);
 
-        if (Vector2.Distance(transform.position, patrolTarget) < 0.1f)
+        float dist = Vector2.Distance(transform.position, patrolTarget);
+
+        // Fix đảo target liên tục: chỉ đổi khi vừa rời điểm rồi quay lại
+        if (!reachedPoint && dist < 0.15f)
         {
+            reachedPoint = true;
             currentTarget = (currentTarget == pointA) ? pointB : pointA;
         }
+        else if (dist >= 0.15f)
+        {
+            reachedPoint = false;
+        }
+
         LookAtTarget(currentTarget.position.x);
     }
 
@@ -131,11 +142,18 @@ public class DemonBatController : MonoBehaviour
     // Vẽ vùng phát hiện hình tròn và điểm tuần tra
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectRadius); // Vùng phát hiện là hình tròn
+        if (Camera.main == null) return;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        if (screenPos.z > 0 &&
+            screenPos.x >= 0 && screenPos.x <= Screen.width &&
+            screenPos.y >= 0 && screenPos.y <= Screen.height)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, detectRadius); // Vùng phát hiện là hình tròn
 
-        Gizmos.color = Color.yellow;
-        if (pointA != null) Gizmos.DrawSphere(pointA.position, 0.15f);
-        if (pointB != null) Gizmos.DrawSphere(pointB.position, 0.15f);
+            Gizmos.color = Color.yellow;
+            if (pointA != null) Gizmos.DrawSphere(pointA.position, 0.15f);
+            if (pointB != null) Gizmos.DrawSphere(pointB.position, 0.15f);
+        }
     }
 }

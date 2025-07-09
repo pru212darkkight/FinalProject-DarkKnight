@@ -10,6 +10,9 @@ public class MiniBossController : MonoBehaviour
     public float moveSpeed = 2f;
     public float healthRegenRate = 3f;
 
+    [Header("AI Options")]
+    public bool returnToOrigin = true;
+
     [HideInInspector] public Vector3 startPoint;
     private Rigidbody2D rb;
     private Animator animator;
@@ -36,14 +39,14 @@ public class MiniBossController : MonoBehaviour
         if (state == State.Hurt)
         {
             rb.linearVelocity = Vector2.zero;
-            animator.SetBool("isRunning", false);
+            animator.SetBool("IsRunning", false);
             return;
         }
 
         if (enemyHealth != null && enemyHealth.isDead)
         {
             rb.linearVelocity = Vector2.zero;
-            animator.SetBool("isRunning", false);
+            animator.SetBool("IsRunning", false);
             return;
         }
 
@@ -53,7 +56,7 @@ public class MiniBossController : MonoBehaviour
         switch (state)
         {
             case State.Idle:
-                animator.SetBool("isRunning", false);
+                animator.SetBool("IsRunning", false);
                 if (playerDetectedNow)
                     state = State.MovingToPlayer;
                 else
@@ -63,7 +66,10 @@ public class MiniBossController : MonoBehaviour
             case State.MovingToPlayer:
                 if (!playerDetectedNow)
                 {
-                    state = State.Returning;
+                    if (returnToOrigin)
+                        state = State.Returning;
+                    else
+                        state = State.Idle;
                     break;
                 }
                 MoveToPlayer();
@@ -84,11 +90,11 @@ public class MiniBossController : MonoBehaviour
                     LookAtTarget(startPoint.x);
                     Vector2 newPos = Vector2.MoveTowards(rb.position, startPoint, moveSpeed * Time.deltaTime);
                     rb.MovePosition(newPos);
-                    animator.SetBool("isRunning", true);
+                    animator.SetBool("IsRunning", true);
                 }
                 else
                 {
-                    animator.SetBool("isRunning", false);
+                    animator.SetBool("IsRunning", false);
                     state = State.Idle;
                 }
                 RegenerateHealth();
@@ -107,12 +113,12 @@ public class MiniBossController : MonoBehaviour
             Vector2 target = new Vector2(player.position.x, rb.position.y);
             Vector2 newPos = Vector2.MoveTowards(rb.position, target, moveSpeed * Time.deltaTime);
             rb.MovePosition(newPos);
-            animator.SetBool("isRunning", true);
+            animator.SetBool("IsRunning", true);
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
-            animator.SetBool("isRunning", false);
+            animator.SetBool("IsRunning", false);
             // Đổi state sang tấn công và gọi hàm attack của MiniBossAttack
             state = State.Attacking;
             miniBossAttack.RandomAttack();
@@ -130,7 +136,10 @@ public class MiniBossController : MonoBehaviour
         }
         else
         {
-            state = State.Returning;
+            if (returnToOrigin)
+                state = State.Returning;
+            else
+                state = State.Idle;
         }
     }
 
@@ -159,7 +168,10 @@ public class MiniBossController : MonoBehaviour
         }
         else if (stateBeforeHurt == State.Returning)
         {
-            state = State.Returning;
+            if (returnToOrigin)
+                state = State.Returning;
+            else
+                state = State.Idle;
         }
         else
         {
@@ -194,12 +206,19 @@ public class MiniBossController : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, new Vector3(detectRangeX * 2, detectRangeY * 2, 0.1f));
+        if (Camera.main == null) return;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        if (screenPos.z > 0 &&
+            screenPos.x >= 0 && screenPos.x <= Screen.width &&
+            screenPos.y >= 0 && screenPos.y <= Screen.height)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(transform.position, new Vector3(detectRangeX * 2, detectRangeY * 2, 0.1f));
 
-        // Vẽ thêm vùng attack range
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+            // Vẽ thêm vùng attack range
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, attackRange);
+        }
     }
 
 }
