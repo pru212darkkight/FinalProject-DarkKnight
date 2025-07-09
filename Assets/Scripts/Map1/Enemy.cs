@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
         {
             isFacingRight = player.position.x > transform.position.x;
             Vector3 scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x) * (isFacingRight ? 1 : -1);
+            scale.x = Mathf.Abs(scale.x) * (isFacingRight ? -1 : 1);
             transform.localScale = scale;
         }
     }
@@ -192,6 +192,13 @@ public class Enemy : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger(DieHash);
+        }
+
+        // Drop coins if CoinDrop component exists
+        CoinDrop coinDrop = GetComponent<CoinDrop>();
+        if (coinDrop != null)
+        {
+            coinDrop.DropCoin();
         }
 
         // Disable các component không cần thiết
