@@ -29,4 +29,6 @@ public enum ItemType
     Helmet,
     Boots,
     Ring,
-}
+
+    // ...
+} 

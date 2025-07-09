@@ -39,12 +39,9 @@ public class Inventory : MonoBehaviour
             foreach (ItemData oldItem in itemsToUnequip)
             {
                 equippedItems.Remove(oldItem);
-                // --- Sửa ở đây: Đảm bảo item cũ được đưa về kho nếu kho chưa có ---
-                if (!ownedItems.Contains(oldItem))
-                    ownedItems.Add(oldItem);
                 Debug.Log($"Đã gỡ item cũ: {oldItem.itemName}");
             }
-
+            
             // Trang bị item mới
             equippedItems.Add(item);
             SaveInventory();

@@ -11,6 +11,7 @@ TagManager:
   - Boss
   - EnemyProjectile
   - NPC
+  - enemyCoin
   layers:
   - Default
   - TransparentFX
