@@ -10,8 +10,26 @@ public class CameraFollow:MonoBehaviour
 
     private void Start()
     {
-        
-        
+        // Auto find player if not assigned
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+                Debug.Log("CameraFollow: Player found and assigned!");
+            }
+            else
+            {
+                Debug.LogWarning("CameraFollow: Player not found! Looking for PlayerController1...");
+                PlayerController1 playerController = FindObjectOfType<PlayerController1>();
+                if (playerController != null)
+                {
+                    player = playerController.transform;
+                    Debug.Log("CameraFollow: PlayerController1 found and assigned!");
+                }
+            }
+        }
     }
 
     private void LateUpdate()

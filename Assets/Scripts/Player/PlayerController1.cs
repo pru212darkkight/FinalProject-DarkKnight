@@ -152,8 +152,11 @@ public class PlayerController1 : MonoBehaviour
 
     private Vector2 moveInput;
 
-    // Public property để các script khác có thể access moveInput
+    // Public properties để các script khác có thể access
     public Vector2 MoveInput => moveInput;
+    public bool IsAttacking => isAttacking;
+    public bool IsAttacking2 => isAttacking2;
+    public bool IsAttacking3 => isAttacking3;
     private bool isJumping;
     private bool isGrounded;
     private bool wasGroundedLastFrame;
@@ -1121,11 +1124,37 @@ public class PlayerController1 : MonoBehaviour
     private void UpdateUI()
     {
         if (healthBar != null)
-            healthBar.fillAmount = currentHealth / maxHealth;
+        {
+            float healthPercent = currentHealth / maxHealth;
+            healthBar.fillAmount = healthPercent;
+            Debug.Log($"PlayerController1: Health UI updated - {currentHealth:F1}/{maxHealth} = {healthPercent:F2}");
+        }
+        else
+        {
+            Debug.LogWarning("PlayerController1: healthBar is null!");
+        }
+
         if (staminaBar != null)
-            staminaBar.fillAmount = stamina / maxStamina;
+        {
+            float staminaPercent = stamina / maxStamina;
+            staminaBar.fillAmount = staminaPercent;
+            Debug.Log($"PlayerController1: Stamina UI updated - {stamina:F1}/{maxStamina} = {staminaPercent:F2}");
+        }
+        else
+        {
+            Debug.LogWarning("PlayerController1: staminaBar is null!");
+        }
+
         if (manaBar != null)
-            manaBar.fillAmount = mana / maxMana;
+        {
+            float manaPercent = mana / maxMana;
+            manaBar.fillAmount = manaPercent;
+            Debug.Log($"PlayerController1: Mana UI updated - {mana:F1}/{maxMana} = {manaPercent:F2}");
+        }
+        else
+        {
+            Debug.LogWarning("PlayerController1: manaBar is null!");
+        }
     }
 
     private void OnSpell3(InputAction.CallbackContext context)
