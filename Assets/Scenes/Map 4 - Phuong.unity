@@ -6319,9 +6319,9 @@ GameObject:
   - component: {fileID: 500829794}
   - component: {fileID: 500829793}
   - component: {fileID: 500829792}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95884,9 +95884,9 @@ GameObject:
   - component: {fileID: 1628584506}
   - component: {fileID: 1628584505}
   - component: {fileID: 1628584504}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bg
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
