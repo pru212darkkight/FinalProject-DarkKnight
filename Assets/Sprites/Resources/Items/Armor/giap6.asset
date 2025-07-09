@@ -15,7 +15,7 @@ MonoBehaviour:
   itemId: giap6
   itemName: GreenLight
   icon: {fileID: 5085532755222004085, guid: 2a5ba25b2022033429189c2332c7a4fd, type: 3}
-  itemType: 0
+  itemType: 3
   healthBonus: 0
   staminaBonus: 0
   manaBonus: 0
@@ -23,3 +23,8 @@ MonoBehaviour:
   speedBonus: 0
   armorBonus: 0
   magicResistBonus: 0
+  healthRegenBonus: 0
+  staminaRegenBonus: 0
+  manaRegenBonus: 0
+  moveSpeedBonus: 0
+  jumpBonus: 0

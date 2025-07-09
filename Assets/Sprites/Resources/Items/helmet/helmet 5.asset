@@ -15,7 +15,7 @@ MonoBehaviour:
   itemId: helmet 5
   itemName: Mistveil Helm
   icon: {fileID: 8071445711351235431, guid: 985bf7808ba7fe84bb25ea6a9306e594, type: 3}
-  itemType: 0
+  itemType: 5
   healthBonus: 0
   staminaBonus: 0
   manaBonus: 0
@@ -23,3 +23,8 @@ MonoBehaviour:
   speedBonus: 0
   armorBonus: 0
   magicResistBonus: 0
+  healthRegenBonus: 0
+  staminaRegenBonus: 0
+  manaRegenBonus: 0
+  moveSpeedBonus: 0
+  jumpBonus: 0

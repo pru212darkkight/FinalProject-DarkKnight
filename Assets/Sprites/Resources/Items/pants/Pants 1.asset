@@ -15,7 +15,7 @@ MonoBehaviour:
   itemId: Pants 1
   itemName: Brand's Pants
   icon: {fileID: -8345764990109613854, guid: f16167c0f32a7c84095b5fd80d0bbe37, type: 3}
-  itemType: 0
+  itemType: 2
   healthBonus: 0
   staminaBonus: 0
   manaBonus: 0
@@ -23,3 +23,8 @@ MonoBehaviour:
   speedBonus: 0
   armorBonus: 0
   magicResistBonus: 0
+  healthRegenBonus: 0
+  staminaRegenBonus: 0
+  manaRegenBonus: 0
+  moveSpeedBonus: 0
+  jumpBonus: 0

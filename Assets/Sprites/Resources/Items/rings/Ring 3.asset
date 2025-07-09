@@ -15,7 +15,7 @@ MonoBehaviour:
   itemId: Ring 3
   itemName: J97 Ring
   icon: {fileID: -4620274140576876131, guid: ce0aee9839f67464e9ace7dd83e63868, type: 3}
-  itemType: 0
+  itemType: 1
   healthBonus: 0
   staminaBonus: 0
   manaBonus: 0
@@ -23,3 +23,8 @@ MonoBehaviour:
   speedBonus: 0
   armorBonus: 0
   magicResistBonus: 0
+  healthRegenBonus: 0
+  staminaRegenBonus: 0
+  manaRegenBonus: 0
+  moveSpeedBonus: 0
+  jumpBonus: 0

@@ -34,18 +34,32 @@ public class Inventory : MonoBehaviour
     {
         if (ownedItems.Contains(item) && !equippedItems.Contains(item))
         {
+            // Gỡ item cùng type trước khi trang bị mới
+            List<ItemData> itemsToUnequip = equippedItems.Where(i => i.itemType == item.itemType).ToList();
+            foreach (ItemData oldItem in itemsToUnequip)
+            {
+                equippedItems.Remove(oldItem);
+                // --- Sửa ở đây: Đảm bảo item cũ được đưa về kho nếu kho chưa có ---
+                if (!ownedItems.Contains(oldItem))
+                    ownedItems.Add(oldItem);
+                Debug.Log($"Đã gỡ item cũ: {oldItem.itemName}");
+            }
+
+            // Trang bị item mới
             equippedItems.Add(item);
             SaveInventory();
-            if (player != null) {
+            if (player != null)
+            {
                 player.ApplyEquipmentStats(false); // Không hồi đầy máu khi equip giữa trận
-                Debug.Log("Item đã được trang bị!");
+                Debug.Log($"Item đã được trang bị: {item.itemName}");
             }
         }
         else
         {
-            Debug.LogWarning("Item không được sở hữu!");
+            Debug.LogWarning("Item không được sở hữu hoặc đã trang bị");
         }
     }
+
 
     // Bỏ trang bị
     public void UnequipItem(ItemData item)
@@ -97,4 +111,4 @@ public class Inventory : MonoBehaviour
         }
         if (player != null) player.ApplyEquipmentStats(resetVitals);
     }
-} 
+}
