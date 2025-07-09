@@ -338,7 +338,15 @@ MonoBehaviour:
     m_Id: d36d125d-a63b-4d53-a64c-d5e51dd0f48b
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 84622a2f-23ea-4fab-8260-7ea210aa62d1
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
+      m_Flags: 0
     m_Flags: 0
   moveSpeed: 5
   jumpForce: 5
