@@ -55,7 +55,7 @@ public class TreasureChest : MonoBehaviour
             var playerController = playerObj.GetComponent<PlayerController1>();
             if (playerController != null)
             {
-                interactAction = playerController.interactAction;
+                //interactAction = playerController.interactAction;
             }
         }
         
