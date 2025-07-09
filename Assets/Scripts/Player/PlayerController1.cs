@@ -15,6 +15,7 @@ public class PlayerController1 : MonoBehaviour
     public InputAction defendAction;  // New defend input
     public InputAction dashAction;  // New dash input
     public InputAction spell3Action;  // New spell 3 input
+    public InputAction interactAction; // Interact (mở rương)
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -186,6 +187,8 @@ public class PlayerController1 : MonoBehaviour
     private float defaultSpeed;
     private bool isPoisoned = false;
 
+    public Inventory inventory; // Gán qua Inspector hoặc tìm bằng code
+
     private void OnEnable()
     {
         moveAction.Enable();
@@ -198,6 +201,7 @@ public class PlayerController1 : MonoBehaviour
         defendAction.Enable();    // Enable defend input
         dashAction.Enable();    // Enable dash input
         spell3Action.Enable();    // Enable spell 3 input
+        interactAction.Enable();    // Enable interact input
         jumpAction.performed += OnJump;
         attackAction.performed += OnAttack;
         attack2Action.performed += OnAttack2;
@@ -222,6 +226,7 @@ public class PlayerController1 : MonoBehaviour
         defendAction.Disable();    // Disable defend input
         dashAction.Disable();    // Disable dash input
         spell3Action.Disable();    // Disable spell 3 input
+        interactAction.Disable();    // Disable interact input
         jumpAction.performed -= OnJump;
         attackAction.performed -= OnAttack;
         attack2Action.performed -= OnAttack2;
@@ -255,6 +260,7 @@ public class PlayerController1 : MonoBehaviour
         lastCheckpoint = respawnPosition;
 
         UpdateUI();
+        ApplyEquipmentStats(true); // Hồi đầy máu/mana/stamina khi vào scene mới
     }
 
     void Update()
@@ -957,7 +963,7 @@ public class PlayerController1 : MonoBehaviour
         spell2Action.Enable();
         defendAction.Enable();
         dashAction.Enable();
-        spell3Action.Enable();
+        spell3Action.Disable();
     }
 
     private void ResetAllStates()
@@ -1162,5 +1168,113 @@ public class PlayerController1 : MonoBehaviour
         strength /= 2f;
         speed /= 1.5f;
         Debug.Log("Spell 3 (Transform) ended");
+    }
+
+    public void ApplyEquipmentStats(bool resetVitals = false)
+    {
+        ResetBaseStats();
+        if (inventory != null)
+        {
+            foreach (var item in inventory.equippedItems)
+            {
+                maxHealth   += item.healthBonus;
+                stamina     += item.staminaBonus;
+                maxStamina  += item.staminaBonus; // hoặc item.maxStaminaBonus nếu có
+                maxMana     += item.manaBonus;    // hoặc item.maxManaBonus nếu có
+                strength    += item.strengthBonus;
+                moveSpeed       += item.moveSpeedBonus;
+                armor       += item.armorBonus;
+                magicResist += item.magicResistBonus;
+                healthRecoveryRate += item.healthRegenBonus;
+                staminaRegenRate += item.staminaRegenBonus;
+                manaRegenRate += item.manaRegenBonus;
+                jumpForce += item.jumpBonus;
+            }
+            
+            // Kiểm tra set bonus đơn giản
+            CheckSetBonus();
+            
+            Debug.Log("Chỉ số đã được cập nhật!");
+        }
+        if (resetVitals)
+        {
+            currentHealth = maxHealth;
+            mana = maxMana;
+            stamina = maxStamina;
+        }
+        else
+        {
+            currentHealth = Mathf.Min(currentHealth, maxHealth);
+            mana = Mathf.Min(mana, maxMana);
+            stamina = Mathf.Min(stamina, maxStamina);
+        }
+    }
+    
+    // Hàm kiểm tra set bonus đơn giản
+    private void CheckSetBonus()
+    {
+        Debug.Log("Checking set bonus");
+        if (inventory == null) return;
+        Debug.Log("Inventory not null");
+        // Set 1: INFERNO
+        if (inventory.HasItem("S4") 
+        && inventory.HasItem("A1") 
+        && inventory.HasItem("H2") 
+        && inventory.HasItem("P1") 
+        && inventory.HasItem("B1") 
+        && inventory.HasItem("R4"))
+        {
+            strength += 20f;
+            Debug.Log("Inferno set bonus");
+        }
+        
+        // Set 2: WATER
+        if (inventory.HasItem("S2") 
+        && inventory.HasItem("A3") 
+        && inventory.HasItem("H5") 
+        && inventory.HasItem("P5") 
+        && inventory.HasItem("B4") 
+        && inventory.HasItem("R2"))
+        {
+            maxMana += 100f;
+            Debug.Log("Water set bonus");
+        }
+        
+        // Set 3: NOBLE
+        if (inventory.HasItem("ring_01") && inventory.HasItem("ring_02"))
+        {
+            staminaRegenRate += 5f;
+            stamina += 100f;
+            Debug.Log("Noble set bonus");
+        }
+        
+        // Set 4: WITCH
+        if (inventory.HasItem("S6") 
+        && inventory.HasItem("A2") 
+        && inventory.HasItem("H1") 
+        && inventory.HasItem("P2") 
+        && inventory.HasItem("B3") 
+        && inventory.HasItem("R1"))
+        {
+            Debug.Log("Witch set bonus");
+            manaRegenRate += 5f;
+        }
+    }
+
+    // Thêm hàm này để reset chỉ số gốc trước khi cộng thêm từ trang bị
+    public void ResetBaseStats()
+    {
+        // Gán lại các chỉ số về giá trị gốc (có thể cần lưu các giá trị gốc này ở biến riêng nếu chỉ số có thể thay đổi trong runtime)
+        maxHealth = 100f;
+        maxStamina = 100f;
+        maxMana = 100f;
+        strength = 10f;
+        moveSpeed = 5f;
+        armor = 5f;
+        magicResist = 5f;
+        healthRecoveryRate = 2f;
+        staminaRegenRate = 10f;
+        manaRegenRate = 5f;
+        jumpForce = 5f;
     }
 }

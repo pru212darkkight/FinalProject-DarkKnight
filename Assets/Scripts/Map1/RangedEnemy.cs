@@ -247,6 +247,13 @@ public class RangedEnemy : Enemy
             animator.SetTrigger(DieHash);
         }
         
+        // Drop coins if CoinDrop component exists
+        CoinDrop coinDrop = GetComponent<CoinDrop>();
+        if (coinDrop != null)
+        {
+            coinDrop.DropCoin();
+        }
+        
         // Disable components
         if (rb != null) rb.simulated = false;
         if (GetComponent<Collider2D>() != null) GetComponent<Collider2D>().enabled = false;
