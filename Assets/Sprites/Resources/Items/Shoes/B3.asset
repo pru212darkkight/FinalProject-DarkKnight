@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee2dd78d29e57b40afd370e1ab1109a, type: 3}
+  m_Name: B3
+  m_EditorClassIdentifier: 
+  itemId: B3
+  itemName: Aurora Boots
+  icon: {fileID: -4506154351289503774, guid: 085f40eb3f54f92458693bbaa3447361, type: 3}
+  itemType: 4
+  healthBonus: 0
+  staminaBonus: 0
+  manaBonus: 0
+  strengthBonus: 0
+  armorBonus: 0
+  magicResistBonus: 1
+  healthRegenBonus: 0
+  staminaRegenBonus: 0
+  manaRegenBonus: 2
+  moveSpeedBonus: 2
+  jumpBonus: 1

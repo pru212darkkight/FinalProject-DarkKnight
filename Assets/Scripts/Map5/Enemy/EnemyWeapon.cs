@@ -1,19 +1,20 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyWeapon : MonoBehaviour
 {
     public float attackDamage = 20;
-    public float attackRange = 1.2f;
-    public Vector3 attackOffset;
+    public Vector2 attackBoxSize = new Vector2(1.5f, 1.2f);   // Rộng x Cao của box gây damage
+    public Vector2 attackBoxOffset = new Vector2(1f, 0f);     // Offset về phía trước mặt
     public LayerMask attackMask;
 
     public void Attack()
     {
-        Vector3 pos = transform.position;
-        pos += transform.right * attackOffset.x;
-        pos += transform.up * attackOffset.y;
+        // Sử dụng lossyScale.x để luôn đúng với mọi scale của cha, kể cả nested prefab/phức tạp
+        float facing = Mathf.Sign(transform.lossyScale.x);
+        Vector2 offset = new Vector2(attackBoxOffset.x * facing, attackBoxOffset.y);
+        Vector2 boxCenter = (Vector2)transform.position + offset;
 
-        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
+        Collider2D colInfo = Physics2D.OverlapBox(boxCenter, attackBoxSize, 0f, attackMask);
         if (colInfo != null)
         {
             var playerHealth = colInfo.GetComponent<PlayerController1>();
@@ -24,11 +25,18 @@ public class EnemyWeapon : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Vector3 pos = transform.position;
-        pos += transform.right * attackOffset.x;
-        pos += transform.up * attackOffset.y;
+        if (Camera.main == null) return;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        if (screenPos.z > 0 &&
+            screenPos.x >= 0 && screenPos.x <= Screen.width &&
+            screenPos.y >= 0 && screenPos.y <= Screen.height)
+        {
+            float facing = Application.isPlaying ? Mathf.Sign(transform.lossyScale.x) : Mathf.Sign(transform.localScale.x);
+            Vector2 offset = new Vector2(attackBoxOffset.x * facing, attackBoxOffset.y);
+            Vector2 center = (Vector2)transform.position + offset;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(pos, attackRange);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(center, attackBoxSize);
+        }
     }
 }

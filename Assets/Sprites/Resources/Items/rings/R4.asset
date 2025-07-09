@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee2dd78d29e57b40afd370e1ab1109a, type: 3}
+  m_Name: R4
+  m_EditorClassIdentifier: 
+  itemId: R4
+  itemName: Inferno Ring
+  icon: {fileID: -4498390976262290152, guid: ce0aee9839f67464e9ace7dd83e63868, type: 3}
+  itemType: 5
+  healthBonus: 0
+  staminaBonus: 0
+  manaBonus: 30
+  strengthBonus: 5
+  armorBonus: 0
+  magicResistBonus: 0
+  healthRegenBonus: 0
+  staminaRegenBonus: 0
+  manaRegenBonus: 2
+  moveSpeedBonus: 0
+  jumpBonus: 0

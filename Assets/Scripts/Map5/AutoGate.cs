@@ -2,35 +2,84 @@
 
 public class AutoGate : MonoBehaviour
 {
-    public Animator doorAnimator;  // Gắn Animator của cửa vào đây trong Inspector
+    public Animator doorAnimator;
+    public GameObject[] guardEnemies;
+    public Collider2D blockCollider;
 
-    private int playerCount = 0;   // Số lượng phần collider của Player trong vùng cửa
+    [SerializeField] private bool onlyCloseOnce = false; // <--- THÊM BIẾN NÀY ĐỂ CHỌN KIỂU CỔNG
+    private bool permanentlyClosed = false;
+
+    private int playerCount = 0;
+    private bool doorOpened = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !permanentlyClosed)
         {
             playerCount++;
-            if (playerCount == 1)
-            {
-                // Mở cửa nếu Player vừa mới bước vào
-                doorAnimator.ResetTrigger("CloseTrigger");
-                doorAnimator.SetTrigger("OpenTrigger");
-            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !permanentlyClosed)
         {
             playerCount--;
             if (playerCount <= 0)
             {
-                // Đóng cửa khi Player đã đi hết qua vùng trigger
-                doorAnimator.ResetTrigger("OpenTrigger");
-                doorAnimator.SetTrigger("CloseTrigger");
+                // Nếu cửa đã mở và player đã rời khỏi => đóng cửa
+                if (doorOpened)
+                {
+                    doorAnimator.ResetTrigger("OpenTrigger");
+                    doorAnimator.SetTrigger("CloseTrigger");
+                    if (blockCollider != null)
+                        blockCollider.enabled = true;
+                    doorOpened = false;
+
+                    // Nếu là cổng đóng 1 lần, đóng xong sẽ khóa luôn!
+                    if (onlyCloseOnce)
+                        permanentlyClosed = true;
+                }
             }
         }
+    }
+
+    private void Update()
+    {
+        // Nếu là cổng khóa vĩnh viễn thì không mở nữa
+        if (permanentlyClosed)
+        {
+            if (blockCollider != null) blockCollider.enabled = true;
+            return;
+        }
+
+        // Khi enemy chết hết, DÙ CÓ PLAYER TRONG TRIGGER HAY KHÔNG, luôn mở cửa, tắt collider
+        if (AllEnemiesDead())
+        {
+            if (playerCount > 0 && !doorOpened)
+            {
+                doorAnimator.ResetTrigger("CloseTrigger");
+                doorAnimator.SetTrigger("OpenTrigger");
+                doorOpened = true;
+            }
+            if (blockCollider != null && blockCollider.enabled)
+            {
+                blockCollider.enabled = false;
+            }
+        }
+    }
+
+    private bool AllEnemiesDead()
+    {
+        foreach (GameObject enemy in guardEnemies)
+        {
+            if (enemy != null)
+            {
+                var health = enemy.GetComponent<EnemyHealth>();
+                if (health != null && !health.isDead)
+                    return false;
+            }
+        }
+        return true;
     }
 }
