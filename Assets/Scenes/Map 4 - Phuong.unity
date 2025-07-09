@@ -535,7 +535,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1160970401}
+    TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -7573,6 +7573,10 @@ MonoBehaviour:
   armor: 5
   magicResist: 5
   isDead: 0
+  canResurrect: 0
+  hasResurrected: 0
+  resurrectHealth: 50
+  isInvulnerable: 0
   movingPlatform: {fileID: 0}
 --- !u!50 &685320723
 Rigidbody2D:
@@ -7659,7 +7663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406941bf81d0e464ead422ccc5dff9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1160970401}
+  player: {fileID: 0}
   pointA: {fileID: 1773022648}
   pointB: {fileID: 1808464200}
   detectRange: 10
@@ -7678,7 +7682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb1d48f36b33c64eb1c67108cb97497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1160970401}
+  player: {fileID: 0}
   spikePrefab: {fileID: 7546520309333225561, guid: 992cedf095ffdc74599642d299177c15, type: 3}
   minionPrefab: {fileID: 0}
   poisonPrefab: {fileID: 664763904755594396, guid: c314ae113dac0e34e8d51d5e9f787d55, type: 3}
@@ -13788,6 +13792,14 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -488039437
       objectReference: {fileID: 0}
+    - target: {fileID: 6570648403116776917, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570648403116776917, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.275
+      objectReference: {fileID: 0}
     - target: {fileID: 8415594189239132604, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
       propertyPath: m_Name
       value: Player 1
@@ -13797,11 +13809,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
---- !u!4 &1160970401 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2332100755582909787, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
-  m_PrefabInstance: {fileID: 1160970400}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1186123185
 GameObject:
   m_ObjectHideFlags: 0
@@ -14389,7 +14396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1205344359
 Transform:
   m_ObjectHideFlags: 0

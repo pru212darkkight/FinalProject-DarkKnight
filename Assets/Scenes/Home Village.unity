@@ -14086,6 +14086,15 @@ MonoBehaviour:
       m_Action: Spell 3
       m_Flags: 0
     m_Flags: 0
+  interactAction:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 08f0aa6c-bbf2-4947-bce1-855ce0a45830
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   moveSpeed: 5
   jumpForce: 8
   groundCheck: {fileID: 1039707027090188083}
@@ -14158,6 +14167,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 0}
   deathSound: {fileID: 0}
   respawnSound: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!4 &3083609520769010472
 Transform:
   m_ObjectHideFlags: 0
@@ -14726,8 +14736,6 @@ SceneRoots:
   - {fileID: 1040113941}
   - {fileID: 234230496}
   - {fileID: 1828606414}
-
   - {fileID: 648162040}
   - {fileID: 2081459583}
   - {fileID: 1379781266}
-
