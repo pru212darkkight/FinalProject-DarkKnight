@@ -194,6 +194,13 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger(DieHash);
         }
 
+        // Drop coins if CoinDrop component exists
+        CoinDrop coinDrop = GetComponent<CoinDrop>();
+        if (coinDrop != null)
+        {
+            coinDrop.DropCoin();
+        }
+
         // Disable các component không cần thiết
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null)

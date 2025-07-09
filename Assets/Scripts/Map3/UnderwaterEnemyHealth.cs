@@ -165,6 +165,13 @@ public class UnderwaterEnemyHealth : MonoBehaviour
         
         Debug.Log($"{gameObject.name} died!");
 
+        // Drop coins if CoinDrop component exists
+        CoinDrop coinDrop = GetComponent<CoinDrop>();
+        if (coinDrop != null)
+        {
+            coinDrop.DropCoin();
+        }
+
         // Ẩn health bar
         if (healthBarInstance != null)
         {

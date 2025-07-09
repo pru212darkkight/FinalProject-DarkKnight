@@ -34,16 +34,25 @@ public class Inventory : MonoBehaviour
     {
         if (ownedItems.Contains(item) && !equippedItems.Contains(item))
         {
+            // Gỡ item cùng type trước khi trang bị mới
+            List<ItemData> itemsToUnequip = equippedItems.Where(i => i.itemType == item.itemType).ToList();
+            foreach (ItemData oldItem in itemsToUnequip)
+            {
+                equippedItems.Remove(oldItem);
+                Debug.Log($"Đã gỡ item cũ: {oldItem.itemName}");
+            }
+            
+            // Trang bị item mới
             equippedItems.Add(item);
             SaveInventory();
             if (player != null) {
                 player.ApplyEquipmentStats(false); // Không hồi đầy máu khi equip giữa trận
-                Debug.Log("Item đã được trang bị!");
+                Debug.Log($"Item đã được trang bị: {item.itemName}");
             }
         }
         else
         {
-            Debug.LogWarning("Item không được sở hữu!");
+            Debug.LogWarning("Item không được sở hữu hoặc đã trang bị");
         }
     }
 
