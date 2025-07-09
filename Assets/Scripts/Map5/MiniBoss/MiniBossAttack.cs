@@ -96,13 +96,20 @@ public class MiniBossAttack : MonoBehaviour
     // Vẽ vùng attack trong Editor (luôn thấy vùng gây damage đúng hướng)
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Vector2 offset = attackBoxOffset;
-        if (transform.localScale.x < 0)
-            offset.x = -Mathf.Abs(offset.x);
-        else
-            offset.x = Mathf.Abs(offset.x);
-        Vector2 center = (Vector2)transform.position + offset;
-        Gizmos.DrawWireCube(center, attackBoxSize);
+        if (Camera.main == null) return;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        if (screenPos.z > 0 &&
+            screenPos.x >= 0 && screenPos.x <= Screen.width &&
+            screenPos.y >= 0 && screenPos.y <= Screen.height)
+        {
+            Gizmos.color = Color.red;
+            Vector2 offset = attackBoxOffset;
+            if (transform.localScale.x < 0)
+                offset.x = -Mathf.Abs(offset.x);
+            else
+                offset.x = Mathf.Abs(offset.x);
+            Vector2 center = (Vector2)transform.position + offset;
+            Gizmos.DrawWireCube(center, attackBoxSize);
+        }
     }
 }

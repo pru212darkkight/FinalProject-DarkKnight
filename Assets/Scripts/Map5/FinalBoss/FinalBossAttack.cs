@@ -121,29 +121,36 @@ public class FinalBossAttack : MonoBehaviour
     // --- VẼ GIZMOS ---
     void OnDrawGizmosSelected()
     {
-        // Vùng Thánh Giá
-        Gizmos.color = Color.yellow;
-        float px = Application.isPlaying && controller ? controller.player.position.x : transform.position.x;
-        Gizmos.DrawWireSphere(
-            new Vector3(px, transform.position.y + crossHeight, 0),
-            crossRange);
+        if (Camera.main == null) return;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        if (screenPos.z > 0 &&
+            screenPos.x >= 0 && screenPos.x <= Screen.width &&
+            screenPos.y >= 0 && screenPos.y <= Screen.height)
+        {
+            // Vùng Thánh Giá
+            Gizmos.color = Color.yellow;
+            float px = Application.isPlaying && controller ? controller.player.position.x : transform.position.x;
+            Gizmos.DrawWireSphere(
+                new Vector3(px, transform.position.y + crossHeight, 0),
+                crossRange);
 
-        // Vùng Mặt Trăng
-        if (moonCount > 1)
-        {
-            Gizmos.color = Color.magenta;
-            float y = transform.position.y + moonHeight;
-            for (int i = 0; i < moonCount; i++)
+            // Vùng Mặt Trăng
+            if (moonCount > 1)
             {
-                float offset = (i - (moonCount - 1) / 2f) * moonSpacing;
-                Gizmos.DrawWireSphere(new Vector3(px + offset, y, 0), crossRange);
+                Gizmos.color = Color.magenta;
+                float y = transform.position.y + moonHeight;
+                for (int i = 0; i < moonCount; i++)
+                {
+                    float offset = (i - (moonCount - 1) / 2f) * moonSpacing;
+                    Gizmos.DrawWireSphere(new Vector3(px + offset, y, 0), crossRange);
+                }
             }
-        }
-        // Điểm spawn chưởng đầu lâu
-        if (skullBlastSpawnPoint != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(skullBlastSpawnPoint.position, 0.2f);
+            // Điểm spawn chưởng đầu lâu
+            if (skullBlastSpawnPoint != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(skullBlastSpawnPoint.position, 0.2f);
+            }
         }
     }
 }
