@@ -2,17 +2,25 @@
 
 public class EnemyHealth : MonoBehaviour
 {
+    [Header("Stats")]
     public float maxHealth = 100;
     public float currentHealth = 100;
     public float armor = 5f;          // Giáp vật lý (%)
     public float magicResist = 5f;    // Kháng phép (%)
     public bool isDead = false;
 
-    [SerializeField] private MovingPlatform movingPlatform; // Gán đúng platform ở Inspector
+    [Header("Resurrection")]
+    public bool canResurrect = false;        // Bật/tắt hồi sinh
+    public bool hasResurrected = false;      // Đã từng hồi sinh chưa
+    public float resurrectHealth = 50f;      // Máu sau khi hồi sinh
+    public bool isInvulnerable = false;      // Miễn nhiễm sát thương khi true
+
+    [SerializeField] private MovingPlatform movingPlatform; // Nếu cần unlock platform
 
     private Animator animator;
     private Rigidbody2D rb;
     private MiniBossController miniBossController;
+    private FinalBossController finalBossController;
 
     private void Awake()
     {
@@ -20,12 +28,16 @@ public class EnemyHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         miniBossController = GetComponent<MiniBossController>();
-
+        finalBossController = GetComponent<FinalBossController>();
     }
 
+    /// <summary>
+    /// Gọi hàm này khi enemy bị nhận sát thương.
+    /// </summary>
     public void TakeDamage(float damage, bool isMagicDamage = false)
     {
-        if (isDead) return;
+        // Không nhận sát thương khi đã chết hoặc đang bất tử (trong quá trình hồi sinh)
+        if (isDead || isInvulnerable) return;
 
         float finalDamage = damage;
         if (isMagicDamage)
@@ -34,52 +46,112 @@ public class EnemyHealth : MonoBehaviour
             finalDamage *= (1 - (armor / 100f));
 
         currentHealth = Mathf.Max(0, currentHealth - finalDamage);
+
         if (animator != null) animator.SetTrigger("Hurt");
 
-        // Bổ sung dòng sau để gọi controller xử lý state Hurt
+        // Gọi controller nếu có
         if (miniBossController != null)
-        {
             miniBossController.OnTakeDamage();
-        }
+        if (finalBossController != null)
+            finalBossController.OnTakeDamage(finalDamage);
 
-        if (currentHealth <= 0)
+        // Kiểm tra điều kiện hồi sinh hoặc chết thật sự
+        if (currentHealth <= 0 && !isDead)
         {
-            Die();
+            if (canResurrect && !hasResurrected)
+            {
+                StartResurrect();
+            }
+            else
+            {
+                Die();
+            }
         }
     }
 
-    public void OnHurtAnimationEnd()
+    /// <summary>
+    /// Bắt đầu quá trình hồi sinh (ngã, sau đó đứng dậy).
+    /// </summary>
+    void StartResurrect()
     {
+        hasResurrected = true;
+        isInvulnerable = true;   // Bật bất tử ngay khi bắt đầu quá trình hồi sinh
+        isDead = true;           // Chặn AI, animation, di chuyển
+        rb.linearVelocity = Vector2.zero;
+
+        // Chuyển sang animation ngã (fallBack)
         if (animator != null)
         {
             animator.ResetTrigger("Hurt");
-            // animator.SetBool("Hurt", false); // Nếu bạn dùng bool thay trigger
+            animator.SetTrigger("fallBack");
         }
     }
 
+    /// <summary>
+    /// Gọi bằng Animation Event ở cuối animation "fallBack"
+    /// </summary>
+    public void OnFallBackEnd()
+    {
+        // Chuyển sang animation đứng dậy (standUp)
+        if (animator != null)
+            animator.SetTrigger("standUp");
+        // Lưu ý: Vẫn giữ isInvulnerable = true ở đây!
+    }
+
+    /// <summary>
+    /// Gọi bằng Animation Event ở cuối animation "standUp"
+    /// </summary>
+    public void OnStandUpEnd()
+    {
+        // Hồi lại máu, tắt trạng thái bất tử và chết
+        currentHealth = resurrectHealth;
+        isDead = false;
+
+        // Chỉ **sau khi đứng dậy hoàn toàn** mới tắt bất tử
+        isInvulnerable = false;
+
+        if (animator != null)
+        {
+            animator.ResetTrigger("standUp");
+        }
+    }
+
+    /// <summary>
+    /// Gọi ở cuối animation Hurt (Animation Event)
+    /// </summary>
+    public void OnHurtAnimationEnd()
+    {
+        if (animator != null)
+            animator.ResetTrigger("Hurt");
+    }
+
+    /// <summary>
+    /// Kết liễu enemy thật sự (không hồi sinh nữa).
+    /// </summary>
     void Die()
     {
         isDead = true;
         if (animator != null)
         {
-            animator.ResetTrigger("Hurt"); // Reset để không bị conflict với Death
-            animator.SetTrigger("Death");  // Sử dụng Trigger thay vì Bool để tránh lỗi logic
+            animator.ResetTrigger("Hurt");
+            animator.SetTrigger("Death");
         }
         if (rb != null) rb.linearVelocity = Vector2.zero;
-        // KHÔNG Destroy ngay! Đợi animation xong sẽ gọi hàm Destroy qua Animation Event
+        // Không destroy ngay, chờ Animation Event gọi OnDeathAnimationEnd
     }
 
-    // Gọi ở cuối animation Death bằng Animation Event
+    /// <summary>
+    /// Gọi ở cuối animation Death (Animation Event)
+    /// </summary>
     public void OnDeathAnimationEnd()
     {
         if (movingPlatform != null)
             movingPlatform.UnlockPlatform();
-        Invoke(nameof(DestroySelf), 0.3f); // Chờ 0.5 giây
+        Invoke(nameof(DestroySelf), 0.3f);
     }
 
     private void DestroySelf()
     {
         Destroy(gameObject);
     }
-
 }

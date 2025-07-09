@@ -25,11 +25,18 @@ public class EnemyWeapon : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        float facing = Application.isPlaying ? Mathf.Sign(transform.lossyScale.x) : Mathf.Sign(transform.localScale.x);
-        Vector2 offset = new Vector2(attackBoxOffset.x * facing, attackBoxOffset.y);
-        Vector2 center = (Vector2)transform.position + offset;
+        if (Camera.main == null) return;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        if (screenPos.z > 0 &&
+            screenPos.x >= 0 && screenPos.x <= Screen.width &&
+            screenPos.y >= 0 && screenPos.y <= Screen.height)
+        {
+            float facing = Application.isPlaying ? Mathf.Sign(transform.lossyScale.x) : Mathf.Sign(transform.localScale.x);
+            Vector2 offset = new Vector2(attackBoxOffset.x * facing, attackBoxOffset.y);
+            Vector2 center = (Vector2)transform.position + offset;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(center, attackBoxSize);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(center, attackBoxSize);
+        }
     }
 }
