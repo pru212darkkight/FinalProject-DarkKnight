@@ -187,29 +187,44 @@ public class EnemyWater : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (isDead) return; // Prevent multiple calls
+
         isDead = true;
 
-        // Trigger death animation nếu có
-        if (animator != null)
-        {
-            animator.SetTrigger(DieHash);
-        }
+        Debug.Log($"{gameObject.name} died and will be destroyed!");
 
-        // Disable các component không cần thiết
-        Collider2D collider = GetComponent<Collider2D>();
-        if (collider != null)
-        {
-            collider.enabled = false;
-        }
-
+        // Stop all movement immediately
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
             rb.isKinematic = true;
         }
 
-        // Destroy sau khi animation kết thúc
-        Destroy(gameObject, 2f);
+        // Disable collider to prevent further interactions
+        Collider2D collider = GetComponent<Collider2D>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+
+        // Hide health bar if exists
+        if (healthBar != null)
+        {
+            healthBar.gameObject.SetActive(false);
+        }
+
+        // Trigger death animation if available
+        if (animator != null)
+        {
+            animator.SetTrigger(DieHash);
+            // Destroy after animation time (estimate 1-2 seconds)
+            Destroy(gameObject, 1.5f);
+        }
+        else
+        {
+            // No animation, destroy immediately
+            Destroy(gameObject, 0.1f);
+        }
     }
 
     protected virtual void Flip()
@@ -240,7 +255,8 @@ public class EnemyWater : MonoBehaviour
                 // Check if player is attacking
                 if (playerController.IsAttacking || playerController.IsAttacking2 || playerController.IsAttacking3)
                 {
-                    TakeDamage(damage);
+                    Debug.Log($"{gameObject.name} hit by player attack!");
+                    TakeDamage(damage); // Enemy takes damage when hit by player
                     return;
                 }
 
@@ -249,6 +265,7 @@ public class EnemyWater : MonoBehaviour
                 {
                     playerController.TakeDamage(damage);
                     lastAttackTime = Time.time;
+                    Debug.Log($"{gameObject.name} dealt {damage} damage to player");
                 }
             }
         }
@@ -268,4 +285,24 @@ public class EnemyWater : MonoBehaviour
     // Public properties
     public bool IsDead => isDead;
     public float HealthPercent => currentHealth / maxHealth;
+
+    // Debug methods
+    [ContextMenu("Kill Enemy")]
+    public void KillEnemy()
+    {
+        Debug.Log($"Manually killing {gameObject.name}");
+        TakeDamage(maxHealth);
+    }
+
+    [ContextMenu("Damage Enemy")]
+    public void DamageEnemy()
+    {
+        Debug.Log($"Manually damaging {gameObject.name}");
+        TakeDamage(damage);
+    }
+
+    void OnDestroy()
+    {
+        Debug.Log($"{gameObject.name} has been destroyed!");
+    }
 }
