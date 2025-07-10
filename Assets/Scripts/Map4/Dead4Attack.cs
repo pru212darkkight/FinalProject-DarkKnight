@@ -140,7 +140,7 @@ public class Dead4Attack : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(player.position, Vector2.down, 10f, LayerMask.GetMask("Ground"));
             if (hit.collider != null)
             {
-                Vector3 groundPos = hit.point + Vector2.up * 2f;
+                Vector3 groundPos = hit.point + Vector2.up * 4f;
                 Instantiate(stormPrefab, groundPos, Quaternion.identity);
 
                 if (CameraShake.Instance != null)

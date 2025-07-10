@@ -1,26 +1,24 @@
-﻿using Unity.Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BridgeMover : MonoBehaviour
+public class DoorMove4 : MonoBehaviour
 {
     public Transform destinationPoint;
     public float moveSpeed = 2f;
     public float checkRadius = 5f;
     public LayerMask enemyLayer;
 
-    public CinemachineCamera virtualCamera;
-    public Transform playerTransform;
-    public Transform bridgeFrontPoint; // ← Điểm đầu cầu (con của cầu)
+    public Transform checkPoint; // Vị trí kiểm tra enemy
 
     private bool shouldMove = false;
-    private bool cameraFollowingBridge = false;
     private bool bridgeReachedDestination = false;
 
     void Update()
     {
         if (!shouldMove)
         {
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, checkRadius, enemyLayer);
+            Vector3 checkPos = checkPoint != null ? checkPoint.position : transform.position;
+
+            Collider2D[] enemies = Physics2D.OverlapCircleAll(checkPos, checkRadius, enemyLayer);
 
             int aliveCount = 0;
             foreach (var enemy in enemies)
@@ -34,12 +32,6 @@ public class BridgeMover : MonoBehaviour
             if (aliveCount == 0)
             {
                 shouldMove = true;
-
-                if (virtualCamera != null && bridgeFrontPoint != null)
-                {
-                    virtualCamera.Follow = bridgeFrontPoint;
-                    cameraFollowingBridge = true;
-                }
             }
         }
         else if (!bridgeReachedDestination)
@@ -49,12 +41,6 @@ public class BridgeMover : MonoBehaviour
             if (Vector3.Distance(transform.position, destinationPoint.position) < 0.05f)
             {
                 bridgeReachedDestination = true;
-
-                if (virtualCamera != null && playerTransform != null)
-                {
-                    virtualCamera.Follow = playerTransform;
-                    cameraFollowingBridge = false;
-                }
             }
         }
     }
@@ -62,6 +48,7 @@ public class BridgeMover : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, checkRadius);
+        Vector3 checkPos = checkPoint != null ? checkPoint.position : transform.position;
+        Gizmos.DrawWireSphere(checkPos, checkRadius);
     }
 }
