@@ -5,9 +5,22 @@ public class PlatformToggleMover : MonoBehaviour
     public Transform pointA; // Vị trí gốc (A)
     public Transform pointB; // Vị trí đích (B)
     public float moveSpeed = 2f;
+    public AudioClip moveSound;
 
     private bool movingToB = false;
     private bool isMoving = false;
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.clip = moveSound;
+        audioSource.loop = true;
+        audioSource.playOnAwake = false;
+    }
 
     void Update()
     {
@@ -16,9 +29,15 @@ public class PlatformToggleMover : MonoBehaviour
             Vector2 target = movingToB ? pointB.position : pointA.position;
             transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
 
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play(); // Phát âm thanh khi bắt đầu di chuyển
+            }
+
             if (Vector2.Distance(transform.position, target) < 0.01f)
             {
-                isMoving = false; // Dừng khi đến nơi
+                isMoving = false;
+                audioSource.Stop(); // Dừng âm thanh khi đến nơi
             }
         }
     }
@@ -32,7 +51,7 @@ public class PlatformToggleMover : MonoBehaviour
 
             if (!isMoving)
             {
-                movingToB = !movingToB; // Đảo chiều di chuyển
+                movingToB = !movingToB;
                 isMoving = true;
             }
         }
@@ -42,7 +61,7 @@ public class PlatformToggleMover : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Bỏ player ra khỏi platform khi rời đi
+            // Bỏ player ra khỏi platform
             other.transform.SetParent(null);
         }
     }
