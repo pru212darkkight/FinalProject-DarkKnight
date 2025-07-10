@@ -38,23 +38,35 @@ public class SmoothCameraFollow : MonoBehaviour
         // Auto find player if not assigned
         if (autoFindPlayer && target == null)
         {
+            // Thử tìm bằng tag trước
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null)
             {
                 target = playerObj.transform;
                 playerController = playerObj.GetComponent<PlayerController1>();
-                Debug.Log("SmoothCameraFollow: Player found and assigned!");
+                Debug.Log("SmoothCameraFollow: Player found by tag and assigned!");
             }
             else
             {
-                Debug.LogWarning("SmoothCameraFollow: Player not found!");
+                // Nếu không tìm thấy bằng tag, thử tìm bằng component
+                PlayerController1 playerComp = FindObjectOfType<PlayerController1>();
+                if (playerComp != null)
+                {
+                    target = playerComp.transform;
+                    playerController = playerComp;
+                    Debug.Log("SmoothCameraFollow: Player found by component and assigned!");
+                }
+                else
+                {
+                    Debug.LogError("SmoothCameraFollow: Player not found! Make sure player has 'Player' tag or PlayerController1 component!");
+                }
             }
         }
-        
+
         if (target != null)
         {
             lastPlayerPosition = target.position;
-            
+
             // Set initial camera position
             Vector3 initialPos = target.position + offset;
             if (useBounds)
@@ -63,23 +75,32 @@ public class SmoothCameraFollow : MonoBehaviour
                 initialPos.y = Mathf.Clamp(initialPos.y, minBounds.y, maxBounds.y);
             }
             transform.position = initialPos;
+            Debug.Log($"SmoothCameraFollow: Camera positioned at {transform.position}, following {target.name}");
+        }
+        else
+        {
+            Debug.LogError("SmoothCameraFollow: No target assigned! Camera will not follow.");
         }
     }
     
     void LateUpdate()
     {
-        if (target == null) return;
-        
+        if (target == null)
+        {
+            Debug.LogWarning("SmoothCameraFollow: Target is null in LateUpdate!");
+            return;
+        }
+
         // Calculate target position
         Vector3 targetPosition = CalculateTargetPosition();
-        
+
         // Apply bounds if enabled
         if (useBounds)
         {
             targetPosition.x = Mathf.Clamp(targetPosition.x, minBounds.x, maxBounds.x);
             targetPosition.y = Mathf.Clamp(targetPosition.y, minBounds.y, maxBounds.y);
         }
-        
+
         // Move camera to target position
         if (smoothFollow)
         {
@@ -89,14 +110,14 @@ public class SmoothCameraFollow : MonoBehaviour
         {
             transform.position = targetPosition;
         }
-        
+
         // Update last player position
         lastPlayerPosition = target.position;
-        
-        // Debug info
-        if (showDebug)
+
+        // Debug info - always show for troubleshooting
+        if (showDebug || Time.frameCount % 60 == 0) // Show every 60 frames
         {
-            Debug.Log($"Camera Position: {transform.position}, Target Position: {targetPosition}");
+            Debug.Log($"SmoothCameraFollow: Camera at {transform.position}, Target at {target.position}, TargetPos: {targetPosition}");
         }
     }
     

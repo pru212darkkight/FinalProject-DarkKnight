@@ -40,7 +40,14 @@ public class EnemyHealthBarManager : MonoBehaviour
             CreateWorldSpaceCanvas();
         }
         
-        // Find all fish enemies
+        // Find all Map3 fish enemies (priority)
+        Map3EnemyHealth[] map3FishEnemies = FindObjectsOfType<Map3EnemyHealth>();
+        foreach (Map3EnemyHealth fish in map3FishEnemies)
+        {
+            CreateHealthBarForEnemy(fish.gameObject, fish);
+        }
+
+        // Find all underwater fish enemies (fallback)
         UnderwaterEnemyHealth[] fishEnemies = FindObjectsOfType<UnderwaterEnemyHealth>();
         foreach (UnderwaterEnemyHealth fish in fishEnemies)
         {
@@ -140,7 +147,11 @@ public class EnemyHealthBarManager : MonoBehaviour
         }
         
         // Connect to health component
-        if (healthComponent is UnderwaterEnemyHealth)
+        if (healthComponent is Map3EnemyHealth)
+        {
+            updater.map3Health = (Map3EnemyHealth)healthComponent;
+        }
+        else if (healthComponent is UnderwaterEnemyHealth)
         {
             updater.fishHealth = (UnderwaterEnemyHealth)healthComponent;
         }
@@ -178,10 +189,15 @@ public class EnemyHealthBarManager : MonoBehaviour
     // Method to manually create health bar for specific enemy
     public void CreateHealthBarForSpecificEnemy(GameObject enemy)
     {
+        Map3EnemyHealth map3Health = enemy.GetComponent<Map3EnemyHealth>();
         UnderwaterEnemyHealth fishHealth = enemy.GetComponent<UnderwaterEnemyHealth>();
         UnderwaterMine mineHealth = enemy.GetComponent<UnderwaterMine>();
-        
-        if (fishHealth != null)
+
+        if (map3Health != null)
+        {
+            CreateHealthBarForEnemy(enemy, map3Health);
+        }
+        else if (fishHealth != null)
         {
             CreateHealthBarForEnemy(enemy, fishHealth);
         }
@@ -191,7 +207,7 @@ public class EnemyHealthBarManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"EnemyHealthBarManager: {enemy.name} doesn't have UnderwaterEnemyHealth or UnderwaterMine component");
+            Debug.LogWarning($"EnemyHealthBarManager: {enemy.name} doesn't have Map3EnemyHealth, UnderwaterEnemyHealth or UnderwaterMine component");
         }
     }
 }
