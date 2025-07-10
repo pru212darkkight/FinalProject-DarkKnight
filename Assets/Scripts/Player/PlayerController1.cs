@@ -933,7 +933,7 @@ public class PlayerController1 : MonoBehaviour
 
         // Stop movement
         rb.linearVelocity = Vector2.zero;
-        rb.isKinematic = true;
+        rb.bodyType = RigidbodyType2D.Kinematic;
 
         // Start death sequence
         StartCoroutine(DeathSequence());
@@ -1051,7 +1051,7 @@ public class PlayerController1 : MonoBehaviour
         }
 
         // Re-enable physics
-        rb.isKinematic = false;
+        rb.bodyType = RigidbodyType2D.Dynamic;
 
         // Reset animator
         animator.SetBool("IsDead", false);
