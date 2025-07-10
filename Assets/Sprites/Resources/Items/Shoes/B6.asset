@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Druid Boots
   icon: {fileID: -3283144497134489290, guid: 085f40eb3f54f92458693bbaa3447361, type: 3}
   itemType: 4
-  healthBonus: 10
+  healthBonus: 50
   staminaBonus: 0
   manaBonus: 0
   strengthBonus: 0
@@ -27,3 +27,4 @@ MonoBehaviour:
   manaRegenBonus: 0
   moveSpeedBonus: 2
   jumpBonus: 1
+  price: 1000

@@ -22,8 +22,9 @@ MonoBehaviour:
   strengthBonus: 0
   armorBonus: 0
   magicResistBonus: 5
-  healthRegenBonus: 10
+  healthRegenBonus: 14
   staminaRegenBonus: 0
   manaRegenBonus: 0
   moveSpeedBonus: 0
   jumpBonus: 0
+  price: 1700

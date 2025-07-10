@@ -45,7 +45,8 @@ public class Inventory : MonoBehaviour
             // Trang bị item mới
             equippedItems.Add(item);
             SaveInventory();
-            if (player != null) {
+            if (player != null)
+            {
                 player.ApplyEquipmentStats(false); // Không hồi đầy máu khi equip giữa trận
                 Debug.Log($"Item đã được trang bị: {item.itemName}");
             }
@@ -55,6 +56,7 @@ public class Inventory : MonoBehaviour
             Debug.LogWarning("Item không được sở hữu hoặc đã trang bị");
         }
     }
+
 
     // Bỏ trang bị
     public void UnequipItem(ItemData item)
@@ -75,6 +77,11 @@ public class Inventory : MonoBehaviour
     public bool HasItem(string itemId)
     {
         return ownedItems.Exists(i => i.itemId == itemId);
+    }
+
+    public bool HasEquipped(string equippedItemId)
+    {
+        return equippedItems.Exists(i => i.itemId == equippedItemId);
     }
 
     // Lưu inventory (PlayerPrefs, chỉ lưu id)
@@ -106,4 +113,4 @@ public class Inventory : MonoBehaviour
         }
         if (player != null) player.ApplyEquipmentStats(resetVitals);
     }
-} 
+}

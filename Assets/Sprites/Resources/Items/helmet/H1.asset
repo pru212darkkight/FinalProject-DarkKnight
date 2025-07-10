@@ -15,7 +15,7 @@ MonoBehaviour:
   itemId: H1
   itemName: Hexweaver's Hood
   icon: {fileID: 1617964818675740667, guid: 985bf7808ba7fe84bb25ea6a9306e594, type: 3}
-  itemType: 0
+  itemType: 3
   healthBonus: 100
   staminaBonus: 0
   manaBonus: 50
@@ -27,3 +27,4 @@ MonoBehaviour:
   manaRegenBonus: 3
   moveSpeedBonus: 0
   jumpBonus: 0
+  price: 2000

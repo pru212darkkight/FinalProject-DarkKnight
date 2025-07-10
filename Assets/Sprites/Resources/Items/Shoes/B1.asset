@@ -27,3 +27,4 @@ MonoBehaviour:
   manaRegenBonus: 0
   moveSpeedBonus: 2
   jumpBonus: 1
+  price: 1200

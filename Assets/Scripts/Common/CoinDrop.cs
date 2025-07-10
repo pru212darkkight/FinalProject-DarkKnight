@@ -11,7 +11,7 @@ public class CoinDrop : MonoBehaviour
     {
         if (coinAmount > 0)
         {
-            PlayerMoney money = FindObjectOfType<PlayerMoney>();
+            PlayerMoney money = FindAnyObjectByType<PlayerMoney>();
             if (money != null)
             {
                 money.AddCoins(coinAmount);

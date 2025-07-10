@@ -12,6 +12,7 @@ TagManager:
   - EnemyProjectile
   - NPC
   - enemyCoin
+  - LevelSelectionUI
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Enemy
   - Ground
   - Projectile
-  - 
+  - PlayerAvatar
   - 
   - 
   - 
@@ -67,7 +68,7 @@ TagManager:
   - name: Enemy
     uniqueID: 1
     locked: 0
-  - name: 
+  - name: PlayerAvatar
     uniqueID: 1
     locked: 0
   m_RenderingLayers:
