@@ -79,6 +79,11 @@ public class Inventory : MonoBehaviour
         return ownedItems.Exists(i => i.itemId == itemId);
     }
 
+    public bool HasEquipped(string equippedItemId)
+    {
+        return equippedItems.Exists(i => i.itemId == equippedItemId);
+    }
+
     // Lưu inventory (PlayerPrefs, chỉ lưu id)
     public void SaveInventory()
     {
