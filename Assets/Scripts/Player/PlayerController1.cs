@@ -1127,7 +1127,7 @@ public class PlayerController1 : MonoBehaviour
         {
             float healthPercent = currentHealth / maxHealth;
             healthBar.fillAmount = healthPercent;
-            Debug.Log($"PlayerController1: Health UI updated - {currentHealth:F1}/{maxHealth} = {healthPercent:F2}");
+            //Debug.Log($"PlayerController1: Health UI updated - {currentHealth:F1}/{maxHealth} = {healthPercent:F2}");
         }
         else
         {
@@ -1138,7 +1138,7 @@ public class PlayerController1 : MonoBehaviour
         {
             float staminaPercent = stamina / maxStamina;
             staminaBar.fillAmount = staminaPercent;
-            Debug.Log($"PlayerController1: Stamina UI updated - {stamina:F1}/{maxStamina} = {staminaPercent:F2}");
+            //Debug.Log($"PlayerController1: Stamina UI updated - {stamina:F1}/{maxStamina} = {staminaPercent:F2}");
         }
         else
         {
@@ -1149,7 +1149,7 @@ public class PlayerController1 : MonoBehaviour
         {
             float manaPercent = mana / maxMana;
             manaBar.fillAmount = manaPercent;
-            Debug.Log($"PlayerController1: Mana UI updated - {mana:F1}/{maxMana} = {manaPercent:F2}");
+            //Debug.Log($"PlayerController1: Mana UI updated - {mana:F1}/{maxMana} = {manaPercent:F2}");
         }
         else
         {

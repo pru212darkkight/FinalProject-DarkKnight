@@ -4874,10 +4874,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3846976066167949855, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
       propertyPath: interactAction.m_SingletonActionBindings.Array.data[0].m_Id
-      value: 6ebe1502-a555-4a30-a5c3-a53abf0cef66
+      value: 67627ceb-75b5-44fb-9e2c-025dc0cf6d3f
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846976066167949855, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 67627ceb-75b5-44fb-9e2c-025dc0cf6d3f
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846976066167949855, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846976066167949855, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/e
       objectReference: {fileID: 0}
     - target: {fileID: 3846976066167949855, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
       propertyPath: interactAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846976066167949855, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[1].m_Action
       value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 3969275011580935647, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
