@@ -12,6 +12,7 @@ TagManager:
   - EnemyProjectile
   - NPC
   - enemyCoin
+  - LevelSelectionUI
   layers:
   - Default
   - TransparentFX
