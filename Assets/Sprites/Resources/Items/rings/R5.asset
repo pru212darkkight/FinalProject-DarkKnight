@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Druid Ring
   icon: {fileID: -524505234658197501, guid: ce0aee9839f67464e9ace7dd83e63868, type: 3}
   itemType: 5
-  healthBonus: 20
+  healthBonus: 50
   staminaBonus: 0
   manaBonus: 30
   strengthBonus: 0
@@ -27,3 +27,4 @@ MonoBehaviour:
   manaRegenBonus: 2
   moveSpeedBonus: 0
   jumpBonus: 0
+  price: 2500
