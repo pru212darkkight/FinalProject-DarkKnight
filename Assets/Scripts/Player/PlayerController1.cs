@@ -933,7 +933,7 @@ public class PlayerController1 : MonoBehaviour
 
         // Stop movement
         rb.linearVelocity = Vector2.zero;
-        rb.isKinematic = true;
+        rb.bodyType = RigidbodyType2D.Kinematic;
 
         // Start death sequence
         StartCoroutine(DeathSequence());
@@ -1051,7 +1051,7 @@ public class PlayerController1 : MonoBehaviour
         }
 
         // Re-enable physics
-        rb.isKinematic = false;
+        rb.bodyType = RigidbodyType2D.Dynamic;
 
         // Reset animator
         animator.SetBool("IsDead", false);
@@ -1127,7 +1127,6 @@ public class PlayerController1 : MonoBehaviour
         {
             float healthPercent = currentHealth / maxHealth;
             healthBar.fillAmount = healthPercent;
-            //Debug.Log($"PlayerController1: Health UI updated - {currentHealth:F1}/{maxHealth} = {healthPercent:F2}");
         }
         else
         {
@@ -1138,7 +1137,6 @@ public class PlayerController1 : MonoBehaviour
         {
             float staminaPercent = stamina / maxStamina;
             staminaBar.fillAmount = staminaPercent;
-            //Debug.Log($"PlayerController1: Stamina UI updated - {stamina:F1}/{maxStamina} = {staminaPercent:F2}");
         }
         else
         {
@@ -1149,7 +1147,6 @@ public class PlayerController1 : MonoBehaviour
         {
             float manaPercent = mana / maxMana;
             manaBar.fillAmount = manaPercent;
-            //Debug.Log($"PlayerController1: Mana UI updated - {mana:F1}/{maxMana} = {manaPercent:F2}");
         }
         else
         {
@@ -1206,23 +1203,23 @@ public class PlayerController1 : MonoBehaviour
         {
             foreach (var item in inventory.equippedItems)
             {
-                maxHealth   += item.healthBonus;
-                stamina     += item.staminaBonus;
-                maxStamina  += item.staminaBonus; // hoặc item.maxStaminaBonus nếu có
-                maxMana     += item.manaBonus;    // hoặc item.maxManaBonus nếu có
-                strength    += item.strengthBonus;
-                moveSpeed       += item.moveSpeedBonus;
-                armor       += item.armorBonus;
+                maxHealth += item.healthBonus;
+                stamina += item.staminaBonus;
+                maxStamina += item.staminaBonus; // hoặc item.maxStaminaBonus nếu có
+                maxMana += item.manaBonus;    // hoặc item.maxManaBonus nếu có
+                strength += item.strengthBonus;
+                moveSpeed += item.moveSpeedBonus;
+                armor += item.armorBonus;
                 magicResist += item.magicResistBonus;
                 healthRecoveryRate += item.healthRegenBonus;
                 staminaRegenRate += item.staminaRegenBonus;
                 manaRegenRate += item.manaRegenBonus;
                 jumpForce += item.jumpBonus;
             }
-            
+
             // Kiểm tra set bonus đơn giản
             CheckSetBonus();
-            
+
             Debug.Log("Chỉ số đã được cập nhật!");
         }
         if (resetVitals)
@@ -1238,7 +1235,7 @@ public class PlayerController1 : MonoBehaviour
             stamina = Mathf.Min(stamina, maxStamina);
         }
     }
-    
+
     // Hàm kiểm tra set bonus đơn giản
     private void CheckSetBonus()
     {
@@ -1246,47 +1243,52 @@ public class PlayerController1 : MonoBehaviour
         if (inventory == null) return;
         Debug.Log("Inventory not null");
         // Set 1: INFERNO
-        if (inventory.HasItem("S4") 
-        && inventory.HasItem("A1") 
-        && inventory.HasItem("H2") 
-        && inventory.HasItem("P1") 
-        && inventory.HasItem("B1") 
-        && inventory.HasItem("R4"))
+        if (inventory.HasEquipped("S4")
+        && inventory.HasEquipped("A1")
+        && inventory.HasEquipped("H2")
+        && inventory.HasEquipped("P1")
+        && inventory.HasEquipped("B1")
+        && inventory.HasEquipped("R4"))
         {
             strength += 20f;
             Debug.Log("Inferno set bonus");
         }
-        
+
         // Set 2: WATER
-        if (inventory.HasItem("S2") 
-        && inventory.HasItem("A3") 
-        && inventory.HasItem("H5") 
-        && inventory.HasItem("P5") 
-        && inventory.HasItem("B4") 
-        && inventory.HasItem("R2"))
+        if (inventory.HasEquipped("S2")
+        && inventory.HasEquipped("A3")
+        && inventory.HasEquipped("H5")
+        && inventory.HasEquipped("P5")
+        && inventory.HasEquipped("B4")
+        && inventory.HasEquipped("R2"))
         {
             maxMana += 100f;
             Debug.Log("Water set bonus");
         }
-        
+
         // Set 3: NOBLE
-        if (inventory.HasItem("ring_01") && inventory.HasItem("ring_02"))
+        if (inventory.HasEquipped("S5")
+        && inventory.HasEquipped("A2")
+        && inventory.HasEquipped("H3")
+        && inventory.HasEquipped("P6")
+        && inventory.HasEquipped("B5")
+        && inventory.HasEquipped("R6"))
         {
             staminaRegenRate += 5f;
             stamina += 100f;
             Debug.Log("Noble set bonus");
         }
-        
+
         // Set 4: WITCH
-        if (inventory.HasItem("S6") 
-        && inventory.HasItem("A2") 
-        && inventory.HasItem("H1") 
-        && inventory.HasItem("P2") 
-        && inventory.HasItem("B3") 
-        && inventory.HasItem("R1"))
+        if (inventory.HasEquipped("S6")
+        && inventory.HasEquipped("A5")
+        && inventory.HasEquipped("H1")
+        && inventory.HasEquipped("P2")
+        && inventory.HasEquipped("B3")
+        && inventory.HasEquipped("R1"))
         {
-            Debug.Log("Witch set bonus");
             manaRegenRate += 5f;
+            Debug.Log("Witch set bonus");
         }
     }
 
