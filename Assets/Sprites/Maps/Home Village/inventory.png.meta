@@ -119,10 +119,10 @@ TextureImporter:
       name: inventory_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 117
-        width: 596
-        height: 334
+        x: 238
+        y: 198
+        width: 388
+        height: 253
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,7 +168,7 @@ TextureImporter:
         width: 63
         height: 140
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,6 +177,72 @@ TextureImporter:
       bones: []
       spriteID: cfb9029e9a644714baf4114ae7c7fd25
       internalID: -1487390724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: inventory_3
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 122
+        width: 388
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca364283deef2d94995bdcaf34247ac7
+      internalID: -810101385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: inventory_4
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 198
+        width: 388
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4126a96f7b294bc4e80e63b6a799aa30
+      internalID: -992279617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: inventory_5
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 144
+        width: 208
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffab66a1ed3dbc041b6e51fbb40f71cb
+      internalID: 1412744403
       vertices: []
       indices: 
       edges: []
@@ -198,6 +264,9 @@ TextureImporter:
       inventory_0: -4863336276314997047
       inventory_1: -3860515135949180240
       inventory_2: -1487390724
+      inventory_3: -810101385
+      inventory_4: -992279617
+      inventory_5: 1412744403
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
