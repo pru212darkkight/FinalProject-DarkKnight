@@ -18396,6 +18396,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -66.41431
       objectReference: {fileID: 0}
+    - target: {fileID: 5327720602299858751, guid: 0d1eccf63e72ea44a9ad6bf9b2678c4c, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6842203892020759620, guid: 0d1eccf63e72ea44a9ad6bf9b2678c4c, type: 3}
       propertyPath: m_Name
       value: FadeEffect
