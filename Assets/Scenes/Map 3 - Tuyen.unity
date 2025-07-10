@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.29
   enableDebug: 1
 --- !u!1 &203291508
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.2
   enableDebug: 1
 --- !u!1001 &238402876
@@ -5167,7 +5167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.3
   enableDebug: 1
 --- !u!1 &308433704
@@ -5475,7 +5475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.5
   enableDebug: 1
 --- !u!1 &402887313
@@ -5577,7 +5577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.2
   enableDebug: 1
 --- !u!1 &418933173
@@ -5679,7 +5679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.2
   enableDebug: 1
 --- !u!1 &427818641
@@ -5818,7 +5818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.304
   enableDebug: 1
 --- !u!1001 &511930001
@@ -6033,7 +6033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11281bdc60f84d4993f6eef229674d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   timeOffset: 0.1
   offsetPos: {x: 0, y: 2, z: -10}
   boundsMin: {x: -20, y: -10, z: 0}
@@ -6662,7 +6662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.3
   enableDebug: 1
 --- !u!1001 &818203957
@@ -6717,6 +6717,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6570648403116776917, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570648403116776917, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.07
+      objectReference: {fileID: 0}
     - target: {fileID: 8415594189239132604, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
       propertyPath: m_Name
       value: Player 1
@@ -6724,10 +6732,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8415594189239132604, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1690882661}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
 --- !u!1 &822314972
 GameObject:
@@ -7124,7 +7129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.3
   enableDebug: 1
 --- !u!1001 &1000448290
@@ -7449,7 +7454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.2
   enableDebug: 1
 --- !u!1 &1238119731
@@ -7551,7 +7556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.5
   enableDebug: 1
 --- !u!1001 &1243385482
@@ -7931,7 +7936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.304
   enableDebug: 1
 --- !u!1 &1389557926
@@ -8132,7 +8137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.5
   enableDebug: 1
 --- !u!1 &1497958968
@@ -8357,7 +8362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.304
   enableDebug: 1
 --- !u!4 &1551044317 stripped
@@ -8522,30 +8527,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1690882660 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8415594189239132604, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
-  m_PrefabInstance: {fileID: 818203957}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1690882661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690882660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 998a41c959b2ded49820239360653646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  climbInput: {fileID: 239443375726393196, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  climbSpeed: 3
---- !u!4 &1690882667 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2332100755582909787, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
-  m_PrefabInstance: {fileID: 818203957}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1697049371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8760,7 +8741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.5
   enableDebug: 1
 --- !u!1 &1849616529
@@ -8895,7 +8876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.5
   enableDebug: 1
 --- !u!4 &1894311354 stripped
@@ -9002,7 +8983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.311
   enableDebug: 1
 --- !u!1 &2075835855
@@ -9104,7 +9085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aee60ce473bcd4dafaa0160834f14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1690882667}
+  player: {fileID: 0}
   parallaxSpeed: 0.5
   enableDebug: 1
 --- !u!4 &2118924747 stripped
