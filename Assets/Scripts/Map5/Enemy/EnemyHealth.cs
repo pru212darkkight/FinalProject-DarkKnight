@@ -131,10 +131,16 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         isDead = true;
+        CoinDrop coinDrop = GetComponent<CoinDrop>();
+        if (coinDrop != null)
+        {
+            coinDrop.DropCoin();
+        }
         if (animator != null)
         {
             animator.ResetTrigger("Hurt");
             animator.SetTrigger("Death");
+
         }
         if (rb != null) rb.linearVelocity = Vector2.zero;
         // Không destroy ngay, chờ Animation Event gọi OnDeathAnimationEnd
