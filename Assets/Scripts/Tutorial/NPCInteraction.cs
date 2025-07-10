@@ -13,7 +13,7 @@ public class NPCInteraction : MonoBehaviour
     public void ShowInteractionHint()
     {
         interactionUI.SetActive(true);
-        interactionText.text = "F";
+        interactionText.text = "E"; // Cập nhật từ "F" sang "E"
     }
 
     public void HideInteractionHint()
@@ -34,11 +34,15 @@ public class NPCInteraction : MonoBehaviour
         isShopOpen = true;
     }
 
-
     public void CloseAll()
     {
         shopUI.SetActive(false);
         HideInteractionHint();
         isShopOpen = false;
+    }
+
+    public bool IsShopOpen()
+    {
+        return isShopOpen;
     }
 }
