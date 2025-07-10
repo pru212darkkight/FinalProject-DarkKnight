@@ -8,6 +8,8 @@ public class DamageOnTouch : MonoBehaviour
 
     private float lastDamageTime = -999f;
 
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         TryDealDamage(collision);
