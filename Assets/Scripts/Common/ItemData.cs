@@ -18,6 +18,7 @@ public class ItemData : ScriptableObject
     public float manaRegenBonus;
     public float moveSpeedBonus;
     public float jumpBonus;
+    public int price;
     // Thêm các chỉ số khác nếu cần
 }
 
@@ -29,6 +30,7 @@ public enum ItemType
     Helmet,
     Boots,
     Ring,
+    
 
     // ...
 } 
