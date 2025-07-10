@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class SimpleLevelSelectionUI : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class SimpleLevelSelectionUI : MonoBehaviour
     [SerializeField] private string titleTextString = "Chọn Màn Chơi";
     
     private bool isVisible = false;
+    
+    public Action<int> OnLevelSelected; // Event callback cho Teleporter
     
     void Start()
     {
@@ -59,7 +62,10 @@ public class SimpleLevelSelectionUI : MonoBehaviour
             if (levelButtons[i] != null)
             {
                 int levelIndex = i; // Copy để closure hoạt động đúng
-                levelButtons[i].onClick.AddListener(() => LoadLevel(levelIndex));
+                levelButtons[i].onClick.AddListener(() => {
+                    HideUI();
+                    OnLevelSelected?.Invoke(levelIndex); // Gọi callback cho Teleporter
+                });
                 
                 // Setup button text nếu có
                 Text buttonText = levelButtons[i].GetComponentInChildren<Text>();
@@ -97,24 +103,6 @@ public class SimpleLevelSelectionUI : MonoBehaviour
         Time.timeScale = 1f;
         
         Debug.Log("SimpleLevelSelectionUI hidden");
-    }
-    
-    void LoadLevel(int levelIndex)
-    {
-        if (levelIndex < 0 || levelIndex >= levelNames.Length)
-        {
-            Debug.LogError($"Invalid level index: {levelIndex}");
-            return;
-        }
-        
-        string levelName = levelNames[levelIndex];
-        Debug.Log($"Loading level: {levelName}");
-        
-        // Resume game trước khi load scene
-        Time.timeScale = 1f;
-        
-        // Load scene
-        SceneManager.LoadScene(levelName);
     }
     
     // Public method để load level trực tiếp

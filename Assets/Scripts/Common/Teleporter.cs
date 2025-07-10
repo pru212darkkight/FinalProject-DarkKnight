@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Teleporter : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Teleporter : MonoBehaviour
     
     [Header("Visual Effects")]
     [SerializeField] private Animator teleporterAnimator;
-    [SerializeField] private string disappearAnimationTrigger = "Disappear";
+    [SerializeField] private string disappearAnimationTrigger = "disappearHome";
     [SerializeField] private float disappearDelay = 1f;
     
     [Header("UI")]
@@ -36,6 +37,10 @@ public class Teleporter : MonoBehaviour
         "Map 4 - Phuong",
         "Map 5 - Hau"
     };
+    
+    [Header("Fade Effect")]
+    public ScreenFader screenFader; // Kéo vào Inspector
+    private int pendingLevelIndex = -1;
     
     private bool playerInRange = false;
     private bool isUsed = false;
@@ -88,14 +93,38 @@ public class Teleporter : MonoBehaviour
         }
         
         Debug.Log($"Teleporter {gameObject.name} initialized - UI found: {levelSelectionUI != null}, Animator found: {teleporterAnimator != null}");
+
+        if (useSimpleUI && levelSelectionUI != null)
+        {
+            var simpleUI = levelSelectionUI.GetComponent<SimpleLevelSelectionUI>();
+            if (simpleUI != null)
+            {
+                simpleUI.OnLevelSelected = OnLevelSelected;
+            }
+        }
     }
     
     void Update()
     {
-        if (playerInRange && (canUseMultipleTimes || !isUsed) && !isDisappearing && interactAction != null && interactAction.WasPressedThisFrame())
+        if (playerInRange && (canUseMultipleTimes || !isUsed) && interactAction != null && interactAction.WasPressedThisFrame())
         {
-            Debug.Log($"E pressed, activating teleporter: {gameObject.name}");
-            ActivateTeleporter();
+            // Nếu UI đang hiện thì không làm gì (hoặc có thể toggle nếu muốn)
+            bool uiVisible = false;
+            if (useSimpleUI && levelSelectionUI != null)
+            {
+                var simpleUI = levelSelectionUI.GetComponent<SimpleLevelSelectionUI>();
+                if (simpleUI != null) uiVisible = simpleUI.IsVisible();
+            }
+            else if (levelSelectionUI != null)
+            {
+                var levelUI = levelSelectionUI.GetComponent<LevelSelectionUI>();
+                if (levelUI != null) uiVisible = levelUI.IsVisible();
+            }
+            if (!uiVisible)
+            {
+                ShowLevelSelectionUI();
+            }
+            // Nếu muốn toggle UI thì else { HideLevelSelectionUI(); }
         }
     }
     
@@ -199,5 +228,30 @@ public class Teleporter : MonoBehaviour
         }
         
         Debug.Log($"Teleporter {gameObject.name} reset");
+    }
+
+    void OnLevelSelected(int levelIndex)
+    {
+        pendingLevelIndex = levelIndex;
+        StartCoroutine(TeleportSequence());
+    }
+    IEnumerator TeleportSequence()
+    {
+        // 1. Chạy animation disappear
+        if (teleporterAnimator != null)
+        {
+            teleporterAnimator.SetTrigger(disappearAnimationTrigger);
+        }
+        yield return new WaitForSeconds(disappearDelay);
+        // 2. Fade out
+        if (screenFader != null)
+            yield return screenFader.FadeOut();
+        else
+            yield return new WaitForSeconds(1f);
+        // 3. Load scene
+        if (pendingLevelIndex >= 0 && pendingLevelIndex < availableLevels.Length)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(availableLevels[pendingLevelIndex]);
+        }
     }
 } 
