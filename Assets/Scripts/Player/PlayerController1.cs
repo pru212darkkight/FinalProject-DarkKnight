@@ -1243,31 +1243,36 @@ public class PlayerController1 : MonoBehaviour
         if (inventory == null) return;
         Debug.Log("Inventory not null");
         // Set 1: INFERNO
-        if (inventory.HasItem("S4")
-        && inventory.HasItem("A1")
-        && inventory.HasItem("H2")
-        && inventory.HasItem("P1")
-        && inventory.HasItem("B1")
-        && inventory.HasItem("R4"))
+        if (inventory.HasEquipped("S4")
+        && inventory.HasEquipped("A1")
+        && inventory.HasEquipped("H2")
+        && inventory.HasEquipped("P1")
+        && inventory.HasEquipped("B1")
+        && inventory.HasEquipped("R4"))
         {
             strength += 20f;
             Debug.Log("Inferno set bonus");
         }
 
         // Set 2: WATER
-        if (inventory.HasItem("S2")
-        && inventory.HasItem("A3")
-        && inventory.HasItem("H5")
-        && inventory.HasItem("P5")
-        && inventory.HasItem("B4")
-        && inventory.HasItem("R2"))
+        if (inventory.HasEquipped("S2")
+        && inventory.HasEquipped("A3")
+        && inventory.HasEquipped("H5")
+        && inventory.HasEquipped("P5")
+        && inventory.HasEquipped("B4")
+        && inventory.HasEquipped("R2"))
         {
             maxMana += 100f;
             Debug.Log("Water set bonus");
         }
 
         // Set 3: NOBLE
-        if (inventory.HasItem("ring_01") && inventory.HasItem("ring_02"))
+        if (inventory.HasEquipped("S5")
+        && inventory.HasEquipped("A2")
+        && inventory.HasEquipped("H3")
+        && inventory.HasEquipped("P6")
+        && inventory.HasEquipped("B5")
+        && inventory.HasEquipped("R6"))
         {
             staminaRegenRate += 5f;
             stamina += 100f;
@@ -1275,15 +1280,15 @@ public class PlayerController1 : MonoBehaviour
         }
 
         // Set 4: WITCH
-        if (inventory.HasItem("S6")
-        && inventory.HasItem("A2")
-        && inventory.HasItem("H1")
-        && inventory.HasItem("P2")
-        && inventory.HasItem("B3")
-        && inventory.HasItem("R1"))
+        if (inventory.HasEquipped("S6")
+        && inventory.HasEquipped("A5")
+        && inventory.HasEquipped("H1")
+        && inventory.HasEquipped("P2")
+        && inventory.HasEquipped("B3")
+        && inventory.HasEquipped("R1"))
         {
-            Debug.Log("Witch set bonus");
             manaRegenRate += 5f;
+            Debug.Log("Witch set bonus");
         }
     }
 
