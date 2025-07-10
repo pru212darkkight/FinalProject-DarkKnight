@@ -31,14 +31,16 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (currentNPC != null && Keyboard.current.fKey.wasPressedThisFrame)
+        if (currentNPC != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            currentNPC.OpenShop();
-        }
-
-        if (currentNPC != null && Keyboard.current.xKey.wasPressedThisFrame)
-        {
-            currentNPC.CloseAll();
+            if (currentNPC.IsShopOpen())
+            {
+                currentNPC.CloseAll();
+            }
+            else
+            {
+                currentNPC.OpenShop();
+            }
         }
     }
 }
