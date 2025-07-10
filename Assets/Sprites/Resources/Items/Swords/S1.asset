@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Forest Sword
   icon: {fileID: -1434113212, guid: 2054717840693a24081ee2bbb2038de9, type: 3}
   itemType: 0
-  healthBonus: 20
+  healthBonus: 50
   staminaBonus: 0
   manaBonus: 0
   strengthBonus: 15
@@ -27,3 +27,4 @@ MonoBehaviour:
   manaRegenBonus: 0
   moveSpeedBonus: 0
   jumpBonus: 0
+  price: 3000

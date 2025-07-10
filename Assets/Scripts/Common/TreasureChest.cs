@@ -142,7 +142,7 @@ public class TreasureChest : MonoBehaviour
                 if (inventory != null)
                 {
                     inventory.AddItem(itemToGive);
-                    inventory.EquipItem(itemToGive);
+                    // inventory.EquipItem(itemToGive);
                     Debug.Log($"Bạn nhận được: {itemToGive.itemName}");
                     // Gọi UI popup là con của rương
                     ItemPopupUI popup = GetComponentInChildren<ItemPopupUI>(true); // true để tìm cả object đang bị tắt

@@ -1,0 +1,298 @@
+fileFormatVersion: 2
+guid: 3295aa8c57dea2f4383f64c280aa74dd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5172812051142438160
+    second: Emad (@emad_jigoku) on X-Photoroom_0
+  - first:
+      213: 2209050866206881807
+    second: Emad (@emad_jigoku) on X-Photoroom_1
+  - first:
+      213: 3727730894760390628
+    second: Emad (@emad_jigoku) on X-Photoroom_2
+  - first:
+      213: 4562324336913268887
+    second: Emad (@emad_jigoku) on X-Photoroom_3
+  - first:
+      213: -1249700974293785749
+    second: Emad (@emad_jigoku) on X-Photoroom_4
+  - first:
+      213: 6174666395855084765
+    second: Emad (@emad_jigoku) on X-Photoroom_5
+  - first:
+      213: 6719926440126806636
+    second: Emad (@emad_jigoku) on X-Photoroom_6
+  - first:
+      213: 2796315375775201929
+    second: Emad (@emad_jigoku) on X-Photoroom_7
+  - first:
+      213: 5171278457325605565
+    second: Emad (@emad_jigoku) on X-Photoroom_8
+  - first:
+      213: -8909160581561897282
+    second: Emad (@emad_jigoku) on X-Photoroom_9
+  - first:
+      213: -726196176990147410
+    second: Emad (@emad_jigoku) on X-Photoroom_10
+  - first:
+      213: -7247453565802549923
+    second: Emad (@emad_jigoku) on X-Photoroom_11
+  - first:
+      213: 1385333250426099258
+    second: Emad (@emad_jigoku) on X-Photoroom_12
+  - first:
+      213: -3210699021426884445
+    second: Emad (@emad_jigoku) on X-Photoroom_13
+  - first:
+      213: 6970563270505405453
+    second: Emad (@emad_jigoku) on X-Photoroom_14
+  - first:
+      213: 4708266248068872371
+    second: Emad (@emad_jigoku) on X-Photoroom_15
+  - first:
+      213: 7289071866919933256
+    second: Emad (@emad_jigoku) on X-Photoroom_16
+  - first:
+      213: -3864332554440452656
+    second: Emad (@emad_jigoku) on X-Photoroom_17
+  - first:
+      213: 6496817734650743667
+    second: Emad (@emad_jigoku) on X-Photoroom_18
+  - first:
+      213: 7940780474692570611
+    second: Emad (@emad_jigoku) on X-Photoroom_19
+  - first:
+      213: 4403326434378273819
+    second: Emad (@emad_jigoku) on X-Photoroom_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Emad (@emad_jigoku) on X-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 9
+        width: 202
+        height: 316
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 790c5dbefc1a05f30800000000000000
+      internalID: 4562324336913268887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Emad (@emad_jigoku) on X-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 8
+        width: 185
+        height: 311
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6362c7c59b28aee0800000000000000
+      internalID: -1249700974293785749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Emad (@emad_jigoku) on X-Photoroom_9
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 9
+        width: 139
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe271167ad4c5480800000000000000
+      internalID: -8909160581561897282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Emad (@emad_jigoku) on X-Photoroom_16
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 9
+        width: 139
+        height: 293
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8455e0a6e3cf72560800000000000000
+      internalID: 7289071866919933256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f4290ad653a14e9408fee08737b57d74
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Emad (@emad_jigoku) on X-Photoroom_16: 7289071866919933256
+      Emad (@emad_jigoku) on X-Photoroom_3: 4562324336913268887
+      Emad (@emad_jigoku) on X-Photoroom_4: -1249700974293785749
+      Emad (@emad_jigoku) on X-Photoroom_9: -8909160581561897282
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
