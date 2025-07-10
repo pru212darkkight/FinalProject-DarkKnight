@@ -21,6 +21,7 @@ public class InventoryUI : MonoBehaviour
     public int inventorySlotCount = 36;
 
     public PlayerStatsPanel playerStatsPanel;
+    public PlayerMoney playerMoney;
     private bool isOpen = false;
 
     void Update()
@@ -47,6 +48,7 @@ public class InventoryUI : MonoBehaviour
             inventoryPanel.SetActive(true);
             Time.timeScale = 0; // Pause game
             RefreshUI();
+            if (playerMoney != null) playerMoney.UpdateUI();
         }
     }
 
