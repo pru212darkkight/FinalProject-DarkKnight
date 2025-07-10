@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
-using System.Linq;
 
 public class ShopManager : MonoBehaviour
 {
@@ -13,7 +11,6 @@ public class ShopManager : MonoBehaviour
     [Header("Data")]
     public Inventory inventory;
     public PlayerMoney playerMoney;
-    public int defaultPrice = 100;
 
     [Header("UI Detail (bên trái)")]
     public GameObject detailPanel;
@@ -21,6 +18,7 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI detailName;
     public TextMeshProUGUI detailStats;
     public Button buyButton;
+    public TextMeshProUGUI buyButtonText;
 
     // Item đang chọn
     private ItemData selectedItem;
@@ -28,23 +26,28 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
+        LoadShopItems();
+    }
+
+    void LoadShopItems()
+    {
+        // Xoá icon cũ nếu có
+        foreach (Transform child in itemListContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
         ItemData[] allItems = Resources.LoadAll<ItemData>("Items");
-        Debug.Log("🟡 Tổng số item load được: " + allItems.Length);
+        Debug.Log("🟡Tổng số item load được: " + allItems.Length);
 
-        if (allItems.Length == 0)
+        if (allItems.Length == 0) return;
+
+        foreach (var item in allItems)
         {
-            Debug.LogError("❌ Không có item nào trong thư mục Resources/Items!");
-            return;
+            CreateShopIcon(item, item.price);
         }
 
-        // Tạo icon cho tất cả item
-        for (int i = 0; i < allItems.Length; i++)
-        {
-            CreateShopIcon(allItems[i], defaultPrice);
-        }
-
-        // ✅ Hiển thị chi tiết món đầu tiên sau khi đã tạo UI
-        ShowItemDetail(allItems[0], defaultPrice);
+        ShowItemDetail(allItems[0], allItems[0].price);
     }
 
     void CreateShopIcon(ItemData itemData, int price)
@@ -54,16 +57,29 @@ public class ShopManager : MonoBehaviour
 
         if (iconObj == null || iconObj.GetComponent<Button>() == null || iconObj.GetComponent<Image>() == null)
         {
-            Debug.LogError($"❌ Prefab thiếu thành phần Icon/Image/Button: {itemUIPrefab.name}");
+            Debug.LogWarning("❗ Prefab thiếu thành phần Icon/Image/Button.");
             return;
         }
 
-        iconObj.GetComponent<Image>().sprite = itemData.icon;
-        iconObj.GetComponent<Button>().onClick.AddListener(() =>
+        Image iconImage = iconObj.GetComponent<Image>();
+        Button iconButton = iconObj.GetComponent<Button>();
+
+        iconImage.sprite = itemData.icon;
+
+        // Luôn cho click để xem chi tiết
+        iconButton.onClick.AddListener(() =>
         {
-            Debug.Log($"🖱️ Clicked: {itemData.itemName}");
             ShowItemDetail(itemData, price);
         });
+
+        if (inventory.HasItem(itemData.itemId))
+        {
+            iconImage.color = Color.gray; // hiển thị item đã mua
+        }
+        else
+        {
+            iconImage.color = Color.white;
+        }
     }
 
     void ShowItemDetail(ItemData item, int price)
@@ -71,33 +87,54 @@ public class ShopManager : MonoBehaviour
         if (!detailPanel.activeSelf)
             detailPanel.SetActive(true);
 
-        detailPanel.transform.SetAsLastSibling();  // Đảm bảo không bị che
+        detailPanel.transform.SetAsLastSibling();
 
         selectedItem = item;
         selectedItemPrice = price;
 
         if (item.icon != null)
-        {
             detailIcon.sprite = item.icon;
-        }
         else
-        {
             Debug.LogWarning("❗ Item không có icon: " + item.itemName);
-        }
 
         detailName.text = item.itemName;
 
         string stats = "";
-        if (item.healthBonus != 0) stats += $"Health: +{item.healthBonus}\n";
-        if (item.armorBonus != 0) stats += $"Armor: +{item.armorBonus}\n";
-        if (item.strengthBonus != 0) stats += $"Strength: +{item.strengthBonus}\n";
-        if (item.manaBonus != 0) stats += $"Mana: +{item.manaBonus}\n";
-        if (item.moveSpeedBonus != 0) stats += $"Speed: +{item.moveSpeedBonus}\n";
+
+        void AddStat(string label, float value)
+        {
+            if (value != 0)
+                stats += $"{label}: +{value}\n";
+        }
+
+        AddStat("Health", item.healthBonus);
+        AddStat("Stamina", item.staminaBonus);
+        AddStat("Mana", item.manaBonus);
+        AddStat("Strength", item.strengthBonus);
+        AddStat("Armor", item.armorBonus);
+        AddStat("Magic Resist", item.magicResistBonus);
+        AddStat("Health Regen", item.healthRegenBonus);
+        AddStat("Stamina Regen", item.staminaRegenBonus);
+        AddStat("Mana Regen", item.manaRegenBonus);
+        AddStat("Speed", item.moveSpeedBonus);
+        AddStat("Jump", item.jumpBonus);
+
 
         detailStats.text = string.IsNullOrEmpty(stats) ? "Không có chỉ số" : stats;
 
-        buyButton.onClick.RemoveAllListeners();
-        buyButton.onClick.AddListener(BuySelectedItem);
+        // 👉 Cập nhật nút mua
+        if (inventory.HasItem(item.itemId))
+        {
+            buyButtonText.text = "Owned";
+            buyButton.interactable = false;
+        }
+        else
+        {
+            buyButtonText.text = $"{price} coins";
+            buyButton.interactable = true;
+            buyButton.onClick.RemoveAllListeners();
+            buyButton.onClick.AddListener(BuySelectedItem);
+        }
     }
 
     void BuySelectedItem()
@@ -106,18 +143,24 @@ public class ShopManager : MonoBehaviour
 
         if (inventory.HasItem(selectedItem.itemId))
         {
-            Debug.Log("⚠ Đã sở hữu item này.");
+            Debug.Log("Đã sở hữu item này.");
             return;
         }
 
         if (playerMoney.SpendCoins(selectedItemPrice))
         {
             inventory.AddItem(selectedItem);
-            Debug.Log($"✅ Đã mua: {selectedItem.itemName}");
+            Debug.Log($"Đã mua: {selectedItem.itemName}");
+
+            // Cập nhật lại giao diện shop
+            LoadShopItems();
+
+            // Cập nhật lại thông tin chi tiết
+            ShowItemDetail(selectedItem, selectedItem.price);
         }
         else
         {
-            Debug.LogWarning("❌ Không đủ tiền.");
+            Debug.LogWarning(" Không đủ tiền.");
         }
     }
 }
