@@ -21,6 +21,7 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI detailName;
     public TextMeshProUGUI detailStats;
     public Button buyButton;
+    public TextMeshProUGUI buyButtonText;
 
     // Item đang chọn
     private ItemData selectedItem;
@@ -33,7 +34,6 @@ public class ShopManager : MonoBehaviour
 
         if (allItems.Length == 0)
         {
-            Debug.LogError("❌ Không có item nào trong thư mục Resources/Items!");
             return;
         }
 
@@ -54,14 +54,12 @@ public class ShopManager : MonoBehaviour
 
         if (iconObj == null || iconObj.GetComponent<Button>() == null || iconObj.GetComponent<Image>() == null)
         {
-            Debug.LogError($"❌ Prefab thiếu thành phần Icon/Image/Button: {itemUIPrefab.name}");
             return;
         }
 
         iconObj.GetComponent<Image>().sprite = itemData.icon;
         iconObj.GetComponent<Button>().onClick.AddListener(() =>
         {
-            Debug.Log($"🖱️ Clicked: {itemData.itemName}");
             ShowItemDetail(itemData, price);
         });
     }
@@ -88,17 +86,39 @@ public class ShopManager : MonoBehaviour
         detailName.text = item.itemName;
 
         string stats = "";
-        if (item.healthBonus != 0) stats += $"Health: +{item.healthBonus}\n";
-        if (item.armorBonus != 0) stats += $"Armor: +{item.armorBonus}\n";
-        if (item.strengthBonus != 0) stats += $"Strength: +{item.strengthBonus}\n";
-        if (item.manaBonus != 0) stats += $"Mana: +{item.manaBonus}\n";
-        if (item.moveSpeedBonus != 0) stats += $"Speed: +{item.moveSpeedBonus}\n";
+
+        void AddStat(string label, float value)
+        {
+            if (value != 0)
+                stats += $"{label}: +{value}\n";
+        }
+
+        AddStat("Health", item.healthBonus);
+        AddStat("Stamina", item.staminaBonus);
+        AddStat("Mana", item.manaBonus);
+        AddStat("Strength", item.strengthBonus);
+        AddStat("Armor", item.armorBonus);
+        AddStat("Magic Resist", item.magicResistBonus);
+        AddStat("Health Regen", item.healthRegenBonus);
+        AddStat("Stamina Regen", item.staminaRegenBonus);
+        AddStat("Mana Regen", item.manaRegenBonus);
+        AddStat("Speed", item.moveSpeedBonus);
+        AddStat("Jump", item.jumpBonus);
+
 
         detailStats.text = string.IsNullOrEmpty(stats) ? "Không có chỉ số" : stats;
+
+        // 👉 Cập nhật text cho nút mua
+        if (buyButtonText != null)
+        {
+            buyButtonText.text = $"{item.price} coins";
+        }
 
         buyButton.onClick.RemoveAllListeners();
         buyButton.onClick.AddListener(BuySelectedItem);
     }
+
+
 
     void BuySelectedItem()
     {
