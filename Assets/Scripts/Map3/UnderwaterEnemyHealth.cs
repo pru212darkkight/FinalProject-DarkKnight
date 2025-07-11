@@ -160,10 +160,10 @@ public class UnderwaterEnemyHealth : MonoBehaviour
     void Die()
     {
         if (isDead) return;
-        
+
         isDead = true;
-        
-        Debug.Log($"{gameObject.name} died!");
+
+        Debug.Log($"🔥 {gameObject.name} died and will be DESTROYED! 🔥");
 
         // Drop coins if CoinDrop component exists
         CoinDrop coinDrop = GetComponent<CoinDrop>();
@@ -184,33 +184,19 @@ public class UnderwaterEnemyHealth : MonoBehaviour
             Instantiate(deathEffect, transform.position, transform.rotation);
         }
 
-        // Disable components
+        // Disable components immediately
         if (col != null) col.enabled = false;
-        if (rb != null) rb.linearVelocity = Vector2.zero;
-
-        // Fade out và destroy
-        StartCoroutine(FadeOutAndDestroy());
-    }
-
-    System.Collections.IEnumerator FadeOutAndDestroy()
-    {
-        float timer = 0f;
-        Color startColor = spriteRenderer.color;
-        
-        while (timer < 1f)
+        if (rb != null)
         {
-            timer += Time.deltaTime * fadeSpeed;
-            if (spriteRenderer != null)
-            {
-                Color newColor = startColor;
-                newColor.a = Mathf.Lerp(startColor.a, 0f, timer);
-                spriteRenderer.color = newColor;
-            }
-            yield return null;
+            rb.linearVelocity = Vector2.zero;
+            rb.isKinematic = true;
         }
 
-        Destroy(gameObject);
+        // Destroy immediately instead of fade
+        Destroy(gameObject, 0.1f);
     }
+
+
 
     // Hàm để player attack gọi
     public void OnPlayerAttack()

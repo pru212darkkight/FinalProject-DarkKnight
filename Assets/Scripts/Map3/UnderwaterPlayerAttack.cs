@@ -123,13 +123,42 @@ public class UnderwaterPlayerAttack : MonoBehaviour
         
         foreach (Collider2D enemy in hitEnemies)
         {
-            // Kiểm tra UnderwaterEnemyHealth
-            UnderwaterEnemyHealth enemyHealth = enemy.GetComponent<UnderwaterEnemyHealth>();
+            bool hitSomething = false;
+
+            // Kiểm tra EnemyHealth (Map 5) - ưu tiên
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.OnPlayerAttack();
-                Debug.Log($"Hit enemy: {enemy.name}");
-                continue;
+                enemyHealth.TakeDamage(1f); // 1 damage per hit
+                Debug.Log($"Hit EnemyHealth: {enemy.name}");
+                hitSomething = true;
+            }
+
+            // Kiểm tra EnemyWater (Underwater Diving)
+            EnemyWater enemyWater = enemy.GetComponent<EnemyWater>();
+            if (enemyWater != null)
+            {
+                enemyWater.TakeDamage(1f); // 1 damage per hit
+                Debug.Log($"Hit EnemyWater: {enemy.name}");
+                hitSomething = true;
+            }
+
+            // Kiểm tra Map3EnemyHealth (fallback)
+            Map3EnemyHealth map3EnemyHealth = enemy.GetComponent<Map3EnemyHealth>();
+            if (map3EnemyHealth != null && !hitSomething)
+            {
+                map3EnemyHealth.OnPlayerAttack();
+                Debug.Log($"Hit Map3 enemy: {enemy.name}");
+                hitSomething = true;
+            }
+
+            // Kiểm tra UnderwaterEnemyHealth (fallback)
+            UnderwaterEnemyHealth underwaterHealth = enemy.GetComponent<UnderwaterEnemyHealth>();
+            if (underwaterHealth != null && !hitSomething)
+            {
+                underwaterHealth.OnPlayerAttack();
+                Debug.Log($"Hit underwater enemy: {enemy.name}");
+                hitSomething = true;
             }
 
             // Kiểm tra UnderwaterMine
@@ -138,16 +167,18 @@ public class UnderwaterPlayerAttack : MonoBehaviour
             {
                 mine.OnPlayerAttack();
                 Debug.Log($"Hit mine: {enemy.name}");
-                continue;
+                hitSomething = true;
             }
 
             // Kiểm tra các enemy khác (HurtPlayer script)
-            HurtPlayer hurtPlayer = enemy.GetComponent<HurtPlayer>();
-            if (hurtPlayer != null)
+            if (!hitSomething)
             {
-                // Nếu enemy có HurtPlayer nhưng không có health system, có thể destroy luôn
-                Debug.Log($"Hit enemy with HurtPlayer: {enemy.name}");
-                // Có thể thêm logic destroy enemy ở đây nếu cần
+                HurtPlayer hurtPlayer = enemy.GetComponent<HurtPlayer>();
+                if (hurtPlayer != null)
+                {
+                    Debug.Log($"Hit enemy with HurtPlayer: {enemy.name}");
+                    // Có thể thêm logic destroy enemy ở đây nếu cần
+                }
             }
         }
 
