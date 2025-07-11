@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1006086990039211347}
   - component: {fileID: 18321950623427590}
   - component: {fileID: 3566607917805266744}
+  - component: {fileID: 1057468726415037191}
   m_Layer: 9
   m_Name: MiniBossDevil
   m_TagString: Enemy
@@ -256,6 +257,20 @@ MonoBehaviour:
   thunderDistance: 2.02
   thunderDamage: 35
   thunderDelay: 0.3
+--- !u!114 &1057468726415037191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835879323435928279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d207cb55e37ccd347945c5226e75da2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinAmount: 50
+  showPopup: 1
 --- !u!1 &2419753634376522100
 GameObject:
   m_ObjectHideFlags: 0
