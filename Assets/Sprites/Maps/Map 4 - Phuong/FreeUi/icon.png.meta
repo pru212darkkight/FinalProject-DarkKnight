@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: d677ef3c9a53b3d419cd1f6c17313d8a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3650930748202717000
+    second: Download Set of UI elements-part 2 for free-Photoroom_0
+  - first:
+      213: -414180318731531392
+    second: Download Set of UI elements-part 2 for free-Photoroom_1
+  - first:
+      213: 6613081518955519306
+    second: Download Set of UI elements-part 2 for free-Photoroom_2
+  - first:
+      213: 8476247792469211650
+    second: Download Set of UI elements-part 2 for free-Photoroom_3
+  - first:
+      213: -1086293582553500059
+    second: Download Set of UI elements-part 2 for free-Photoroom_4
+  - first:
+      213: 190201441836377926
+    second: Download Set of UI elements-part 2 for free-Photoroom_5
+  - first:
+      213: 4297007985667407212
+    second: Download Set of UI elements-part 2 for free-Photoroom_6
+  - first:
+      213: 1620361251587487045
+    second: Download Set of UI elements-part 2 for free-Photoroom_7
+  - first:
+      213: 6252768405927928369
+    second: Download Set of UI elements-part 2 for free-Photoroom_8
+  - first:
+      213: 3704018312781901713
+    second: Download Set of UI elements-part 2 for free-Photoroom_9
+  - first:
+      213: -7251486926112655714
+    second: Download Set of UI elements-part 2 for free-Photoroom_10
+  - first:
+      213: 1436731611760004776
+    second: Download Set of UI elements-part 2 for free-Photoroom_11
+  - first:
+      213: -3636742481897479789
+    second: Download Set of UI elements-part 2 for free-Photoroom_12
+  - first:
+      213: -113107402957523755
+    second: Download Set of UI elements-part 2 for free-Photoroom_13
+  - first:
+      213: 3716310876487590013
+    second: Download Set of UI elements-part 2 for free-Photoroom_14
+  - first:
+      213: -5666579188494785928
+    second: Download Set of UI elements-part 2 for free-Photoroom_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_0
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 367
+        width: 94
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84f8c2a0c26baa230800000000000000
+      internalID: 3650930748202717000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_1
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 367
+        width: 95
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08b8c0dc139804af0800000000000000
+      internalID: -414180318731531392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_2
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 367
+        width: 93
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4d5b089a9266cb50800000000000000
+      internalID: 6613081518955519306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 367
+        width: 95
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20af05a457ea1a570800000000000000
+      internalID: 8476247792469211650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 256
+        width: 94
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 566bc1afdb5bce0f0800000000000000
+      internalID: -1086293582553500059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_5
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 253
+        width: 94
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 647ac60243bb3a200800000000000000
+      internalID: 190201441836377926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_6
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 253
+        width: 93
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6df8b61ff902ab30800000000000000
+      internalID: 4297007985667407212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_7
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 254
+        width: 95
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 545fda829fdac7610800000000000000
+      internalID: 1620361251587487045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_8
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 145
+        width: 94
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 132ae129cbb46c650800000000000000
+      internalID: 6252768405927928369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_9
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 141
+        width: 95
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19f28eed701576330800000000000000
+      internalID: 3704018312781901713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_10
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 137
+        width: 93
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e967aab8f0b8d5b90800000000000000
+      internalID: -7251486926112655714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_11
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 141
+        width: 95
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ae878ce9cb40f310800000000000000
+      internalID: 1436731611760004776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_12
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 25
+        width: 94
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 391ade22bf1b78dc0800000000000000
+      internalID: -3636742481897479789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_13
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 25
+        width: 94
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d4ff319a692e6ef0800000000000000
+      internalID: -113107402957523755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_14
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 25
+        width: 94
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d70a6f36d0df29330800000000000000
+      internalID: 3716310876487590013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Download Set of UI elements-part 2 for free-Photoroom_15
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 25
+        width: 95
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 872a52a30444c51b0800000000000000
+      internalID: -5666579188494785928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Download Set of UI elements-part 2 for free-Photoroom_0: 3650930748202717000
+      Download Set of UI elements-part 2 for free-Photoroom_1: -414180318731531392
+      Download Set of UI elements-part 2 for free-Photoroom_10: -7251486926112655714
+      Download Set of UI elements-part 2 for free-Photoroom_11: 1436731611760004776
+      Download Set of UI elements-part 2 for free-Photoroom_12: -3636742481897479789
+      Download Set of UI elements-part 2 for free-Photoroom_13: -113107402957523755
+      Download Set of UI elements-part 2 for free-Photoroom_14: 3716310876487590013
+      Download Set of UI elements-part 2 for free-Photoroom_15: -5666579188494785928
+      Download Set of UI elements-part 2 for free-Photoroom_2: 6613081518955519306
+      Download Set of UI elements-part 2 for free-Photoroom_3: 8476247792469211650
+      Download Set of UI elements-part 2 for free-Photoroom_4: -1086293582553500059
+      Download Set of UI elements-part 2 for free-Photoroom_5: 190201441836377926
+      Download Set of UI elements-part 2 for free-Photoroom_6: 4297007985667407212
+      Download Set of UI elements-part 2 for free-Photoroom_7: 1620361251587487045
+      Download Set of UI elements-part 2 for free-Photoroom_8: 6252768405927928369
+      Download Set of UI elements-part 2 for free-Photoroom_9: 3704018312781901713
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
