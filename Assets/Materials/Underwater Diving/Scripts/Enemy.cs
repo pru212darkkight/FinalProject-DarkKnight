@@ -48,6 +48,17 @@ public class EnemyWater : MonoBehaviour
     protected readonly int HurtHash = Animator.StringToHash("Hurt");
     protected readonly int DieHash = Animator.StringToHash("Death");
 
+    // Helper function to check if animator parameter exists
+    protected bool HasParameter(Animator animator, string paramName)
+    {
+        foreach (AnimatorControllerParameter param in animator.parameters)
+        {
+            if (param.name == paramName)
+                return true;
+        }
+        return false;
+    }
+
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -59,7 +70,7 @@ public class EnemyWater : MonoBehaviour
         // Setup Rigidbody2D for underwater movement
         if (rb != null)
         {
-            rb.gravityScale = 0f; // No gravity in water
+            rb.gravityScale = 1f; // No gravity in water
             rb.linearDamping = 1f; // Some water resistance
             rb.angularDamping = 5f; // Prevent spinning
             rb.freezeRotation = true; // Keep upright
@@ -463,7 +474,7 @@ public class EnemyWater : MonoBehaviour
                 Flip();
             }
 
-            if (animator != null)
+            if (animator != null && HasParameter(animator, "Speed"))
             {
                 animator.SetFloat(SpeedHash, patrolSpeed);
             }
