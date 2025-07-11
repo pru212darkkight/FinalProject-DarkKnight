@@ -82,13 +82,11 @@ public class MeleeEnemy : MonoBehaviour
         animator.SetBool("Run", true);
 
         Debug.DrawLine(transform.position, currentTarget.position, Color.green);
-        Debug.Log("Patrolling towards: " + currentTarget.name + " | dir.x = " + dir.x);
 
         // Dùng khoảng cách lớn hơn để tránh kẹt khi enemy không chạm chính xác
         if ((currentTarget.position - transform.position).sqrMagnitude < 0.2f)
         {
             currentTarget = (currentTarget == pointA) ? pointB : pointA;
-            Debug.Log("Switched target to: " + currentTarget.name);
         }
     }
 
