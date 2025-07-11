@@ -5,7 +5,6 @@ using Assets.Scripts.GameLogData;
 
 public class DefeatLogger : MonoBehaviour
 {
-    // Kéo vào inspector hoặc tìm qua code
     public PlayerController1 player;
     public PlayerMoney playerMoney;
     public LevelTimer levelTimer;
@@ -13,7 +12,7 @@ public class DefeatLogger : MonoBehaviour
     public List<ItemData> shopItems; // List<ItemData> từ shop
 
     // ===== GỌI HÀM NÀY KHI MUỐN TẠO LOG GỬI LÊN AI =====
-    public GeminiRequestData BuildGeminiRequest(string topDamageEnemy, string deathReason)
+    public GeminiRequestData BuildGeminiRequest(LastDefeatLog defeatLog)
     {
         // Map stats player
         var stats = new PlayerStats
@@ -31,23 +30,21 @@ public class DefeatLogger : MonoBehaviour
             staminaRegen = player.staminaRegenRate
         };
 
-        // Map trang bị đang mặc
         List<string> equippedNames = inventory.equippedItems.Select(i => i.itemName).ToList();
 
-        // Map log trận thua
+        // Map log trận thua - dùng hoàn toàn data từ defeatLog!
         var log = new PlayerLog
         {
-            timeSurvived = levelTimer.elapsedTime,
-            topDamageEnemy = topDamageEnemy,
-            deathReason = deathReason,
+            timeSurvived = defeatLog.timeSurvived,
+            topDamageEnemy = defeatLog.topDamageEnemy,
+            deathReason = defeatLog.deathReason,
             playerEquipment = equippedNames,
-            playerStats = stats
+            playerStats = stats,
+            damageTaken = new Dictionary<string, DamageLog>(defeatLog.damageFromEachEnemy) // LẤY TỪ defeatLog
         };
 
-        // Map các item player đang sở hữu (toàn bộ, không chỉ trang bị)
         List<string> allItems = inventory.ownedItems.Select(i => i.itemName).ToList();
 
-        // Map item shop
         List<ItemLogData> shopLog = shopItems.Select(item => new ItemLogData
         {
             name = item.itemName,
@@ -74,7 +71,7 @@ public class DefeatLogger : MonoBehaviour
         {
             player_log = log,
             player_items = allItems,
-            player_gold = playerMoney.coins,
+            player_gold = playerMoney.coins, // Tổng tiền đang có
             shop_items = shopLog
         };
     }

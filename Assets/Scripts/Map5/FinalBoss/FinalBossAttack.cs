@@ -80,7 +80,7 @@ public class FinalBossAttack : MonoBehaviour
         GameObject cross = Instantiate(crossPrefab, spawnPos, Quaternion.identity);
         ThunderHitbox hitbox = cross.GetComponent<ThunderHitbox>();
         if (hitbox != null)
-            hitbox.Init(crossDamage, playerLayer, true);
+            hitbox.Init(crossDamage, playerLayer, true, "Final Boss Demon King");
     }
 
     // ===== CHIÊU 2: MẶT TRĂNG =====
@@ -99,7 +99,7 @@ public class FinalBossAttack : MonoBehaviour
             GameObject moon = Instantiate(moonPrefab, spawnPos, Quaternion.identity);
             ThunderHitbox hitbox = moon.GetComponent<ThunderHitbox>();
             if (hitbox != null)
-                hitbox.Init(moonDamage, playerLayer, true);
+                hitbox.Init(moonDamage, playerLayer, true, "Final Boss Demon King");
         }
     }
 

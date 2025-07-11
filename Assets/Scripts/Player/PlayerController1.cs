@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
+using System.Linq;
 
 public class PlayerController1 : MonoBehaviour
 {
@@ -781,7 +782,7 @@ public class PlayerController1 : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage, bool isMagicDamage = false)
+    public void TakeDamage(float damage, bool isMagicDamage = false, string enemyName = "")
     {
         // If defending, prevent all damage
         if (isDefending)
@@ -804,12 +805,34 @@ public class PlayerController1 : MonoBehaviour
         lastDamageTime = Time.time; // Update last damage time
         UpdateUI();
 
+        // LOG DAMAGE CHO AI
+        if (!string.IsNullOrEmpty(enemyName))
+        {
+            GameDefeatData.LogEnemyDamage(enemyName, finalDamage, isMagicDamage);
+        }
         // Apply hurt effects
         ApplyhurtEffects();
 
 
         if (currentHealth <= 0)
         {
+            // GHI LOG ENEMY GÂY NHIỀU DAMAGE NHẤT + LÝ DO CHẾT
+            if (GameDefeatData.damageFromEachEnemy.Count > 0)
+            {
+                var top = GameDefeatData.damageFromEachEnemy
+                            .OrderByDescending(e => e.Value.total)
+                            .First();
+                GameDefeatData.lastTopDamageEnemy = top.Key;
+            }
+            else
+            {
+                GameDefeatData.lastTopDamageEnemy = !string.IsNullOrEmpty(enemyName) ? enemyName : "Không xác định";
+            }
+
+            if (!string.IsNullOrEmpty(enemyName))
+                GameDefeatData.lastDeathReason = $"Bị {enemyName} kết liễu ({(isMagicDamage ? "dame phép" : "dame vật lý")})";
+            else
+                GameDefeatData.lastDeathReason = "Bị hạ gục (không rõ enemy)";
             Die();
         }
     }
