@@ -36,13 +36,13 @@ public class GameManager : MonoBehaviour
         goldText.text = "Gold: " + playerMoney.sessionCoins.ToString();
 
         victoryPanel.SetActive(true);
-        Time.timeScale = 0f; // Pause game
+        //Time.timeScale = 0f; // Pause game
     }
 
     void OnOKClick()
     {
         victoryPanel.SetActive(false);
-        Time.timeScale = 1f; // Resume game
+        //Time.timeScale = 1f; // Resume game
 
         // Spawn portal và lưu lại instance
         var portalInstance = Instantiate(portalPrefab, portalSpawnPoint.position, Quaternion.identity);

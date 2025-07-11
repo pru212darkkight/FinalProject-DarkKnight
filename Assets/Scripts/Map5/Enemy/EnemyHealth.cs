@@ -22,6 +22,10 @@ public class EnemyHealth : MonoBehaviour
     private MiniBossController miniBossController;
     private FinalBossController finalBossController;
 
+    [Header("Chest Drop Settings")]
+    public bool enableChestDrop = false;      // Bật tắt chức năng rơi rương
+    public GameObject chestPrefab;            // Prefab rương (kéo vào Inspector)
+    public Vector3 chestSpawnOffset = Vector3.zero; // Offset spawn rương (nếu muốn lệch vị trí)
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -144,6 +148,12 @@ public class EnemyHealth : MonoBehaviour
         }
         if (rb != null) rb.linearVelocity = Vector2.zero;
         // Không destroy ngay, chờ Animation Event gọi OnDeathAnimationEnd
+        // Thêm chức năng spawn rương
+        if (enableChestDrop && chestPrefab != null)
+        {
+            // Spawn rương tại vị trí boss, cộng thêm offset nếu có
+            Instantiate(chestPrefab, transform.position + chestSpawnOffset, Quaternion.identity);
+        }
     }
 
     /// <summary>
