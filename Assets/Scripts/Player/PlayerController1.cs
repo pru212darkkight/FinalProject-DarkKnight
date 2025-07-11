@@ -937,6 +937,12 @@ public class PlayerController1 : MonoBehaviour
 
         // Start death sequence
         StartCoroutine(DeathSequence());
+        // === GỌI PANEL DEFEAT TẠI ĐÂY ===
+        GameManager gm = FindAnyObjectByType<GameManager>();
+        if (gm != null)
+        {
+            gm.ShowDefeatPanel();
+        }
     }
 
     private void DisablePlayerInput()

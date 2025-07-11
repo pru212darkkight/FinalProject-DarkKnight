@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 738584014605915550}
   - component: {fileID: 1837932897748132114}
   - component: {fileID: 7409511306200536295}
+  - component: {fileID: 7320288828746221221}
   m_Layer: 9
   m_Name: Miniboss 1
   m_TagString: Enemy
@@ -519,3 +520,17 @@ MonoBehaviour:
   resurrectHealth: 50
   isInvulnerable: 0
   movingPlatform: {fileID: 0}
+--- !u!114 &7320288828746221221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612257775621844231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d207cb55e37ccd347945c5226e75da2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinAmount: 100
+  showPopup: 1
