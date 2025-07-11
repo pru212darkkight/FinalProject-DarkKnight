@@ -5,14 +5,14 @@ using TMPro;
 public class ShopManager : MonoBehaviour
 {
     [Header("Shop Setup")]
-    public Transform itemListContainer;       // Container chứa các icon item
-    public GameObject itemUIPrefab;           // Prefab chỉ có Icon (Image + Button)
+    public Transform itemListContainer;
+    public GameObject itemUIPrefab;
 
     [Header("Data")]
     public Inventory inventory;
     public PlayerMoney playerMoney;
 
-    [Header("UI Detail (bên trái)")]
+    [Header("UI Detail Panel")]
     public GameObject detailPanel;
     public Image detailIcon;
     public TextMeshProUGUI detailName;
@@ -20,25 +20,27 @@ public class ShopManager : MonoBehaviour
     public Button buyButton;
     public TextMeshProUGUI buyButtonText;
 
-    // Item đang chọn
+    [Header("UI Coins")]
+    public TextMeshProUGUI moneyText;
+
     private ItemData selectedItem;
     private int selectedItemPrice;
 
     void Start()
     {
         LoadShopItems();
+        UpdateMoneyUI();
     }
 
     void LoadShopItems()
     {
-        // Xoá icon cũ nếu có
+        // Xóa các icon cũ
         foreach (Transform child in itemListContainer)
-        {
             Destroy(child.gameObject);
-        }
 
         ItemData[] allItems = Resources.LoadAll<ItemData>("Items");
-        Debug.Log("🟡Tổng số item load được: " + allItems.Length);
+
+        Debug.Log($"🟡 Tổng số item load được: {allItems.Length}");
 
         if (allItems.Length == 0) return;
 
@@ -55,31 +57,28 @@ public class ShopManager : MonoBehaviour
         GameObject ui = Instantiate(itemUIPrefab, itemListContainer);
         Transform iconObj = ui.transform.Find("Icon");
 
-        if (iconObj == null || iconObj.GetComponent<Button>() == null || iconObj.GetComponent<Image>() == null)
+        if (iconObj == null)
         {
-            Debug.LogWarning("❗ Prefab thiếu thành phần Icon/Image/Button.");
+            Debug.LogWarning("❗ Prefab thiếu thành phần Icon.");
             return;
         }
 
         Image iconImage = iconObj.GetComponent<Image>();
         Button iconButton = iconObj.GetComponent<Button>();
 
-        iconImage.sprite = itemData.icon;
+        if (iconImage == null || iconButton == null)
+        {
+            Debug.LogWarning("❗ Prefab thiếu Image hoặc Button.");
+            return;
+        }
 
-        // Luôn cho click để xem chi tiết
+        iconImage.sprite = itemData.icon;
+        iconImage.color = inventory.HasItem(itemData.itemId) ? Color.gray : Color.white;
+
         iconButton.onClick.AddListener(() =>
         {
             ShowItemDetail(itemData, price);
         });
-
-        if (inventory.HasItem(itemData.itemId))
-        {
-            iconImage.color = Color.gray; // hiển thị item đã mua
-        }
-        else
-        {
-            iconImage.color = Color.white;
-        }
     }
 
     void ShowItemDetail(ItemData item, int price)
@@ -92,15 +91,11 @@ public class ShopManager : MonoBehaviour
         selectedItem = item;
         selectedItemPrice = price;
 
-        if (item.icon != null)
-            detailIcon.sprite = item.icon;
-        else
-            Debug.LogWarning("❗ Item không có icon: " + item.itemName);
-
+        detailIcon.sprite = item.icon != null ? item.icon : null;
         detailName.text = item.itemName;
 
+        // Tạo chuỗi stats
         string stats = "";
-
         void AddStat(string label, float value)
         {
             if (value != 0)
@@ -119,10 +114,8 @@ public class ShopManager : MonoBehaviour
         AddStat("Speed", item.moveSpeedBonus);
         AddStat("Jump", item.jumpBonus);
 
-
         detailStats.text = string.IsNullOrEmpty(stats) ? "Không có chỉ số" : stats;
 
-        // 👉 Cập nhật nút mua
         if (inventory.HasItem(item.itemId))
         {
             buyButtonText.text = "Owned";
@@ -130,8 +123,9 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            buyButtonText.text = $"{price} coins";
+            buyButtonText.text = $"{price} ";
             buyButton.interactable = true;
+
             buyButton.onClick.RemoveAllListeners();
             buyButton.onClick.AddListener(BuySelectedItem);
         }
@@ -150,17 +144,21 @@ public class ShopManager : MonoBehaviour
         if (playerMoney.SpendCoins(selectedItemPrice))
         {
             inventory.AddItem(selectedItem);
-            Debug.Log($"Đã mua: {selectedItem.itemName}");
+            Debug.Log($"✅ Đã mua: {selectedItem.itemName}");
 
-            // Cập nhật lại giao diện shop
             LoadShopItems();
-
-            // Cập nhật lại thông tin chi tiết
             ShowItemDetail(selectedItem, selectedItem.price);
+            UpdateMoneyUI();
         }
         else
         {
-            Debug.LogWarning(" Không đủ tiền.");
+            Debug.LogWarning("❌ Không đủ tiền!");
         }
+    }
+
+    void UpdateMoneyUI()
+    {
+        if (moneyText != null && playerMoney != null)
+            moneyText.text = $"{playerMoney.coins} ";
     }
 }

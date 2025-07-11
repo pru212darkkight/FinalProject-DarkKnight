@@ -23,7 +23,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (currentNPC != null)
             {
-                currentNPC.CloseAll(); // Tắt shop + interaction UI
+                
+                if (currentNPC.IsShopOpen())
+                {
+                    currentNPC.CloseAll();
+                }
+
                 currentNPC = null;
             }
         }
