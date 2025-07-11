@@ -1,55 +1,49 @@
 fileFormatVersion: 2
-guid: 079fd5d843163cf449709c39d068567a
+guid: 85e549b3f2c7a1645927cc80a9bfa8e4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4050778345494000673
-    second: Bat-WakeUp_0
+      213: 2080016901506906418
+    second: download (15)-Photoroom_0
   - first:
-      213: -88695921673209687
-    second: Bat-WakeUp_1
+      213: -5556648216821196578
+    second: download (15)-Photoroom_1
   - first:
-      213: -2291356068208840101
-    second: Bat-WakeUp_2
+      213: 4737919673030890458
+    second: download (15)-Photoroom_2
   - first:
-      213: 6914229940882939354
-    second: Bat-WakeUp_3
+      213: 7344258962023984240
+    second: download (15)-Photoroom_3
   - first:
-      213: 8073469086898407717
-    second: Bat-WakeUp_4
+      213: 7323743636750610934
+    second: download (15)-Photoroom_4
   - first:
-      213: -2707541318519708097
-    second: Bat-WakeUp_5
+      213: 7701739743052887348
+    second: download (15)-Photoroom_5
   - first:
-      213: -7928539036747898812
-    second: Bat-WakeUp_6
+      213: -6787212325559034977
+    second: download (15)-Photoroom_6
   - first:
-      213: -1435221459344306688
-    second: Bat-WakeUp_7
+      213: 330451375179472063
+    second: download (15)-Photoroom_7
   - first:
-      213: 4840812318307214234
-    second: Bat-WakeUp_8
+      213: -5875762890847475627
+    second: download (15)-Photoroom_8
   - first:
-      213: -691472580880114381
-    second: Bat-WakeUp_9
+      213: -1539899243998825555
+    second: download (15)-Photoroom_9
   - first:
-      213: 5094273727882498433
-    second: Bat-WakeUp_10
+      213: -2525293629298924041
+    second: download (15)-Photoroom_10
   - first:
-      213: -9201611559319902821
-    second: Bat-WakeUp_11
+      213: 370520087439699140
+    second: download (15)-Photoroom_11
   - first:
-      213: -7376687697434040988
-    second: Bat-WakeUp_12
+      213: 1843204041288809478
+    second: download (15)-Photoroom_12
   - first:
-      213: 4627126346126928963
-    second: Bat-WakeUp_13
-  - first:
-      213: 5263993374577511869
-    second: Bat-WakeUp_14
-  - first:
-      213: 6729410298874452860
-    second: Bat-WakeUp_15
+      213: -5638235204592494667
+    second: download (15)-Photoroom_13
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -82,7 +76,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +90,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -154,30 +148,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bat-WakeUp_0
+      name: download (15)-Photoroom_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 25
-        width: 12
-        height: 26
+        x: 8
+        y: 938
+        width: 164
+        height: 165
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,20 +167,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fdb4cf48e8eb8c7c0800000000000000
-      internalID: -4050778345494000673
+      spriteID: 239b02df954bddc10800000000000000
+      internalID: 2080016901506906418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bat-WakeUp_1
+      name: download (15)-Photoroom_1
       rect:
         serializedVersion: 2
-        x: 90
-        y: 25
-        width: 12
-        height: 26
+        x: 198
+        y: 938
+        width: 164
+        height: 165
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +189,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a874a77783e4cef0800000000000000
-      internalID: -88695921673209687
+      spriteID: ed8909e13e1d2e2b0800000000000000
+      internalID: -5556648216821196578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bat-WakeUp_2
+      name: download (15)-Photoroom_2
       rect:
         serializedVersion: 2
-        x: 154
-        y: 25
-        width: 12
-        height: 26
+        x: 387
+        y: 938
+        width: 166
+        height: 165
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,174 +211,240 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b52f97ccbc77330e0800000000000000
-      internalID: -2291356068208840101
+      spriteID: ad3575d07d870c140800000000000000
+      internalID: 4737919673030890458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bat-WakeUp_3
+      name: download (15)-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 748
+        width: 164
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07c2be94d9c0ce560800000000000000
+      internalID: 7344258962023984240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 748
+        width: 164
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f13c86e80a23a560800000000000000
+      internalID: 7323743636750610934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_5
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 748
+        width: 166
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 435fc21ad7312ea60800000000000000
+      internalID: 7701739743052887348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_6
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 398
+        width: 165
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9b96ef995afec1a0800000000000000
+      internalID: -6787212325559034977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_7
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 398
+        width: 165
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbc9c1166cff59400800000000000000
+      internalID: 330451375179472063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_8
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 398
+        width: 166
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5582d9a28c8157ea0800000000000000
+      internalID: -5875762890847475627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_9
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 208
+        width: 104
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da3be8bdbcd21aae0800000000000000
+      internalID: -1539899243998825555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_10
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 208
+        width: 106
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f5a410e2da54fcd0800000000000000
+      internalID: -2525293629298924041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_11
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 208
+        width: 105
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cc6df17e0a542500800000000000000
+      internalID: 370520087439699140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_12
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 8
+        width: 135
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60c75915f40649910800000000000000
+      internalID: 1843204041288809478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: download (15)-Photoroom_13
       rect:
         serializedVersion: 2
         x: 218
-        y: 27
-        width: 12
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: add92b18f7744ff50800000000000000
-      internalID: 6914229940882939354
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_4
-      rect:
-        serializedVersion: 2
-        x: 281
-        y: 27
-        width: 18
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5294da50c59ba0070800000000000000
-      internalID: 8073469086898407717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_5
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 29
-        width: 29
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f36a0f61481ec6ad0800000000000000
-      internalID: -2707541318519708097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_6
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 20
-        width: 34
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 440e2d6d0cb28f190800000000000000
-      internalID: -7928539036747898812
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_7
-      rect:
-        serializedVersion: 2
-        x: 468
-        y: 17
-        width: 23
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00ec3c5dfa1151ce0800000000000000
-      internalID: -1435221459344306688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_8
-      rect:
-        serializedVersion: 2
-        x: 535
-        y: 10
-        width: 18
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a936901e7250e2340800000000000000
-      internalID: 4840812318307214234
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_9
-      rect:
-        serializedVersion: 2
-        x: 601
-        y: 8
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33dd7bce9556766f0800000000000000
-      internalID: -691472580880114381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_10
-      rect:
-        serializedVersion: 2
-        x: 662
         y: 7
-        width: 20
-        height: 23
+        width: 144
+        height: 145
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -406,118 +453,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1819a0307fe72b640800000000000000
-      internalID: 5094273727882498433
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_11
-      rect:
-        serializedVersion: 2
-        x: 718
-        y: 17
-        width: 35
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b95eb9df90f4d4080800000000000000
-      internalID: -9201611559319902821
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_12
-      rect:
-        serializedVersion: 2
-        x: 791
-        y: 22
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 465237f5f9db0a990800000000000000
-      internalID: -7376687697434040988
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_13
-      rect:
-        serializedVersion: 2
-        x: 857
-        y: 21
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 34c2fbf65ead63040800000000000000
-      internalID: 4627126346126928963
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_14
-      rect:
-        serializedVersion: 2
-        x: 922
-        y: 23
-        width: 12
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dbdc3b795167d0940800000000000000
-      internalID: 5263993374577511869
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat-WakeUp_15
-      rect:
-        serializedVersion: 2
-        x: 981
-        y: 28
-        width: 21
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7b544c430ba36d50800000000000000
-      internalID: 6729410298874452860
+      spriteID: 5b7992e34f6f0c1b0800000000000000
+      internalID: -5638235204592494667
       vertices: []
       indices: 
       edges: []
@@ -536,22 +473,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bat-WakeUp_0: -4050778345494000673
-      Bat-WakeUp_1: -88695921673209687
-      Bat-WakeUp_10: 5094273727882498433
-      Bat-WakeUp_11: -9201611559319902821
-      Bat-WakeUp_12: -7376687697434040988
-      Bat-WakeUp_13: 4627126346126928963
-      Bat-WakeUp_14: 5263993374577511869
-      Bat-WakeUp_15: 6729410298874452860
-      Bat-WakeUp_2: -2291356068208840101
-      Bat-WakeUp_3: 6914229940882939354
-      Bat-WakeUp_4: 8073469086898407717
-      Bat-WakeUp_5: -2707541318519708097
-      Bat-WakeUp_6: -7928539036747898812
-      Bat-WakeUp_7: -1435221459344306688
-      Bat-WakeUp_8: 4840812318307214234
-      Bat-WakeUp_9: -691472580880114381
+      download (15)-Photoroom_0: 2080016901506906418
+      download (15)-Photoroom_1: -5556648216821196578
+      download (15)-Photoroom_10: -2525293629298924041
+      download (15)-Photoroom_11: 370520087439699140
+      download (15)-Photoroom_12: 1843204041288809478
+      download (15)-Photoroom_13: -5638235204592494667
+      download (15)-Photoroom_2: 4737919673030890458
+      download (15)-Photoroom_3: 7344258962023984240
+      download (15)-Photoroom_4: 7323743636750610934
+      download (15)-Photoroom_5: 7701739743052887348
+      download (15)-Photoroom_6: -6787212325559034977
+      download (15)-Photoroom_7: 330451375179472063
+      download (15)-Photoroom_8: -5875762890847475627
+      download (15)-Photoroom_9: -1539899243998825555
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
