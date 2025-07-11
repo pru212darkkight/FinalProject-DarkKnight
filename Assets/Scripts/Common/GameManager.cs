@@ -17,15 +17,41 @@ public class GameManager : MonoBehaviour
     public GameObject portalPrefab;
 
     public CameraFocusManager cameraFocusManager;
-
+    [Header("Defeat Panel")]
+    public GameObject defeatPanel;
+    public TextMeshProUGUI defeatTimeText;
+    public TextMeshProUGUI defeatGoldText;
+    public Button homeButton;
+    public Button playAgainButton;
     void Start()
     {
         victoryPanel.SetActive(false);
+        defeatPanel.SetActive(false);
         okButton.onClick.AddListener(OnOKClick);
+        homeButton.onClick.AddListener(OnHomeClick);
+        playAgainButton.onClick.AddListener(OnPlayAgainClick);
         playerMoney.ResetSessionCoins();
         levelTimer.ResetTimer();
     }
+    public void ShowDefeatPanel()
+    {
+        levelTimer.StopTimer();
+        defeatTimeText.text = "Time: " + levelTimer.GetTimeString();
+        defeatGoldText.text = "Gold: " + playerMoney.sessionCoins.ToString();
+        defeatPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    void OnHomeClick()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Home Village");
+    }
 
+    void OnPlayAgainClick()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void OnBossDefeated()
     {
         // Dừng timer
@@ -36,13 +62,13 @@ public class GameManager : MonoBehaviour
         goldText.text = "Gold: " + playerMoney.sessionCoins.ToString();
 
         victoryPanel.SetActive(true);
-        //Time.timeScale = 0f; // Pause game
+        Time.timeScale = 0f; // Pause game
     }
 
     void OnOKClick()
     {
         victoryPanel.SetActive(false);
-        //Time.timeScale = 1f; // Resume game
+        Time.timeScale = 1f; // Resume game
 
         // Spawn portal và lưu lại instance
         var portalInstance = Instantiate(portalPrefab, portalSpawnPoint.position, Quaternion.identity);
