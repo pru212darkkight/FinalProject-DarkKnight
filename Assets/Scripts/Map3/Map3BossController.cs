@@ -16,6 +16,12 @@ public class Map3BossController : MonoBehaviour
     [Header("Movement Settings")]
     public float moveSpeed = 3f;
 
+    [Header("Simple Movement Settings (Merged from SimpleBossMovement)")]
+    public bool enableSimpleMovement = true; // Use simple movement logic (DEFAULT: TRUE)
+    public float simpleTestSpeed = 3f; // Speed for simple movement
+    public bool moveTowardsPlayer = true; // Enable movement towards player
+    public float stopDistance = 2f; // Stop distance for simple movement
+
     [Header("Attack Settings")]
     public float attackCooldown = 2f;
     public float attackDamage = 15f;
@@ -64,6 +70,17 @@ public class Map3BossController : MonoBehaviour
             {
                 player = playerObj.transform;
             }
+        }
+
+        // Debug Rigidbody2D settings
+        if (showDebug && rb != null)
+        {
+            Debug.Log($"🔧 Boss Rigidbody2D Settings:");
+            Debug.Log($"   - Body Type: {rb.bodyType}");
+            Debug.Log($"   - Mass: {rb.mass}");
+            Debug.Log($"   - Linear Drag: {rb.linearDamping}");
+            Debug.Log($"   - Freeze Position X: {rb.freezeRotation}");
+            Debug.Log($"   - Is Kinematic: {rb.isKinematic}");
         }
     }
 
@@ -142,15 +159,92 @@ public class Map3BossController : MonoBehaviour
 
     void FixedUpdate()
     {
-        SimpleBossMovement simpleMovement = GetComponent<SimpleBossMovement>();
-        if (simpleMovement != null && simpleMovement.enableSimpleMovement)
+        // Handle movement in FixedUpdate
+        if (isDead || player == null) return;
+
+        // Don't move if EnemyHealth says we're dead
+        if (enemyHealth != null && enemyHealth.isDead) return;
+
+        // Debug movement mode
+        if (showDebug && Time.frameCount % 120 == 0) // Every 2 seconds
         {
+            Debug.Log($"🚶 Boss Movement Mode: {(enableSimpleMovement ? "SIMPLE" : "ADVANCED")}");
+        }
+
+        // Choose movement logic based on enableSimpleMovement
+        if (enableSimpleMovement)
+        {
+            HandleSimpleMovement();
+        }
+        else
+        {
+            HandleAdvancedMovement();
+        }
+    }
+
+    /// <summary>
+    /// Simple movement logic (merged from SimpleBossMovement)
+    /// </summary>
+    void HandleSimpleMovement()
+    {
+        if (!moveTowardsPlayer)
+        {
+            if (showDebug && Time.frameCount % 120 == 0)
+                Debug.Log("🚶 Simple Movement: moveTowardsPlayer is FALSE");
             return;
         }
 
-        if (isDead || player == null) return;
-        if (enemyHealth != null && enemyHealth.isDead) return;
+        // Stop if dead, attacking, or hurt
+        if (isDead || isAttacking || isHurt)
+        {
+            if (showDebug && Time.frameCount % 120 == 0)
+                Debug.Log($"🚶 Simple Movement: Stopping - Dead:{isDead}, Attacking:{isAttacking}, Hurt:{isHurt}");
+            StopMoving();
+            return;
+        }
 
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        // Stop if too close (let boss attack)
+        if (distance <= stopDistance)
+        {
+            if (showDebug && Time.frameCount % 120 == 0)
+                Debug.Log($"🚶 Simple Movement: Too close to player - Distance:{distance:F2}, StopDistance:{stopDistance}");
+            StopMoving();
+            return;
+        }
+
+        // Move towards player
+        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 velocity = rb.linearVelocity;
+        velocity.x = direction.x * simpleTestSpeed;
+        rb.linearVelocity = velocity;
+
+        // Debug movement
+        if (showDebug && Time.frameCount % 120 == 0)
+        {
+            Debug.Log($"🚶 Simple Movement: Moving to player - Distance:{distance:F2}, Velocity:{velocity.x:F2}, Speed:{simpleTestSpeed}");
+        }
+
+        // Set walking animation
+        animator.SetBool(IsWalkingHash, true);
+
+        // Face player (simple flip logic)
+        if (direction.x > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if (direction.x < 0 && isFacingRight)
+        {
+            Flip();
+        }
+    }
+
+    /// <summary>
+    /// Advanced movement logic (original Map3BossController logic)
+    /// </summary>
+    void HandleAdvancedMovement()
+    {
         Vector2 velocity = rb.linearVelocity;
         Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
         bool playerInAttackBox = Physics2D.OverlapBox(
@@ -171,6 +265,18 @@ public class Map3BossController : MonoBehaviour
         }
 
         rb.linearVelocity = velocity;
+    }
+
+    /// <summary>
+    /// Stop movement (merged from SimpleBossMovement)
+    /// </summary>
+    void StopMoving()
+    {
+        // Keep Y velocity (for gravity/jumping)
+        Vector2 velocity = rb.linearVelocity;
+        velocity.x = 0;
+        rb.linearVelocity = velocity;
+        animator.SetBool(IsWalkingHash, false);
     }
 
     void LookAtPlayer()
@@ -456,6 +562,16 @@ public class Map3BossController : MonoBehaviour
     {
         Debug.Log("🔥 FORCE EXECUTING ATTACK FOR TEST!");
         ExecuteAttack1();
+    }
+
+    /// <summary>
+    /// Toggle between simple and advanced movement (merged from SimpleBossMovement)
+    /// </summary>
+    [ContextMenu("Toggle Movement Mode")]
+    public void ToggleMovementMode()
+    {
+        enableSimpleMovement = !enableSimpleMovement;
+        Debug.Log($"Boss Movement Mode: {(enableSimpleMovement ? "Simple" : "Advanced")}");
     }
 
     public void Die()
