@@ -80,7 +80,7 @@ public class ReaperBossAttack : MonoBehaviour
             GameObject thunder = Instantiate(thunderPrefab, pos, Quaternion.identity);
             ThunderHitbox hitbox = thunder.GetComponent<ThunderHitbox>();
             if (hitbox != null)
-                hitbox.Init(thunderDamage, playerLayer, true);
+                hitbox.Init(thunderDamage, playerLayer, true,"Reaper Boss");
         }
     }
 

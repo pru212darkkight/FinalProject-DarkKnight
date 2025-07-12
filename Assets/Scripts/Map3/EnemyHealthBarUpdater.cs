@@ -5,6 +5,7 @@ public class EnemyHealthBarUpdater : MonoBehaviour
 {
     [Header("References")]
     public Image healthBarImage;
+    public Map3EnemyHealth map3Health;
     public UnderwaterEnemyHealth fishHealth;
     public UnderwaterMine mineHealth;
     public EnemyWater waterEnemy;
@@ -32,16 +33,21 @@ public class EnemyHealthBarUpdater : MonoBehaviour
             healthBarImage = GetComponent<Image>();
         }
         
+        if (map3Health == null)
+        {
+            map3Health = GetComponentInParent<Map3EnemyHealth>();
+        }
+
         if (fishHealth == null)
         {
             fishHealth = GetComponentInParent<UnderwaterEnemyHealth>();
         }
-        
+
         if (mineHealth == null)
         {
             mineHealth = GetComponentInParent<UnderwaterMine>();
         }
-        
+
         if (waterEnemy == null)
         {
             waterEnemy = GetComponentInParent<EnemyWater>();
@@ -85,7 +91,11 @@ public class EnemyHealthBarUpdater : MonoBehaviour
     
     private float GetCurrentHealthPercent()
     {
-        if (waterEnemy != null)
+        if (map3Health != null)
+        {
+            return map3Health.HealthPercent;
+        }
+        else if (waterEnemy != null)
         {
             return waterEnemy.HealthPercent;
         }
@@ -97,13 +107,17 @@ public class EnemyHealthBarUpdater : MonoBehaviour
         {
             return mineHealth.currentHealth / mineHealth.maxHealth;
         }
-        
+
         return 1f; // Default to full health
     }
     
     private bool IsEnemyDead()
     {
-        if (waterEnemy != null)
+        if (map3Health != null)
+        {
+            return map3Health.IsDead;
+        }
+        else if (waterEnemy != null)
         {
             return waterEnemy.IsDead;
         }
@@ -115,7 +129,7 @@ public class EnemyHealthBarUpdater : MonoBehaviour
         {
             return mineHealth.isDead;
         }
-        
+
         return false;
     }
     
@@ -174,18 +188,24 @@ public class EnemyHealthBarUpdater : MonoBehaviour
         UpdateHealthBar();
     }
     
+    public void SetMap3Health(Map3EnemyHealth newMap3Health)
+    {
+        map3Health = newMap3Health;
+        UpdateHealthBar();
+    }
+
     public void SetFishHealth(UnderwaterEnemyHealth newFishHealth)
     {
         fishHealth = newFishHealth;
         UpdateHealthBar();
     }
-    
+
     public void SetMineHealth(UnderwaterMine newMineHealth)
     {
         mineHealth = newMineHealth;
         UpdateHealthBar();
     }
-    
+
     public void SetWaterEnemy(EnemyWater newWaterEnemy)
     {
         waterEnemy = newWaterEnemy;

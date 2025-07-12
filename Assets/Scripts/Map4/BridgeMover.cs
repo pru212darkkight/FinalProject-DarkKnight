@@ -10,11 +10,25 @@ public class BridgeMover : MonoBehaviour
 
     public CinemachineCamera virtualCamera;
     public Transform playerTransform;
-    public Transform bridgeFrontPoint; // ← Điểm đầu cầu (con của cầu)
+    public Transform bridgeFrontPoint;
 
+    public AudioClip bridgeMovingSound; // Âm thanh cầu di chuyển
+
+    private AudioSource audioSource;
     private bool shouldMove = false;
     private bool cameraFollowingBridge = false;
     private bool bridgeReachedDestination = false;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.clip = bridgeMovingSound;
+        audioSource.loop = true;
+        audioSource.playOnAwake = false;
+    }
 
     void Update()
     {
@@ -40,6 +54,11 @@ public class BridgeMover : MonoBehaviour
                     virtualCamera.Follow = bridgeFrontPoint;
                     cameraFollowingBridge = true;
                 }
+
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play(); // Bắt đầu phát âm
+                }
             }
         }
         else if (!bridgeReachedDestination)
@@ -54,6 +73,11 @@ public class BridgeMover : MonoBehaviour
                 {
                     virtualCamera.Follow = playerTransform;
                     cameraFollowingBridge = false;
+                }
+
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop(); // Dừng âm khi cầu đã đến nơi
                 }
             }
         }

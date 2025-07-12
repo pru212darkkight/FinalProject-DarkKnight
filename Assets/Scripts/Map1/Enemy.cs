@@ -148,7 +148,8 @@ public class Enemy : MonoBehaviour
                 PlayerController1 playerController = hitPlayer.GetComponent<PlayerController1>();
                 if (playerController != null)
                 {
-                    playerController.TakeDamage(damage);
+
+                    playerController.TakeDamage(damage,false,"Skeleton Wolf ");
                 }
                 break;
             }
@@ -211,7 +212,8 @@ public class Enemy : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
-            rb.isKinematic = true;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+
         }
 
         // Destroy sau khi animation kết thúc
