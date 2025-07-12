@@ -44,7 +44,7 @@ public class SkullBlastProjectile : MonoBehaviour
             var player = collision.GetComponent<PlayerController1>();
             if (player != null)
             {
-                player.TakeDamage(damage, true);
+                player.TakeDamage(damage, true, "Final Boss Demon King");
             }
             Destroy(gameObject);
         }

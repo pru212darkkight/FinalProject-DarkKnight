@@ -6,10 +6,10 @@ public class ThunderHitbox : MonoBehaviour
     private LayerMask playerLayer;
     private bool isMagic;
     private bool hasHit = false;
-
+    private string enemyName;
     private BoxCollider2D box;
 
-    public void Init(float _damage, LayerMask _playerLayer, bool _isMagic)
+    public void Init(float _damage, LayerMask _playerLayer, bool _isMagic, string Name)
     {
         damage = _damage;
         playerLayer = _playerLayer;
@@ -17,6 +17,7 @@ public class ThunderHitbox : MonoBehaviour
         box = GetComponent<BoxCollider2D>();
         if (box != null)
             box.enabled = false; // Tắt collider ngay lúc spawn!
+        enemyName = Name;
     }
 
     // Gọi từ Animation Event (đúng frame sét chạm đất)
@@ -44,7 +45,7 @@ public class ThunderHitbox : MonoBehaviour
             var player = collision.GetComponent<PlayerController1>();
             if (player != null)
             {
-                player.TakeDamage(damage, isMagic);
+                player.TakeDamage(damage, isMagic, enemyName);
                 hasHit = true;
             }
         }

@@ -19,7 +19,7 @@ public class EnemyWeapon : MonoBehaviour
         {
             var playerHealth = colInfo.GetComponent<PlayerController1>();
             if (playerHealth != null)
-                playerHealth.TakeDamage(attackDamage);
+                playerHealth.TakeDamage(attackDamage,false, "Night Borne");
         }
     }
 
