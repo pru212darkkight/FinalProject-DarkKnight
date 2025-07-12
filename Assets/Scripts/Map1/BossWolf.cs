@@ -168,7 +168,7 @@ public class BossWolf : Enemy
                         PlayerController1 playerController = hitPlayer.GetComponent<PlayerController1>();
                         if (playerController != null)
                         {
-                            playerController.TakeDamage(damage);
+                            playerController.TakeDamage(damage,false,"Werewolf");
                             hasHitPlayer = true;
                         }
                         break;
@@ -211,7 +211,7 @@ public class BossWolf : Enemy
                         PlayerController1 playerController = hitPlayer.GetComponent<PlayerController1>();
                         if (playerController != null)
                         {
-                            playerController.TakeDamage(damage);
+                            playerController.TakeDamage(damage,false,"Werewolf");
                             hasHitPlayer2 = true;
                         }
                         break;
@@ -259,7 +259,7 @@ public class BossWolf : Enemy
                     PlayerController1 playerController = hitPlayer.GetComponent<PlayerController1>();
                     if (playerController != null)
                     {
-                        playerController.TakeDamage(damage);
+                        playerController.TakeDamage(damage,false,"Werewolf");
                         hasHitPlayer = true;
                     }
                     break;
