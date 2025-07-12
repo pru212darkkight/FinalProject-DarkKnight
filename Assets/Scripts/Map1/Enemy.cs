@@ -148,7 +148,8 @@ public class Enemy : MonoBehaviour
                 PlayerController1 playerController = hitPlayer.GetComponent<PlayerController1>();
                 if (playerController != null)
                 {
-                    playerController.TakeDamage(damage);
+
+                    playerController.TakeDamage(damage,false,"Skeleton Wolf ");
                 }
                 break;
             }

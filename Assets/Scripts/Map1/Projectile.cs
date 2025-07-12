@@ -73,7 +73,7 @@ public class Projectile : MonoBehaviour
                 PlayerController1 player = other.GetComponent<PlayerController1>();
                 if (player != null)
                 {
-                    player.TakeDamage(damage);
+                    player.TakeDamage(damage,true,"Wind Spirit");
                 }
                 
                 if (destroyOnHit)
