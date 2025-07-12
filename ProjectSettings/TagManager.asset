@@ -13,6 +13,7 @@ TagManager:
   - NPC
   - enemyCoin
   - LevelSelectionUI
+  - Rock
   layers:
   - Default
   - TransparentFX

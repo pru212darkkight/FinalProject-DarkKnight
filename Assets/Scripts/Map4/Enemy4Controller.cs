@@ -7,14 +7,14 @@ public class Enemy4Controller : MonoBehaviour
     public Transform pointB;
 
     [Header("Phạm vi phát hiện")]
-    public float detectRange = 10f;     // phát hiện player
-    public float idleRange = 3f;     // vùng gần thì Idle
+    public float detectRange = 10f;    // Bán kính phát hiện Player
+    public float idleRange = 3f;       // Bán kính đứng yên gần Player
 
     [Header("Tốc độ di chuyển")]
     public float walkSpeed = 1.5f;
     public float runSpeed = 3f;
 
-    private Vector3 currentTarget;
+    private Transform currentTarget;   // Điểm tuần tra hiện tại
     private Animator animator;
     private bool facingRight = true;
 
@@ -24,16 +24,18 @@ public class Enemy4Controller : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        currentTarget = pointB.position;
+        currentTarget = pointB;
     }
 
     void Update()
     {
-        float xDistanceToPlayer = Mathf.Abs(transform.position.x - player.position.x);
+        if (!player) return;
 
-        // 👉 Nếu trong vùng rất gần → IdleNearPlayer
-        if (xDistanceToPlayer <= idleRange)
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= idleRange)
         {
+            // IDLE khi quá gần Player
             if (currentState != State.IdleNearPlayer)
             {
                 currentState = State.IdleNearPlayer;
@@ -43,12 +45,10 @@ public class Enemy4Controller : MonoBehaviour
             }
 
             FlipTowards(player.position.x);
-            return;
         }
-
-        // 👉 Nếu trong vùng phát hiện → Chasing
-        if (xDistanceToPlayer <= detectRange)
+        else if (distanceToPlayer <= detectRange)
         {
+            // CHASE khi trong vùng phát hiện
             if (currentState != State.Chasing)
             {
                 currentState = State.Chasing;
@@ -62,7 +62,7 @@ public class Enemy4Controller : MonoBehaviour
         }
         else
         {
-            // 👉 Ngoài vùng → tuần tra
+            // PATROL khi Player ngoài vùng phát hiện
             if (currentState != State.Patrolling)
             {
                 currentState = State.Patrolling;
@@ -77,30 +77,26 @@ public class Enemy4Controller : MonoBehaviour
 
     void Patrol()
     {
-        MoveTowards(currentTarget, walkSpeed);
-        FlipTowards(currentTarget.x);
+        MoveTowards(currentTarget.position, walkSpeed);
+        FlipTowards(currentTarget.position.x);
 
-        if (Vector2.Distance(transform.position, currentTarget) < 0.1f)
+        if (Vector2.Distance(transform.position, currentTarget.position) < 0.2f)
         {
-            currentTarget = (currentTarget == pointA.position) ? pointB.position : pointA.position;
+            currentTarget = (currentTarget == pointA) ? pointB : pointA;
+            Debug.Log("Enemy: Chuyển hướng tuần tra sang " + currentTarget.name);
         }
     }
 
     void MoveTowards(Vector3 target, float speed)
     {
-        if (currentState == State.IdleNearPlayer) return;
-
         Vector3 direction = (target - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
     }
 
     void FlipTowards(float targetX)
     {
-        if (targetX > transform.position.x && !facingRight)
-        {
-            Flip();
-        }
-        else if (targetX < transform.position.x && facingRight)
+        if ((targetX > transform.position.x && !facingRight) ||
+            (targetX < transform.position.x && facingRight))
         {
             Flip();
         }
@@ -114,7 +110,6 @@ public class Enemy4Controller : MonoBehaviour
         transform.localScale = scale;
     }
 
-    // 👉 Vẽ vùng phát hiện và vùng dừng để dễ debug
     void OnDrawGizmosSelected()
     {
         if (player == null) return;

@@ -38,42 +38,56 @@ public class MeleeEnemy : MonoBehaviour
 
         if (distToPlayer <= stopRange)
         {
-            if (Time.time >= lastAttackTime + attackCooldown)
-            {
-                animator.SetTrigger("Attack");
-                lastAttackTime = Time.time;
-            }
-            animator.SetBool("Run", false);
-            rb.linearVelocity = Vector2.zero;
-            currentState = State.StopNearPlayer;
+            HandleAttack();
         }
         else if (distToPlayer <= detectRange)
         {
-            currentState = State.Chase;
-            Vector2 dir = (player.position - transform.position).normalized;
-            rb.linearVelocity = new Vector2(dir.x * chaseSpeed, rb.linearVelocity.y);
-            animator.SetBool("Run", true);
+            ChasePlayer();
         }
         else
         {
-            currentState = State.Patrol;
             Patrol();
         }
 
-        Flip(rb.linearVelocity.x);
+        Flip(rb.linearVelocity.x); // Dùng linearVelocity nếu Unity báo cần nâng cấp
+    }
+
+    void HandleAttack()
+    {
+        if (Time.time >= lastAttackTime + attackCooldown)
+        {
+            animator.SetTrigger("Attack");
+            lastAttackTime = Time.time;
+        }
+
+        animator.SetBool("Run", false);
+        rb.linearVelocity = Vector2.zero;
+        currentState = State.StopNearPlayer;
+    }
+
+    void ChasePlayer()
+    {
+        currentState = State.Chase;
+        Vector2 dir = (player.position - transform.position).normalized;
+        rb.linearVelocity = new Vector2(dir.x * chaseSpeed, rb.linearVelocity.y);
+        animator.SetBool("Run", true);
     }
 
     void Patrol()
     {
+        currentState = State.Patrol;
+
         Vector2 dir = (currentTarget.position - transform.position).normalized;
         rb.linearVelocity = new Vector2(dir.x * patrolSpeed, rb.linearVelocity.y);
         animator.SetBool("Run", true);
 
-        if (Vector2.Distance(transform.position, currentTarget.position) < 0.1f)
+        Debug.DrawLine(transform.position, currentTarget.position, Color.green);
+
+        // Dùng khoảng cách lớn hơn để tránh kẹt khi enemy không chạm chính xác
+        if ((currentTarget.position - transform.position).sqrMagnitude < 0.2f)
         {
             currentTarget = (currentTarget == pointA) ? pointB : pointA;
         }
-
     }
 
     void Flip(float moveX)
@@ -87,7 +101,7 @@ public class MeleeEnemy : MonoBehaviour
         }
     }
 
-    // 👉 Gọi từ Animation Event
+    // Gọi từ animation event
     public void DealDamage()
     {
         if (!player) return;

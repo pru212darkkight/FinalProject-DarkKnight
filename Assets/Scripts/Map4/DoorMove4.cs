@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Unity.Cinemachine;
 
 public class DoorMove4 : MonoBehaviour
 {
@@ -6,11 +7,30 @@ public class DoorMove4 : MonoBehaviour
     public float moveSpeed = 2f;
     public float checkRadius = 5f;
     public LayerMask enemyLayer;
+    public Transform checkPoint;
 
-    public Transform checkPoint; // Vị trí kiểm tra enemy
+    public AudioClip moveSound;
+
+    public CinemachineCamera virtualCamera;
+    public Transform playerTransform;
+    public Transform doorFrontPoint;
 
     private bool shouldMove = false;
     private bool bridgeReachedDestination = false;
+    private bool cameraFollowingDoor = false;
+
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.clip = moveSound;
+        audioSource.loop = true;
+        audioSource.playOnAwake = false;
+    }
 
     void Update()
     {
@@ -32,15 +52,37 @@ public class DoorMove4 : MonoBehaviour
             if (aliveCount == 0)
             {
                 shouldMove = true;
+
+                if (virtualCamera != null && doorFrontPoint != null)
+                {
+                    virtualCamera.Follow = doorFrontPoint;
+                    cameraFollowingDoor = true;
+                }
             }
         }
         else if (!bridgeReachedDestination)
         {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+
             transform.position = Vector3.MoveTowards(transform.position, destinationPoint.position, moveSpeed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, destinationPoint.position) < 0.05f)
             {
                 bridgeReachedDestination = true;
+
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+
+                if (virtualCamera != null && playerTransform != null)
+                {
+                    virtualCamera.Follow = playerTransform;
+                    cameraFollowingDoor = false;
+                }
             }
         }
     }
