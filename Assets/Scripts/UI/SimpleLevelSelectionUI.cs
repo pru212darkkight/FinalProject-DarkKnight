@@ -252,10 +252,6 @@ public class SimpleLevelSelectionUI : MonoBehaviour
                 else
                 {
                     colors.normalColor = Color.white;
-                    colors.highlightedColor = Color.yellow;
-                    colors.pressedColor = Color.green;
-                    colors.selectedColor = Color.yellow;
-                    colors.disabledColor = Color.gray;
                     colors.fadeDuration = 0.1f;
                 }
                 levelButtons[i].colors = colors;

@@ -11,7 +11,7 @@ public class SimpleDeathTrap : MonoBehaviour
             if (player != null)
             {
                 // Gọi method Die của player
-                player.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
+                player.TakeDamage(100000000,false,"Death River");
             }
         }
         

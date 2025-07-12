@@ -71,7 +71,7 @@ public class MiniBossAttack : MonoBehaviour
         {
             PlayerController1 pc = player.GetComponent<PlayerController1>();
             if (pc != null)
-                pc.TakeDamage(attack1Damage, false);
+                pc.TakeDamage(attack1Damage, false, "Dark EVil Wizard");
         }
     }
 
@@ -89,7 +89,7 @@ public class MiniBossAttack : MonoBehaviour
         {
             PlayerController1 pc = player.GetComponent<PlayerController1>();
             if (pc != null)
-                pc.TakeDamage(attack2Damage, false);
+                pc.TakeDamage(attack2Damage, false, "Dark EVil Wizard");
         }
     }
 

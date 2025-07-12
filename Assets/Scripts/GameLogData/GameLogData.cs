@@ -36,6 +36,7 @@ namespace Assets.Scripts.GameLogData
         public string deathReason;        // lý do chết, tuỳ bạn gán lúc Die()
         public List<string> playerEquipment; // list các item đang trang bị (inventory.equippedItems.Select(x=>x.itemName))
         public PlayerStats playerStats;       // như trên
+        public Dictionary<string, DamageLog> damageTaken;
     }
 
     [Serializable]

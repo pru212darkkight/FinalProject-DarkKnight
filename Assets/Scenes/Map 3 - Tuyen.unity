@@ -18125,6 +18125,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1788738869386804, guid: 9e1982b2bcf354f7dbcfea8976c3b503, type: 3}
   m_PrefabInstance: {fileID: 1309645441}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &562835150 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1518716190568014011, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+  m_PrefabInstance: {fileID: 818203957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &571628442
 GameObject:
   m_ObjectHideFlags: 0
@@ -19489,6 +19494,10 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 223786587}
+    - target: {fileID: 3846976066167949855, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 562835150}
     - target: {fileID: 6570648403116776917, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.3791504

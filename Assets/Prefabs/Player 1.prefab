@@ -340,7 +340,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 84622a2f-23ea-4fab-8260-7ea210aa62d1
+      m_Id: 88638012-f552-4ac8-9330-f847d9bd3ecc
       m_Path: <Keyboard>/e
       m_Interactions: 
       m_Processors: 
@@ -357,15 +357,15 @@ MonoBehaviour:
     m_Bits: 1024
   attackCooldown: 0.5
   attack2Cooldown: 0.8
-  attack3Cooldown: 1.2
-  spell1Cooldown: 2
-  spell2Cooldown: 3
+  attack3Cooldown: 0.9
+  spell1Cooldown: 1.2
+  spell2Cooldown: 1.4
   attackPoint: {fileID: 3232560741198529734}
-  attackRange: 0.3
+  attackRange: 0.35
   attack2Range: 0.38
   attack3Range: 0.45
   spell1Range: 0.6
-  spell2Range: 0.8
+  spell2Range: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -381,9 +381,9 @@ MonoBehaviour:
   armor: 5
   magicResist: 5
   healthRecoveryRate: 2
-  healthRegenDelay: 5
+  healthRegenDelay: 2
   staminaRegenRate: 10
-  staminaRegenDelay: 1
+  staminaRegenDelay: 0.5
   manaRegenRate: 5
   manaRegenDelay: 0.5
   healthBar: {fileID: 0}
