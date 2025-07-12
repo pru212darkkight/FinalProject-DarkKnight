@@ -93,8 +93,6 @@ public class DamageWater : MonoBehaviour
             Debug.Log($"DamageWater: Waiting {damageInterval} seconds...");
             yield return new WaitForSeconds(damageInterval);
 
-            Debug.Log($"DamageWater: After wait - currentHealth: {player.currentHealth}");
-
             // Kiểm tra player còn sống bằng cách check currentHealth
             if (player.currentHealth <= 0)
             {
@@ -104,8 +102,6 @@ public class DamageWater : MonoBehaviour
 
             // Tính damage
             float damage = (player.maxHealth * healthLossPercent) / 100f;
-            Debug.Log($"DamageWater: Calculated damage: {damage} (maxHealth: {player.maxHealth}, percent: {healthLossPercent}%)");
-
             // Lưu health trước khi damage
             float healthBefore = player.currentHealth;
 
@@ -118,24 +114,19 @@ public class DamageWater : MonoBehaviour
                 System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             if (lastDamageTimeField != null)
             {
-                lastDamageTimeField.SetValue(player, Time.time);
-                Debug.Log("DamageWater: Updated lastDamageTime to prevent health regen");
-            }
+                lastDamageTimeField.SetValue(player, Time.time);            }
 
             // Update UI bars manually
             UpdatePlayerUI();
 
             // Kiểm tra health sau damage
             float healthAfter = player.currentHealth;
-            Debug.Log($"DamageWater: Health before: {healthBefore:F1}, after: {healthAfter:F1}, difference: {healthBefore - healthAfter:F1}");
 
             // Flash effect
             if (showFlash && playerSprite != null)
             {
                 StartCoroutine(FlashEffect());
             }
-
-            Debug.Log($"Water Damage: -{healthLossPercent}% ({damage:F1} HP). Health: {player.currentHealth:F1}/{player.maxHealth}");
 
             // Kiểm tra nếu hết máu
             if (player.currentHealth <= 0)

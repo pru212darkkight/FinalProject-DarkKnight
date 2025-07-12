@@ -48,7 +48,7 @@ public class Map3BossController : MonoBehaviour
     private readonly int Attack3Hash = Animator.StringToHash("attack3");
     private readonly int HurtHash = Animator.StringToHash("hurt");
     private readonly int DiedHash = Animator.StringToHash("died");
-    
+
     void Start()
     {
         // Initialize components
@@ -63,30 +63,20 @@ public class Map3BossController : MonoBehaviour
             if (playerObj != null)
             {
                 player = playerObj.transform;
-
-            }
-            else
-            {
-
             }
         }
-
-
     }
-    
+
     void Update()
     {
-        // Check if boss is dead
         if (isDead || player == null) return;
 
-        // Check EnemyHealth component death
         if (enemyHealth != null && enemyHealth.isDead && !isDead)
         {
             Die();
             return;
         }
 
-        // Check if player is in attack range box
         Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
         bool playerInAttackBox = Physics2D.OverlapBox(
             attackCenter,
@@ -95,7 +85,6 @@ public class Map3BossController : MonoBehaviour
             playerLayer
         );
 
-        // Handle state transitions
         HandleBossState(playerInAttackBox);
 
         // Debug info
@@ -105,59 +94,42 @@ public class Map3BossController : MonoBehaviour
             float timeSinceLastAttack = Time.time - lastAttackTime;
             bool canAttack = Time.time >= lastAttackTime + attackCooldown;
             string state = isHurt ? "Hurt" : isAttacking ? "Attacking" : isIdling ? "Idling" : "Walking";
-            Debug.Log($"Boss - State: {state}, InAttackBox: {playerInAttackBox}, Distance: {distanceToPlayer:F2}, TimeSinceAttack: {timeSinceLastAttack:F1}s, CanAttack: {canAttack}");
         }
     }
 
-    /// <summary>
-    /// Handle boss behavior based on player position
-    /// </summary>
     void HandleBossState(bool playerInAttackBox)
     {
-        // If currently hurt or attacking, don't change state
         if (isHurt || isAttacking)
         {
             animator.SetBool(IsWalkingHash, false);
             return;
         }
 
-        // Player is in attack range
         if (playerInAttackBox)
         {
-            // Stop any idle state
             isIdling = false;
-
-            // Face player and stop moving
             LookAtPlayer();
             animator.SetBool(IsWalkingHash, false);
 
-            // Attack if cooldown is ready
             if (Time.time >= lastAttackTime + attackCooldown)
             {
                 DoRandomAttack();
                 lastAttackTime = Time.time;
             }
         }
-        // Player is NOT in attack range
         else
         {
-            // Check if we just transitioned from "player in box" to "player out of box"
             if (wasPlayerInAttackBox && !isIdling)
             {
-                // Start idle state
                 StartIdle();
             }
-            // If we're currently idling
             else if (isIdling)
             {
-                // Check if idle time is over
                 if (Time.time >= idleStartTime + idleDuration)
                 {
-                    // End idle, start walking
                     EndIdle();
                 }
             }
-            // If not idling, walk towards player
             else
             {
                 LookAtPlayer();
@@ -165,29 +137,21 @@ public class Map3BossController : MonoBehaviour
             }
         }
 
-        // Remember previous state
         wasPlayerInAttackBox = playerInAttackBox;
     }
 
     void FixedUpdate()
     {
-        // Check if SimpleBossMovement is handling movement
         SimpleBossMovement simpleMovement = GetComponent<SimpleBossMovement>();
         if (simpleMovement != null && simpleMovement.enableSimpleMovement)
         {
-            // Let SimpleBossMovement handle movement, we only handle attacks
             return;
         }
 
-        // Handle movement in FixedUpdate like PlayerController1
         if (isDead || player == null) return;
-
-        // Don't move if EnemyHealth says we're dead
         if (enemyHealth != null && enemyHealth.isDead) return;
 
         Vector2 velocity = rb.linearVelocity;
-
-        // Check if should move towards player
         Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
         bool playerInAttackBox = Physics2D.OverlapBox(
             attackCenter,
@@ -198,24 +162,21 @@ public class Map3BossController : MonoBehaviour
 
         if (!playerInAttackBox && !isAttacking && !isIdling && !isHurt)
         {
-            // Move towards player (only if not attacking, idling, or hurt)
             Vector2 direction = (player.position - transform.position).normalized;
             velocity.x = direction.x * moveSpeed;
         }
         else
         {
-            // Stop horizontal movement (attacking, in attack box, idling, or hurt)
             velocity.x = 0;
         }
 
         rb.linearVelocity = velocity;
     }
-    
+
     void LookAtPlayer()
     {
         if (player == null) return;
 
-        // Face the player
         if (player.position.x > transform.position.x && !isFacingRight)
         {
             Flip();
@@ -226,15 +187,10 @@ public class Map3BossController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Start idle state when player leaves attack range
-    /// </summary>
     void StartIdle()
     {
         isIdling = true;
         idleStartTime = Time.time;
-
-        // Stop movement and walking animation
         animator.SetBool(IsWalkingHash, false);
 
         if (showDebug)
@@ -243,9 +199,6 @@ public class Map3BossController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// End idle state and prepare to walk towards player
-    /// </summary>
     void EndIdle()
     {
         isIdling = false;
@@ -256,20 +209,14 @@ public class Map3BossController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Choose and execute random attack (like FinalBossAttack.DoAttack)
-    /// </summary>
     public void DoRandomAttack()
     {
         if (isAttacking) return;
 
         isAttacking = true;
-
-        // Stop walking animation when attacking
         animator.SetBool(IsWalkingHash, false);
         rb.linearVelocity = Vector2.zero;
 
-        // Choose random attack type (1-3)
         int attackType = Random.Range(1, 4);
 
         switch (attackType)
@@ -285,34 +232,22 @@ public class Map3BossController : MonoBehaviour
                 break;
         }
 
-        // Auto reset after attack duration if no animation event
         StartCoroutine(AutoResetAttack());
-
-        // TEMPORARY FIX: Execute attack immediately if no Animation Events
-        // Remove this after setting up Animation Events properly
         StartCoroutine(DelayedExecuteAttack(attackType));
     }
 
-    /// <summary>
-    /// Auto reset attack state if animation event doesn't call OnAttackEnd
-    /// </summary>
-    private System.Collections.IEnumerator AutoResetAttack()
+    private IEnumerator AutoResetAttack()
     {
-        yield return new WaitForSeconds(1.5f); // Wait for attack animation to finish
-
-        if (isAttacking) // Only reset if still attacking (animation event didn't call OnAttackEnd)
+        yield return new WaitForSeconds(1.5f);
+        if (isAttacking)
         {
             Debug.Log("Boss: Auto-resetting attack state (no animation event)");
             OnAttackEnd();
         }
     }
 
-    /// <summary>
-    /// TEMPORARY: Execute attack after delay to simulate Animation Event
-    /// </summary>
-    private System.Collections.IEnumerator DelayedExecuteAttack(int attackChoice)
+    private IEnumerator DelayedExecuteAttack(int attackChoice)
     {
-        // Wait for animation to reach damage frame (usually middle of animation)
         yield return new WaitForSeconds(0.5f);
 
         Debug.Log($"🔥 TEMPORARY: Executing attack {attackChoice} via DelayedExecuteAttack");
@@ -331,9 +266,6 @@ public class Map3BossController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Reset attack trigger after animation ends (called by Animation Event)
-    /// </summary>
     public void ResetAttackTrigger(int attackType)
     {
         switch (attackType)
@@ -348,41 +280,22 @@ public class Map3BossController : MonoBehaviour
                 animator.ResetTrigger(Attack3Hash);
                 break;
         }
-
-
     }
-    
-    // ===== ATTACK IMPLEMENTATIONS (called by Animation Events) =====
 
-    /// <summary>
-    /// Attack 1 - Basic melee attack (called by Animation Event)
-    /// </summary>
+    // ===== ATTACK IMPLEMENTATIONS (Animation Events) =====
+
     public void ExecuteAttack1()
     {
         if (showDebug)
-        {
             Debug.Log("🔥 Boss: ExecuteAttack1 called!");
-        }
 
-        if (player == null)
-        {
-            Debug.LogWarning("Boss: ExecuteAttack1 - Player is null!");
-            return;
-        }
-
-        // Check if player is in attack box
         Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
-        bool playerHit = Physics2D.OverlapBox(attackCenter, attackRangeBoxSize, 0, playerLayer);
+        Collider2D playerCollider = Physics2D.OverlapBox(attackCenter, attackRangeBoxSize, 0, playerLayer);
 
-        if (showDebug)
+        if (playerCollider != null)
         {
-            Debug.Log($"Boss: ExecuteAttack1 - Player in attack box: {playerHit}");
-            Debug.Log($"Boss: Attack center: {attackCenter}, Box size: {attackRangeBoxSize}");
-        }
-
-        if (playerHit)
-        {
-            PlayerController1 playerController = player.GetComponent<PlayerController1>();
+            var playerController = playerCollider.GetComponentInParent<PlayerController1>();
+            Debug.Log($"Boss: ExecuteAttack1 hit object: {playerCollider.name}, has PlayerController1: {playerController != null}");
             if (playerController != null)
             {
                 playerController.TakeDamage(attackDamage, false);
@@ -390,7 +303,7 @@ public class Map3BossController : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Boss: ExecuteAttack1 - Player doesn't have PlayerController1!");
+                Debug.LogWarning("Boss: ExecuteAttack1 - Player doesn't have PlayerController1!", playerCollider.gameObject);
             }
         }
         else
@@ -399,43 +312,27 @@ public class Map3BossController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Attack 2 - Enhanced melee attack (called by Animation Event)
-    /// </summary>
     public void ExecuteAttack2()
     {
         if (showDebug)
-        {
             Debug.Log("🔥 Boss: ExecuteAttack2 called!");
-        }
 
-        if (player == null)
-        {
-            Debug.LogWarning("Boss: ExecuteAttack2 - Player is null!");
-            return;
-        }
-
-        // Check if player is in attack box
         Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
-        bool playerHit = Physics2D.OverlapBox(attackCenter, attackRangeBoxSize, 0, playerLayer);
+        Collider2D playerCollider = Physics2D.OverlapBox(attackCenter, attackRangeBoxSize, 0, playerLayer);
 
-        if (showDebug)
+        if (playerCollider != null)
         {
-            Debug.Log($"Boss: ExecuteAttack2 - Player in attack box: {playerHit}");
-        }
-
-        if (playerHit)
-        {
-            PlayerController1 playerController = player.GetComponent<PlayerController1>();
+            var playerController = playerCollider.GetComponentInParent<PlayerController1>();
+            Debug.Log($"Boss: ExecuteAttack2 hit object: {playerCollider.name}, has PlayerController1: {playerController != null}");
             if (playerController != null)
             {
-                float damage = attackDamage * 1.2f; // 20% more damage
+                float damage = attackDamage * 1.2f;
                 playerController.TakeDamage(damage, false);
                 Debug.Log($"🩸 Boss: ExecuteAttack2 dealt {damage} damage to player!");
             }
             else
             {
-                Debug.LogWarning("Boss: ExecuteAttack2 - Player doesn't have PlayerController1!");
+                Debug.LogWarning("Boss: ExecuteAttack2 - Player doesn't have PlayerController1!", playerCollider.gameObject);
             }
         }
         else
@@ -444,43 +341,27 @@ public class Map3BossController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Attack 3 - Heavy attack (called by Animation Event)
-    /// </summary>
     public void ExecuteAttack3()
     {
         if (showDebug)
-        {
             Debug.Log("🔥 Boss: ExecuteAttack3 called!");
-        }
 
-        if (player == null)
-        {
-            Debug.LogWarning("Boss: ExecuteAttack3 - Player is null!");
-            return;
-        }
-
-        // Check if player is in attack box
         Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
-        bool playerHit = Physics2D.OverlapBox(attackCenter, attackRangeBoxSize, 0, playerLayer);
+        Collider2D playerCollider = Physics2D.OverlapBox(attackCenter, attackRangeBoxSize, 0, playerLayer);
 
-        if (showDebug)
+        if (playerCollider != null)
         {
-            Debug.Log($"Boss: ExecuteAttack3 - Player in attack box: {playerHit}");
-        }
-
-        if (playerHit)
-        {
-            PlayerController1 playerController = player.GetComponent<PlayerController1>();
+            var playerController = playerCollider.GetComponentInParent<PlayerController1>();
+            Debug.Log($"Boss: ExecuteAttack3 hit object: {playerCollider.name}, has PlayerController1: {playerController != null}");
             if (playerController != null)
             {
-                float damage = attackDamage * 1.5f; // 50% more damage
+                float damage = attackDamage * 1.5f;
                 playerController.TakeDamage(damage, false);
                 Debug.Log($"🩸 Boss: ExecuteAttack3 dealt {damage} damage to player!");
             }
             else
             {
-                Debug.LogWarning("Boss: ExecuteAttack3 - Player doesn't have PlayerController1!");
+                Debug.LogWarning("Boss: ExecuteAttack3 - Player doesn't have PlayerController1!", playerCollider.gameObject);
             }
         }
         else
@@ -489,22 +370,14 @@ public class Map3BossController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called by animation event when any attack animation ends
-    /// </summary>
     public void OnAttackEnd()
     {
         if (showDebug)
-        {
             Debug.Log("Boss: OnAttackEnd called - resetting attack state");
-        }
 
         isAttacking = false;
-
-        // Reset animation state
         animator.SetBool(IsWalkingHash, false);
 
-        // Check if should continue attacking, idle, or chase
         if (player != null)
         {
             Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
@@ -512,117 +385,72 @@ public class Map3BossController : MonoBehaviour
 
             if (!playerStillInAttackBox)
             {
-                // Player moved away - start idle state
                 StartIdle();
                 if (showDebug)
-                {
                     Debug.Log("Boss: Player left attack box after attack - starting idle");
-                }
             }
             else
             {
                 if (showDebug)
-                {
                     Debug.Log("Boss: Player still in attack box - ready for next attack");
-                }
             }
         }
     }
-    
+
     // ===== HEALTH & DAMAGE SYSTEM =====
 
     public void TakeDamage(float damage)
     {
-        if (isDead || isHurt) return; // Don't take damage if already hurt
+        if (isDead || isHurt) return;
 
-        // Delegate to health component
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(damage);
         }
 
-        // Trigger hurt state and animation
         OnTakeDamage();
     }
 
-    /// <summary>
-    /// Called when boss takes damage - triggers hurt animation
-    /// </summary>
     public void OnTakeDamage()
     {
         if (isDead || isHurt) return;
 
         if (showDebug)
-        {
             Debug.Log("Boss: Taking damage - triggering hurt animation");
-        }
 
-        // Set hurt state
         isHurt = true;
-        isAttacking = false; // Cancel any current attack
-        isIdling = false; // Cancel any idle state
+        isAttacking = false;
+        isIdling = false;
 
-        // Stop movement
         rb.linearVelocity = Vector2.zero;
         animator.SetBool(IsWalkingHash, false);
-
-        // Trigger hurt animation
         animator.SetTrigger(HurtHash);
 
-        // Auto-recover from hurt state
         StartCoroutine(RecoverFromHurt());
     }
 
-    /// <summary>
-    /// Recover from hurt state after animation
-    /// </summary>
-    private System.Collections.IEnumerator RecoverFromHurt()
+    private IEnumerator RecoverFromHurt()
     {
         yield return new WaitForSeconds(hurtDuration);
 
         if (showDebug)
-        {
             Debug.Log("Boss: Recovering from hurt state");
-        }
 
         isHurt = false;
     }
 
-    /// <summary>
-    /// Called by animation event when hurt animation ends
-    /// </summary>
     public void OnHurtEnd()
     {
         if (showDebug)
-        {
             Debug.Log("Boss: OnHurtEnd called - recovering from hurt state");
-        }
 
         isHurt = false;
     }
 
-    // ===== PUBLIC PROPERTIES FOR OTHER SCRIPTS =====
-
-    /// <summary>
-    /// Check if boss is currently attacking (for BossDamage script)
-    /// </summary>
     public bool IsCurrentlyAttacking => isAttacking;
-
-    /// <summary>
-    /// Check if boss is currently hurt (for other scripts)
-    /// </summary>
     public bool IsCurrentlyHurt => isHurt;
-
-    /// <summary>
-    /// Check if boss is dead (for other scripts)
-    /// </summary>
     public bool IsCurrentlyDead => isDead;
 
-    // ===== DEBUG/TEST METHODS =====
-
-    /// <summary>
-    /// Force execute attack for testing (call from Inspector)
-    /// </summary>
     [ContextMenu("Force Execute Attack")]
     public void ForceExecuteAttack()
     {
@@ -637,19 +465,10 @@ public class Map3BossController : MonoBehaviour
         isDead = true;
         isAttacking = false;
 
-        // Stop all movement
         rb.linearVelocity = Vector2.zero;
-
-        // Reset animator bools
         animator.SetBool(IsWalkingHash, false);
-
-        // Trigger death animation
         animator.SetTrigger(DiedHash);
-
-
     }
-    
-    // ===== UTILITY FUNCTIONS =====
 
     void Flip()
     {
@@ -663,12 +482,10 @@ public class Map3BossController : MonoBehaviour
     {
         if (!showGizmos) return;
 
-        // Attack range box
         Gizmos.color = Color.red;
         Vector3 boxCenter = transform.position + (Vector3)attackRangeBoxOffset;
         Gizmos.DrawWireCube(boxCenter, attackRangeBoxSize);
 
-        // Line to player
         if (player != null)
         {
             Gizmos.color = Color.green;

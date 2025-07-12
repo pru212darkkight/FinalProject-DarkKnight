@@ -107,7 +107,7 @@ public class SummonedEnemy4Controller : MonoBehaviour
         if (distance <= stopRange + 0.3f)
         {
             PlayerController1 pc = player.GetComponent<PlayerController1>();
-            pc?.TakeDamage(attackDamage, false);
+            pc?.TakeDamage(attackDamage, false, "Death");
         }
     }
 
