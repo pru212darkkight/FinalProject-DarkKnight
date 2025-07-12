@@ -17,7 +17,7 @@ public class BossHurtPlayer : MonoBehaviour
     void Start() 
     {
         // Find player
-        thePlayer = FindObjectOfType<PlayerController1>();
+        thePlayer = FindAnyObjectByType<PlayerController1>();
         
         // Find boss controller
         bossController = GetComponent<Map3BossController>();
