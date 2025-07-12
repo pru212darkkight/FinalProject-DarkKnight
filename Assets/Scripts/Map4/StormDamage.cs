@@ -19,7 +19,7 @@ public class StormDamage : MonoBehaviour
             PlayerController1 player = hit.GetComponent<PlayerController1>();
             if (player != null)
             {
-                player.TakeDamage(damage, true);
+                player.TakeDamage(damage, true, "Death");
                 Debug.Log("⚡ Storm hit player!");
 
             }
