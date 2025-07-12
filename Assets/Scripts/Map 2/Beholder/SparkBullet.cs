@@ -40,7 +40,7 @@ public class SparkBullet : MonoBehaviour
             var player = collision.GetComponent<PlayerController1>();
             if (player != null)
             {
-                player.TakeDamage(damage, true); // true = magic damage
+                player.TakeDamage(damage, true, "Beholder"); // true = magic damage
             }
             Destroy(gameObject);
         }
