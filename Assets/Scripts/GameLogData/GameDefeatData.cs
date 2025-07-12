@@ -4,14 +4,17 @@ public static class GameDefeatData
 {
     public static string lastDeathReason = "";
     public static string lastTopDamageEnemy = "";
-    public static Dictionary<string, float> damageFromEachEnemy = new Dictionary<string, float>();
+    public static Dictionary<string, DamageLog> damageFromEachEnemy = new Dictionary<string, DamageLog>();
 
-    public static void LogEnemyDamage(string enemyName, float damage)
+    public static void LogEnemyDamage(string enemyName, float damage, bool isMagic)
     {
-        if (damageFromEachEnemy.ContainsKey(enemyName))
-            damageFromEachEnemy[enemyName] += damage;
+        if (!damageFromEachEnemy.ContainsKey(enemyName))
+            damageFromEachEnemy[enemyName] = new DamageLog();
+
+        if (isMagic)
+            damageFromEachEnemy[enemyName].magic += damage;
         else
-            damageFromEachEnemy[enemyName] = damage;
+            damageFromEachEnemy[enemyName].physical += damage;
     }
 
     public static void Reset()

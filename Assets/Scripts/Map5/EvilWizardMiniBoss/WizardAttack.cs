@@ -63,7 +63,7 @@ public class WizardAttack : MonoBehaviour
             {
                 var player = col.GetComponent<PlayerController1>();
                 if (player != null)
-                    player.TakeDamage(attack1Damage, false);
+                    player.TakeDamage(attack1Damage, false, "Red Evil Wizard");
                 playerLastHit[col] = Time.time;
             }
         }

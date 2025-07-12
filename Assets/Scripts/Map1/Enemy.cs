@@ -211,7 +211,8 @@ public class Enemy : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
-            rb.isKinematic = true;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+
         }
 
         // Destroy sau khi animation kết thúc
