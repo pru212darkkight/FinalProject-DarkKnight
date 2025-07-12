@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 6739451739466235385}
   - component: {fileID: 2611315316761737838}
   - component: {fileID: 2000715529150129304}
+  - component: {fileID: 5214297042021161075}
   m_Layer: 9
   m_Name: flashCreep
   m_TagString: Enemy
@@ -473,10 +474,10 @@ MonoBehaviour:
   enemyWeapon: {fileID: 2000715529150129304}
   detectRangeX: 8.99
   detectRangeY: 2.65
-  moveSpeed: 10
+  moveSpeed: 12
   attackRange: 1.19
   healthRegenRate: 10
-  attackCooldown: 1
+  attackCooldown: 0.5
   returnToOrigin: 0
   startPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2611315316761737838
@@ -491,8 +492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013db8a40a2ee1242885c938c0d3f749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 300
+  currentHealth: 300
   armor: 5
   magicResist: 5
   isDead: 0
@@ -513,9 +514,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d623c4720dabbb04ca243a4fad9e2515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 20
+  attackDamage: 30
   attackBoxSize: {x: 1.24, y: 2.56}
   attackBoxOffset: {x: 0.54, y: 0}
   attackMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &5214297042021161075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547199380777951071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d207cb55e37ccd347945c5226e75da2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinAmount: 20
+  showPopup: 1

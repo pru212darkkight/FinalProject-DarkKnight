@@ -40,6 +40,8 @@ public class TutorialManager : MonoBehaviour
     public bool canSkipTutorial = true;
     public bool hideTutorialOnComplete = true; // Whether to hide tutorial panel when completed
     public bool disableTutorialOnComplete = true; // Whether to disable tutorial GameObject when completed
+    public bool checkTutorialCompletion = true; // Whether to check if tutorial was already completed
+    public bool forceShowTutorial = false; // Force show tutorial even if completed (for testing)
     
     [Header("UI References")]
     public GameObject tutorialPanel;
@@ -81,12 +83,25 @@ public class TutorialManager : MonoBehaviour
         
         if (startTutorialOnStart)
         {
-            // Ensure GameObject is active before starting tutorial
-            if (gameObject != null && !gameObject.activeInHierarchy)
+            // Check if tutorial should be shown
+            if (ShouldShowTutorial())
             {
-                gameObject.SetActive(true);
+                // Ensure GameObject is active before starting tutorial
+                if (gameObject != null && !gameObject.activeInHierarchy)
+                {
+                    gameObject.SetActive(true);
+                }
+                StartTutorial();
             }
-            StartTutorial();
+            else
+            {
+                // Tutorial already completed, disable this GameObject
+                if (disableTutorialOnComplete)
+                {
+                    gameObject.SetActive(false);
+                }
+                Debug.Log("Tutorial already completed, skipping...");
+            }
         }
     }
     
@@ -140,6 +155,13 @@ public class TutorialManager : MonoBehaviour
     public void StartTutorial()
     {
         if (isTutorialActive) return;
+        
+        // Check if tutorial should be shown (unless force show is enabled)
+        if (checkTutorialCompletion && !forceShowTutorial && !ShouldShowTutorial())
+        {
+            Debug.Log("Tutorial already completed, cannot start again");
+            return;
+        }
         
         // Ensure the GameObject is active
         if (gameObject != null && !gameObject.activeInHierarchy)
@@ -466,6 +488,12 @@ public class TutorialManager : MonoBehaviour
         isTutorialActive = false;
         isWaitingForInput = false;
         
+        // Mark tutorial as completed in data manager
+        if (checkTutorialCompletion)
+        {
+            TutorialDataManager.Instance.MarkTutorialCompleted();
+        }
+        
         // Disable all inputs
         foreach (var step in tutorialSteps)
         {
@@ -495,6 +523,8 @@ public class TutorialManager : MonoBehaviour
         
         // Invoke event
         OnTutorialComplete?.Invoke();
+        
+        Debug.Log("Tutorial completed and saved!");
     }
     
     // Public methods for external control
@@ -595,6 +625,27 @@ public class TutorialManager : MonoBehaviour
     public bool IsOnLastStep()
     {
         return isTutorialActive && currentStepIndex == tutorialSteps.Count - 1;
+    }
+    
+    // Public method to check if tutorial should be shown
+    public bool ShouldShowTutorial()
+    {
+        if (forceShowTutorial) return true;
+        if (!checkTutorialCompletion) return true;
+        return TutorialDataManager.Instance.ShouldShowTutorial();
+    }
+    
+    // Public method to force reset tutorial data
+    public void ResetTutorialData()
+    {
+        TutorialDataManager.Instance.ResetTutorialData();
+        Debug.Log("Tutorial data reset - will show tutorial again on next start");
+    }
+    
+    // Public method to get tutorial debug info
+    public string GetTutorialDebugInfo()
+    {
+        return TutorialDataManager.Instance.GetDebugInfo();
     }
     
     void OnDestroy()

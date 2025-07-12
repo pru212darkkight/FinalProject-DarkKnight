@@ -104,18 +104,12 @@ public class UnderwaterEnemySetup : MonoBehaviour
 
     void SetupFishEnemy(GameObject fishObj, EnemyTypeSettings settings)
     {
-        // Kiểm tra xem đã có UnderwaterEnemyHealth chưa
-        UnderwaterEnemyHealth enemyHealth = fishObj.GetComponent<UnderwaterEnemyHealth>();
-        if (enemyHealth == null)
+        // Thêm Map3EnemyDestroyer để tự động destroy khi chết
+        Map3EnemyDestroyer destroyer = fishObj.GetComponent<Map3EnemyDestroyer>();
+        if (destroyer == null)
         {
-            enemyHealth = fishObj.AddComponent<UnderwaterEnemyHealth>();
+            destroyer = fishObj.AddComponent<Map3EnemyDestroyer>();
         }
-
-        // Apply settings
-        enemyHealth.maxHealth = settings.maxHealth;
-        enemyHealth.currentHealth = settings.maxHealth;
-        enemyHealth.healthBarOffset = settings.healthBarOffset;
-        enemyHealth.deathEffect = settings.deathEffect;
 
         // Đảm bảo có Collider2D và set trigger
         Collider2D col = fishObj.GetComponent<Collider2D>();
@@ -132,7 +126,7 @@ public class UnderwaterEnemySetup : MonoBehaviour
 
         if (debugMode)
         {
-            Debug.Log($"Setup {settings.enemyName}: Health={settings.maxHealth}, Offset={settings.healthBarOffset}");
+            Debug.Log($"Setup {settings.enemyName} with Map3EnemyDestroyer: Health={settings.maxHealth}, Offset={settings.healthBarOffset}");
         }
     }
 

@@ -55,7 +55,7 @@ public class MiniBoss1Attack : MonoBehaviour
         {
             PlayerController1 pc = player.GetComponent<PlayerController1>();
             if (pc != null)
-                pc.TakeDamage(attack1Damage, false);
+                pc.TakeDamage(attack1Damage, false, "Bringer Of Death");
         }
     }
 
@@ -80,7 +80,7 @@ public class MiniBoss1Attack : MonoBehaviour
             GameObject thunder = Instantiate(thunderPrefab, pos, Quaternion.identity);
             ThunderHitbox hitbox = thunder.GetComponent<ThunderHitbox>();
             if (hitbox != null)
-                hitbox.Init(thunderDamage, playerLayer, true);
+                hitbox.Init(thunderDamage, playerLayer, true, "Bringer Of Death");
         }
     }
 

@@ -278,3 +278,4 @@ MonoBehaviour:
   pointA: {fileID: 5576204208248530958}
   pointB: {fileID: 7291162711585770536}
   speed: 2
+  lockByScript: 0

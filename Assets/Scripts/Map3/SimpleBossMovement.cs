@@ -1,0 +1,87 @@
+﻿using UnityEngine;
+
+public class SimpleBossMovement : MonoBehaviour
+{
+    [Header("Test Settings")]
+    public bool enableSimpleMovement = true;
+    public float testSpeed = 3f;
+    public bool moveTowardsPlayer = true;
+    public float stopDistance = 2f;
+
+    private Rigidbody2D rb;
+    private Transform player;
+    private Animator animator;
+    private Map3BossController bossController;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        bossController = GetComponent<Map3BossController>();
+
+        // Tìm player theo tag
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
+        else
+        {
+            Debug.LogError("SimpleBossMovement: Player not found!");
+        }
+    }
+
+    void Update()
+    {
+        if (!enableSimpleMovement || player == null || rb == null) return;
+        if (bossController != null)
+        {
+            // Dừng di chuyển nếu boss đã chết hoặc đang attack
+            if (bossController.IsCurrentlyDead || bossController.IsCurrentlyAttacking) // Dùng property public của controller
+            {
+                StopMoving();
+                return;
+            }
+        }
+
+        if (moveTowardsPlayer)
+        {
+            float distance = Vector2.Distance(transform.position, player.position);
+
+            // Nếu đã đến gần hoặc đang attack thì stop
+            if (distance <= stopDistance)
+            {
+                StopMoving();
+                return;
+            }
+
+            // Move tới player
+            Vector2 direction = (player.position - transform.position).normalized;
+            rb.linearVelocity = new Vector2(direction.x * testSpeed, rb.linearVelocity.y);
+
+            // Set animation
+            if (animator != null) animator.SetBool("IsWalking", true);
+
+            // Flip boss hướng về player
+            if (direction.x > 0)
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            else if (direction.x < 0)
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+        }
+    }
+
+    void StopMoving()
+    {
+        // Giữ Y velocity (nếu có nhảy rơi gì đó)
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        if (animator != null) animator.SetBool("IsWalking", false);
+    }
+
+    [ContextMenu("Toggle Simple Movement")]
+    public void ToggleSimpleMovement()
+    {
+        enableSimpleMovement = !enableSimpleMovement;
+        Debug.Log($"Simple Boss Movement: {(enableSimpleMovement ? "Enabled" : "Disabled")}");
+    }
+}

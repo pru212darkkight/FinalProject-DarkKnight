@@ -12,8 +12,8 @@ public class PlayerStatsPanel : MonoBehaviour
     {
         healthText.text = "Health: " + player.maxHealth;
         strengthText.text = "Strength: " + player.strength;
-        staminaText.text = "Stamina: " + player.stamina;
-        speedText.text = "Speed: " + player.speed;
+        staminaText.text = "Stamina: " + player.maxStamina;
+        speedText.text = "Speed: " + player.moveSpeed;
         manaText.text = "Mana: " + player.maxMana;
         manaRegenText.text = "Mana Regen: " + player.manaRegenRate;
         magicResistText.text = "Magic Resist: " + player.magicResist;

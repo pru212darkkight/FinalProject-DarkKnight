@@ -35,7 +35,7 @@ public class FireBullet : MonoBehaviour
             var player = collision.GetComponent<PlayerController1>();
             if (player != null)
             {
-                player.TakeDamage(damage, true);
+                player.TakeDamage(damage, true,"Demon Bat");
             }
             Destroy(gameObject);
         }
