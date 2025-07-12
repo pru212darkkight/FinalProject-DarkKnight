@@ -8,29 +8,15 @@ using UnityEngine.Networking;
 public class GeminiApiClient : MonoBehaviour
 {
     public string geminiApiKey = "AIzaSyB0WJDcp-3yNNXJfZAOHxBTl5VjDR5blIg";
-    public string model = "gemini-1.5-flash-latest";
+    public string model = "gemini-1.5-pro-latest";
 
-    // Prompt mẫu: giới hạn 100 ký tự, ngắn gọn, 1 câu, không dài dòng
-    private string GetAdvicePrompt()
-    {
-        return @"
-        Bạn là cố vấn AI cho game hành động sinh tồn.
-        - Hãy PHÂN TÍCH rõ nguyên nhân thua, nêu tên những quái vật gây sát thương cao nhất (ghi rõ loại sát thương: phép/vật lý, số damage).
-        - Chỉ ra các chỉ số yếu của player, gợi ý nâng gì.
-        - Đề xuất trang bị cần mua: GHI RÕ TÊN, GIÁ, các chỉ số/ưu điểm và tác dụng giúp vượt map.
-        - Lý giải tại sao chọn trang bị đó và cần cải thiện điểm gì.
-        - Viết ngắn gọn, rõ ràng, liệt kê từng ý theo gạch đầu dòng. Không giải thích lại dữ liệu.
-        - Trả về đầy đủ các phần: nguyên nhân thua, phân tích điểm yếu, đề xuất trang bị, lời khuyên chiến thuật.";
-    }
 
 
     public IEnumerator GetAdviceFromGemini(string prompt, string jsonLog, Action<string> onComplete, int retryCount = 3)
     {
         string url = $"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={geminiApiKey}";
 
-        // Nếu prompt truyền vào rỗng thì lấy mặc định
-        if (string.IsNullOrWhiteSpace(prompt))
-            prompt = GetAdvicePrompt();
+        Debug.Log("<color=yellow>---- SEND TO GEMINI ----\nPROMPT:</color>\n" + prompt + "\n<color=yellow>JSON LOG:</color>\n" + jsonLog);
 
         // Gói prompt + log vào message cho AI
         var payload = new
@@ -40,7 +26,7 @@ public class GeminiApiClient : MonoBehaviour
                     role = "user",
                     parts = new[] {
                         new {
-                            text = prompt + "\nDữ liệu trận thua vừa rồi:\n" + jsonLog
+                            text = prompt + "\nDữ liệu trận thua vừa rồi:\n" + jsonLog + "\n Hãy đưa ra lời khuyên tối ưu về cách cải thiện chiến thuật hoặc nên mua/vận dụng vật phẩm nào (và giải thích lý do)."
                         }
                     }
                 }
@@ -63,12 +49,10 @@ public class GeminiApiClient : MonoBehaviour
                 if (req.result == UnityWebRequest.Result.Success)
                 {
                     string responseText = req.downloadHandler.text;
+
+                    Debug.Log("<color=green>---- RECEIVE FROM GEMINI ----\nRESPONSE:</color>\n" + responseText);
+
                     string advice = ParseAdviceFromGeminiResponse(responseText);
-
-                    // Đảm bảo lời khuyên không quá 100 ký tự (phòng trường hợp AI trả về dài)
-                    if (advice.Length > 100)
-                        advice = advice.Substring(0, 100) + "...";
-
                     onComplete?.Invoke(advice);
                     yield break;
                 }

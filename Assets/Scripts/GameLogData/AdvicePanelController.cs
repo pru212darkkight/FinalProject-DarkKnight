@@ -38,7 +38,7 @@ public class AdvicePanelController : MonoBehaviour
         }
         else
         {
-            adviceText.text = "Đang lấy lời khuyên, vui lòng chờ...";
+            adviceText.text = "Đang đợi AI cho lời khuyên, vui lòng chờ...";
             if (!isRequestingAdvice)
                 RequestAdvice();
         }
@@ -75,16 +75,14 @@ public class AdvicePanelController : MonoBehaviour
 
         string jsonLog = Newtonsoft.Json.JsonConvert.SerializeObject(logData, Newtonsoft.Json.Formatting.Indented);
         string prompt =
-@"
-Bạn là cố vấn AI cho game hành động sinh tồn.
+        @"Bạn là cố vấn AI cho game hành động sinh tồn.
 - Phân tích nguyên nhân thua chi tiết, liệt kê rõ từng quái vật gây sát thương lớn nhất, loại damage (vật lý/phép) và lượng damage.
 - Phân tích các điểm yếu về chỉ số nhân vật, kỹ năng, trang bị.
 - Gợi ý nên nâng chỉ số gì, cải thiện chiến thuật ra sao.
 - Đề xuất cụ thể tên trang bị nên mua, giá tiền, ưu điểm và tác dụng khi mang vào trận.
 - Lý do chọn các trang bị, vì sao phù hợp.
-- Trả lời thành các phần, **không được bỏ trống bất kỳ mục nào**, liệt kê từng ý theo gạch đầu dòng, không kết thúc dòng bằng dấu ba chấm `...`.
-- Nếu thiếu thông tin, hãy nói rõ phần nào thiếu chứ không kết thúc bằng dấu `...`.
-";
+- Trả lời thành các phần, **không được bỏ trống mục nào, không được kết thúc dòng bằng dấu ba chấm hoặc bị cắt cụt**. Nếu thiếu thông tin, ghi rõ là “Không đủ dữ liệu”.
+- Đáp án dạng markdown hoặc bullet point, tối đa 10 dòng, không tự ý tóm tắt.";
 
         StartCoroutine(geminiApiClient.GetAdviceFromGemini(prompt, jsonLog, (advice) =>
         {
