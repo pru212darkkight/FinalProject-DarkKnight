@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gold_button_normal_0: 6466126367954131373
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

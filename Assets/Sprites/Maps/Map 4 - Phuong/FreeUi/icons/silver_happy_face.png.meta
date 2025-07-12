@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      silver_happy_face_0: -5431804973218562557
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

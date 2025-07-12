@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wood_happy_face_0: -4675343028687843939
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

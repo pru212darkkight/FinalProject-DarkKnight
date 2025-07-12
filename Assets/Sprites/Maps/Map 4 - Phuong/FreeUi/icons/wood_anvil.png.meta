@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wood_anvil_0: 4162128625040802150
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

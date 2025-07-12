@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      silver_button_normal_0: 5687782489510961857
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

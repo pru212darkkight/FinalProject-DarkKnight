@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gold_scrollbar_grabber_0: -6770226031786859078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

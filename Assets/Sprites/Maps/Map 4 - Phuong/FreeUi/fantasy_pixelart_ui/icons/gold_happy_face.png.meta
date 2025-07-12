@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gold_happy_face_0: -6305068832050941630
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

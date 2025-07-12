@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gold_cross_0: 7878507047844037127
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

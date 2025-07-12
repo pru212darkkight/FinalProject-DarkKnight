@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wood_checkbox_checked_0: 8397625390457915788
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

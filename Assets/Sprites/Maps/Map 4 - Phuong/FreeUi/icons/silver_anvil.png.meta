@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      silver_anvil_0: 2332783498230314258
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
