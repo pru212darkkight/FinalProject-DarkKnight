@@ -15,8 +15,13 @@ public class CoinDrop : MonoBehaviour
             if (money != null)
             {
                 money.AddCoins(coinAmount);
-              
-                
+
+                // Phát âm thanh rớt tiền
+                if (AudioManager.Instance != null && AudioManager.Instance.coinDrop != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.coinDrop);
+                }
+
                 if (showPopup)
                 {
                     // Tìm popup theo tag để phân biệt với rương

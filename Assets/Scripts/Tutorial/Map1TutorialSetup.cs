@@ -25,11 +25,18 @@ public class Map1TutorialSetup : MonoBehaviour
     
     void Start()
     {
+        // Play Map 1 music khi scene load
+        if (AudioManager.Instance != null && AudioManager.Instance.map1 != null)
+        {
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.map1);
+            Debug.Log("🎵 Playing Map 1 music");
+        }
+
         if (tutorialManager == null)
         {
             tutorialManager = FindObjectOfType<TutorialManager>();
         }
-        
+
         if (tutorialManager != null)
         {
             SetupTutorialSteps();
