@@ -181,6 +181,10 @@ public class Enemy : MonoBehaviour
     {
         if (isDead) return;
 
+        if (AudioManager.Instance != null && AudioManager.Instance.wolfRange != null)
+        {
+            AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.hurtEnemy);
+        }
         float finalDamage = damage;
         if (isMagicDamage)
         {

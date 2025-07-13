@@ -34,6 +34,11 @@ public class ClimbLadder : MonoBehaviour
             isClimbing = true;
             rb.gravityScale = 0f;
             rb.linearVelocity = Vector2.zero;
+
+            if (AudioManager.Instance != null && AudioManager.Instance.playerFootstep != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.playerFootstep);
+            }
         }
     }
 

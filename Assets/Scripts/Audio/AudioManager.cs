@@ -22,6 +22,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip coinDrop;
     public AudioClip treasureChest;
 
+    [Header("Panel")]
+    public AudioClip buttonClick;
+    public AudioClip[] victoryEffect;
+    public AudioClip[] defeatEffect;
+
     [Header("Map 1")]
     public AudioClip map1;
     //mini wolf
@@ -59,6 +64,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip spell2;
     public AudioClip spell3;
     public AudioClip[] playerHurt;
+    public AudioClip[] hurtEnemy;
 
     private const string SFX_VOLUME_KEY = "SFXVolume";
     private const string MUSIC_VOLUME_KEY = "MusicVolume";
@@ -168,9 +174,24 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayMusic(AudioClip clip)
     {
+        if (musicSource == null)
+        {
+            Debug.LogError("AudioManager: musicSource is null!");
+            return;
+        }
+
+        if (clip == null)
+        {
+            Debug.LogError("AudioManager: music clip is null!");
+            return;
+        }
+
         musicSource.clip = clip;
         musicSource.loop = true;
+        musicSource.volume = musicVolume;
         musicSource.Play();
+
+        Debug.Log($"🎵 Playing music: {clip.name}");
     }
 
 }

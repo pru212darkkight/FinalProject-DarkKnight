@@ -29,7 +29,6 @@ public class Map1TutorialSetup : MonoBehaviour
         if (AudioManager.Instance != null && AudioManager.Instance.map1 != null)
         {
             AudioManager.Instance.PlayMusic(AudioManager.Instance.map1);
-            Debug.Log("🎵 Playing Map 1 music");
         }
 
         if (tutorialManager == null)
