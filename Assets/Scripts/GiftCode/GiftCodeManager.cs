@@ -13,6 +13,7 @@ public class GiftCodeManager : MonoBehaviour
     // Tham chiếu tới Player, PlayerMoney
     public PlayerController1 player;
     public PlayerMoney playerMoney;
+    public ShopManager shopManager;
 
     private void Start()
     {
@@ -62,6 +63,9 @@ public class GiftCodeManager : MonoBehaviour
                 playerMoney.AddCoins(9999);
                 txtResult.text = "You have received 9999 gold!";
                 isValid = true;
+
+                if (shopManager != null)
+                    shopManager.UpdateMoneyUI(); // ✅ cập nhật UI shop
                 break;
 
             case "tuyentutung":
@@ -72,7 +76,11 @@ public class GiftCodeManager : MonoBehaviour
                 playerMoney.UpdateUI();
                 txtResult.text = "Reset health to 100 and lost all gold!";
                 isValid = true;
+
+                if (shopManager != null)
+                    shopManager.UpdateMoneyUI(); // ✅ cập nhật UI shop
                 break;
+
 
             default:
                 txtResult.text = "Invalid code!";
