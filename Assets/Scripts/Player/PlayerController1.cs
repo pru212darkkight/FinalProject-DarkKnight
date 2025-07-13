@@ -429,6 +429,11 @@ public class PlayerController1 : MonoBehaviour
     {
         if (isGrounded && !isAttacking && !isAttacking2 && !isAttacking3)
         {
+            //gắn âm thanh spell2
+            if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.jump);
+            }
             isJumping = true;
             animator.SetTrigger(JumpHash);
         }
@@ -451,6 +456,11 @@ public class PlayerController1 : MonoBehaviour
                 ishurt = false;
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Attack started");
+
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack);
+                }
 
                 // Perform attack hurt detection
                 Collider2D[] hurtEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
@@ -500,6 +510,11 @@ public class PlayerController1 : MonoBehaviour
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Attack 2 started");
 
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack2);
+                }
+
                 // Perform attack 2 hurt detection
                 Collider2D[] hurtEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attack2Range, enemyLayer);
                 foreach (Collider2D enemy in hurtEnemies)
@@ -547,6 +562,11 @@ public class PlayerController1 : MonoBehaviour
                 ishurt = false;
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Attack 3 started");
+
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack);
+                }
 
                 // Perform attack 3 hurt detection
                 Collider2D[] hurtEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attack3Range, enemyLayer);
@@ -598,6 +618,10 @@ public class PlayerController1 : MonoBehaviour
                 ishurt = false;
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Spell 1 started");
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.spell1);
+                }
 
                 // Tạo chưởng lửa với delay nhỏ
                 StartCoroutine(SpawnFireballWithDelay(0.3f)); // Delay 0.3 giây
@@ -666,6 +690,12 @@ public class PlayerController1 : MonoBehaviour
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Spell 2 started");
 
+                //gắn âm thanh spell2
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.spell2);
+                }
+
                 // Perform spell 2 hurt detection
                 Collider2D[] hurtEnemies = Physics2D.OverlapCircleAll(attackPoint.position, spell2Range, enemyLayer);
                 foreach (Collider2D enemy in hurtEnemies)
@@ -706,6 +736,10 @@ public class PlayerController1 : MonoBehaviour
             animator.SetTrigger(DefendHash);
             animator.SetBool(IsDefendingHash, true);
             Debug.Log("Defend started");
+            if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.defend);
+            }
         }
     }
 
@@ -746,6 +780,10 @@ public class PlayerController1 : MonoBehaviour
             animator.SetTrigger(DashHash);
             animator.SetBool(IsDashingHash, true);
             Debug.Log("Dash started");
+            if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.dash);
+            }
 
             UpdateUI();
         }
