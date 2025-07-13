@@ -9,7 +9,8 @@ public class Map3BossController : MonoBehaviour
     public Rigidbody2D rb;
     public EnemyHealth enemyHealth;
 
-    [Header("Attack Area")]
+    [Header("Detection & Attack Area")]
+    public float detectionRange = 8f; // Phạm vi phát hiện player
     public Vector2 attackRangeBoxSize = new Vector2(1.2f, 1.5f); // Smaller attack box
     public Vector2 attackRangeBoxOffset = new Vector2(0.8f, 0f); // Closer to boss
 
@@ -36,6 +37,7 @@ public class Map3BossController : MonoBehaviour
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
     private bool isFacingRight = true;
+    private bool playerDetected = false; // Trạng thái phát hiện player
 
     // New state management
     private bool isIdling = false;
@@ -70,17 +72,20 @@ public class Map3BossController : MonoBehaviour
             {
                 player = playerObj.transform;
             }
+            else
+            {
+            }
         }
 
-        // Debug Rigidbody2D settings
-        if (showDebug && rb != null)
+        // Đảm bảo Rigidbody2D settings đúng
+        if (rb != null)
         {
-            Debug.Log($"🔧 Boss Rigidbody2D Settings:");
-            Debug.Log($"   - Body Type: {rb.bodyType}");
-            Debug.Log($"   - Mass: {rb.mass}");
-            Debug.Log($"   - Linear Drag: {rb.linearDamping}");
-            Debug.Log($"   - Freeze Position X: {rb.freezeRotation}");
-            Debug.Log($"   - Is Kinematic: {rb.isKinematic}");
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.freezeRotation = true; // Không xoay
+            rb.linearDamping = 0f; // Không có drag
+        }
+        else
+        {
         }
     }
 
@@ -94,6 +99,10 @@ public class Map3BossController : MonoBehaviour
             return;
         }
 
+        // SIMPLE MOVEMENT LOGIC (từ SimpleBossMovement)
+        HandleSimpleMovement();
+
+        // Attack logic - chỉ check attack range
         Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
         bool playerInAttackBox = Physics2D.OverlapBox(
             attackCenter,
@@ -102,28 +111,103 @@ public class Map3BossController : MonoBehaviour
             playerLayer
         );
 
-        HandleBossState(playerInAttackBox);
-
-        // Debug info
-        if (showDebug && Time.frameCount % 60 == 0)
+        if (playerInAttackBox && !isAttacking && !isHurt)
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            float timeSinceLastAttack = Time.time - lastAttackTime;
-            bool canAttack = Time.time >= lastAttackTime + attackCooldown;
-            string state = isHurt ? "Hurt" : isAttacking ? "Attacking" : isIdling ? "Idling" : "Walking";
+            if (Time.time >= lastAttackTime + attackCooldown)
+            {
+                DoRandomAttack();
+                lastAttackTime = Time.time;
+            }
         }
     }
 
-    void HandleBossState(bool playerInAttackBox)
+    /// <summary>
+    /// Simple movement logic (từ SimpleBossMovement) - ĐƠN GIẢN VÀ HIỆU QUẢ
+    /// </summary>
+    void HandleSimpleMovement()
     {
+        if (rb == null || player == null) return;
+
+        // Dừng di chuyển nếu boss đã chết hoặc đang attack hoặc hurt
+        if (isDead || isAttacking || isHurt)
+        {
+            SimpleStopMoving();
+            return;
+        }
+
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        // Nếu player ngoài detection range - đứng yên
+        if (distance > detectionRange)
+        {
+            SimpleStopMoving();
+            return;
+        }
+
+        // Nếu đã đến gần - dừng để attack
+        if (distance <= stopDistance)
+        {
+            SimpleStopMoving();
+            return;
+        }
+
+        // DI CHUYỂN TỚI PLAYER - LOGIC ĐƠN GIẢN
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.linearVelocity = new Vector2(direction.x * moveSpeed, rb.linearVelocity.y);
+
+        // Set animation - dùng string như SimpleBossMovement
+        if (animator != null) animator.SetBool("IsWalking", true);
+
+        // Flip boss hướng về player - logic đơn giản
+        if (direction.x > 0)
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0)
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+        // Debug
+        if (showDebug && Time.frameCount % 60 == 0)
+        {
+            Debug.Log($"🚶 Simple Boss Movement: Distance={distance:F2}, Velocity={rb.linearVelocity.x:F2}, Speed={moveSpeed}");
+        }
+    }
+
+    /// <summary>
+    /// Stop movement - đơn giản như SimpleBossMovement
+    /// </summary>
+    void SimpleStopMoving()
+    {
+        if (rb != null)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", false);
+        }
+    }
+
+    void HandleBossState_OLD(bool playerInAttackBox, bool playerInDetectionRange)
+    {
+        // DISABLED - không dùng nữa, thay bằng HandleSimpleMovement()
+        /*
         if (isHurt || isAttacking)
         {
             animator.SetBool(IsWalkingHash, false);
             return;
         }
 
+        // Nếu player không trong detection range, boss đứng yên
+        if (!playerInDetectionRange)
+        {
+            animator.SetBool(IsWalkingHash, false);
+            if (showDebug && Time.frameCount % 120 == 0)
+            return;
+        }
+
+        // Player trong detection range
         if (playerInAttackBox)
         {
+            // Player trong attack range - tấn công
             isIdling = false;
             LookAtPlayer();
             animator.SetBool(IsWalkingHash, false);
@@ -136,6 +220,7 @@ public class Map3BossController : MonoBehaviour
         }
         else
         {
+            // Player trong detection range nhưng ngoài attack range
             if (wasPlayerInAttackBox && !isIdling)
             {
                 StartIdle();
@@ -149,14 +234,18 @@ public class Map3BossController : MonoBehaviour
             }
             else
             {
+                // Di chuyển tới player
                 LookAtPlayer();
                 animator.SetBool(IsWalkingHash, true);
             }
         }
 
         wasPlayerInAttackBox = playerInAttackBox;
+        */
     }
 
+    // FixedUpdate DISABLED - sử dụng Update với logic đơn giản
+    /*
     void FixedUpdate()
     {
         // Handle movement in FixedUpdate
@@ -165,28 +254,66 @@ public class Map3BossController : MonoBehaviour
         // Don't move if EnemyHealth says we're dead
         if (enemyHealth != null && enemyHealth.isDead) return;
 
-        // Debug movement mode
-        if (showDebug && Time.frameCount % 120 == 0) // Every 2 seconds
+        // FORCE MOVEMENT - Đảm bảo boss di chuyển
+        HandleBossMovement();
+    }
+    */
+
+    /// <summary>
+    /// OLD movement logic - DISABLED
+    /// </summary>
+    void HandleBossMovement_OLD()
+    {
+        // DISABLED - Using HandleSimpleMovement() instead
+        /*
+        // Không di chuyển nếu đang attack, hurt, hoặc dead
+        if (isAttacking || isHurt || isDead)
         {
-            Debug.Log($"🚶 Boss Movement Mode: {(enableSimpleMovement ? "SIMPLE" : "ADVANCED")}");
+            StopMoving();
+            return;
         }
 
-        // Choose movement logic based on enableSimpleMovement
-        if (enableSimpleMovement)
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        // Nếu player ngoài detection range - đứng yên
+        if (distance > detectionRange)
         {
-            HandleSimpleMovement();
+            StopMoving();
+            return;
         }
-        else
+
+        // Nếu quá gần player - đứng yên để attack
+        if (distance <= stopDistance)
         {
-            HandleAdvancedMovement();
+            StopMoving();
+            return;
+        }
+
+        // DI CHUYỂN TỚI PLAYER
+        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 velocity = rb.linearVelocity;
+        velocity.x = direction.x * moveSpeed;
+        rb.linearVelocity = velocity;
+
+        // Set animation
+        animator.SetBool(IsWalkingHash, true);
+
+        // Face player
+        LookAtPlayer();
+        */
+
+        if (showDebug && Time.frameCount % 60 == 0) // Debug mỗi giây
+        {
         }
     }
 
     /// <summary>
-    /// Simple movement logic (merged from SimpleBossMovement)
+    /// Simple movement logic (merged from SimpleBossMovement) - DISABLED
     /// </summary>
-    void HandleSimpleMovement()
+    void HandleSimpleMovement_OLD()
     {
+        // DISABLED - Using HandleBossMovement() instead
+        /*
         if (!moveTowardsPlayer)
         {
             if (showDebug && Time.frameCount % 120 == 0)
@@ -202,8 +329,18 @@ public class Map3BossController : MonoBehaviour
             StopMoving();
             return;
         }
+        */
 
         float distance = Vector2.Distance(transform.position, player.position);
+
+        // Kiểm tra detection range trước
+        if (distance > detectionRange)
+        {
+            if (showDebug && Time.frameCount % 120 == 0)
+                Debug.Log($"🚶 Simple Movement: Player out of detection range - Distance:{distance:F2}, DetectionRange:{detectionRange}");
+            StopMoving();
+            return;
+        }
 
         // Stop if too close (let boss attack)
         if (distance <= stopDistance)
@@ -241,10 +378,12 @@ public class Map3BossController : MonoBehaviour
     }
 
     /// <summary>
-    /// Advanced movement logic (original Map3BossController logic)
+    /// Advanced movement logic (original Map3BossController logic) - DISABLED
     /// </summary>
-    void HandleAdvancedMovement()
+    void HandleAdvancedMovement_OLD()
     {
+        // DISABLED - Using HandleBossMovement() instead
+        /*
         Vector2 velocity = rb.linearVelocity;
         Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
         bool playerInAttackBox = Physics2D.OverlapBox(
@@ -254,7 +393,14 @@ public class Map3BossController : MonoBehaviour
             playerLayer
         );
 
-        if (!playerInAttackBox && !isAttacking && !isIdling && !isHurt)
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        // Kiểm tra detection range
+        if (distance > detectionRange)
+        {
+            velocity.x = 0; // Đứng yên nếu player ngoài detection range
+        }
+        else if (!playerInAttackBox && !isAttacking && !isIdling && !isHurt)
         {
             Vector2 direction = (player.position - transform.position).normalized;
             velocity.x = direction.x * moveSpeed;
@@ -265,6 +411,7 @@ public class Map3BossController : MonoBehaviour
         }
 
         rb.linearVelocity = velocity;
+        */
     }
 
     /// <summary>
@@ -293,27 +440,20 @@ public class Map3BossController : MonoBehaviour
         }
     }
 
+    // IDLE METHODS DISABLED - không cần với simple movement
+    /*
     void StartIdle()
     {
         isIdling = true;
         idleStartTime = Time.time;
         animator.SetBool(IsWalkingHash, false);
-
-        if (showDebug)
-        {
-            Debug.Log("Boss: Starting idle state for 1 second");
-        }
     }
 
     void EndIdle()
     {
         isIdling = false;
-
-        if (showDebug)
-        {
-            Debug.Log("Boss: Ending idle state - will start walking");
-        }
     }
+    */
 
     public void DoRandomAttack()
     {
@@ -356,8 +496,6 @@ public class Map3BossController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        Debug.Log($"🔥 TEMPORARY: Executing attack {attackChoice} via DelayedExecuteAttack");
-
         switch (attackChoice)
         {
             case 1:
@@ -388,7 +526,6 @@ public class Map3BossController : MonoBehaviour
         }
     }
 
-    // ===== ATTACK IMPLEMENTATIONS (Animation Events) =====
 
     public void ExecuteAttack1()
     {
@@ -401,20 +538,16 @@ public class Map3BossController : MonoBehaviour
         if (playerCollider != null)
         {
             var playerController = playerCollider.GetComponentInParent<PlayerController1>();
-            Debug.Log($"Boss: ExecuteAttack1 hit object: {playerCollider.name}, has PlayerController1: {playerController != null}");
             if (playerController != null)
             {
                 playerController.TakeDamage(attackDamage, false);
-                Debug.Log($"🩸 Boss: ExecuteAttack1 dealt {attackDamage} damage to player!");
             }
             else
             {
-                Debug.LogWarning("Boss: ExecuteAttack1 - Player doesn't have PlayerController1!", playerCollider.gameObject);
             }
         }
         else
         {
-            Debug.Log("Boss: ExecuteAttack1 - Player not in attack range, no damage dealt");
         }
     }
 
@@ -429,61 +562,49 @@ public class Map3BossController : MonoBehaviour
         if (playerCollider != null)
         {
             var playerController = playerCollider.GetComponentInParent<PlayerController1>();
-            Debug.Log($"Boss: ExecuteAttack2 hit object: {playerCollider.name}, has PlayerController1: {playerController != null}");
             if (playerController != null)
             {
                 float damage = attackDamage * 1.2f;
                 playerController.TakeDamage(damage, false);
-                Debug.Log($"🩸 Boss: ExecuteAttack2 dealt {damage} damage to player!");
             }
             else
             {
-                Debug.LogWarning("Boss: ExecuteAttack2 - Player doesn't have PlayerController1!", playerCollider.gameObject);
             }
         }
         else
         {
-            Debug.Log("Boss: ExecuteAttack2 - Player not in attack range, no damage dealt");
         }
     }
 
     public void ExecuteAttack3()
     {
-        if (showDebug)
-            Debug.Log("🔥 Boss: ExecuteAttack3 called!");
-
         Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
         Collider2D playerCollider = Physics2D.OverlapBox(attackCenter, attackRangeBoxSize, 0, playerLayer);
 
         if (playerCollider != null)
         {
             var playerController = playerCollider.GetComponentInParent<PlayerController1>();
-            Debug.Log($"Boss: ExecuteAttack3 hit object: {playerCollider.name}, has PlayerController1: {playerController != null}");
             if (playerController != null)
             {
                 float damage = attackDamage * 1.5f;
                 playerController.TakeDamage(damage, false);
-                Debug.Log($"🩸 Boss: ExecuteAttack3 dealt {damage} damage to player!");
             }
             else
             {
-                Debug.LogWarning("Boss: ExecuteAttack3 - Player doesn't have PlayerController1!", playerCollider.gameObject);
             }
         }
         else
         {
-            Debug.Log("Boss: ExecuteAttack3 - Player not in attack range, no damage dealt");
         }
     }
 
     public void OnAttackEnd()
     {
-        if (showDebug)
-            Debug.Log("Boss: OnAttackEnd called - resetting attack state");
-
         isAttacking = false;
         animator.SetBool(IsWalkingHash, false);
 
+        // DISABLED - không cần idle logic với simple movement
+        /*
         if (player != null)
         {
             Vector2 attackCenter = (Vector2)transform.position + attackRangeBoxOffset;
@@ -492,18 +613,11 @@ public class Map3BossController : MonoBehaviour
             if (!playerStillInAttackBox)
             {
                 StartIdle();
-                if (showDebug)
-                    Debug.Log("Boss: Player left attack box after attack - starting idle");
-            }
-            else
-            {
-                if (showDebug)
-                    Debug.Log("Boss: Player still in attack box - ready for next attack");
             }
         }
+        */
     }
 
-    // ===== HEALTH & DAMAGE SYSTEM =====
 
     public void TakeDamage(float damage)
     {
@@ -521,8 +635,6 @@ public class Map3BossController : MonoBehaviour
     {
         if (isDead || isHurt) return;
 
-        if (showDebug)
-            Debug.Log("Boss: Taking damage - triggering hurt animation");
 
         isHurt = true;
         isAttacking = false;
@@ -539,17 +651,11 @@ public class Map3BossController : MonoBehaviour
     {
         yield return new WaitForSeconds(hurtDuration);
 
-        if (showDebug)
-            Debug.Log("Boss: Recovering from hurt state");
-
         isHurt = false;
     }
 
     public void OnHurtEnd()
     {
-        if (showDebug)
-            Debug.Log("Boss: OnHurtEnd called - recovering from hurt state");
-
         isHurt = false;
     }
 
@@ -571,7 +677,6 @@ public class Map3BossController : MonoBehaviour
     public void ToggleMovementMode()
     {
         enableSimpleMovement = !enableSimpleMovement;
-        Debug.Log($"Boss Movement Mode: {(enableSimpleMovement ? "Simple" : "Advanced")}");
     }
 
     public void Die()
@@ -598,14 +703,24 @@ public class Map3BossController : MonoBehaviour
     {
         if (!showGizmos) return;
 
+        // Draw detection range circle (vàng)
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        // Draw attack range box (đỏ)
         Gizmos.color = Color.red;
         Vector3 boxCenter = transform.position + (Vector3)attackRangeBoxOffset;
         Gizmos.DrawWireCube(boxCenter, attackRangeBoxSize);
 
-        if (player != null)
+        // Draw line to player if detected (xanh lá)
+        if (player != null && playerDetected)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, player.position);
         }
+
+        // Draw center point (trắng)
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, 0.1f);
     }
 }
