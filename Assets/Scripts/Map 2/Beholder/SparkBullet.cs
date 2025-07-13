@@ -9,22 +9,17 @@ public class SparkBullet : MonoBehaviour
     private Vector2 direction = Vector2.right;
     private float timer = 0f;
 
-    // Thiết lập hướng bay của electron
     public void SetDirection(Vector2 dir)
     {
         direction = dir.normalized;
-
-        // Xoay viên đạn theo hướng bay
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
+        // Xoay sprite cho đạn luôn chĩa về hướng bay (sprite mặc định nhìn phải)
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     void Update()
     {
-        // Di chuyển đạn theo hướng đã chọn
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
-
-        // Kiểm tra thời gian tồn tại
         timer += Time.deltaTime;
         if (timer >= lifeTime)
         {
@@ -34,17 +29,15 @@ public class SparkBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Gây sát thương nếu trúng Player
         if (collision.CompareTag("Player"))
         {
             var player = collision.GetComponent<PlayerController1>();
             if (player != null)
             {
-                player.TakeDamage(damage, true, "Beholder"); // true = magic damage
+                player.TakeDamage(damage, true, "Beholder");
             }
             Destroy(gameObject);
         }
-        // Hủy nếu chạm nền
         else if (collision.CompareTag("Ground"))
         {
             Destroy(gameObject);

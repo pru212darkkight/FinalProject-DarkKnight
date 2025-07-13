@@ -118,11 +118,12 @@ public class BeholderController : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
         if (targetX > transform.position.x)
-            scale.x = -Mathf.Abs(scale.x); // Quay phải
+            scale.x = Mathf.Abs(scale.x);      // Nhìn phải (scale.x > 0)
         else if (targetX < transform.position.x)
-            scale.x = Mathf.Abs(scale.x);  // Quay trái
+            scale.x = -Mathf.Abs(scale.x);     // Nhìn trái (scale.x < 0)
         transform.localScale = scale;
     }
+
 
     void HealthRegen()
     {
