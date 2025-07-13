@@ -23,7 +23,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (currentNPC != null)
             {
-                
+                currentNPC.HideInteractionHint();
+
                 if (currentNPC.IsShopOpen())
                 {
                     currentNPC.CloseAll();

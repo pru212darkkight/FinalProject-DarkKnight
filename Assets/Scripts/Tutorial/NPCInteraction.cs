@@ -13,7 +13,7 @@ public class NPCInteraction : MonoBehaviour
     public AudioClip shopCloseClip;
 
     [Header("Audio - Voice Lines")]
-    public AudioClip greetingClip; // Giọng nói khi hiện E
+    public AudioClip greetingClip;
 
     private bool isShopOpen = false;
     private AudioSource audioSource;
@@ -33,47 +33,43 @@ public class NPCInteraction : MonoBehaviour
 
     public void ShowInteractionHint()
     {
-        interactionUI.SetActive(true);
-        interactionText.text = "E";
-
-        if (greetingClip != null && audioSource != null)
+        if (interactionUI != null)
         {
-            audioSource.PlayOneShot(greetingClip);
+            interactionUI.SetActive(true);
+            interactionText.text = "E";
+
+            if (greetingClip != null)
+                audioSource.PlayOneShot(greetingClip);
         }
     }
 
     public void HideInteractionHint()
     {
-        interactionUI.SetActive(false);
+        if (interactionUI != null)
+            interactionUI.SetActive(false);
     }
 
     public void OpenShop()
     {
         if (isShopOpen) return;
 
-        Debug.Log("OpenShop() called");
         shopUI.SetActive(true);
         isShopOpen = true;
 
-        if (shopOpenClip != null && audioSource != null)
-        {
+        if (shopOpenClip != null)
             audioSource.PlayOneShot(shopOpenClip);
-        }
     }
 
     public void CloseAll()
     {
         if (!isShopOpen) return;
 
-        Debug.Log("CloseAll() called");
         shopUI.SetActive(false);
         HideInteractionHint();
         isShopOpen = false;
 
-        if (shopCloseClip != null && audioSource != null)
-        {
+        if (shopCloseClip != null)
             audioSource.PlayOneShot(shopCloseClip);
-        }
     }
 
     public bool IsShopOpen()
