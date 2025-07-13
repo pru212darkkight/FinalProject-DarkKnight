@@ -77,8 +77,8 @@ public class AdvicePanelController : MonoBehaviour
         string prompt =
         @"Bạn là cố vấn AI cho game hành động sinh tồn.
 - Phân tích nguyên nhân thua chi tiết, liệt kê rõ từng quái vật gây sát thương lớn nhất, loại damage (vật lý/phép) và lượng damage.
-- Phân tích các điểm yếu về chỉ số nhân vật, kỹ năng, trang bị.
-- Gợi ý nên nâng chỉ số gì, cải thiện chiến thuật ra sao.
+- Phân tích các điểm yếu về chỉ số nhân vật, trang bị.
+- Gợi ý nên nâng chỉ số gì, cải thiện cách chơi ra sao.
 - Đề xuất cụ thể tên trang bị nên mua, giá tiền, ưu điểm và tác dụng khi mang vào trận.
 - Lý do chọn các trang bị, vì sao phù hợp.
 - Trả lời thành các phần, **không được bỏ trống mục nào, không được kết thúc dòng bằng dấu ba chấm hoặc bị cắt cụt**. Nếu thiếu thông tin, ghi rõ là “Không đủ dữ liệu”.
