@@ -55,7 +55,7 @@ public class ReaperBossAttack : MonoBehaviour
         {
             PlayerController1 pc = player.GetComponent<PlayerController1>();
             if (pc != null)
-                pc.TakeDamage(attack1Damage, false);
+                pc.TakeDamage(attack1Damage, false, "Reaper Boss");
         }
     }
 

@@ -25,9 +25,6 @@ public class GameMenuController : MonoBehaviour
     [SerializeField] private Button introLeftButton;
     [SerializeField] private Button introRightButton;
 
-    [Header("Scene Name")]
-    [SerializeField] private string playSceneName = "HomeVillage";
-
     private void Start()
     {
         // Main Menu buttons
@@ -54,7 +51,7 @@ public class GameMenuController : MonoBehaviour
 
     private void OnPlayClick()
     {
-        SceneManager.LoadScene(playSceneName);
+        SceneManager.LoadScene("Home Village");
     }
 
     private void OnOptionClick()

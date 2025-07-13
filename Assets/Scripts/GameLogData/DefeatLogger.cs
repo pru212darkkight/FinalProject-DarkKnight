@@ -41,7 +41,7 @@ public class DefeatLogger : MonoBehaviour
         List<ItemLogData> shopLog = shopItems
             .Where(item => !ownedItemNames.Contains(item.itemName))
             .OrderByDescending(i => i.price)  // Có thể ưu tiên item giá cao (hoặc đổi .OrderBy(...) tuỳ bạn)
-            .Take(8) // Lấy tối đa 8 item
+            .Take(36) // Lấy tối đa 8 item
             .Select(item => new ItemLogData
             {
                 name = item.itemName,
