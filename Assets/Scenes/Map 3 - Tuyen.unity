@@ -23289,10 +23289,16 @@ MonoBehaviour:
   sfxVolume: 1
   backgroundMusic: []
   gameMusic: []
+  map1: {fileID: 0}
+  map2: {fileID: 0}
+  map3: {fileID: 0}
+  map4: {fileID: 0}
+  map5: {fileID: 0}
   teleportMusic: {fileID: 8300000, guid: 5f273fbc7c5d34249abd3a402f92c92e, type: 3}
   attack: {fileID: 8300000, guid: 9850cf9cb2b576f40935490babe69fa8, type: 3}
   attack2: {fileID: 8300000, guid: 3cd563ca729a4c548969cda1b9bf80d4, type: 3}
-  silde: {fileID: 8300000, guid: 070771558836a7e46a2692265063d76a, type: 3}
+  dash: {fileID: 8300000, guid: 070771558836a7e46a2692265063d76a, type: 3}
+  defend: {fileID: 8300000, guid: d6f4348faa54beb4f897ad3b0613582b, type: 3}
   jump: {fileID: 8300000, guid: 6ddfd46a1d66a3f4395c1ac9deae7d59, type: 3}
   spell1: {fileID: 8300000, guid: 28b3db865b2d17d44846b25ab2c81f0f, type: 3}
   spell2: {fileID: 8300000, guid: 88e2969419be6a84fbba4e62a90e39fd, type: 3}

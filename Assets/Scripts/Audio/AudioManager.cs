@@ -17,16 +17,39 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] backgroundMusic;
     public AudioClip[] gameMusic;
 
-    [Header("Map music")]
+    [Header("Common SFX")]
+    public AudioClip teleportMusic;
+    public AudioClip coinDrop;
+    public AudioClip treasureChest;
+
+    [Header("Map 1")]
     public AudioClip map1;
+    //mini wolf
+    public AudioClip wolfAttack;
+    public AudioClip wolfRange;
+    //skeleton
+    public AudioClip skeletonAttack;
+    //Boss Wolf
+    public AudioClip bossDoorClose;
+    public AudioClip bossWolfRoar;
+    public AudioClip bossWolfDash;
+    public AudioClip bossWolfSlam;
+    public AudioClip bossWolfDeath;
+
+    [Header("Map 2")]
     public AudioClip map2;
+
+    [Header("Map 3")]
     public AudioClip map3;
+
+    [Header("Map 4")]
     public AudioClip map4;
+
+    [Header("Map 5")]
     public AudioClip map5;
 
-    public AudioClip teleportMusic;
-
     [Header("Player Actions")]
+    public AudioClip playerFootstep;
     public AudioClip attack;
     public AudioClip attack2;
     public AudioClip dash;
@@ -34,6 +57,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip jump;
     public AudioClip spell1;
     public AudioClip spell2;
+    public AudioClip spell3;
+    public AudioClip[] playerHurt;
 
     private const string SFX_VOLUME_KEY = "SFXVolume";
     private const string MUSIC_VOLUME_KEY = "MusicVolume";

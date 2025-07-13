@@ -73,6 +73,14 @@ public class BossWolf : Enemy
     private IEnumerator AttackPattern()
     {
         isAttacking = true;
+
+        // 🎵 Boss roar khi bắt đầu tấn công
+        if (AudioManager.Instance != null && AudioManager.Instance.bossWolfRoar != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.bossWolfRoar);
+            Debug.Log("🐺 Boss Wolf roaring!");
+        }
+
         switch (attackStep)
         {
             case 0:
@@ -141,9 +149,16 @@ public class BossWolf : Enemy
 
     private IEnumerator DashThroughPlayer()
     {
+        // 🎵 Dash sound khi bắt đầu lướt
+        if (AudioManager.Instance != null && AudioManager.Instance.bossWolfDash != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.bossWolfDash);
+            Debug.Log("💨 Boss Wolf dashing!");
+        }
+
         // Lưu vị trí trước khi dash
         Vector2 dashStartPosition = transform.position;
-        
+
         // Lướt nhanh qua player với animation Dash
         if (animator != null) animator.SetTrigger(DashHash);
         Vector2 dashDir = (player.position.x > transform.position.x) ? Vector2.right : Vector2.left;
@@ -268,8 +283,15 @@ public class BossWolf : Enemy
         }
         
         yield return new WaitUntil(() => isGrounded);
-        if (animator != null) 
+        if (animator != null)
         {
+            // 🎵 Slam sound khi chạm đất
+            if (AudioManager.Instance != null && AudioManager.Instance.bossWolfSlam != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.bossWolfSlam);
+                Debug.Log("💥 Boss Wolf ground slam!");
+            }
+
             animator.SetBool(IsGroundedHash, true);
             animator.ResetTrigger(JumpHash);
         }
@@ -323,7 +345,13 @@ public class BossWolf : Enemy
         if (isDead) return;
 
         isDead = true;
-        
+
+        // 🎵 Death sound khi boss chết
+        if (AudioManager.Instance != null && AudioManager.Instance.bossWolfDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.bossWolfDeath);
+        }
+
         // Dừng tất cả hành động
         StopAllCoroutines();
         isAttacking = false;

@@ -178,6 +178,11 @@ public class PlayerController1 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool ishurt = false;
     private float hurtStunTimeLeft = 0f;
+
+    // thêm biến đề đưa âm thanh theo số bước chân
+    private float footstepTimer = 0f;
+    private float footstepInterval = 0.5f; // Time between footsteps
+    private bool wasMovingLastFrame = false;
     private Color originalColor;
     private float lastSpell1Time;
     private float lastSpell2Time;
@@ -331,6 +336,9 @@ public class PlayerController1 : MonoBehaviour
             UpdateUI();
         }
 
+        // 🎵 Footstep audio logic
+        HandleFootstepAudio();
+
         // Health regeneration - independent of stamina
         if (Time.time > lastDamageTime + healthRegenDelay && currentHealth < maxHealth)
         {
@@ -423,6 +431,41 @@ public class PlayerController1 : MonoBehaviour
         }
 
         rb.linearVelocity = velocity;
+    }
+
+    private void HandleFootstepAudio()
+    {
+        // Check if player is moving horizontally and on ground
+        bool isMoving = Mathf.Abs(moveInput.x) > 0.1f && isGrounded &&
+                       !isAttacking && !isAttacking2 && !isAttacking3 &&
+                       !isSpell1 && !isSpell2 && !isSpell3 &&
+                       !isDashing && !isDefending && !ishurt;
+
+        if (isMoving)
+        {
+            // Update footstep timer
+            footstepTimer += Time.deltaTime;
+
+            // Play footstep sound at intervals
+            if (footstepTimer >= footstepInterval)
+            {
+                // Âm thanh player di chuyển theo bước chân
+                if (AudioManager.Instance != null && AudioManager.Instance.playerFootstep != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.playerFootstep);
+                }
+
+                // Reset timer
+                footstepTimer = 0f;
+            }
+        }
+        else
+        {
+            // Reset timer when not moving
+            footstepTimer = 0f;
+        }
+
+        wasMovingLastFrame = isMoving;
     }
 
     private void OnJump(InputAction.CallbackContext context)
@@ -926,6 +969,12 @@ public class PlayerController1 : MonoBehaviour
 
     public void ApplyhurtEffects()
     {
+        // 🎵 Phát âm thanh player bị thương
+        if (AudioManager.Instance != null && AudioManager.Instance.playerHurt != null)
+        {
+            AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.playerHurt);
+        }
+
         // Reset attack states when hurt to prevent stuck states
         if (isAttacking)
         {
@@ -1249,6 +1298,10 @@ public class PlayerController1 : MonoBehaviour
                 speed *= 1.5f;
 
                 Debug.Log("Spell 3 (Transform) started");
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.spell3);
+                }
                 UpdateUI();
             }
         }
