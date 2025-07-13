@@ -1150,7 +1150,7 @@ public class PlayerController1 : MonoBehaviour
         }
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if (healthBar != null)
         {
