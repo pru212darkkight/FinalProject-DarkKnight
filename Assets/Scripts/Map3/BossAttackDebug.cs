@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossAttackDebug : MonoBehaviour
 {
@@ -112,35 +112,39 @@ public class BossAttackDebug : MonoBehaviour
         }
         return default(T);
     }
-    
+
     void OnDrawGizmos()
     {
         if (!enableDebug || !showAttackBox || bossController == null) return;
-        
+
         // Draw attack box
         Gizmos.color = Color.red;
         Vector3 boxCenter = transform.position + (Vector3)bossController.attackRangeBoxOffset;
         Gizmos.DrawWireCube(boxCenter, bossController.attackRangeBoxSize);
-        
+
         // Draw attack box filled
         Gizmos.color = new Color(1, 0, 0, 0.3f);
         Gizmos.DrawCube(boxCenter, bossController.attackRangeBoxSize);
-        
+
         // Draw line to player
         if (player != null)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, player.position);
-            
-            // Draw distance text
+
+            // Draw distance text (only in Editor)
+#if UNITY_EDITOR
             float distance = Vector2.Distance(transform.position, player.position);
+            // Chỉ "using UnityEditor;" ở đây
             UnityEditor.Handles.Label(
                 Vector3.Lerp(transform.position, player.position, 0.5f),
                 $"Distance: {distance:F2}"
             );
+#endif
         }
     }
-    
+
+
     [ContextMenu("Force Attack Now")]
     public void ForceAttackNow()
     {
