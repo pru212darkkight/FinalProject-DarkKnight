@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour
     }
     public void ShowDefeatPanel()
     {
+        if (AudioManager.Instance != null && AudioManager.Instance.defeatEffect != null)
+        {
+            AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.defeatEffect);
+            Debug.Log("🚪 Boss door closing - playing defeat sound!");
+        }
         if (isHomeVillage) return;
         levelTimer.StopTimer();
         defeatTimeText.text = "Time: " + levelTimer.GetTimeString();
@@ -80,6 +85,11 @@ public class GameManager : MonoBehaviour
         timeText.text = "Time: " + levelTimer.GetTimeString();
         goldText.text = "Gold: " + playerMoney.sessionCoins.ToString();
 
+        if (AudioManager.Instance != null && AudioManager.Instance.victoryEffect != null)
+        {
+            AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.victoryEffect);
+            Debug.Log("🚪 Boss door closing - playing door sound!");
+        }
         victoryPanel.SetActive(true);
         Time.timeScale = 0f; // Pause game
     }
@@ -89,11 +99,25 @@ public class GameManager : MonoBehaviour
         victoryPanel.SetActive(false);
         Time.timeScale = 1f; // Resume game
 
-        // Spawn portal và lưu lại instance
-        var portalInstance = Instantiate(portalPrefab, portalSpawnPoint.position, Quaternion.identity);
+        // Spawn portal nếu có prefab và spawn point
+        if (portalPrefab != null && portalSpawnPoint != null)
+        {
+            var portalInstance = Instantiate(portalPrefab, portalSpawnPoint.position, Quaternion.identity);
 
-        // Camera pan tới portal rồi quay lại player
-        cameraFocusManager.FocusPortalThenBack(portalInstance.transform, 2f); // 2 giây, chỉnh theo ý bạn
+            // Camera pan tới portal rồi quay lại player (nếu có camera manager)
+            if (cameraFocusManager != null)
+            {
+                cameraFocusManager.FocusPortalThenBack(portalInstance.transform, 2f);
+            }
+            else
+            {
+                Debug.LogWarning("GameManager: cameraFocusManager is null!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("GameManager: portalPrefab or portalSpawnPoint is null!");
+        }
     }
 
 }

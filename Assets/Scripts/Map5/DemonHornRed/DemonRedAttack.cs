@@ -49,7 +49,16 @@ public class DemonRedAttack : MonoBehaviour
         if (!isCombo)
             controller.EndAttack();
     }
-
+    public void ResetAttackState()
+    {
+        isCombo = false;
+        if (animator != null)
+        {
+            animator.SetBool("IsCombo", false); 
+            animator.ResetTrigger("Attack1");
+            animator.ResetTrigger("Attack2");
+        }
+    }
     public void OnAttack2End()
     {
         animator.SetBool("IsCombo", false);

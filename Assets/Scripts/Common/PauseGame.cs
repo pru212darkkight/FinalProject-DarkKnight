@@ -48,6 +48,7 @@ public class PauseGame : MonoBehaviour
 
     public void ResumeGame()
     {
+        btnClickEffect();
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
@@ -55,13 +56,22 @@ public class PauseGame : MonoBehaviour
 
     public void GoToHome()
     {
+        btnClickEffect();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Scenes/Home Village");
     }
 
     public void RestartLevel()
     {
+        btnClickEffect();
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void btnClickEffect()
+    {
+        if (AudioManager.Instance != null && AudioManager.Instance.buttonClick != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+        }
     }
 }

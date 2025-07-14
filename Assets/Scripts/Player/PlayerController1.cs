@@ -178,6 +178,11 @@ public class PlayerController1 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool ishurt = false;
     private float hurtStunTimeLeft = 0f;
+
+    // thêm biến đề đưa âm thanh theo số bước chân
+    private float footstepTimer = 0f;
+    private float footstepInterval = 0.5f; // Time between footsteps
+    private bool wasMovingLastFrame = false;
     private Color originalColor;
     private float lastSpell1Time;
     private float lastSpell2Time;
@@ -331,6 +336,9 @@ public class PlayerController1 : MonoBehaviour
             UpdateUI();
         }
 
+        // 🎵 Footstep audio logic
+        HandleFootstepAudio();
+
         // Health regeneration - independent of stamina
         if (Time.time > lastDamageTime + healthRegenDelay && currentHealth < maxHealth)
         {
@@ -425,10 +433,50 @@ public class PlayerController1 : MonoBehaviour
         rb.linearVelocity = velocity;
     }
 
+    private void HandleFootstepAudio()
+    {
+        // Check if player is moving horizontally and on ground
+        bool isMoving = Mathf.Abs(moveInput.x) > 0.1f && isGrounded &&
+                       !isAttacking && !isAttacking2 && !isAttacking3 &&
+                       !isSpell1 && !isSpell2 && !isSpell3 &&
+                       !isDashing && !isDefending && !ishurt;
+
+        if (isMoving)
+        {
+            // Update footstep timer
+            footstepTimer += Time.deltaTime;
+
+            // Play footstep sound at intervals
+            if (footstepTimer >= footstepInterval)
+            {
+                // Âm thanh player di chuyển theo bước chân
+                if (AudioManager.Instance != null && AudioManager.Instance.playerFootstep != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.playerFootstep);
+                }
+
+                // Reset timer
+                footstepTimer = 0f;
+            }
+        }
+        else
+        {
+            // Reset timer when not moving
+            footstepTimer = 0f;
+        }
+
+        wasMovingLastFrame = isMoving;
+    }
+
     private void OnJump(InputAction.CallbackContext context)
     {
         if (isGrounded && !isAttacking && !isAttacking2 && !isAttacking3)
         {
+            //gắn âm thanh spell2
+            if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.jump);
+            }
             isJumping = true;
             animator.SetTrigger(JumpHash);
         }
@@ -452,8 +500,14 @@ public class PlayerController1 : MonoBehaviour
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Attack started");
 
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack);
+                }
+
                 // Perform attack hurt detection
                 Collider2D[] hurtEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+                bool hitAnyEnemy = false;
                 foreach (Collider2D enemy in hurtEnemies)
                 {
                     Enemy enemyComponent = enemy.GetComponent<Enemy>();
@@ -462,6 +516,7 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength; // Basic attack damage
                         Debug.Log($"hurt enemy with Attack 1: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, false); // false for physical damage
+                        hitAnyEnemy = true;
                     }
                     EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
                     if (enemyHealth != null)
@@ -469,7 +524,15 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength; // Basic attack damage
                         Debug.Log($"hurt enemy with Attack 1: {enemy.name} for {damage} damage");
                         enemyHealth.TakeDamage(damage, false); // false for physical damage
+                        hitAnyEnemy = true;
                     }
+                }
+
+                // 🎵 Phát âm thanh khi đánh trúng enemy
+                if (hitAnyEnemy && AudioManager.Instance != null && AudioManager.Instance.hurtEnemy != null)
+                {
+                    AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.hurtEnemy);
+                    Debug.Log("🗡️ Attack 1 hit enemy - playing hurt sound!");
                 }
             }
         }
@@ -500,8 +563,14 @@ public class PlayerController1 : MonoBehaviour
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Attack 2 started");
 
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack2);
+                }
+
                 // Perform attack 2 hurt detection
                 Collider2D[] hurtEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attack2Range, enemyLayer);
+                bool hitAnyEnemy = false;
                 foreach (Collider2D enemy in hurtEnemies)
                 {
                     Enemy enemyComponent = enemy.GetComponent<Enemy>();
@@ -510,6 +579,7 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength * 1.5f; // Attack 2 deals 1.5x damage
                         Debug.Log($"hurt enemy with Attack 2: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, false); // false for physical damage
+                        hitAnyEnemy = true;
                     }
                     EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
                     if (enemyHealth != null)
@@ -517,7 +587,15 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength * 1.5f; // Attack 2 deals 1.5x damage
                         Debug.Log($"hurt enemy with Attack 2: {enemy.name} for {damage} damage");
                         enemyHealth.TakeDamage(damage, false); // false for physical damage
+                        hitAnyEnemy = true;
                     }
+                }
+
+                // 🎵 Phát âm thanh khi đánh trúng enemy
+                if (hitAnyEnemy && AudioManager.Instance != null && AudioManager.Instance.hurtEnemy != null)
+                {
+                    AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.hurtEnemy);
+                    Debug.Log("🗡️ Attack 2 hit enemy - playing hurt sound!");
                 }
             }
         }
@@ -548,8 +626,14 @@ public class PlayerController1 : MonoBehaviour
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Attack 3 started");
 
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack);
+                }
+
                 // Perform attack 3 hurt detection
                 Collider2D[] hurtEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attack3Range, enemyLayer);
+                bool hitAnyEnemy = false;
                 foreach (Collider2D enemy in hurtEnemies)
                 {
                     Enemy enemyComponent = enemy.GetComponent<Enemy>();
@@ -558,6 +642,7 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength * 3f; // Attack 3 deals 3x damage
                         Debug.Log($"hurt enemy with Attack 3: {enemy.name} for {damage} damage");
                         enemyComponent.TakeDamage(damage, false); // false for physical damage
+                        hitAnyEnemy = true;
                     }
                     EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
                     if (enemyHealth != null)
@@ -565,7 +650,15 @@ public class PlayerController1 : MonoBehaviour
                         float damage = strength * 3f; // Attack 3 deals 3x damage
                         Debug.Log($"hurt enemy with Attack 3: {enemy.name} for {damage} damage");
                         enemyHealth.TakeDamage(damage, false); // false for physical damage
+                        hitAnyEnemy = true;
                     }
+                }
+
+                // 🎵 Phát âm thanh khi đánh trúng enemy
+                if (hitAnyEnemy && AudioManager.Instance != null && AudioManager.Instance.hurtEnemy != null)
+                {
+                    AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.hurtEnemy);
+                    Debug.Log("🗡️ Attack 3 hit enemy - playing hurt sound!");
                 }
             }
         }
@@ -598,6 +691,10 @@ public class PlayerController1 : MonoBehaviour
                 ishurt = false;
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Spell 1 started");
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.spell1);
+                }
 
                 // Tạo chưởng lửa với delay nhỏ
                 StartCoroutine(SpawnFireballWithDelay(0.3f)); // Delay 0.3 giây
@@ -666,6 +763,12 @@ public class PlayerController1 : MonoBehaviour
                 animator.SetBool(IsHurtHash, false);
                 Debug.Log("Spell 2 started");
 
+                //gắn âm thanh spell2
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.spell2);
+                }
+
                 // Perform spell 2 hurt detection
                 Collider2D[] hurtEnemies = Physics2D.OverlapCircleAll(attackPoint.position, spell2Range, enemyLayer);
                 foreach (Collider2D enemy in hurtEnemies)
@@ -706,6 +809,10 @@ public class PlayerController1 : MonoBehaviour
             animator.SetTrigger(DefendHash);
             animator.SetBool(IsDefendingHash, true);
             Debug.Log("Defend started");
+            if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.defend);
+            }
         }
     }
 
@@ -746,6 +853,10 @@ public class PlayerController1 : MonoBehaviour
             animator.SetTrigger(DashHash);
             animator.SetBool(IsDashingHash, true);
             Debug.Log("Dash started");
+            if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.dash);
+            }
 
             UpdateUI();
         }
@@ -888,6 +999,12 @@ public class PlayerController1 : MonoBehaviour
 
     public void ApplyhurtEffects()
     {
+        // 🎵 Phát âm thanh player bị thương
+        if (AudioManager.Instance != null && AudioManager.Instance.playerHurt != null)
+        {
+            AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.playerHurt);
+        }
+
         // Reset attack states when hurt to prevent stuck states
         if (isAttacking)
         {
@@ -1211,6 +1328,10 @@ public class PlayerController1 : MonoBehaviour
                 speed *= 1.5f;
 
                 Debug.Log("Spell 3 (Transform) started");
+                if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.spell3);
+                }
                 UpdateUI();
             }
         }
