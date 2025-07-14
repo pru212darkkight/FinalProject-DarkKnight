@@ -4,7 +4,7 @@ using TMPro;
 public class Strawberri : MonoBehaviour
 {
     [TextArea]
-    public string dialogueLine = "Steal a look, but buy with gold!";
+    public string dialogueLine = "Let’s see what you’ve got~";
     public AudioClip voiceClip;
     public GameObject dialogueUI;             
     public TextMeshProUGUI dialogueText;     
