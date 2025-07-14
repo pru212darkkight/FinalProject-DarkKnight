@@ -142,10 +142,19 @@ public class DemonRedController : MonoBehaviour
                 state = State.Idle;
         }
     }
+    public void OnResurrect()
+    {
+        // Reset các flag, trạng thái AI về Idle (hoặc theo ý bạn)
+        state = State.Idle;
+        animator.SetBool("IsRunning", false);
+        // Nếu có trigger animation khác thì reset về Idle/Patrol luôn
+    }
 
     public void OnTakeDamage() // Gọi khi bị đánh, có thể gọi từ EnemyHealth hoặc Animation Event đầu Hurt
     {
         if (state == State.Hurt) return; // Đang hurt thì thôi
+        if (miniBossAttack != null)
+            miniBossAttack.ResetAttackState();
 
         stateBeforeHurt = state;
         state = State.Hurt;
