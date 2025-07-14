@@ -16313,7 +16313,7 @@ MonoBehaviour:
   interactionUI: {fileID: 1088505949}
   interactionText: {fileID: 606432052}
   advicePanelController: {fileID: 64791806}
-  greetingClip: {fileID: 8300000, guid: d8db62fa74ab0ed43bfd61e50c17705c, type: 3}
+  greetingClip: {fileID: 8300000, guid: 6ad0d21df39e2c944b0535c6e877926c, type: 3}
 --- !u!61 &1210896069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18516,7 +18516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"You were not ready"'
+  m_text: "\"Come closer\u2026 I have advice for you.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e9f7c4f7fe993d54386f616456d40167, type: 2}
   m_sharedMaterial: {fileID: -7387315535766897291, guid: e9f7c4f7fe993d54386f616456d40167, type: 2}
@@ -25739,8 +25739,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f117ae2ac0e4340a243eb987e85c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueLine: '"Steal a look, but buy with gold!"'
-  voiceClip: {fileID: 8300000, guid: 01dc8b7ac9e7d8d49a4dfc9ebaa19be4, type: 3}
+  dialogueLine: "\"Let\u2019s see what you\u2019ve got~\""
+  voiceClip: {fileID: 8300000, guid: 491fde8d1191e334292bc4c518603c1d, type: 3}
   dialogueUI: {fileID: 739607560}
   dialogueText: {fileID: 2091060059}
 --- !u!61 &1706347120
