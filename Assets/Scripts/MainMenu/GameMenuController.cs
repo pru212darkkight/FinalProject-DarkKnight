@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -22,9 +22,14 @@ public class GameMenuController : MonoBehaviour
 
     [Header("Intro Panel Controls")]
     [SerializeField] private Button introOkButton;
-    [SerializeField] private Button introLeftButton;
-    [SerializeField] private Button introRightButton;
+    [SerializeField] private Button intro1Button;
+    [SerializeField] private Button intro2Button;
+    [SerializeField] private Button intro3Button;
 
+    [Header("Intro Contents")]
+    [SerializeField] private GameObject introContent1;
+    [SerializeField] private GameObject introContent2;
+    [SerializeField] private GameObject introContent3;
     private void Start()
     {
         // Main Menu buttons
@@ -40,13 +45,15 @@ public class GameMenuController : MonoBehaviour
 
         // Introduction Panel
         introOkButton.onClick.AddListener(() => ClosePanel(introPanel));
-        introLeftButton.onClick.AddListener(() => Debug.Log("Intro Left"));
-        introRightButton.onClick.AddListener(() => Debug.Log("Intro Right"));
+        intro1Button.onClick.AddListener(() => ShowIntroContent(1));
+        intro2Button.onClick.AddListener(() => ShowIntroContent(2));
+        intro2Button.onClick.AddListener(() => ShowIntroContent(3));
 
         // Start state
         optionPanel?.SetActive(false);
         introPanel?.SetActive(false);
         menuContainer?.SetActive(true);
+        ShowIntroContent(1); // Mặc định hiển thị content 1
     }
 
     private void OnPlayClick()
@@ -81,6 +88,13 @@ public class GameMenuController : MonoBehaviour
         menuContainer?.SetActive(true);
     }
 
+    private void ShowIntroContent(int contentIndex)
+    {
+        if (introContent1 != null) introContent1.SetActive(contentIndex == 1);
+        if (introContent2 != null) introContent2.SetActive(contentIndex == 2);
+        if (introContent3 != null) introContent3.SetActive(contentIndex == 3);
+    }
+
     private void OnDestroy()
     {
         playButton.onClick.RemoveAllListeners();
@@ -93,7 +107,25 @@ public class GameMenuController : MonoBehaviour
         optionRightButton.onClick.RemoveAllListeners();
 
         introOkButton.onClick.RemoveAllListeners();
-        introLeftButton.onClick.RemoveAllListeners();
-        introRightButton.onClick.RemoveAllListeners();
+        intro1Button.onClick.RemoveAllListeners();
+        intro2Button.onClick.RemoveAllListeners();
     }
+    public void ShowIntro1()
+    {
+        ShowIntroContent(1);
+    }
+
+    public void ShowIntro2()
+    {
+        ShowIntroContent(2);
+    }
+    public void ShowIntro3()
+    {
+        ShowIntroContent(3);
+    }
+    public void CloseIntroPanel()
+    {
+        ClosePanel(introPanel);
+    }
+
 }
