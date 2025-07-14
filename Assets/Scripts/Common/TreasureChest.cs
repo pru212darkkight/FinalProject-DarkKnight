@@ -84,11 +84,17 @@ public class TreasureChest : MonoBehaviour
     void OpenChest()
     {
         if (isDestroying) return; // Tránh mở nhiều lần
-        
+
         Debug.Log($"Opening chest: {gameObject.name} at position {transform.position}");
         isOpened = true;
         isDestroying = true;
-        
+
+        // Phát âm thanh mở rương
+        if (AudioManager.Instance != null && AudioManager.Instance.treasureChest != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.treasureChest);
+        }
+
         // Đảm bảo chỉ chest này chạy animation
         if (animator != null)
         {
@@ -99,7 +105,7 @@ public class TreasureChest : MonoBehaviour
         {
             Debug.LogWarning($"No Animator found on chest: {gameObject.name}");
         }
-        
+
         GiveReward();
         StartCoroutine(FadeOutAndDestroy(1f)); // Tan biến dần trong 1 giây
         // Không Destroy(gameObject) ngay lập tức!
@@ -114,6 +120,13 @@ public class TreasureChest : MonoBehaviour
             if (money != null && coinReward > 0)
             {
                 money.AddCoins(coinReward);
+
+                // 🎵 Phát âm thanh nhận tiền từ rương
+                if (AudioManager.Instance != null && AudioManager.Instance.coinDrop != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.coinDrop);
+                }
+
                 // Hiển thị popup tiền
                 ItemPopupUI popup = GetComponentInChildren<ItemPopupUI>(true);
                 if (popup != null)

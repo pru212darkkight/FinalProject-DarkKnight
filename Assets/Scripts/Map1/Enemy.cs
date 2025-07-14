@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
     protected float lastAttackTime;
     protected bool isGrounded;
     protected bool isDead = false;
+    protected bool wasPlayerInDetectionRange = false; // Track detection state for wolf sound
 
     // Animation parameters
     protected readonly int SpeedHash = Animator.StringToHash("Speed");
@@ -71,6 +72,18 @@ public class Enemy : MonoBehaviour
         }
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        // Check if player entered detection range (for wolf sound)
+        bool isPlayerInDetectionRange = distanceToPlayer <= detectionRange;
+        if (isPlayerInDetectionRange && !wasPlayerInDetectionRange)
+        {
+            // Player just entered detection range - play wolf sound
+            if (AudioManager.Instance != null && AudioManager.Instance.wolfRange != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.wolfRange);
+            }
+        }
+        wasPlayerInDetectionRange = isPlayerInDetectionRange;
 
         // Nếu player trong tầm phát hiện
         if (distanceToPlayer <= detectionRange)
@@ -134,6 +147,14 @@ public class Enemy : MonoBehaviour
     protected virtual void Attack()
     {
         lastAttackTime = Time.time;
+
+        // 🎵 Phát âm thanh tấn công wolf
+        if (AudioManager.Instance != null && AudioManager.Instance.wolfAttack != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.wolfAttack);
+            Debug.Log("🐺 Wolf attacking - playing attack sound!");
+        }
+
         if (animator != null)
         {
             animator.SetTrigger(AttackHash);
@@ -160,6 +181,10 @@ public class Enemy : MonoBehaviour
     {
         if (isDead) return;
 
+        if (AudioManager.Instance != null && AudioManager.Instance.wolfRange != null)
+        {
+            AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.hurtEnemy);
+        }
         float finalDamage = damage;
         if (isMagicDamage)
         {

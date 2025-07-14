@@ -21,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
     private Rigidbody2D rb;
     private MiniBossController miniBossController;
     private FinalBossController finalBossController;
+    private DemonRedController DemonRedController;
 
     [Header("Chest Drop Settings")]
     public bool enableChestDrop = false;      // Bật tắt chức năng rơi rương
@@ -33,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
         miniBossController = GetComponent<MiniBossController>();
         finalBossController = GetComponent<FinalBossController>();
+        DemonRedController = GetComponent<DemonRedController>();
     }
 
     /// <summary>
@@ -118,6 +120,9 @@ public class EnemyHealth : MonoBehaviour
         {
             animator.ResetTrigger("standUp");
         }
+        // Gọi lại AI Controller nếu có
+        if (DemonRedController != null)
+            DemonRedController.OnResurrect();
     }
 
     /// <summary>

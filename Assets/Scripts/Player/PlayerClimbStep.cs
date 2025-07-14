@@ -32,6 +32,12 @@ public class PlayerClimbStep : MonoBehaviour
 
             if (hitLow.collider != null && hitHigh.collider == null)
             {
+                if (AudioManager.Instance != null && AudioManager.Instance.playerFootstep != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.playerFootstep);
+                    Debug.Log("🪜 Player climbing step - playing climb sound!");
+                }
+
                 transform.position += new Vector3(0, stepHeight, 0);
             }
         }

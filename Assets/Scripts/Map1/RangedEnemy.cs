@@ -162,7 +162,14 @@ public class RangedEnemy : Enemy
             Debug.LogWarning("Projectile prefab is not assigned!");
             return;
         }
-        
+
+        // Phát âm thanh tấn công skeleton
+        if (AudioManager.Instance != null && AudioManager.Instance.skeletonAttack != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.skeletonAttack);
+            Debug.Log("💀 Skeleton attacking - playing attack sound!");
+        }
+
         // Calculate direction to player
         Vector2 direction = (player.position - firePoint.position).normalized;
         

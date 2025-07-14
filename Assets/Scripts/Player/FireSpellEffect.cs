@@ -63,6 +63,8 @@ public class FireSpellEffect : MonoBehaviour
         // Kiểm tra nếu va chạm với kẻ địch
         if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
+            bool hitAnyEnemy = false;
+
             // Gây sát thương cho kẻ địch
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
@@ -70,6 +72,7 @@ public class FireSpellEffect : MonoBehaviour
                 float damage = baseStrength * damageMultiplier;
                 Debug.Log($"Dealing {damage} damage to enemy");
                 enemy.TakeDamage(damage, true); // true để đánh dấu là sát thương phép thuật
+                hitAnyEnemy = true;
             }
 
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
@@ -78,6 +81,14 @@ public class FireSpellEffect : MonoBehaviour
                 float damage = baseStrength * damageMultiplier;
                 Debug.Log($"Dealing {damage} damage to enemy");
                 enemyHealth.TakeDamage(damage, false); // false for physical damage
+                hitAnyEnemy = true;
+            }
+
+            // 🎵 Phát âm thanh khi spell đánh trúng enemy
+            if (hitAnyEnemy && AudioManager.Instance != null && AudioManager.Instance.hurtEnemy != null)
+            {
+                AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.hurtEnemy);
+                Debug.Log("🔥 Fire spell hit enemy - playing hurt sound!");
             }
 
             // TODO: Thêm animation nổ ở đây nếu có

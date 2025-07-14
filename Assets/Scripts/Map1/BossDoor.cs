@@ -63,6 +63,13 @@ public class BossDoor : MonoBehaviour
     {
         isAnimating = true;
 
+        // 🎵 Phát âm thanh đóng cửa boss
+        if (AudioManager.Instance != null && AudioManager.Instance.bossDoorClose != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.bossDoorClose);
+            Debug.Log("🚪 Boss door closing - playing door sound!");
+        }
+
         Vector3 startPosition = transform.position;
         Vector3 endPosition = new Vector3(openPosition.x, openPosition.y - dropAmount, openPosition.z);
         float elapsedTime = 0f;

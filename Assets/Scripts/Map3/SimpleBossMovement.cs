@@ -7,6 +7,7 @@ public class SimpleBossMovement : MonoBehaviour
     public float testSpeed = 3f;
     public bool moveTowardsPlayer = true;
     public float stopDistance = 2f;
+    public float detectionRange = 8f; // Thêm detection range
 
     private Rigidbody2D rb;
     private Transform player;
@@ -24,10 +25,6 @@ public class SimpleBossMovement : MonoBehaviour
         if (playerObj != null)
         {
             player = playerObj.transform;
-        }
-        else
-        {
-            Debug.LogError("SimpleBossMovement: Player not found!");
         }
     }
 
@@ -48,7 +45,12 @@ public class SimpleBossMovement : MonoBehaviour
         {
             float distance = Vector2.Distance(transform.position, player.position);
 
-            // Nếu đã đến gần hoặc đang attack thì stop
+            if (distance > detectionRange)
+            {
+                StopMoving();
+                return;
+            }
+
             if (distance <= stopDistance)
             {
                 StopMoving();
@@ -68,6 +70,8 @@ public class SimpleBossMovement : MonoBehaviour
             else if (direction.x < 0)
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
+            // Debug movement
+
         }
     }
 
@@ -82,6 +86,27 @@ public class SimpleBossMovement : MonoBehaviour
     public void ToggleSimpleMovement()
     {
         enableSimpleMovement = !enableSimpleMovement;
-        Debug.Log($"Simple Boss Movement: {(enableSimpleMovement ? "Enabled" : "Disabled")}");
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw detection range (vàng)
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        // Draw stop distance (đỏ)
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, stopDistance);
+
+        // Draw line to player if moving
+        if (player != null && enableSimpleMovement && moveTowardsPlayer)
+        {
+            float distance = Vector2.Distance(transform.position, player.position);
+            if (distance <= detectionRange && distance > stopDistance)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(transform.position, player.position);
+            }
+        }
     }
 }

@@ -15,6 +15,9 @@ public class NPCInteraction : MonoBehaviour
     [Header("Audio - Voice Lines")]
     public AudioClip greetingClip;
 
+    [Header("References")]
+    public ShopManager shopManager; // Gắn trong inspector
+
     private bool isShopOpen = false;
     private AudioSource audioSource;
 
@@ -55,6 +58,10 @@ public class NPCInteraction : MonoBehaviour
 
         shopUI.SetActive(true);
         isShopOpen = true;
+
+        // ✅ Gọi cập nhật UI khi mở shop
+        if (shopManager != null)
+            shopManager.OpenShopUI();
 
         if (shopOpenClip != null)
             audioSource.PlayOneShot(shopOpenClip);

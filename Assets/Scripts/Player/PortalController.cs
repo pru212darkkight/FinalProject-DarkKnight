@@ -19,15 +19,34 @@ public class PortalController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         portalCollider = GetComponent<Collider2D>();
 
+        // Kiểm tra components
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("PortalController: SpriteRenderer not found!");
+            return;
+        }
+
         // Ẩn portal lúc đầu
         spriteRenderer.enabled = false;
         if (portalCollider != null) portalCollider.enabled = false;
 
-        
-
-        SpriteRenderer playerSprite = playerObject.GetComponent<SpriteRenderer>();
-        playerSprite.enabled = false;
-       
+        // Kiểm tra player object
+        if (playerObject != null)
+        {
+            SpriteRenderer playerSprite = playerObject.GetComponent<SpriteRenderer>();
+            if (playerSprite != null)
+            {
+                playerSprite.enabled = false;
+            }
+            else
+            {
+                Debug.LogWarning("PortalController: Player SpriteRenderer not found!");
+            }
+        }
+        else
+        {
+            Debug.LogError("PortalController: Player Object is not assigned!");
+        }
     }
 
     void Start()
@@ -38,10 +57,24 @@ public class PortalController : MonoBehaviour
 
     void ShowPortal()
     {
+        // Phát âm thanh teleport - kiểm tra null trước
+        if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.teleportMusic);
+        }
+
         spriteRenderer.enabled = true;
         if (portalCollider != null) portalCollider.enabled = true;
         if (animator == null) animator = GetComponent<Animator>();
-        animator.SetTrigger("Appear");
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Appear");
+        }
+        else
+        {
+            Debug.LogError("PortalController: Animator is null!");
+        }
     }
 
     // Gọi từ Animation Event khi animation "xuất hiện" kết thúc
@@ -51,8 +84,7 @@ public class PortalController : MonoBehaviour
         {
             // Di chuyển player sẵn trong scene đến vị trí portal và hiện lại
             playerObject.transform.position = spawnPoint.position;
-            
-           
+
             SpriteRenderer playerSprite = playerObject.GetComponent<SpriteRenderer>();
             playerSprite.enabled = true;
             

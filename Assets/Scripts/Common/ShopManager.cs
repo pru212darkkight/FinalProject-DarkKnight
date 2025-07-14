@@ -19,6 +19,7 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI detailStats;
     public Button buyButton;
     public TextMeshProUGUI buyButtonText;
+    public Image coinIcon; // 🪙 icon đồng xu
 
     [Header("UI Coins")]
     public TextMeshProUGUI moneyText;
@@ -34,14 +35,11 @@ public class ShopManager : MonoBehaviour
 
     void LoadShopItems()
     {
-        // Xóa các icon cũ
         foreach (Transform child in itemListContainer)
             Destroy(child.gameObject);
 
         ItemData[] allItems = Resources.LoadAll<ItemData>("Items");
-
         Debug.Log($"🟡 Tổng số item load được: {allItems.Length}");
-
         if (allItems.Length == 0) return;
 
         foreach (var item in allItems)
@@ -94,7 +92,6 @@ public class ShopManager : MonoBehaviour
         detailIcon.sprite = item.icon != null ? item.icon : null;
         detailName.text = item.itemName;
 
-        // Tạo chuỗi stats
         string stats = "";
         void AddStat(string label, float value)
         {
@@ -120,11 +117,17 @@ public class ShopManager : MonoBehaviour
         {
             buyButtonText.text = "Owned";
             buyButton.interactable = false;
+
+            if (coinIcon != null)
+                coinIcon.gameObject.SetActive(false); // ẩn đồng xu
         }
         else
         {
-            buyButtonText.text = $"{price} ";
+            buyButtonText.text = $"{price}";
             buyButton.interactable = true;
+
+            if (coinIcon != null)
+                coinIcon.gameObject.SetActive(true); // hiện đồng xu
 
             buyButton.onClick.RemoveAllListeners();
             buyButton.onClick.AddListener(BuySelectedItem);
@@ -156,9 +159,16 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    void UpdateMoneyUI()
+    public void UpdateMoneyUI()
     {
+        Debug.Log($"💰 UpdateMoneyUI called. Coins: {playerMoney.coins}");
+
         if (moneyText != null && playerMoney != null)
             moneyText.text = $"{playerMoney.coins} ";
+    }
+
+    public void OpenShopUI()
+    {
+        UpdateMoneyUI();
     }
 }
