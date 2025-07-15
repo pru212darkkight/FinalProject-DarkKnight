@@ -44,6 +44,10 @@ public class AudioManager : MonoBehaviour
     [Header("Map 2")]
     public AudioClip map2;
 
+    //Enemy
+    public AudioClip beholderAttack;
+    public AudioClip beholderDetect;
+
     [Header("Map 3")]
     public AudioClip map3;
 
