@@ -65,6 +65,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip spell3;
     public AudioClip[] playerHurt;
     public AudioClip[] hurtEnemy;
+    public AudioClip[] gainHealth;
 
     private const string SFX_VOLUME_KEY = "SFXVolume";
     private const string MUSIC_VOLUME_KEY = "MusicVolume";

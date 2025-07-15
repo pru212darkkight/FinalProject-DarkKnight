@@ -21,7 +21,7 @@ public class SimpleHealthRestore : MonoBehaviour
                 player.currentHealth = Mathf.Min(player.currentHealth + healthToRestore, player.maxHealth);
                 
                 Debug.Log($"Đã hồi phục {healthToRestore} máu cho player");
-                
+
                 // Phát âm thanh
                 if (restoreSound != null)
                 {

@@ -21,13 +21,13 @@ public class SimpleManaRestore : MonoBehaviour
                 player.mana = Mathf.Min(player.mana + manaToRestore, player.maxMana);
                 
                 Debug.Log($"Đã hồi phục {manaToRestore} mana cho player");
-                
+
                 // Phát âm thanh
-                if (restoreSound != null)
+                if (AudioManager.Instance != null && AudioManager.Instance.gainHealth != null)
                 {
-                    AudioSource.PlayClipAtPoint(restoreSound, transform.position);
+                    AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.gainHealth);
                 }
-                
+
                 // Xóa object sau khi sử dụng
                 if (destroyAfterUse)
                 {

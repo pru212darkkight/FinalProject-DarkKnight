@@ -18137,6 +18137,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6cff69d92a6ed5d45aa9e29be413b514, type: 3}
   - {fileID: 8300000, guid: d88d46c82ae65514d845606869652934, type: 3}
   - {fileID: 8300000, guid: ca7645400e196f2408270ca34076565c, type: 3}
+  gainHealth:
+  - {fileID: 8300000, guid: 33024bf8d679b1b4a8c3c8c40c4f8240, type: 3}
 --- !u!82 &1078647190
 AudioSource:
   m_ObjectHideFlags: 0
