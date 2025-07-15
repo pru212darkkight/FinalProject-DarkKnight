@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.victoryEffect);
             Debug.Log("🚪 Boss door closing - playing door sound!");
         }
-        //victoryPanel.SetActive(true);
+        victoryPanel.SetActive(true);
         Time.timeScale = 0f; // Pause game
     }
 
