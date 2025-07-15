@@ -60,6 +60,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Map 3")]
     public AudioClip map3;
+    //Trap
+    public AudioClip[] boom;
 
     [Header("Map 4")]
     public AudioClip map4;
