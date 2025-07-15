@@ -20736,7 +20736,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -4, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20758,7 +20758,7 @@ MonoBehaviour:
   timeOffset: 0.1
   offsetPos: {x: 0, y: 2, z: -10}
   boundsMin: {x: -50, y: -50, z: 0}
-  boundsMax: {x: 200, y: 200, z: 0}
+  boundsMax: {x: 200, y: 6, z: 0}
 --- !u!1 &525896007
 GameObject:
   m_ObjectHideFlags: 0
@@ -23289,12 +23289,26 @@ MonoBehaviour:
   sfxVolume: 1
   backgroundMusic: []
   gameMusic: []
+  teleportMusic: {fileID: 8300000, guid: 5f273fbc7c5d34249abd3a402f92c92e, type: 3}
+  coinDrop: {fileID: 0}
+  treasureChest: {fileID: 0}
+  buttonClick: {fileID: 0}
+  victoryEffect: []
+  defeatEffect: []
   map1: {fileID: 0}
+  wolfAttack: {fileID: 0}
+  wolfRange: {fileID: 0}
+  skeletonAttack: {fileID: 0}
+  bossDoorClose: {fileID: 0}
+  bossWolfRoar: {fileID: 0}
+  bossWolfDash: {fileID: 0}
+  bossWolfSlam: {fileID: 0}
+  bossWolfDeath: {fileID: 0}
   map2: {fileID: 0}
   map3: {fileID: 0}
   map4: {fileID: 0}
   map5: {fileID: 0}
-  teleportMusic: {fileID: 8300000, guid: 5f273fbc7c5d34249abd3a402f92c92e, type: 3}
+  playerFootstep: {fileID: 0}
   attack: {fileID: 8300000, guid: 9850cf9cb2b576f40935490babe69fa8, type: 3}
   attack2: {fileID: 8300000, guid: 3cd563ca729a4c548969cda1b9bf80d4, type: 3}
   dash: {fileID: 8300000, guid: 070771558836a7e46a2692265063d76a, type: 3}
@@ -23302,6 +23316,9 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: 6ddfd46a1d66a3f4395c1ac9deae7d59, type: 3}
   spell1: {fileID: 8300000, guid: 28b3db865b2d17d44846b25ab2c81f0f, type: 3}
   spell2: {fileID: 8300000, guid: 88e2969419be6a84fbba4e62a90e39fd, type: 3}
+  spell3: {fileID: 0}
+  playerHurt: []
+  hurtEnemy: []
 --- !u!1 &679009740
 GameObject:
   m_ObjectHideFlags: 0
@@ -26045,7 +26062,8 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114346197782114976, guid: e969aaa734be044efad60bd50e7fb070, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
