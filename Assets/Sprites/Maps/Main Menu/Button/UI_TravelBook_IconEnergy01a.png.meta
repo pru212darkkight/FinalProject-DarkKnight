@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_TravelBook_IconEnergy01a_0: -1689183363975147482
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
