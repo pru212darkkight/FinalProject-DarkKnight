@@ -48,6 +48,16 @@ public class AudioManager : MonoBehaviour
     public AudioClip beholderAttack;
     public AudioClip beholderDetect;
 
+    //Boss
+    //Âm thanh khi phát hiện player
+    public AudioClip reaperDetect;
+    //đánh cận chiến
+    public AudioClip reaperMeleeAttack;
+    //đánh tầm xa
+    public AudioClip reaperThunderAttack;
+    //chết
+    public AudioClip reaperDeath;
+
     [Header("Map 3")]
     public AudioClip map3;
 
