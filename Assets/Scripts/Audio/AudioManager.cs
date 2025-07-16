@@ -27,6 +27,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] victoryEffect;
     public AudioClip[] defeatEffect;
 
+    [Header("Main menu")]
+    public AudioClip mainMenu;
+
+    [Header("Home Village")]
+    public AudioClip homeVillage;
+
     [Header("Map 1")]
     public AudioClip map1;
     //mini wolf
