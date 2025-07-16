@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
-  detectRange: 7
+  detectRange: 15
   attackRange: 1.5
   stopRange: 1.5
   moveSpeed: 2
@@ -402,6 +402,9 @@ MonoBehaviour:
   resurrectHealth: 50
   isInvulnerable: 0
   movingPlatform: {fileID: 0}
+  enableChestDrop: 0
+  chestPrefab: {fileID: 0}
+  chestSpawnOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &6377395605671488
 Animator:
   serializedVersion: 7
