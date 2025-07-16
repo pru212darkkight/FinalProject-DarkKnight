@@ -9146,7 +9146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -537.88916, y: -297.3401}
+  m_AnchoredPosition: {x: -537.8891, y: -297.3401}
   m_SizeDelta: {x: -1207.85, y: -720.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &157969537
@@ -15899,7 +15899,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.559767, y: -0.99556834, z: -10}
+  m_LocalPosition: {x: -31.54076, y: -0.99555826, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44736,19 +44736,19 @@ MonoBehaviour:
   miniBossAttack1: {fileID: 8300000, guid: 3b6e566a16f1ae341a074b15cad73131, type: 3}
   miniBossAttack2: {fileID: 8300000, guid: 556cf0802ef46e043a59b47ef6829460, type: 3}
   miniBossDeath: {fileID: 8300000, guid: 5dee0ef51cdcc0a469d86b301dfbdfc7, type: 3}
-  miniBoss1Attack: {fileID: 0}
-  miniBoss1Death: {fileID: 0}
+  miniBoss1Attack: {fileID: 8300000, guid: 4f0a6abfce9e930489872bf7b63a2cdf, type: 3}
+  miniBoss1Death: {fileID: 8300000, guid: 148bb882825a3b341ba3347bce1504e3, type: 3}
   miniBossDemonAttack: {fileID: 8300000, guid: 4361ce43df0eb3a4c84ea9a71123c960, type: 3}
-  miniBossDemonDeath: {fileID: 0}
+  miniBossDemonDeath: {fileID: 8300000, guid: fe8c9f03ffd53b946b1909dcf33536cd, type: 3}
   wizardAttack: {fileID: 8300000, guid: dff35608e7a1e8f4496dd0bde43821aa, type: 3}
-  wizardDeath: {fileID: 0}
-  demonRedAttack1: {fileID: 0}
-  demonRedAttack2: {fileID: 0}
-  demonRedDeath: {fileID: 0}
-  finalBossAttack1: {fileID: 0}
-  finalBossAttack2: {fileID: 0}
-  finalBossAttack3: {fileID: 0}
-  finalBossDeath: {fileID: 0}
+  wizardDeath: {fileID: 8300000, guid: 92024f79f301a0442b44c7ac7b6b713e, type: 3}
+  demonRedAttack1: {fileID: 8300000, guid: c5aa893e82258cd46bf1087e40021f0c, type: 3}
+  demonRedAttack2: {fileID: 8300000, guid: c5aa893e82258cd46bf1087e40021f0c, type: 3}
+  demonRedDeath: {fileID: 8300000, guid: 5dee0ef51cdcc0a469d86b301dfbdfc7, type: 3}
+  finalBossAttack1: {fileID: 8300000, guid: cbad5ec33378a0f4187af6bb3c52d5f2, type: 3}
+  finalBossAttack2: {fileID: 8300000, guid: f244e8964aef84640a126cb4d94faba3, type: 3}
+  finalBossAttack3: {fileID: 8300000, guid: f244e8964aef84640a126cb4d94faba3, type: 3}
+  finalBossDeath: {fileID: 8300000, guid: 5dee0ef51cdcc0a469d86b301dfbdfc7, type: 3}
   playerFootstep: {fileID: 8300000, guid: 6c95f736e9c0fed4699bd7912c41b156, type: 3}
   attack: {fileID: 8300000, guid: 9850cf9cb2b576f40935490babe69fa8, type: 3}
   attack2: {fileID: 8300000, guid: 3cd563ca729a4c548969cda1b9bf80d4, type: 3}
