@@ -72,5 +72,8 @@ TagManager:
   - name: PlayerAvatar
     uniqueID: 1
     locked: 0
+  - name: Panel
+    uniqueID: 1009578313
+    locked: 0
   m_RenderingLayers:
   - Default
