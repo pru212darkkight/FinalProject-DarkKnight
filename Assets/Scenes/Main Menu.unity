@@ -930,6 +930,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9c93007b38237034f86a807d858f050c, type: 3}
   - {fileID: 8300000, guid: 50d4fae18ee78254f9d58eea519a2a36, type: 3}
   mainMenu: {fileID: 8300000, guid: 912faae4bef660d47a3284f8e9ff00b6, type: 3}
+  homeVillage: {fileID: 8300000, guid: 957355b19a182894fba0aa42e4b1c911, type: 3}
   map1: {fileID: 8300000, guid: 4991260ec8e11a74ca62adb9fa0acbc7, type: 3}
   wolfAttack: {fileID: 8300000, guid: 3315f16736b6fee408f1c793e9c77f5d, type: 3}
   wolfRange: {fileID: 8300000, guid: d5553c16462f19e49bc9abaa4813cd2e, type: 3}
