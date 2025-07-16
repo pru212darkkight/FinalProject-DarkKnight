@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapObjects: []
-  damageAmount: 10
+  damageAmount: 25
   isMagicDamage: 1
   delayBeforeDamage: 0.5
 --- !u!1 &7661763436047584645

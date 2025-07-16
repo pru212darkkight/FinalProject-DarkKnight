@@ -202,8 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013db8a40a2ee1242885c938c0d3f749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
-  currentHealth: 500
+  maxHealth: 300
+  currentHealth: 300
   armor: 5
   magicResist: 5
   isDead: 0
@@ -212,6 +212,9 @@ MonoBehaviour:
   resurrectHealth: 50
   isInvulnerable: 0
   movingPlatform: {fileID: 0}
+  enableChestDrop: 0
+  chestPrefab: {fileID: 0}
+  chestSpawnOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &18321950623427590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,8 +258,8 @@ MonoBehaviour:
   thunderPrefab: {fileID: 2161567649956351512, guid: a14a55b3f65f3024b9470bc5c4d6ce6d, type: 3}
   thunderHeight: 3
   thunderDistance: 2.02
-  thunderDamage: 35
-  thunderDelay: 0.3
+  thunderDamage: 30
+  thunderDelay: 1.5
 --- !u!114 &1057468726415037191
 MonoBehaviour:
   m_ObjectHideFlags: 0

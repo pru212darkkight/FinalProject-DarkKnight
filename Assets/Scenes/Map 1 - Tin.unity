@@ -8765,7 +8765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ecd71dc55fb98e4e8865625fb0a134f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 976169894}
+  pausePanel: {fileID: 2011235659}
   resumeButton: {fileID: 262168596}
   homeButton: {fileID: 1025022876}
   retryButton: {fileID: 349822451}
@@ -18378,7 +18378,7 @@ RectTransform:
   m_Father: {fileID: 695627392}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -122.50064, y: -65}
   m_SizeDelta: {x: 5.0012817, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -44299,8 +44299,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1079925633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8.307922, y: 0.73185444}
   m_SizeDelta: {x: 40, y: 3.5}
   m_Pivot: {x: 1.5346293, y: 0.20910111}
@@ -50569,7 +50569,7 @@ RectTransform:
   m_Father: {fileID: 1153782646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -122.50064, y: -65}
   m_SizeDelta: {x: 5.0012817, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -54705,7 +54705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2011235660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -56680,8 +56680,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 666209108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8.307922, y: 0.73185444}
   m_SizeDelta: {x: 40, y: 3.5}
   m_Pivot: {x: 1.5346293, y: 0.20910111}
@@ -57888,6 +57888,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2511875133031743595, guid: be2b2bdae62f31347bd5a237708afb9b, type: 3}
+      propertyPath: coinText
+      value: 
+      objectReference: {fileID: 673705511}
     - target: {fileID: 2583126392716700394, guid: be2b2bdae62f31347bd5a237708afb9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.5299988

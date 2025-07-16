@@ -116,7 +116,7 @@ public class EnemyCombatAI : MonoBehaviour
             PlayerController1 pc = player.GetComponent<PlayerController1>();
             if (pc != null)
             {
-                pc.TakeDamage(attackDamage, false);
+                pc.TakeDamage(attackDamage, false,"Hell Monster");
             }
         }
     }

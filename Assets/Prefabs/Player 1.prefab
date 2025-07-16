@@ -391,7 +391,7 @@ MonoBehaviour:
   manaBar: {fileID: 0}
   staminaToHealthRatio: 0.5
   minStaminaForRecovery: 20
-  defendStaminaCost: 10
+  defendStaminaCost: 30
   minStaminaToDefend: 20
   dashForce: 20
   dashDuration: 0.2

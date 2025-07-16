@@ -35,7 +35,7 @@ public class GameMenuController : MonoBehaviour
         introOkButton.onClick.AddListener(() => ClosePanel(introPanel));
         intro1Button.onClick.AddListener(() => ShowIntroContent(1));
         intro2Button.onClick.AddListener(() => ShowIntroContent(2));
-        intro2Button.onClick.AddListener(() => ShowIntroContent(3));
+        intro3Button.onClick.AddListener(() => ShowIntroContent(3));
 
         // Start state
         optionPanel?.SetActive(false);

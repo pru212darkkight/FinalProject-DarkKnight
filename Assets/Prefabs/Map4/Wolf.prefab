@@ -468,12 +468,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013db8a40a2ee1242885c938c0d3f749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 200
+  currentHealth: 200
   armor: 5
   magicResist: 5
   isDead: 0
+  canResurrect: 0
+  hasResurrected: 0
+  resurrectHealth: 50
+  isInvulnerable: 0
   movingPlatform: {fileID: 0}
+  enableChestDrop: 0
+  chestPrefab: {fileID: 0}
+  chestSpawnOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &2992347535160424492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,8 +496,8 @@ MonoBehaviour:
   player: {fileID: 0}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  patrolSpeed: 1.5
-  chaseSpeed: 3
+  patrolSpeed: 3
+  chaseSpeed: 5
   detectRange: 6
   stopRange: 1.2
   attackCooldown: 1.5

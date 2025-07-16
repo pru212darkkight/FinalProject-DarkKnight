@@ -9,13 +9,13 @@ public class HurtPlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		thePlayer = FindObjectOfType<PlayerController1> ();
+		thePlayer = FindAnyObjectByType<PlayerController1> ();
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
 		if(other.tag == "Player"){
 			if (thePlayer != null) {
-				thePlayer.TakeDamage(damageAmount);
+				thePlayer.TakeDamage(damageAmount,true,"Magic Boom Trap");
 				Debug.Log($"Fish hit player! Damage: {damageAmount}");
 			}
 		}

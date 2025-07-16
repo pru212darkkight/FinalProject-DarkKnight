@@ -540,7 +540,7 @@ public class Map3BossController : MonoBehaviour
             var playerController = playerCollider.GetComponentInParent<PlayerController1>();
             if (playerController != null)
             {
-                playerController.TakeDamage(attackDamage, false);
+                playerController.TakeDamage(attackDamage, false,"WaterQueen");
             }
             else
             {
@@ -565,7 +565,7 @@ public class Map3BossController : MonoBehaviour
             if (playerController != null)
             {
                 float damage = attackDamage * 1.2f;
-                playerController.TakeDamage(damage, false);
+                playerController.TakeDamage(damage, false,"WaterQueen");
             }
             else
             {
@@ -587,7 +587,7 @@ public class Map3BossController : MonoBehaviour
             if (playerController != null)
             {
                 float damage = attackDamage * 1.5f;
-                playerController.TakeDamage(damage, false);
+                playerController.TakeDamage(damage, false, "WaterQueen");
             }
             else
             {

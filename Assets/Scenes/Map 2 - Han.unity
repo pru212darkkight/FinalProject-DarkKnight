@@ -804,7 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &34636346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2868,7 +2868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &133366854
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3473,7 +3473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &178500387
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4367,7 +4367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &228331032
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5600,7 +5600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &285604159
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5813,7 +5813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &306064119
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7782,6 +7782,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinAmount: 100
   showPopup: 1
+--- !u!114 &439248612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5792944988312602937, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
+  m_PrefabInstance: {fileID: 1362113469}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439248598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013db8a40a2ee1242885c938c0d3f749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &444004845
 GameObject:
   m_ObjectHideFlags: 0
@@ -7973,7 +7984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &448247678
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15299,7 +15310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &541053408
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15492,8 +15503,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2018090514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8.307922, y: 0.73185444}
   m_SizeDelta: {x: 40, y: 3.5}
   m_Pivot: {x: 1.5346293, y: 0.20910111}
@@ -16922,7 +16933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &641508860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18060,7 +18071,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.939941, y: -38.000015}
+  m_AnchoredPosition: {x: 8.939941, y: -38}
   m_SizeDelta: {x: -182.12, y: -109.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &728954223
@@ -20408,7 +20419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &864926225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26716,7 +26727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1240174242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28746,7 +28757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1337396664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29254,6 +29265,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 229941676885372028, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
+      propertyPath: thunderDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 229941676885372028, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
+      propertyPath: attack1Damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 229941676885372028, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
+      propertyPath: thunderDamage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 229941676885372028, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
+      propertyPath: thunderHeight
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 229941676885372028, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
+      propertyPath: thunderPrefab
+      value: 
+      objectReference: {fileID: 2161567649956351512, guid: a14a55b3f65f3024b9470bc5c4d6ce6d, type: 3}
     - target: {fileID: 1219282916387042356, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -29266,10 +29297,22 @@ PrefabInstance:
       propertyPath: detectRangeX
       value: 9.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5514224246699911335, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
+      propertyPath: enemyHealth
+      value: 
+      objectReference: {fileID: 439248612}
+    - target: {fileID: 5792944988312602937, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5792944988312602937, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
       propertyPath: chestPrefab
       value: 
       objectReference: {fileID: 1822388404}
+    - target: {fileID: 5792944988312602937, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
+      propertyPath: currentHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5792944988312602937, guid: 1186133e175c7154c9f7041eb8a86c94, type: 3}
       propertyPath: enableChestDrop
       value: 1
@@ -30234,7 +30277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1447003380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30779,7 +30822,7 @@ RectTransform:
   m_Father: {fileID: 647605078}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -122.50064, y: -65}
   m_SizeDelta: {x: 5.0012817, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -31487,7 +31530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1513595425
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32138,7 +32181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1542281569
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32733,7 +32776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1558462632
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32840,7 +32883,7 @@ RectTransform:
   m_Father: {fileID: 1039153942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -122.50064, y: -65}
   m_SizeDelta: {x: 5.0012817, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -33098,7 +33141,7 @@ MonoBehaviour:
   playerMoney: {fileID: 1174217356}
   levelTimer: {fileID: 1565952156}
   portalSpawnPoint: {fileID: 908248953}
-  portalPrefab: {fileID: 7537109582189674798, guid: 7585b4b9a945bdb4db4ebb71577fde83, type: 3}
+  portalPrefab: {fileID: 630521579335114447, guid: fd5757c8695b2ed4b820ab34fd025ff9, type: 3}
   cameraFocusManager: {fileID: 0}
   defeatPanel: {fileID: 880351792}
   defeatTimeText: {fileID: 927808530}
@@ -33772,7 +33815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1593910953
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34714,7 +34757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1664446156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35409,7 +35452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 237.86, y: -76}
+  m_AnchoredPosition: {x: 237.85999, y: -76}
   m_SizeDelta: {x: 268.45, y: 111.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1720635934
@@ -35459,6 +35502,18 @@ PrefabInstance:
     - target: {fileID: 937146547878757927, guid: 5cd2f3e4a4387c443a27168f0b33722f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981314340796159615, guid: 5cd2f3e4a4387c443a27168f0b33722f, type: 3}
+      propertyPath: coinReward
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 981314340796159615, guid: 5cd2f3e4a4387c443a27168f0b33722f, type: 3}
+      propertyPath: rewardType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981314340796159615, guid: 5cd2f3e4a4387c443a27168f0b33722f, type: 3}
+      propertyPath: randomReward
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 981314340796159615, guid: 5cd2f3e4a4387c443a27168f0b33722f, type: 3}
       propertyPath: possibleRewards.Array.size
@@ -36042,7 +36097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1745966005
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36886,7 +36941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1819919837
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37466,7 +37521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1846478695
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38503,7 +38558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1878934383
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39112,7 +39167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &1901067231
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40108,7 +40163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -45.000015}
+  m_AnchoredPosition: {x: 0, y: -45}
   m_SizeDelta: {x: -800, y: -294.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966176329
@@ -41081,8 +41136,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1305869310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8.307922, y: 0.73185444}
   m_SizeDelta: {x: 40, y: 3.5}
   m_Pivot: {x: 1.5346293, y: 0.20910111}
@@ -41876,7 +41931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7877c23ba88e53044b00476677327cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeFall: 1
+  delayBeforeFall: 0.5
 --- !u!61 &2072162943
 BoxCollider2D:
   m_ObjectHideFlags: 0

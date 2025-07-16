@@ -373,13 +373,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617e470008fea3e41898c9ab9a90def2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 150
   detectRange: 15
   attackRange: 1.5
   stopRange: 1.5
   moveSpeed: 2
   attackCooldown: 3
-  attackDamage: 5
+  attackDamage: 20
 --- !u!114 &3119855888466736612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,8 +392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013db8a40a2ee1242885c938c0d3f749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
-  currentHealth: 1
+  maxHealth: 150
+  currentHealth: 150
   armor: 5
   magicResist: 5
   isDead: 0

@@ -160,7 +160,7 @@ public class EnemyWater : MonoBehaviour
                 PlayerController1 playerController = hitPlayer.GetComponentInParent<PlayerController1>();
                 if (playerController != null)
                 {
-                    playerController.TakeDamage(damage);
+                    playerController.TakeDamage(damage,false, "Demon Fish");
                 }
                 break;
             }
@@ -262,7 +262,7 @@ public class EnemyWater : MonoBehaviour
 
                 if (Time.time >= lastAttackTime + attackCooldown)
                 {
-                    playerController.TakeDamage(damage);
+                    playerController.TakeDamage(damage,false, "Demon Fish");
                     lastAttackTime = Time.time;
                 }
             }
