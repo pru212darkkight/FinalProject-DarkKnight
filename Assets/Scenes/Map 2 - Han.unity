@@ -17656,6 +17656,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0dc4c36b276a3214685cefcd4ff5d09c, type: 3}
   - {fileID: 8300000, guid: 9c93007b38237034f86a807d858f050c, type: 3}
   - {fileID: 8300000, guid: 50d4fae18ee78254f9d58eea519a2a36, type: 3}
+  mainMenu: {fileID: 0}
+  homeVillage: {fileID: 0}
   map1: {fileID: 8300000, guid: 4991260ec8e11a74ca62adb9fa0acbc7, type: 3}
   wolfAttack: {fileID: 8300000, guid: 3315f16736b6fee408f1c793e9c77f5d, type: 3}
   wolfRange: {fileID: 8300000, guid: d5553c16462f19e49bc9abaa4813cd2e, type: 3}
@@ -17665,7 +17667,7 @@ MonoBehaviour:
   bossWolfDash: {fileID: 8300000, guid: e2ce7048d1c9f2540ada648cbc3b124b, type: 3}
   bossWolfSlam: {fileID: 8300000, guid: 5964be753d43d924aabdecab7b8edc47, type: 3}
   bossWolfDeath: {fileID: 8300000, guid: b96a595284b6e6547aff73b4836d8321, type: 3}
-  map2: {fileID: 8300000, guid: 68d0f81312b47724eb18ef8f9ccfe90a, type: 3}
+  map2: {fileID: 8300000, guid: 352097bbb98d971449a75d4d08637f1d, type: 3}
   beholderAttack: {fileID: 8300000, guid: de7446f70af4da54e860ba6806e93348, type: 3}
   beholderDetect: {fileID: 8300000, guid: 8dbce5bd5cbde774696ccf47feedbeed, type: 3}
   reaperDetect: {fileID: 8300000, guid: 179c44e38a9b96e4e88fb1c8e39f233a, type: 3}
