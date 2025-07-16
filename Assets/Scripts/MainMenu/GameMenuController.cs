@@ -58,23 +58,27 @@ public class GameMenuController : MonoBehaviour
 
     private void OnPlayClick()
     {
+        PlayButtonClickSound();
         SceneManager.LoadScene("Home Village");
     }
 
     private void OnOptionClick()
     {
+        PlayButtonClickSound();
         optionPanel?.SetActive(true);
         menuContainer?.SetActive(false);
     }
 
     private void OnIntroClick()
     {
+        PlayButtonClickSound();
         introPanel?.SetActive(true);
         menuContainer?.SetActive(false);
     }
 
     private void OnExitClick()
     {
+        PlayButtonClickSound();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -84,6 +88,7 @@ public class GameMenuController : MonoBehaviour
 
     private void ClosePanel(GameObject panel)
     {
+        PlayButtonClickSound();
         panel?.SetActive(false);
         menuContainer?.SetActive(true);
     }
@@ -110,17 +115,29 @@ public class GameMenuController : MonoBehaviour
         intro1Button.onClick.RemoveAllListeners();
         intro2Button.onClick.RemoveAllListeners();
     }
+    // Method để play button click sound
+    void PlayButtonClickSound()
+    {
+        if (AudioManager.Instance != null && AudioManager.Instance.buttonClick != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+        }
+    }
+
     public void ShowIntro1()
     {
+        PlayButtonClickSound();
         ShowIntroContent(1);
     }
 
     public void ShowIntro2()
     {
+        PlayButtonClickSound();
         ShowIntroContent(2);
     }
     public void ShowIntro3()
     {
+        PlayButtonClickSound();
         ShowIntroContent(3);
     }
     public void CloseIntroPanel()
