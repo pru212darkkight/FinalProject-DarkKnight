@@ -27,6 +27,10 @@ public class ReaperBossController : MonoBehaviour
     public int flashCount = 3;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
+
+    [Header("Audio")]
+    private bool wasPlayerDetected = false; // Để track khi player mới vào vùng detect
+
     private enum State { Idle, MovingToPlayer, Attacking, Hurt, Returning }
     private State state = State.Idle;
     private State stateBeforeHurt = State.Idle;
@@ -58,6 +62,17 @@ public class ReaperBossController : MonoBehaviour
 
         bool playerDetectedNow = Mathf.Abs(player.position.x - transform.position.x) <= detectRangeX &&
                                  Mathf.Abs(player.position.y - transform.position.y) <= detectRangeY;
+
+        // 🎵 Phát âm thanh khi player mới vào vùng detect
+        if (playerDetectedNow && !wasPlayerDetected)
+        {
+            if (AudioManager.Instance != null && AudioManager.Instance.reaperDetect != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.reaperDetect);
+                Debug.Log("💀 Reaper Boss detected player - playing detect sound!");
+            }
+        }
+        wasPlayerDetected = playerDetectedNow;
 
         switch (state)
         {
@@ -156,6 +171,13 @@ public class ReaperBossController : MonoBehaviour
         state = State.Hurt;
         animator.SetTrigger("Hurt");
         rb.linearVelocity = Vector2.zero;
+
+        // 🎵 Phát âm thanh khi boss chết
+        if (enemyHealth != null && enemyHealth.currentHealth <= 0 && AudioManager.Instance != null && AudioManager.Instance.reaperDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.reaperDeath);
+            Debug.Log("💀 Reaper Boss died - playing death sound!");
+        }
     }
     private IEnumerator FlashEffect()
     {

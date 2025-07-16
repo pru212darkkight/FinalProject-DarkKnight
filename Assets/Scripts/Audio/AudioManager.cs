@@ -44,8 +44,24 @@ public class AudioManager : MonoBehaviour
     [Header("Map 2")]
     public AudioClip map2;
 
+    //Enemy
+    public AudioClip beholderAttack;
+    public AudioClip beholderDetect;
+
+    //Boss
+    //Âm thanh khi phát hiện player
+    public AudioClip reaperDetect;
+    //đánh cận chiến
+    public AudioClip reaperMeleeAttack;
+    //đánh tầm xa
+    public AudioClip reaperThunderAttack;
+    //chết
+    public AudioClip reaperDeath;
+
     [Header("Map 3")]
     public AudioClip map3;
+    //Trap
+    public AudioClip[] boom;
 
     [Header("Map 4")]
     public AudioClip map4;
@@ -65,6 +81,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip spell3;
     public AudioClip[] playerHurt;
     public AudioClip[] hurtEnemy;
+    public AudioClip[] gainHealth;
 
     private const string SFX_VOLUME_KEY = "SFXVolume";
     private const string MUSIC_VOLUME_KEY = "MusicVolume";

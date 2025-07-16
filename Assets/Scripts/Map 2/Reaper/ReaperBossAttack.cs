@@ -46,6 +46,13 @@ public class ReaperBossAttack : MonoBehaviour
     // Cận chiến
     public void DealAttack1Damage()
     {
+        // 🎵 Phát âm thanh melee attack
+        if (AudioManager.Instance != null && AudioManager.Instance.reaperMeleeAttack != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.reaperMeleeAttack);
+            Debug.Log("💀 Reaper Boss melee attack - playing melee sound!");
+        }
+
         int dir = transform.localScale.x > 0 ? 1 : -1; // scale.x > 0 nhìn phải, < 0 nhìn trái
         Vector2 offset = new Vector2(Mathf.Abs(attackBoxOffset.x) * dir, attackBoxOffset.y);
         Vector2 center = (Vector2)transform.position + offset;
@@ -64,6 +71,13 @@ public class ReaperBossAttack : MonoBehaviour
     // CAST SKILL
     public void CastThunder()
     {
+        // 🎵 Phát âm thanh thunder attack
+        if (AudioManager.Instance != null && AudioManager.Instance.reaperThunderAttack != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.reaperThunderAttack);
+            Debug.Log("💀 Reaper Boss thunder attack - playing thunder sound!");
+        }
+
         // Chỉ lấy X của player, còn Y luôn = boss.y + thunderHeight
         float baseY = transform.position.y + thunderHeight;
         float px = controller.player.position.x;

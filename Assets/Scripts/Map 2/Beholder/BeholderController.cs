@@ -24,6 +24,7 @@ public class BeholderController : MonoBehaviour
     private State currentState = State.Patrol;
     private float patrolY;
     private bool reachedPoint = false;
+    private bool wasPlayerInDetectZone = false; // Để track khi player mới vào vùng detect
 
     void Awake()
     {
@@ -104,7 +105,20 @@ public class BeholderController : MonoBehaviour
 
     bool PlayerInDetectZone()
     {
-        return Vector2.Distance(player.position, transform.position) <= detectRadius;
+        bool isInZone = Vector2.Distance(player.position, transform.position) <= detectRadius;
+
+        // 🎵 Phát âm thanh khi player mới vào vùng detect
+        if (isInZone && !wasPlayerInDetectZone)
+        {
+            if (AudioManager.Instance != null && AudioManager.Instance.beholderDetect != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.beholderDetect);
+                Debug.Log("👁️ Beholder detected player - playing detect sound!");
+            }
+        }
+
+        wasPlayerInDetectZone = isInZone;
+        return isInZone;
     }
 
     Transform ClosestPatrolPoint()

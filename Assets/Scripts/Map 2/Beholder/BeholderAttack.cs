@@ -29,6 +29,13 @@ public class BeholderAttack : MonoBehaviour
             if (animator)
                 animator.SetTrigger("Attack");
 
+            // 🎵 Phát âm thanh tấn công của Beholder
+            if (AudioManager.Instance != null && AudioManager.Instance.beholderAttack != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.beholderAttack);
+                Debug.Log("👁️ Beholder attacking - playing attack sound!");
+            }
+
             // CHỈ lấy X,Y, bỏ Z (phòng trường hợp player/fireSpawnPoint lệch Z)
             Vector2 spawnPos = new Vector2(fireSpawnPoint.position.x, fireSpawnPoint.position.y);
             Vector2 targetPos = new Vector2(player.position.x, player.position.y);

@@ -56,6 +56,11 @@ public class HealthManaRestore : MonoBehaviour
                 player.currentHealth = Mathf.Min(player.currentHealth + healthToRestore, player.maxHealth);
                 restored = true;
                 Debug.Log($"Đã hồi phục {healthToRestore} máu cho player");
+                //âm thanh 
+                if (AudioManager.Instance != null && AudioManager.Instance.gainHealth != null)
+                {
+                    AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.gainHealth);
+                }
             }
         }
         
