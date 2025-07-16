@@ -100,7 +100,6 @@ public class EnemyCombatAI : MonoBehaviour
         if (AudioManager.Instance != null && AudioManager.Instance.dAttackSound != null)
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.dAttackSound);
-            Debug.Log("⚔️ DAttack enemy attacking - playing sound!");
         }
 
         if (animator != null)
@@ -131,11 +130,9 @@ public class EnemyCombatAI : MonoBehaviour
     // Method để gọi khi enemy chết (từ EnemyHealth script)
     public void OnDeath()
     {
-        // 🎵 Play death sound
         if (AudioManager.Instance != null && AudioManager.Instance.dAttackDeath != null)
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.dAttackDeath);
-            Debug.Log("💀 DAttack enemy died - playing death sound!");
         }
     }
 
