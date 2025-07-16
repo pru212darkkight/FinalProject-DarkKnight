@@ -65,6 +65,18 @@ public class AudioManager : MonoBehaviour
 
     [Header("Map 4")]
     public AudioClip map4;
+    //Enemy wolf
+    public AudioClip meleeEnemyAttack;
+    public AudioClip meleeEnemyDeath;
+
+    //Enemy death4
+    public AudioClip dead4CloseAttack;
+    public AudioClip dead4Summon;
+    public AudioClip dead4Storm;
+    public AudioClip dead4Death;
+    //Enemy DAttack
+    public AudioClip dAttackSound;
+    public AudioClip dAttackDeath;
 
     [Header("Map 5")]
     public AudioClip map5;

@@ -95,6 +95,14 @@ public class EnemyCombatAI : MonoBehaviour
     void Attack()
     {
         lastAttackTime = Time.time;
+
+        // 🎵 Play attack sound
+        if (AudioManager.Instance != null && AudioManager.Instance.dAttackSound != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.dAttackSound);
+            Debug.Log("⚔️ DAttack enemy attacking - playing sound!");
+        }
+
         if (animator != null)
             animator.SetTrigger("Attack");
     }
@@ -118,6 +126,17 @@ public class EnemyCombatAI : MonoBehaviour
     {
         if (animator != null)
             animator.SetBool("isMoving", isMoving);
+    }
+
+    // Method để gọi khi enemy chết (từ EnemyHealth script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.dAttackDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.dAttackDeath);
+            Debug.Log("💀 DAttack enemy died - playing death sound!");
+        }
     }
 
     private void OnDrawGizmosSelected()
