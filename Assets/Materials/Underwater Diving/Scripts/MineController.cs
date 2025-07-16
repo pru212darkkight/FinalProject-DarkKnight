@@ -19,9 +19,13 @@ public class MineController : MonoBehaviour {
 
 
 	void OnTriggerEnter2D(Collider2D other){
-		if(other.tag == "Player"){	
-			
-			Destroy (gameObject);
+		if(other.tag == "Player"){
+            //tiếng bom nổ
+            if (AudioManager.Instance != null && AudioManager.Instance.boom != null)
+            {
+                AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.boom);
+            }
+            Destroy (gameObject);
 			Instantiate (explosion, gameObject.transform.position, gameObject.transform.rotation);
 		}	
 	}

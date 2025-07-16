@@ -565,7 +565,7 @@ public class PlayerController1 : MonoBehaviour
 
                 if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
                 {
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack2);
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack);
                 }
 
                 // Perform attack 2 hurt detection
@@ -628,7 +628,7 @@ public class PlayerController1 : MonoBehaviour
 
                 if (AudioManager.Instance != null && AudioManager.Instance.teleportMusic != null)
                 {
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack);
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.attack2);
                 }
 
                 // Perform attack 3 hurt detection

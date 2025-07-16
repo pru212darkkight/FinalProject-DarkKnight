@@ -58,6 +58,13 @@ public class MeleeEnemy : MonoBehaviour
         {
             animator.SetTrigger("Attack");
             lastAttackTime = Time.time;
+
+            // 🎵 Play attack sound
+            if (AudioManager.Instance != null && AudioManager.Instance.meleeEnemyAttack != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.meleeEnemyAttack);
+                Debug.Log("⚔️ MeleeEnemy attacking - playing attack sound!");
+            }
         }
 
         animator.SetBool("Run", false);
@@ -114,6 +121,17 @@ public class MeleeEnemy : MonoBehaviour
             {
                 pc.TakeDamage(attackDamage, false);
             }
+        }
+    }
+
+    // Method để gọi khi enemy chết (từ external health script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.meleeEnemyDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.meleeEnemyDeath);
+            Debug.Log("💀 MeleeEnemy died - playing death sound!");
         }
     }
 
