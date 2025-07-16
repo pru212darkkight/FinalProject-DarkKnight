@@ -18,12 +18,39 @@ public class mainmenu : MonoBehaviour
 
     void PlayMainMenuMusic()
     {
+        // Stop current music first
+        if (AudioManager.Instance != null && AudioManager.Instance.musicSource != null)
+        {
+            AudioManager.Instance.musicSource.Stop();
+
+            if (debugMode)
+            {
+                Debug.Log("🔇 MainMenu: Stopped previous music before playing Main Menu music");
+            }
+        }
+
         // Play Main Menu music khi scene load
         if (AudioManager.Instance != null && AudioManager.Instance.mainMenu != null)
         {
             AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
-        }
 
+            if (debugMode)
+            {
+                Debug.Log("🎵 MainMenu: Playing Main Menu music");
+            }
+        }
+        else
+        {
+            // Debug error messages
+            if (AudioManager.Instance == null)
+            {
+                Debug.LogError("🚨 MainMenu: AudioManager.Instance is null!");
+            }
+            else if (AudioManager.Instance.mainMenu == null)
+            {
+                Debug.LogError("🚨 MainMenu: AudioManager.Instance.mainMenu is null! Please assign Main Menu music clip in AudioManager.");
+            }
+        }
     }
 
     [ContextMenu("Play Main Menu Music")]

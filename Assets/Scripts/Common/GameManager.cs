@@ -37,10 +37,14 @@ public class GameManager : MonoBehaviour
         playerMoney.ResetSessionCoins();
         levelTimer.ResetTimer();
 
-        // 🎵 Play Home Village music if this is Home Village scene
+        // 🎵 Play scene-specific music
         if (isHomeVillage)
         {
             PlayHomeVillageMusic();
+        }
+        else
+        {
+            PlaySceneMusic();
         }
     }
     public void ShowDefeatPanel()
@@ -112,6 +116,13 @@ public class GameManager : MonoBehaviour
 
     void PlayHomeVillageMusic()
     {
+        // Stop current music first
+        if (AudioManager.Instance != null && AudioManager.Instance.musicSource != null)
+        {
+            AudioManager.Instance.musicSource.Stop();
+            Debug.Log("🔇 GameManager: Stopped previous music before playing Home Village music");
+        }
+
         // Play Home Village music khi scene load
         if (AudioManager.Instance != null && AudioManager.Instance.homeVillage != null)
         {
@@ -136,6 +147,56 @@ public class GameManager : MonoBehaviour
     public void ForcePlayHomeVillageMusic()
     {
         PlayHomeVillageMusic();
+    }
+
+    void PlaySceneMusic()
+    {
+        if (AudioManager.Instance == null) return;
+
+        // Stop current music first
+        if (AudioManager.Instance.musicSource != null)
+        {
+            AudioManager.Instance.musicSource.Stop();
+            Debug.Log("🔇 GameManager: Stopped previous music before playing scene music");
+        }
+
+        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        AudioClip musicToPlay = null;
+
+        // Determine which music to play based on scene name
+        if (sceneName.Contains("Map 1"))
+        {
+            musicToPlay = AudioManager.Instance.map1;
+        }
+        else if (sceneName.Contains("Map 2"))
+        {
+            musicToPlay = AudioManager.Instance.map2;
+        }
+        else if (sceneName.Contains("Map 3"))
+        {
+            musicToPlay = AudioManager.Instance.map3;
+        }
+        else if (sceneName.Contains("Map 4"))
+        {
+            musicToPlay = AudioManager.Instance.map4;
+        }
+        else if (sceneName.Contains("Map 5"))
+        {
+            // Map 5 might have its own setup, so we can skip or add map5 clip
+            Debug.Log("🎵 GameManager: Map 5 detected, skipping auto music (might have own setup)");
+            return;
+        }
+
+        // Play the determined music
+        if (musicToPlay != null)
+        {
+            AudioManager.Instance.PlayMusic(musicToPlay);
+            Debug.Log($"🎵 GameManager: Playing music for {sceneName}");
+        }
+        else
+        {
+            Debug.LogWarning($"🚨 GameManager: No music assigned for scene {sceneName}");
+        }
     }
 
     [ContextMenu("Stop Music")]
