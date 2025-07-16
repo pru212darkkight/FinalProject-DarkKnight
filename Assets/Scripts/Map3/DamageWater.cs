@@ -29,7 +29,7 @@ public class DamageWater : MonoBehaviour
         // Chờ 0.1 giây để player setup xong
         yield return new WaitForSeconds(0.1f);
 
-        player = FindObjectOfType<PlayerController1>();
+        player = FindAnyObjectByType<PlayerController1>();
 
         if (player != null)
         {
@@ -106,8 +106,7 @@ public class DamageWater : MonoBehaviour
             float healthBefore = player.currentHealth;
 
             // Trừ máu trực tiếp (vì TakeDamage có thể bị block bởi defend)
-            player.currentHealth -= damage;
-            player.currentHealth = Mathf.Max(0, player.currentHealth);
+            player.TakeDamage(damage, true, "Water Pressure per second");
 
             // QUAN TRỌNG: Update lastDamageTime để ngăn health regen
             System.Reflection.FieldInfo lastDamageTimeField = typeof(PlayerController1).GetField("lastDamageTime",
@@ -133,7 +132,7 @@ public class DamageWater : MonoBehaviour
             {
                 Debug.Log("DamageWater: Player drowned!");
                 // Gọi Die() method của player
-                player.TakeDamage(0.1f); // Trigger death
+                player.TakeDamage(0.1f, true, "Water Pressure per second"); // Trigger death
                 break;
             }
         }

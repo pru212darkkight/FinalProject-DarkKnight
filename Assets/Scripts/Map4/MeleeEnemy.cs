@@ -119,7 +119,7 @@ public class MeleeEnemy : MonoBehaviour
             PlayerController1 pc = player.GetComponent<PlayerController1>();
             if (pc != null)
             {
-                pc.TakeDamage(attackDamage, false);
+                pc.TakeDamage(attackDamage, false,"Demon Rat");
             }
         }
     }

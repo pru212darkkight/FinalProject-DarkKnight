@@ -440,6 +440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KingTreasure
       objectReference: {fileID: 0}
+    - target: {fileID: 1487561886705084851, guid: f4126e06a16585f40887aa4a84219bcc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1513830289467388492, guid: f4126e06a16585f40887aa4a84219bcc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -78.8
@@ -12604,6 +12608,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonBatEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 514028338071259014, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2571396128378467744, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player
       value: 
@@ -15899,7 +15907,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.54076, y: -0.99555826, z: -10}
+  m_LocalPosition: {x: -31.556559, y: -0.99556834, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23283,6 +23291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonBatEnemy (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 514028338071259014, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2571396128378467744, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player
       value: 
@@ -24237,93 +24249,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinAmount: 300
   showPopup: 1
---- !u!1 &754870950
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 754870951}
-  - component: {fileID: 754870952}
-  m_Layer: 0
-  m_Name: bg_ocean_0 (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &754870951
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754870950}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.903069, y: -2.4153814, z: 0}
-  m_LocalScale: {x: 1, y: 1.9999499, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 892456691}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &754870952
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754870950}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 4305895413979539592, guid: c04cde53fd2adb2429f4cbf48ab323b1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 7.68, y: 1.92}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &760735464
 GameObject:
   m_ObjectHideFlags: 0
@@ -24676,8 +24601,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 502895245}
     - target: {fileID: 3846976066167949855, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: defendStaminaCost
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846976066167949855, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
       propertyPath: interactAction.m_Name
       value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969275011580935647, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6416943631767873504, guid: e8bce367699b9b441864ede8bfbcd38c, type: 3}
       propertyPath: m_SortingLayer
@@ -27298,39 +27231,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888437804}
   m_CullTransparentMesh: 1
---- !u!1 &892456690
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 892456691}
-  m_Layer: 0
-  m_Name: new bg (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &892456691
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892456690}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 54.4564, y: 2.5408998, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 970383787}
-  - {fileID: 754870951}
-  m_Father: {fileID: 2030012549}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &894704170
 GameObject:
   m_ObjectHideFlags: 0
@@ -29807,6 +29707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonBatEnemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 514028338071259014, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2571396128378467744, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player
       value: 
@@ -30282,10 +30186,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonBatEnemy (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 514028338071259014, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2571396128378467744, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1966382518}
+    - target: {fileID: 3418671983969998963, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776044245264029805, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5111022976602466691, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player
       value: 
@@ -30297,6 +30213,18 @@ PrefabInstance:
     - target: {fileID: 5517364432998854753, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 1.874
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693697091919229671, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749521528597939569, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791344181665815385, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30377,30 +30305,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 367816155422328156, guid: d1c6c682ff2e3a549a86ade9191235c8, type: 3}
   m_PrefabInstance: {fileID: 625858742}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &973239000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 972315597}
-  - component: {fileID: 972315598}
-  m_Layer: 0
-  m_Name: Download Set of UI elements-part 2 for free-Photoroom_9
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &972315597
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972315596}
+  m_GameObject: {fileID: 973239000}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -236.14012, y: 147.53862, z: -101507.55}
@@ -30415,7 +30326,7 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972315596}
+  m_GameObject: {fileID: 973239000}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -30464,6 +30375,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &973239000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 972315597}
+  - component: {fileID: 972315598}
+  m_Layer: 0
+  m_Name: Download Set of UI elements-part 2 for free-Photoroom_9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &975080048
 GameObject:
   m_ObjectHideFlags: 0
@@ -44818,6 +44746,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0dc4c36b276a3214685cefcd4ff5d09c, type: 3}
   - {fileID: 8300000, guid: 9c93007b38237034f86a807d858f050c, type: 3}
   - {fileID: 8300000, guid: 50d4fae18ee78254f9d58eea519a2a36, type: 3}
+  mainMenu: {fileID: 0}
+  homeVillage: {fileID: 0}
   map1: {fileID: 8300000, guid: 4991260ec8e11a74ca62adb9fa0acbc7, type: 3}
   wolfAttack: {fileID: 8300000, guid: 3315f16736b6fee408f1c793e9c77f5d, type: 3}
   wolfRange: {fileID: 8300000, guid: d5553c16462f19e49bc9abaa4813cd2e, type: 3}
@@ -48911,6 +48841,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonBatEnemy (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 514028338071259014, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2571396128378467744, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player
       value: 
@@ -49834,14 +49768,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonBatEnemy (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 514028338071259014, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2571396128378467744, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1966382518}
+    - target: {fileID: 3418671983969998963, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776044245264029805, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5111022976602466691, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1966382518}
+    - target: {fileID: 6693697091919229671, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749521528597939569, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791344181665815385, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -84648,7 +84606,6 @@ Transform:
   - {fileID: 599523415}
   - {fileID: 769931971}
   - {fileID: 515867725}
-  - {fileID: 892456691}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2031665678
@@ -85579,6 +85536,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonBatEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 514028338071259014, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2571396128378467744, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player
       value: 
@@ -86446,6 +86407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Miniboss_demon
       objectReference: {fileID: 0}
+    - target: {fileID: 6755090284108801356, guid: 4084d34f80475854691ebaecc93fc3c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9219295301270164499, guid: 4084d34f80475854691ebaecc93fc3c4, type: 3}
       propertyPath: player
       value: 
@@ -87083,6 +87048,10 @@ PrefabInstance:
     - target: {fileID: 514028338071259014, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: m_Name
       value: DemonBatEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 514028338071259014, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2571396128378467744, guid: de7a171d78a91e34cbb65d3baa60b8bc, type: 3}
       propertyPath: player

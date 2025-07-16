@@ -14,7 +14,7 @@ public class PoisonDamage : MonoBehaviour
             PlayerController1 player = other.GetComponent<PlayerController1>();
             if (player != null)
             {
-                player.TakeDamage(damage, true);            
+                player.TakeDamage(damage, true, "Medusa");            
                 player.ApplyPoisonEffect(slowDuration, slowAmount, poisonColor); // Làm chậm + đổi màu
 
                 Debug.Log("☠️ Player trúng độc!");
