@@ -2,33 +2,40 @@ using UnityEngine;
 
 public class Map5Setup : MonoBehaviour
 {
-    [Header("Map 5 Music Setup")]
+    [Header("Map 5 Settings")]
     public bool playMusicOnStart = true;
     public bool debugMode = true;
-    
+
     void Start()
     {
         if (playMusicOnStart)
         {
             PlayMap5Music();
         }
-        
-        if (debugMode)
-        {
-            Debug.Log("🎮 Map5Setup: Map 5 scene initialized!");
-        }
+
     }
-    
+
     void PlayMap5Music()
     {
-        // Play Map 5 music khi scene load
+        // Stop current music first
+        if (AudioManager.Instance != null && AudioManager.Instance.musicSource != null)
+        {
+            AudioManager.Instance.musicSource.Stop();
+
+            if (debugMode)
+            {
+                Debug.Log("🔇 Map4Setup: Stopped previous music before playing Map 4 music");
+            }
+        }
+
+        // Play Map 4 music khi scene load
         if (AudioManager.Instance != null && AudioManager.Instance.map5 != null)
         {
             AudioManager.Instance.PlayMusic(AudioManager.Instance.map5);
-            
+
             if (debugMode)
             {
-                Debug.Log("🎵 Map5Setup: Playing Map 5 music");
+                Debug.Log("🎵 Map4Setup: Playing Map 4 music");
             }
         }
         else
@@ -36,17 +43,17 @@ public class Map5Setup : MonoBehaviour
             // Debug error messages
             if (AudioManager.Instance == null)
             {
-                Debug.LogError("🚨 Map5Setup: AudioManager.Instance is null!");
+                Debug.LogError("🚨 Map4Setup: AudioManager.Instance is null!");
             }
-            else if (AudioManager.Instance.map5 == null)
+            else if (AudioManager.Instance.map4 == null)
             {
-                Debug.LogError("🚨 Map5Setup: AudioManager.Instance.map5 is null! Please assign Map 5 music clip in AudioManager.");
+                Debug.LogError("🚨 Map4Setup: AudioManager.Instance.map4 is null! Please assign Map 4 music clip in AudioManager.");
             }
         }
     }
-    
+
     [ContextMenu("Play Map 5 Music")]
-    public void ForcePlayMap5Music()
+    public void ForcePlayMap4Music()
     {
         PlayMap5Music();
     }
@@ -60,8 +67,34 @@ public class Map5Setup : MonoBehaviour
             
             if (debugMode)
             {
-                Debug.Log("🔇 Map5Setup: Music stopped");
+                Debug.Log("🔇 Map4Setup: Music stopped");
             }
+        }
+    }
+
+    // Method để play button click sound (nếu có UI buttons trong Map 4)
+    public void PlayButtonClickSound()
+    {
+        if (AudioManager.Instance != null && AudioManager.Instance.buttonClick != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+
+        }
+    }
+
+    // Method để stop current music và play Map 4 music
+    public void SwitchToMap5Music()
+    {
+        if (AudioManager.Instance != null)
+        {
+            // Stop current music first
+            if (AudioManager.Instance.musicSource != null)
+            {
+                AudioManager.Instance.musicSource.Stop();
+            }
+            
+            // Play Map 5 music
+            PlayMap5Music();
         }
     }
 }

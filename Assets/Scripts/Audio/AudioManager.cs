@@ -21,6 +21,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip teleportMusic;
     public AudioClip coinDrop;
     public AudioClip treasureChest;
+    public AudioClip buyItem;
+    public AudioClip equipItem;
 
     [Header("Panel")]
     public AudioClip buttonClick;
@@ -74,6 +76,9 @@ public class AudioManager : MonoBehaviour
     //Enemy wolf
     public AudioClip meleeEnemyAttack;
     public AudioClip meleeEnemyDeath;
+    //Meduxa
+    public AudioClip medusaAttack1; // Spike
+    public AudioClip medusaAttack2; // Summon minion
 
     //Enemy death4
     public AudioClip dead4CloseAttack;
