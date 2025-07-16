@@ -41,9 +41,17 @@ public class Dead4Attack : MonoBehaviour
     {
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        // Kiểm tra định kỳ
+        InvokeRepeating(nameof(CheckSkillLogic), 0f, 0.2f); // mỗi 0.2s
     }
 
-    void Update()
+    public bool IsCasting()
+    {
+        return isCasting;
+    }
+
+    void CheckSkillLogic()
     {
         if (player == null || isCasting) return;
 
@@ -100,7 +108,11 @@ public class Dead4Attack : MonoBehaviour
 
         yield return new WaitForSeconds(summonDelay);
 
-        if (player == null) yield break;
+        if (player == null)
+        {
+            isCasting = false;
+            yield break;
+        }
 
         RaycastHit2D hit = Physics2D.Raycast(player.position, Vector2.down, 10f, LayerMask.GetMask("Ground"));
         if (hit.collider != null)
