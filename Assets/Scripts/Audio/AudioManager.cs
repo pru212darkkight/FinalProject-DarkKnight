@@ -260,4 +260,26 @@ public class AudioManager : MonoBehaviour
         Debug.Log($"🎵 Playing music: {clip.name}");
     }
 
+    // Helper method để switch music (stop current + play new)
+    public void SwitchMusic(AudioClip newClip)
+    {
+        if (musicSource != null)
+        {
+            musicSource.Stop();
+            Debug.Log("🔇 AudioManager: Stopped current music for switch");
+        }
+
+        PlayMusic(newClip);
+    }
+
+    // Helper method để stop music
+    public void StopMusic()
+    {
+        if (musicSource != null)
+        {
+            musicSource.Stop();
+            Debug.Log("🔇 AudioManager: Music stopped");
+        }
+    }
+
 }

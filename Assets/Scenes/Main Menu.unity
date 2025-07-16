@@ -930,6 +930,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9c93007b38237034f86a807d858f050c, type: 3}
   - {fileID: 8300000, guid: 50d4fae18ee78254f9d58eea519a2a36, type: 3}
   mainMenu: {fileID: 8300000, guid: 912faae4bef660d47a3284f8e9ff00b6, type: 3}
+  homeVillage: {fileID: 8300000, guid: 957355b19a182894fba0aa42e4b1c911, type: 3}
   map1: {fileID: 8300000, guid: 4991260ec8e11a74ca62adb9fa0acbc7, type: 3}
   wolfAttack: {fileID: 8300000, guid: 3315f16736b6fee408f1c793e9c77f5d, type: 3}
   wolfRange: {fileID: 8300000, guid: d5553c16462f19e49bc9abaa4813cd2e, type: 3}
@@ -968,19 +969,19 @@ MonoBehaviour:
   miniBossAttack1: {fileID: 8300000, guid: 3b6e566a16f1ae341a074b15cad73131, type: 3}
   miniBossAttack2: {fileID: 8300000, guid: 556cf0802ef46e043a59b47ef6829460, type: 3}
   miniBossDeath: {fileID: 8300000, guid: 5dee0ef51cdcc0a469d86b301dfbdfc7, type: 3}
-  miniBoss1Attack: {fileID: 0}
-  miniBoss1Death: {fileID: 0}
+  miniBoss1Attack: {fileID: 8300000, guid: 3b6e566a16f1ae341a074b15cad73131, type: 3}
+  miniBoss1Death: {fileID: 8300000, guid: 556cf0802ef46e043a59b47ef6829460, type: 3}
   miniBossDemonAttack: {fileID: 8300000, guid: 4361ce43df0eb3a4c84ea9a71123c960, type: 3}
-  miniBossDemonDeath: {fileID: 0}
+  miniBossDemonDeath: {fileID: 8300000, guid: 5dee0ef51cdcc0a469d86b301dfbdfc7, type: 3}
   wizardAttack: {fileID: 8300000, guid: dff35608e7a1e8f4496dd0bde43821aa, type: 3}
-  wizardDeath: {fileID: 0}
-  demonRedAttack1: {fileID: 0}
-  demonRedAttack2: {fileID: 0}
-  demonRedDeath: {fileID: 0}
-  finalBossAttack1: {fileID: 0}
-  finalBossAttack2: {fileID: 0}
-  finalBossAttack3: {fileID: 0}
-  finalBossDeath: {fileID: 0}
+  wizardDeath: {fileID: 8300000, guid: 92024f79f301a0442b44c7ac7b6b713e, type: 3}
+  demonRedAttack1: {fileID: 8300000, guid: c5aa893e82258cd46bf1087e40021f0c, type: 3}
+  demonRedAttack2: {fileID: 8300000, guid: c5aa893e82258cd46bf1087e40021f0c, type: 3}
+  demonRedDeath: {fileID: 8300000, guid: 5dee0ef51cdcc0a469d86b301dfbdfc7, type: 3}
+  finalBossAttack1: {fileID: 8300000, guid: cbad5ec33378a0f4187af6bb3c52d5f2, type: 3}
+  finalBossAttack2: {fileID: 8300000, guid: f244e8964aef84640a126cb4d94faba3, type: 3}
+  finalBossAttack3: {fileID: 8300000, guid: f244e8964aef84640a126cb4d94faba3, type: 3}
+  finalBossDeath: {fileID: 8300000, guid: 5dee0ef51cdcc0a469d86b301dfbdfc7, type: 3}
   playerFootstep: {fileID: 8300000, guid: 6c95f736e9c0fed4699bd7912c41b156, type: 3}
   attack: {fileID: 8300000, guid: 9850cf9cb2b576f40935490babe69fa8, type: 3}
   attack2: {fileID: 8300000, guid: 3cd563ca729a4c548969cda1b9bf80d4, type: 3}
