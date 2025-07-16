@@ -15,11 +15,6 @@ public class GameMenuController : MonoBehaviour
     [SerializeField] private GameObject introPanel;
     [SerializeField] private GameObject menuContainer;
 
-    [Header("Option Panel Controls")]
-    [SerializeField] private Button optionOkButton;
-    [SerializeField] private Button optionLeftButton;
-    [SerializeField] private Button optionRightButton;
-
     [Header("Intro Panel Controls")]
     [SerializeField] private Button introOkButton;
     [SerializeField] private Button intro1Button;
@@ -37,11 +32,6 @@ public class GameMenuController : MonoBehaviour
         optionButton.onClick.AddListener(OnOptionClick);
         introButton.onClick.AddListener(OnIntroClick);
         exitButton.onClick.AddListener(OnExitClick);
-
-        // Option Panel
-        optionOkButton.onClick.AddListener(() => ClosePanel(optionPanel));
-        optionLeftButton.onClick.AddListener(() => Debug.Log("Option Left"));
-        optionRightButton.onClick.AddListener(() => Debug.Log("Option Right"));
 
         // Introduction Panel
         introOkButton.onClick.AddListener(() => ClosePanel(introPanel));
@@ -106,10 +96,6 @@ public class GameMenuController : MonoBehaviour
         optionButton.onClick.RemoveAllListeners();
         introButton.onClick.RemoveAllListeners();
         exitButton.onClick.RemoveAllListeners();
-
-        optionOkButton.onClick.RemoveAllListeners();
-        optionLeftButton.onClick.RemoveAllListeners();
-        optionRightButton.onClick.RemoveAllListeners();
 
         introOkButton.onClick.RemoveAllListeners();
         intro1Button.onClick.RemoveAllListeners();

@@ -4,6 +4,13 @@ public class SetUp : MonoBehaviour
 {
     void Start()
     {
+        // Stop current music first
+        if (AudioManager.Instance != null && AudioManager.Instance.musicSource != null)
+        {
+            AudioManager.Instance.musicSource.Stop();
+            Debug.Log("🔇 Map2Setup: Stopped previous music before playing Map 2 music");
+        }
+
         // Play Map 2 music khi scene load
         if (AudioManager.Instance != null && AudioManager.Instance.map2 != null)
         {
