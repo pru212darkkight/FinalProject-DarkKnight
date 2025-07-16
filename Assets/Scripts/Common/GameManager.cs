@@ -116,6 +116,13 @@ public class GameManager : MonoBehaviour
 
     void PlayHomeVillageMusic()
     {
+        // Stop current music first
+        if (AudioManager.Instance != null && AudioManager.Instance.musicSource != null)
+        {
+            AudioManager.Instance.musicSource.Stop();
+            Debug.Log("🔇 GameManager: Stopped previous music before playing Home Village music");
+        }
+
         // Play Home Village music khi scene load
         if (AudioManager.Instance != null && AudioManager.Instance.homeVillage != null)
         {
@@ -145,6 +152,13 @@ public class GameManager : MonoBehaviour
     void PlaySceneMusic()
     {
         if (AudioManager.Instance == null) return;
+
+        // Stop current music first
+        if (AudioManager.Instance.musicSource != null)
+        {
+            AudioManager.Instance.musicSource.Stop();
+            Debug.Log("🔇 GameManager: Stopped previous music before playing scene music");
+        }
 
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         AudioClip musicToPlay = null;

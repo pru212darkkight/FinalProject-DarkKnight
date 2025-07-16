@@ -16614,7 +16614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -537.88995, y: -297.33997}
+  m_AnchoredPosition: {x: -537.89, y: -297.33997}
   m_SizeDelta: {x: -1207.85, y: -720.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &623741422
@@ -17657,7 +17657,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9c93007b38237034f86a807d858f050c, type: 3}
   - {fileID: 8300000, guid: 50d4fae18ee78254f9d58eea519a2a36, type: 3}
   mainMenu: {fileID: 0}
-  homeVillage: {fileID: 0}
+  homeVillage: {fileID: 8300000, guid: 957355b19a182894fba0aa42e4b1c911, type: 3}
   map1: {fileID: 8300000, guid: 4991260ec8e11a74ca62adb9fa0acbc7, type: 3}
   wolfAttack: {fileID: 8300000, guid: 3315f16736b6fee408f1c793e9c77f5d, type: 3}
   wolfRange: {fileID: 8300000, guid: d5553c16462f19e49bc9abaa4813cd2e, type: 3}
@@ -18060,7 +18060,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.939941, y: -38}
+  m_AnchoredPosition: {x: 8.939941, y: -38.000015}
   m_SizeDelta: {x: -182.12, y: -109.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &728954223
@@ -40108,7 +40108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -45}
+  m_AnchoredPosition: {x: 0, y: -45.000015}
   m_SizeDelta: {x: -800, y: -294.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966176329

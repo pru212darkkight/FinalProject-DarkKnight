@@ -21,11 +21,22 @@ public class Map4Setup : MonoBehaviour
 
     void PlayMap4Music()
     {
+        // Stop current music first
+        if (AudioManager.Instance != null && AudioManager.Instance.musicSource != null)
+        {
+            AudioManager.Instance.musicSource.Stop();
+
+            if (debugMode)
+            {
+                Debug.Log("🔇 Map4Setup: Stopped previous music before playing Map 4 music");
+            }
+        }
+
         // Play Map 4 music khi scene load
         if (AudioManager.Instance != null && AudioManager.Instance.map4 != null)
         {
             AudioManager.Instance.PlayMusic(AudioManager.Instance.map4);
-            
+
             if (debugMode)
             {
                 Debug.Log("🎵 Map4Setup: Playing Map 4 music");
