@@ -474,10 +474,10 @@ MonoBehaviour:
   enemyWeapon: {fileID: 2000715529150129304}
   detectRangeX: 8.99
   detectRangeY: 2.65
-  moveSpeed: 12
+  moveSpeed: 10
   attackRange: 1.19
   healthRegenRate: 10
-  attackCooldown: 0.5
+  attackCooldown: 1
   returnToOrigin: 0
   startPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2611315316761737838
@@ -492,8 +492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013db8a40a2ee1242885c938c0d3f749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
-  currentHealth: 300
+  maxHealth: 200
+  currentHealth: 200
   armor: 5
   magicResist: 5
   isDead: 0
@@ -502,6 +502,9 @@ MonoBehaviour:
   resurrectHealth: 50
   isInvulnerable: 0
   movingPlatform: {fileID: 0}
+  enableChestDrop: 0
+  chestPrefab: {fileID: 0}
+  chestSpawnOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &2000715529150129304
 MonoBehaviour:
   m_ObjectHideFlags: 0

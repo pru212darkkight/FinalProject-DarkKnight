@@ -81,6 +81,12 @@ public class WizardController : MonoBehaviour
                 // Tấn công liên tục khi player còn ở vùng đỏ và đã hết cooldown
                 if (Time.time - lastAttackTime >= attackCooldown && !isAttacking)
                 {
+                    // 🎵 Play attack sound
+                    if (AudioManager.Instance != null && AudioManager.Instance.wizardAttack != null)
+                    {
+                        AudioManager.Instance.PlaySFX(AudioManager.Instance.wizardAttack);
+                    }
+
                     animator.SetTrigger("Attack");
                     isAttacking = true;
                     lastAttackTime = Time.time;
@@ -159,6 +165,16 @@ public class WizardController : MonoBehaviour
         else if (targetX < transform.position.x && scale.x > 0)
             scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    // Method để gọi khi wizard chết (từ EnemyHealth script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.wizardDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.wizardDeath);
+        }
     }
 
     void OnDrawGizmosSelected()

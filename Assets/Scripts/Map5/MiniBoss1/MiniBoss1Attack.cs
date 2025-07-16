@@ -32,12 +32,34 @@ public class MiniBoss1Attack : MonoBehaviour
         {
             int rand = Random.Range(0, 2); // 0 = Attack, 1 = Cast
             if (rand == 0)
+            {
+                // 🎵 Play attack sound for melee
+                if (AudioManager.Instance != null && AudioManager.Instance.miniBoss1Attack != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBoss1Attack);
+                    Debug.Log("⚔️ MiniBoss1 Melee Attack - playing sound!");
+                }
                 animator.SetTrigger("Attack");
+            }
             else
+            {
+                // 🎵 Play attack sound for cast
+                if (AudioManager.Instance != null && AudioManager.Instance.miniBoss1Attack != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBoss1Attack);
+                    Debug.Log("⚡ MiniBoss1 Thunder Cast - playing sound!");
+                }
                 animator.SetTrigger("Cast");
+            }
         }
         else
         {
+            // 🎵 Play attack sound for cast only
+            if (AudioManager.Instance != null && AudioManager.Instance.miniBoss1Attack != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBoss1Attack);
+                Debug.Log("⚡ MiniBoss1 Thunder Cast (ranged) - playing sound!");
+            }
             animator.SetTrigger("Cast"); // Chỉ cast
         }
     }

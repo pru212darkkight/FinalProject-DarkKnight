@@ -36,6 +36,12 @@ public class GameManager : MonoBehaviour
         playAgainButton.onClick.AddListener(OnPlayAgainClick);
         playerMoney.ResetSessionCoins();
         levelTimer.ResetTimer();
+
+        // 🎵 Play Home Village music if this is Home Village scene
+        if (isHomeVillage)
+        {
+            PlayHomeVillageMusic();
+        }
     }
     public void ShowDefeatPanel()
     {
@@ -64,14 +70,24 @@ public class GameManager : MonoBehaviour
             damageFromEachEnemy = new Dictionary<string, DamageLog>(GameDefeatData.damageFromEachEnemy)
         };
     }
+    void PlayButtonClickSound()
+    {
+        if (AudioManager.Instance != null && AudioManager.Instance.buttonClick != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+        }
+    }
+
     void OnHomeClick()
     {
+        PlayButtonClickSound();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Home Village");
     }
 
     void OnPlayAgainClick()
     {
+        PlayButtonClickSound();
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -94,8 +110,47 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f; // Pause game
     }
 
+    void PlayHomeVillageMusic()
+    {
+        // Play Home Village music khi scene load
+        if (AudioManager.Instance != null && AudioManager.Instance.homeVillage != null)
+        {
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.homeVillage);
+            Debug.Log("🏘️ GameManager: Playing Home Village music");
+        }
+        else
+        {
+            // Debug error messages
+            if (AudioManager.Instance == null)
+            {
+                Debug.LogError("🚨 GameManager: AudioManager.Instance is null!");
+            }
+            else if (AudioManager.Instance.homeVillage == null)
+            {
+                Debug.LogError("🚨 GameManager: AudioManager.Instance.homeVillage is null! Please assign Home Village music clip in AudioManager.");
+            }
+        }
+    }
+
+    [ContextMenu("Play Home Village Music")]
+    public void ForcePlayHomeVillageMusic()
+    {
+        PlayHomeVillageMusic();
+    }
+
+    [ContextMenu("Stop Music")]
+    public void StopMusic()
+    {
+        if (AudioManager.Instance != null && AudioManager.Instance.musicSource != null)
+        {
+            AudioManager.Instance.musicSource.Stop();
+            Debug.Log("🔇 GameManager: Music stopped");
+        }
+    }
+
     void OnOKClick()
     {
+        PlayButtonClickSound();
         victoryPanel.SetActive(false);
         Time.timeScale = 1f; // Resume game
 

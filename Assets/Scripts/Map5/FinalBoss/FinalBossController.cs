@@ -112,6 +112,16 @@ public class FinalBossController : MonoBehaviour
         // Nếu cần, gọi VFX teleport ở đây
     }
 
+    // Method để gọi khi final boss chết (từ EnemyHealth script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.finalBossDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.finalBossDeath);
+        }
+    }
+
     // Vẽ vùng attack range box trên scene
     void OnDrawGizmosSelected()
     {

@@ -145,6 +145,63 @@ public class EnemyHealth : MonoBehaviour
         {
             coinDrop.DropCoin();
         }
+
+        // 🎵 Call OnDeath() for EnemyController component
+        EnemyController enemyController = GetComponent<EnemyController>();
+        if (enemyController != null)
+        {
+            enemyController.OnDeath();
+        }
+
+        // 🎵 Call OnDeath() for DemonBatController component
+        DemonBatController demonBatController = GetComponent<DemonBatController>();
+        if (demonBatController != null)
+        {
+            demonBatController.OnDeath();
+        }
+
+        // 🎵 Call OnDeath() for MiniBossController component
+        MiniBossController miniBossController = GetComponent<MiniBossController>();
+        if (miniBossController != null)
+        {
+            miniBossController.OnDeath();
+        }
+
+        // 🎵 Call OnDeath() for MiniBoss1Controller component
+        MiniBoss1Controller miniBoss1Controller = GetComponent<MiniBoss1Controller>();
+        if (miniBoss1Controller != null)
+        {
+            miniBoss1Controller.OnDeath();
+        }
+
+        // 🎵 Call OnDeath() for MinibosDemonController component
+        MinibosDemonController minibosDemonController = GetComponent<MinibosDemonController>();
+        if (minibosDemonController != null)
+        {
+            minibosDemonController.OnDeath();
+        }
+
+        // 🎵 Call OnDeath() for WizardController component
+        WizardController wizardController = GetComponent<WizardController>();
+        if (wizardController != null)
+        {
+            wizardController.OnDeath();
+        }
+
+        // 🎵 Call OnDeath() for DemonRedController component
+        DemonRedController demonRedController = GetComponent<DemonRedController>();
+        if (demonRedController != null)
+        {
+            demonRedController.OnDeath();
+        }
+
+        // 🎵 Call OnDeath() for FinalBossController component
+        FinalBossController finalBossController = GetComponent<FinalBossController>();
+        if (finalBossController != null)
+        {
+            finalBossController.OnDeath();
+        }
+
         if (animator != null)
         {
             animator.ResetTrigger("Hurt");

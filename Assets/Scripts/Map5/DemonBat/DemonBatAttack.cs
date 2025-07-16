@@ -26,6 +26,14 @@ public class DemonBatAttack : MonoBehaviour
         if (Time.time > lastAttackTime + attackCooldown && player != null)
         {
             lastAttackTime = Time.time;
+
+            // 🎵 Play attack sound
+            if (AudioManager.Instance != null && AudioManager.Instance.demonBatAttack != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.demonBatAttack);
+                Debug.Log("🔥 Demon Bat attacking - playing sound!");
+            }
+
             if (animator) animator.SetTrigger("Attack");
 
             if (firePrefab && fireSpawnPoint)
