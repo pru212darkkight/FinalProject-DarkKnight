@@ -81,6 +81,10 @@ public class AudioManager : MonoBehaviour
     [Header("Map 5")]
     public AudioClip map5;
 
+    //Enemy
+    public AudioClip map5EnemyAttack;
+
+
     [Header("Player Actions")]
     public AudioClip playerFootstep;
     public AudioClip attack;

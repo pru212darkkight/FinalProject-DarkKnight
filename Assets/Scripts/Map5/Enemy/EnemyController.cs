@@ -68,6 +68,13 @@ public class EnemyController : MonoBehaviour
                 animator.SetBool("isRunning", false);
                 if (Time.time > lastAttackTime + attackCooldown)
                 {
+                    // 🎵 Play attack sound
+                    if (AudioManager.Instance != null && AudioManager.Instance.map5EnemyAttack != null)
+                    {
+                        AudioManager.Instance.PlaySFX(AudioManager.Instance.map5EnemyAttack);
+                        Debug.Log("⚔️ Map5 Enemy attacking - playing sound!");
+                    }
+
                     animator.SetTrigger("Attack");
                     lastAttackTime = Time.time;
                 }
