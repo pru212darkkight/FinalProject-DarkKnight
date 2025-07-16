@@ -6,7 +6,6 @@ public class GameMenuController : MonoBehaviour
 {
     [Header("Main Buttons")]
     [SerializeField] private Button playButton;
-    [SerializeField] private Button optionButton;
     [SerializeField] private Button introButton;
     [SerializeField] private Button exitButton;
 
@@ -29,7 +28,6 @@ public class GameMenuController : MonoBehaviour
     {
         // Main Menu buttons
         playButton.onClick.AddListener(OnPlayClick);
-        optionButton.onClick.AddListener(OnOptionClick);
         introButton.onClick.AddListener(OnIntroClick);
         exitButton.onClick.AddListener(OnExitClick);
 
@@ -93,7 +91,6 @@ public class GameMenuController : MonoBehaviour
     private void OnDestroy()
     {
         playButton.onClick.RemoveAllListeners();
-        optionButton.onClick.RemoveAllListeners();
         introButton.onClick.RemoveAllListeners();
         exitButton.onClick.RemoveAllListeners();
 
