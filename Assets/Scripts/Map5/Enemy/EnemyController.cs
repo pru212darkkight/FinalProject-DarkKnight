@@ -143,6 +143,17 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // Method để gọi khi enemy chết (từ EnemyHealth script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.map5EnemyDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.map5EnemyDeath);
+            Debug.Log("💀 Map5 Enemy died - playing death sound!");
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         if (Camera.main == null) return;

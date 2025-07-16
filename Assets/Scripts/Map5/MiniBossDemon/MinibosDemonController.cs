@@ -71,6 +71,13 @@ public class MinibosDemonController : MonoBehaviour
                 animator.SetBool("IsRunning", false);
                 if (Time.time > lastAttackTime + attackCooldown)
                 {
+                    // 🎵 Play attack sound
+                    if (AudioManager.Instance != null && AudioManager.Instance.miniBossDemonAttack != null)
+                    {
+                        AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBossDemonAttack);
+                        Debug.Log("⚔️ MiniBoss Demon attacking - playing sound!");
+                    }
+
                     animator.SetTrigger("Attack");
                     lastAttackTime = Time.time;
                 }
@@ -136,6 +143,17 @@ public class MinibosDemonController : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
+        }
+    }
+
+    // Method để gọi khi mini boss demon chết (từ EnemyHealth script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.miniBossDemonDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBossDemonDeath);
+            Debug.Log("💀 MiniBoss Demon died - playing death sound!");
         }
     }
 

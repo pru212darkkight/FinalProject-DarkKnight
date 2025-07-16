@@ -29,18 +29,36 @@ public class DemonRedAttack : MonoBehaviour
             isCombo = false;
             animator.SetBool("IsCombo", false);
             animator.SetTrigger("Attack1");
+
+            // 🎵 Play attack1 sound
+            if (AudioManager.Instance != null && AudioManager.Instance.demonRedAttack1 != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.demonRedAttack1);
+            }
         }
         else if (rand == 1)
         {
             isCombo = false;
             animator.SetBool("IsCombo", false);
             animator.SetTrigger("Attack2");
+
+            // 🎵 Play attack2 sound
+            if (AudioManager.Instance != null && AudioManager.Instance.demonRedAttack2 != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.demonRedAttack2);
+            }
         }
         else
         {
             isCombo = true;
             animator.SetBool("IsCombo", true);
             animator.SetTrigger("Attack1");
+
+            // 🎵 Play attack1 sound for combo start
+            if (AudioManager.Instance != null && AudioManager.Instance.demonRedAttack1 != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.demonRedAttack1);
+            }
         }
     }
 
@@ -48,6 +66,14 @@ public class DemonRedAttack : MonoBehaviour
     {
         if (!isCombo)
             controller.EndAttack();
+        else
+        {
+            // 🎵 Play attack2 sound for combo transition
+            if (AudioManager.Instance != null && AudioManager.Instance.demonRedAttack2 != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.demonRedAttack2);
+            }
+        }
     }
     public void ResetAttackState()
     {

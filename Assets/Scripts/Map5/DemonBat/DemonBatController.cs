@@ -24,6 +24,7 @@ public class DemonBatController : MonoBehaviour
     private State currentState = State.Patrol;
     private float patrolY; // Độ cao Y cố định để bay
     private bool reachedPoint = false; // Để tránh đảo target liên tục khi vừa tới điểm
+    private bool hasPlayedDetectSound = false; // Để tránh phát detect sound liên tục
 
     void Awake()
     {
@@ -45,7 +46,19 @@ public class DemonBatController : MonoBehaviour
                 Patrol();
                 HealthRegen(); // <-- Hồi máu trong trạng thái tuần tra
                 if (PlayerInDetectZone())
+                {
+                    // 🎵 Play detect sound when first detecting player
+                    if (!hasPlayedDetectSound)
+                    {
+                        if (AudioManager.Instance != null && AudioManager.Instance.demonBatDetect != null)
+                        {
+                            AudioManager.Instance.PlaySFX(AudioManager.Instance.demonBatDetect);
+                            Debug.Log("👁️ Demon Bat detected player - playing sound!");
+                        }
+                        hasPlayedDetectSound = true;
+                    }
                     currentState = State.Attack;
+                }
                 break;
 
             case State.Attack:
@@ -55,7 +68,10 @@ public class DemonBatController : MonoBehaviour
                 attackScript.Attack();
 
                 if (!PlayerInDetectZone())
+                {
                     currentState = State.Return;
+                    hasPlayedDetectSound = false; // Reset để có thể phát lại khi detect lần sau
+                }
                 break;
 
             case State.Return:
@@ -136,6 +152,17 @@ public class DemonBatController : MonoBehaviour
         {
             healthScript.currentHealth += healthRegenRate * Time.deltaTime;
             healthScript.currentHealth = Mathf.Min(healthScript.currentHealth, healthScript.maxHealth);
+        }
+    }
+
+    // Method để gọi khi enemy chết (từ EnemyHealth script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.demonBatDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.demonBatDeath);
+            Debug.Log("💀 Demon Bat died - playing death sound!");
         }
     }
 
