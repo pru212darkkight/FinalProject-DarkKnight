@@ -68,6 +68,13 @@ public class EnemyController : MonoBehaviour
                 animator.SetBool("isRunning", false);
                 if (Time.time > lastAttackTime + attackCooldown)
                 {
+                    // 🎵 Play attack sound
+                    if (AudioManager.Instance != null && AudioManager.Instance.map5EnemyAttack != null)
+                    {
+                        AudioManager.Instance.PlaySFX(AudioManager.Instance.map5EnemyAttack);
+                        Debug.Log("⚔️ Map5 Enemy attacking - playing sound!");
+                    }
+
                     animator.SetTrigger("Attack");
                     lastAttackTime = Time.time;
                 }
@@ -133,6 +140,17 @@ public class EnemyController : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
+        }
+    }
+
+    // Method để gọi khi enemy chết (từ EnemyHealth script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.map5EnemyDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.map5EnemyDeath);
+            Debug.Log("💀 Map5 Enemy died - playing death sound!");
         }
     }
 

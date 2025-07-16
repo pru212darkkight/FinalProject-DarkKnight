@@ -42,12 +42,27 @@ public class FinalBossAttack : MonoBehaviour
         switch (type)
         {
             case 1:
+                // 🎵 Play Holy Cross attack sound
+                if (AudioManager.Instance != null && AudioManager.Instance.finalBossAttack1 != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.finalBossAttack1);
+                }
                 animator.SetTrigger("Attack1");
                 break;
             case 2:
+                // 🎵 Play Moon Strike attack sound
+                if (AudioManager.Instance != null && AudioManager.Instance.finalBossAttack2 != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.finalBossAttack2);
+                }
                 animator.SetTrigger("Attack2");
                 break;
             case 3:
+                // 🎵 Play Skull Blast attack sound
+                if (AudioManager.Instance != null && AudioManager.Instance.finalBossAttack3 != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.finalBossAttack3);
+                }
                 animator.SetTrigger("Attack3");
                 break;
         }

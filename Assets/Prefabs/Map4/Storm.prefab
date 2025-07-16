@@ -170,8 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881f60371531cd044be6c9bc5e4f1457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
-  radius: 1.5
+  damage: 30
   playerLayer:
     serializedVersion: 2
     m_Bits: 256

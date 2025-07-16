@@ -44,14 +44,73 @@ public class AudioManager : MonoBehaviour
     [Header("Map 2")]
     public AudioClip map2;
 
+    //Enemy
+    public AudioClip beholderAttack;
+    public AudioClip beholderDetect;
+
+    //Boss
+    //Âm thanh khi phát hiện player
+    public AudioClip reaperDetect;
+    //đánh cận chiến
+    public AudioClip reaperMeleeAttack;
+    //đánh tầm xa
+    public AudioClip reaperThunderAttack;
+    //chết
+    public AudioClip reaperDeath;
+
     [Header("Map 3")]
     public AudioClip map3;
+    //Trap
+    public AudioClip[] boom;
 
     [Header("Map 4")]
     public AudioClip map4;
+    //Enemy wolf
+    public AudioClip meleeEnemyAttack;
+    public AudioClip meleeEnemyDeath;
+
+    //Enemy death4
+    public AudioClip dead4CloseAttack;
+    public AudioClip dead4Summon;
+    public AudioClip dead4Storm;
+    public AudioClip dead4Death;
+    //Enemy DAttack
+    public AudioClip dAttackSound;
+    public AudioClip dAttackDeath;
 
     [Header("Map 5")]
     public AudioClip map5;
+
+    //Enemy
+    public AudioClip map5EnemyAttack;
+    public AudioClip map5EnemyDeath;
+    //Demon Bat
+    public AudioClip demonBatDetect;
+    public AudioClip demonBatAttack;
+    public AudioClip demonBatDeath;
+    //Mini Boss
+    public AudioClip miniBossAttack1;
+    public AudioClip miniBossAttack2;
+    public AudioClip miniBossDeath;
+    //Mini Boss 1
+    public AudioClip miniBoss1Attack;
+    public AudioClip miniBoss1Death;
+    //Mini Boss Demon
+    public AudioClip miniBossDemonAttack;
+    public AudioClip miniBossDemonDeath;
+    //Evil Wizard
+    public AudioClip wizardAttack;
+    public AudioClip wizardDeath;
+    //Demon Red
+    public AudioClip demonRedAttack1;
+    public AudioClip demonRedAttack2;
+    public AudioClip demonRedDeath;
+    //Final Boss
+    public AudioClip finalBossAttack1; // Holy Cross
+    public AudioClip finalBossAttack2; // Moon Strike
+    public AudioClip finalBossAttack3; // Skull Blast
+    public AudioClip finalBossDeath;
+
 
     [Header("Player Actions")]
     public AudioClip playerFootstep;
@@ -65,6 +124,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip spell3;
     public AudioClip[] playerHurt;
     public AudioClip[] hurtEnemy;
+    public AudioClip[] gainHealth;
 
     private const string SFX_VOLUME_KEY = "SFXVolume";
     private const string MUSIC_VOLUME_KEY = "MusicVolume";

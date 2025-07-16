@@ -215,6 +215,16 @@ public class DemonRedController : MonoBehaviour
     }
 
 
+    // Method để gọi khi demon red chết (từ EnemyHealth script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.demonRedDeath != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.demonRedDeath);
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         if (Camera.main == null) return;

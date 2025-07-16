@@ -29,18 +29,39 @@ public class MiniBossAttack : MonoBehaviour
             isCombo = false;
             animator.SetBool("IsCombo", false);
             animator.SetTrigger("Attack1");
+
+            // 🎵 Play attack1 sound
+            if (AudioManager.Instance != null && AudioManager.Instance.miniBossAttack1 != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBossAttack1);
+                Debug.Log("⚔️ Mini Boss Attack1 - playing sound!");
+            }
         }
         else if (rand == 1)
         {
             isCombo = false;
             animator.SetBool("IsCombo", false);
             animator.SetTrigger("Attack2");
+
+            // 🎵 Play attack2 sound
+            if (AudioManager.Instance != null && AudioManager.Instance.miniBossAttack2 != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBossAttack2);
+                Debug.Log("💥 Mini Boss Attack2 - playing sound!");
+            }
         }
         else
         {
             isCombo = true;
             animator.SetBool("IsCombo", true);
             animator.SetTrigger("Attack1");
+
+            // 🎵 Play attack1 sound for combo start
+            if (AudioManager.Instance != null && AudioManager.Instance.miniBossAttack1 != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBossAttack1);
+                Debug.Log("⚔️ Mini Boss Combo Attack1 - playing sound!");
+            }
         }
     }
 
@@ -48,6 +69,15 @@ public class MiniBossAttack : MonoBehaviour
     {
         if (!isCombo)
             controller.EndAttack();
+        else
+        {
+            // 🎵 Play attack2 sound for combo transition
+            if (AudioManager.Instance != null && AudioManager.Instance.miniBossAttack2 != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBossAttack2);
+                Debug.Log("💥 Mini Boss Combo Attack2 - playing sound!");
+            }
+        }
     }
 
     public void OnAttack2End()

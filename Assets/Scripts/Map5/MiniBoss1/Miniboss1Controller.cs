@@ -219,6 +219,17 @@ public class MiniBoss1Controller : MonoBehaviour
 
 
 
+    // Method để gọi khi mini boss 1 chết (từ EnemyHealth script)
+    public void OnDeath()
+    {
+        // 🎵 Play death sound
+        if (AudioManager.Instance != null && AudioManager.Instance.miniBoss1Death != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.miniBoss1Death);
+            Debug.Log("💀 MiniBoss1 died - playing death sound!");
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         if (Camera.main == null) return;
