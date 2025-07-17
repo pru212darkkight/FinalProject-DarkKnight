@@ -248,6 +248,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61c5a5ed7e9b2eb42bace9d13251f060, type: 3}
+--- !u!1 &24148043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 24148045}
+  - component: {fileID: 24148044}
+  m_Layer: 0
+  m_Name: SetUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &24148044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24148043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51872e00961dd2547bc5fd011b35bf8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playMusicOnStart: 1
+  debugMode: 1
+--- !u!4 &24148045
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24148043}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.38342, y: -14.13337, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &26864674
 GameObject:
   m_ObjectHideFlags: 0
@@ -15907,7 +15953,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.556559, y: -0.99556834, z: -10}
+  m_LocalPosition: {x: -31.55784, y: -0.99556834, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33024,52 +33070,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1113915123
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1113915125}
-  - component: {fileID: 1113915124}
-  m_Layer: 0
-  m_Name: SetUp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1113915124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113915123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98985818233319240be3c2945a98f22b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playMusicOnStart: 1
-  debugMode: 0
---- !u!4 &1113915125
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113915123}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.14243, y: -0.74737, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1116477946
 GameObject:
   m_ObjectHideFlags: 0
@@ -44737,6 +44737,8 @@ MonoBehaviour:
   teleportMusic: {fileID: 8300000, guid: 5f273fbc7c5d34249abd3a402f92c92e, type: 3}
   coinDrop: {fileID: 8300000, guid: 3aa23fa02f880f3428a68265697fec98, type: 3}
   treasureChest: {fileID: 8300000, guid: 5818bd714aa38774f83d8b7417598f9b, type: 3}
+  buyItem: {fileID: 0}
+  equipItem: {fileID: 0}
   buttonClick: {fileID: 8300000, guid: 2c402f3db0e3c9a448db3a9542b3dc22, type: 3}
   victoryEffect:
   - {fileID: 8300000, guid: 3e5321efd17759849a9cf3f5f9f2bb1b, type: 3}
@@ -44771,6 +44773,8 @@ MonoBehaviour:
   map4: {fileID: 8300000, guid: 659dfc70648548a47a76db68dbcdd76a, type: 3}
   meleeEnemyAttack: {fileID: 8300000, guid: 556cf0802ef46e043a59b47ef6829460, type: 3}
   meleeEnemyDeath: {fileID: 8300000, guid: 92024f79f301a0442b44c7ac7b6b713e, type: 3}
+  medusaAttack1: {fileID: 0}
+  medusaAttack2: {fileID: 0}
   dead4CloseAttack: {fileID: 8300000, guid: c5aa893e82258cd46bf1087e40021f0c, type: 3}
   dead4Summon: {fileID: 8300000, guid: 4fb80763baad7c84c9b19d126cd2fac4, type: 3}
   dead4Storm: {fileID: 8300000, guid: 5d3fd5bd3ccd0d94c9616efd15a75f43, type: 3}
@@ -87170,4 +87174,4 @@ SceneRoots:
   - {fileID: 32395503}
   - {fileID: 113842444}
   - {fileID: 1443954180}
-  - {fileID: 1113915125}
+  - {fileID: 24148045}

@@ -182,13 +182,11 @@ public class GameManager : MonoBehaviour
         }
         else if (sceneName.Contains("Map 5"))
         {
-            // Map 5 might have its own setup, so we can skip or add map5 clip
-            Debug.Log("🎵 GameManager: Map 5 detected, skipping auto music (might have own setup)");
-            return;
+            musicToPlay = AudioManager.Instance.map5;
         }
 
-        // Play the determined music
-        if (musicToPlay != null)
+            // Play the determined music
+            if (musicToPlay != null)
         {
             AudioManager.Instance.PlayMusic(musicToPlay);
             Debug.Log($"🎵 GameManager: Playing music for {sceneName}");

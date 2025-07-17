@@ -34,6 +34,11 @@ public class Inventory : MonoBehaviour
     {
         if (ownedItems.Contains(item) && !equippedItems.Contains(item))
         {
+            if (AudioManager.Instance != null && AudioManager.Instance.equipItem != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.equipItem);
+            }
+
             // Gỡ item cùng type trước khi trang bị mới
             List<ItemData> itemsToUnequip = equippedItems.Where(i => i.itemType == item.itemType).ToList();
             foreach (ItemData oldItem in itemsToUnequip)

@@ -65,6 +65,10 @@ public class MeduxaAttack : MonoBehaviour
 
             if (hit.collider != null)
             {
+                if (AudioManager.Instance != null && AudioManager.Instance.medusaAttack1 != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.medusaAttack1);
+                }
                 // Mọc spike tại mặt đất dưới chân player]
                 Vector3 offset = new Vector3(-4f, 1.2f, 0f); // lệch phải 1 đơn vị, cao hơn 0.2 đơn vị
                 Vector3 spawnPos = new Vector3(player.position.x, hit.point.y, 0f) + offset;
@@ -108,6 +112,8 @@ public class MeduxaAttack : MonoBehaviour
                 PlayerController1 player = hit.GetComponent<PlayerController1>();
                 if (player != null)
                 {
+                    if (AudioManager.Instance != null && AudioManager.Instance.medusaAttack2 != null)
+                        AudioManager.Instance.PlaySFX(AudioManager.Instance.medusaAttack2);
                     // Gây damage và hiệu ứng chậm/màu độc
                     player.TakeDamage(poisonDamage, true);
                     player.ApplyPoisonEffect(2f, 0.5f, Color.green);  // 2 giây, 50% slow, đổi màu

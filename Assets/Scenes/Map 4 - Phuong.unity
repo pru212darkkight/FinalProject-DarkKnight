@@ -22591,6 +22591,8 @@ MonoBehaviour:
   teleportMusic: {fileID: 8300000, guid: 5f273fbc7c5d34249abd3a402f92c92e, type: 3}
   coinDrop: {fileID: 8300000, guid: 3aa23fa02f880f3428a68265697fec98, type: 3}
   treasureChest: {fileID: 8300000, guid: 5818bd714aa38774f83d8b7417598f9b, type: 3}
+  buyItem: {fileID: 0}
+  equipItem: {fileID: 0}
   buttonClick: {fileID: 8300000, guid: 2c402f3db0e3c9a448db3a9542b3dc22, type: 3}
   victoryEffect:
   - {fileID: 8300000, guid: 3e5321efd17759849a9cf3f5f9f2bb1b, type: 3}
@@ -22625,6 +22627,8 @@ MonoBehaviour:
   map4: {fileID: 8300000, guid: 659dfc70648548a47a76db68dbcdd76a, type: 3}
   meleeEnemyAttack: {fileID: 8300000, guid: 556cf0802ef46e043a59b47ef6829460, type: 3}
   meleeEnemyDeath: {fileID: 8300000, guid: 92024f79f301a0442b44c7ac7b6b713e, type: 3}
+  medusaAttack1: {fileID: 8300000, guid: 3b6e566a16f1ae341a074b15cad73131, type: 3}
+  medusaAttack2: {fileID: 8300000, guid: 43258bdd1b8b76746a58d6327aad2939, type: 3}
   dead4CloseAttack: {fileID: 8300000, guid: c5aa893e82258cd46bf1087e40021f0c, type: 3}
   dead4Summon: {fileID: 8300000, guid: 4fb80763baad7c84c9b19d126cd2fac4, type: 3}
   dead4Storm: {fileID: 8300000, guid: 5d3fd5bd3ccd0d94c9616efd15a75f43, type: 3}

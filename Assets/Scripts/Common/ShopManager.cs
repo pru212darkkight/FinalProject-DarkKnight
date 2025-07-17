@@ -146,6 +146,10 @@ public class ShopManager : MonoBehaviour
 
         if (playerMoney.SpendCoins(selectedItemPrice))
         {
+            if (AudioManager.Instance != null && AudioManager.Instance.buyItem != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.buyItem);
+            }
             inventory.AddItem(selectedItem);
             Debug.Log($"✅ Đã mua: {selectedItem.itemName}");
 
