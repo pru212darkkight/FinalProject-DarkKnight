@@ -54,7 +54,7 @@ public class MeduxaSpike : MonoBehaviour
             PlayerController1 player = other.GetComponent<PlayerController1>();
             if (player != null)
             {
-                player.TakeDamage(damageAmount, isMagicDamage);
+                player.TakeDamage(damageAmount, isMagicDamage,"Medusa");
                 damageActivated = false; // chỉ gây 1 lần
                 Debug.Log("💥 Spike dealt delayed damage to player!");
             }
