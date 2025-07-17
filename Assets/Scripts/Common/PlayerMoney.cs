@@ -11,6 +11,22 @@ public class PlayerMoney : MonoBehaviour
     {
         LoadMoney();
         UpdateUI();
+
+        // Notify shop managers về money change (quan trọng cho WebGL)
+        NotifyShopManagers();
+    }
+
+    void NotifyShopManagers()
+    {
+        // Tìm tất cả ShopManager và update UI
+        ShopManager[] shopManagers = FindObjectsOfType<ShopManager>();
+        foreach (var shop in shopManagers)
+        {
+            if (shop != null)
+            {
+                shop.OnPlayerMoneyChanged();
+            }
+        }
     }
 
     public void AddCoins(int amount)
@@ -42,18 +58,48 @@ public class PlayerMoney : MonoBehaviour
     }
     public void SaveMoney()
     {
-        PlayerPrefs.SetInt("PlayerCoins", coins);
-        PlayerPrefs.Save();
+        try
+        {
+            PlayerPrefs.SetInt("PlayerCoins", coins);
+            PlayerPrefs.Save();
+            Debug.Log($"💾 Money saved: {coins} coins");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"🚨 Failed to save money: {e.Message}");
+        }
     }
 
     public void LoadMoney()
     {
-        coins = PlayerPrefs.GetInt("PlayerCoins", 0);
+        try
+        {
+            coins = PlayerPrefs.GetInt("PlayerCoins", 0);
+            Debug.Log($"💰 Money loaded: {coins} coins");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"🚨 Failed to load money: {e.Message}");
+            coins = 0; // Fallback value
+        }
     }
 
     public void UpdateUI()
     {
         if (coinText != null)
             coinText.text = coins.ToString();
+
+        // Cập nhật tất cả shop UI khi money thay đổi
+        NotifyShopManagers();
+    }
+
+    // Method để force refresh tất cả money UI
+    [ContextMenu("Force Update All Money UI")]
+    public void ForceUpdateAllUI()
+    {
+        LoadMoney(); // Reload từ PlayerPrefs
+        UpdateUI();
+        NotifyShopManagers();
+        Debug.Log($"🔄 All money UI force updated. Current coins: {coins}");
     }
 } 

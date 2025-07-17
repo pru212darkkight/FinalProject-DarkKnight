@@ -29,8 +29,36 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
+        // Delay để đảm bảo PlayerMoney đã load xong (đặc biệt quan trọng cho WebGL)
+        StartCoroutine(InitializeShopWithDelay());
+    }
+
+    System.Collections.IEnumerator InitializeShopWithDelay()
+    {
+        // Chờ 1 frame để các script khác khởi tạo
+        yield return null;
+
+        // Retry logic để đảm bảo PlayerMoney đã sẵn sàng
+        int retryCount = 0;
+        while (playerMoney == null && retryCount < 10)
+        {
+            playerMoney = FindObjectOfType<PlayerMoney>();
+            retryCount++;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        // Đảm bảo PlayerMoney đã load data
+        if (playerMoney != null)
+        {
+            // Force load money trước khi update UI
+            playerMoney.LoadMoney();
+            yield return new WaitForSeconds(0.1f); // Thêm delay nhỏ cho WebGL
+        }
+
         LoadShopItems();
         UpdateMoneyUI();
+
+        Debug.Log($"🛒 ShopManager initialized. PlayerMoney coins: {(playerMoney != null ? playerMoney.coins : -1)}");
     }
 
     void LoadShopItems()
@@ -165,13 +193,67 @@ public class ShopManager : MonoBehaviour
 
     public void UpdateMoneyUI()
     {
-        Debug.Log($"💰 UpdateMoneyUI called. Coins: {playerMoney.coins}");
+        // Tìm PlayerMoney nếu chưa có reference
+        if (playerMoney == null)
+        {
+            playerMoney = FindObjectOfType<PlayerMoney>();
+        }
 
-        if (moneyText != null && playerMoney != null)
-            moneyText.text = $"{playerMoney.coins} ";
+        if (playerMoney != null)
+        {
+            // Force reload money từ PlayerPrefs (quan trọng cho WebGL)
+            playerMoney.LoadMoney();
+
+            Debug.Log($"💰 UpdateMoneyUI called. Coins: {playerMoney.coins}");
+
+            if (moneyText != null)
+            {
+                moneyText.text = $"{playerMoney.coins} ";
+            }
+        }
+        else
+        {
+            Debug.LogError("🚨 ShopManager: PlayerMoney not found!");
+            if (moneyText != null)
+            {
+                moneyText.text = "0 ";
+            }
+        }
     }
 
     public void OpenShopUI()
+    {
+        UpdateMoneyUI();
+    }
+
+    // Method để force refresh toàn bộ shop (gọi khi cần thiết)
+    [ContextMenu("Force Refresh Shop")]
+    public void ForceRefreshShop()
+    {
+        StartCoroutine(ForceRefreshShopCoroutine());
+    }
+
+    System.Collections.IEnumerator ForceRefreshShopCoroutine()
+    {
+        // Tìm lại PlayerMoney
+        playerMoney = FindObjectOfType<PlayerMoney>();
+
+        if (playerMoney != null)
+        {
+            // Force reload money
+            playerMoney.LoadMoney();
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        // Reload shop items và update UI
+        LoadShopItems();
+        UpdateMoneyUI();
+
+        Debug.Log("🔄 Shop force refreshed!");
+    }
+
+    // Method để gọi khi player nhận tiền (từ external scripts)
+    public void OnPlayerMoneyChanged()
     {
         UpdateMoneyUI();
     }
