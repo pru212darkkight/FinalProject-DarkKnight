@@ -83,6 +83,10 @@ public class PlayerController1 : MonoBehaviour
     public float armor = 5f;          // Giáp
     public float magicResist = 5f;    // Kháng phép
 
+    //2 biến base heath và strength
+    public float baseMaxHealth = 100f;
+    public float baseStrength = 10f;
+
     [Header("Health Recovery Settings")]
     public float healthRecoveryRate = 2f;    // Base health recovery per second
     public float healthRegenDelay = 5f;      // Delay before health starts regenerating
@@ -247,7 +251,11 @@ public class PlayerController1 : MonoBehaviour
         dashAction.performed -= OnDash;    // Remove dash handler
         spell3Action.performed -= OnSpell3;    // Remove spell 3 handler
     }
-
+    void Awake()
+    {
+        baseMaxHealth = PlayerPrefs.GetFloat("PlayerBaseMaxHealth", 100f);
+        baseStrength = PlayerPrefs.GetFloat("PlayerBaseStrength", 10f);
+    }
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -1446,10 +1454,10 @@ public class PlayerController1 : MonoBehaviour
     public void ResetBaseStats()
     {
         // Gán lại các chỉ số về giá trị gốc (có thể cần lưu các giá trị gốc này ở biến riêng nếu chỉ số có thể thay đổi trong runtime)
-        maxHealth = 100f;
+        maxHealth = baseMaxHealth;
         maxStamina = 100f;
         maxMana = 100f;
-        strength = 10f;
+        strength = baseStrength;
         moveSpeed = 5f;
         armor = 5f;
         magicResist = 5f;

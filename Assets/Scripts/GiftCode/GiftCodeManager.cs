@@ -51,9 +51,13 @@ public class GiftCodeManager : MonoBehaviour
         switch (code)
         {
             case "hauhero":
-                player.maxHealth = 10000;
-                player.currentHealth = 10000;
-                player.strength = 100;
+                player.baseMaxHealth = 10000;
+                player.baseStrength = 100;
+                PlayerPrefs.SetFloat("PlayerBaseMaxHealth", 10000f); // Lưu lại
+                PlayerPrefs.SetFloat("PlayerBaseStrength", 100f);
+                PlayerPrefs.Save();
+
+                player.ApplyEquipmentStats(true);
                 player.UpdateUI();
                 txtResult.text = "You have received 10000 health and 100 strength!";
                 isValid = true;
@@ -69,18 +73,39 @@ public class GiftCodeManager : MonoBehaviour
                 break;
 
             case "tuyentutung":
-                player.maxHealth = 100;
-                player.currentHealth = 100;
+                player.baseMaxHealth = 100;
+                player.baseStrength = 10;
+                PlayerPrefs.SetFloat("PlayerBaseMaxHealth", 100f);
+                PlayerPrefs.SetFloat("PlayerBaseStrength", 10f);
+                PlayerPrefs.Save();
+
+                player.ApplyEquipmentStats(true);
                 playerMoney.coins = 0;
-                player.UpdateUI();
+                playerMoney.SaveMoney();
                 playerMoney.UpdateUI();
                 txtResult.text = "Reset health to 100 and lost all gold!";
                 isValid = true;
 
                 if (shopManager != null)
-                    shopManager.UpdateMoneyUI(); // ✅ cập nhật UI shop
+                    shopManager.UpdateMoneyUI();
                 break;
+             case "hanhaihuoc":
+                // Xóa hết item sở hữu và trang bị
+                if (player != null && player.inventory != null)
+                {
+                    player.inventory.ownedItems.Clear();
+                    player.inventory.equippedItems.Clear();
+                    player.inventory.SaveInventory(); // Lưu lại trạng thái mới
+                    player.ApplyEquipmentStats(true); // Reset chỉ số, hồi đầy máu/mana/stamina
 
+                    txtResult.text = "Bạn đã bị mất sạch toàn bộ item!";
+                }
+                else
+                {
+                    txtResult.text = "Không tìm thấy inventory của player!";
+                }
+                isValid = true;
+                break;
 
             default:
                 txtResult.text = "Invalid code!";
