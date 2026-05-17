@@ -29,22 +29,6 @@
 
 ---
 
-## 👥 Team Members
-
-This project was developed by a team of **5 members** as part of the **PRU212** course at FPT University.
-
-| Role | Responsibility |
-|---|---|
-| Developer | Player mechanics, combat system |
-| Developer | Enemy AI, level design |
-| Developer | UI/UX, scene management |
-| Developer | Audio, visual effects |
-| Developer | Game manager, stage progression |
-
-> *(Update with actual names and roles)*
-
----
-
 ## 🚀 Getting Started
 
 ### Prerequisites
